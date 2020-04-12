@@ -1,0 +1,32 @@
+.chat-grid {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    align-items: unset;
+    grid-gap: 0px;
+    margin: 1em;
+    align-items: center;
+    align-content: center;
+}
+p.chat-name {
+    margin-bottom: 0px;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+}
+
+.name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 2%;
+}
+p.last-chat {
+    margin-bottom: 0px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+}
+.main-content-chat
+{
+    padding-top: 6em !important;
+}

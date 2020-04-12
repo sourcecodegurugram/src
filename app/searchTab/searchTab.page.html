@@ -1,0 +1,75 @@
+<ion-content>
+  <div class="search-main-container">
+    <div class="username-search">
+      <p class="username-serch-text">Username Search</p>
+      <input type="text" id="gender" name="gender" class="form-field-zip-code search-country">
+      <p class="caution">Enter atleast 4 characters of the username</p>
+      <div class="button-container">
+        <button type="button" class="button-common" routerLink="/search-result">Search</button>
+      </div>
+    </div>
+    <p class="or-text">OR</p>
+    <p class="username-serch-text">Advanced Search</p>
+
+    <label for="name" class="form-label">Zip/Postalcode</label><br>
+    <input type="text" id="Postalcode" name="Postalcode" class="form-field-zip-code search-country"><br>
+
+    <label class="form-label">Distance</label><br>
+    <select id="alcohol" class="country-field search-country">
+      <option value="week">30 miles</option>
+      <option value="daily">20 miles</option>
+    </select>
+
+    <label class="form-label">Gender</label><br>
+    <select id="alcohol" class="country-field search-country">
+      <option value="week">Male</option>
+      <option value="daily">Female</option>
+    </select><br>
+
+    <label class="form-label">Age</label>
+<div class="age-text-boxes">
+ 
+  <select id="alcohol" class="country-field search-country age-min">
+    <option value="week">10</option>
+    <option value="daily">15</option>
+  </select>
+
+  <select id="alcohol" class="country-field search-country age-min">
+    <option value="week">20</option>
+    <option value="daily">25</option>
+  </select>
+
+</div>
+
+    <label class="form-label">Activities/Interest</label><br>
+    <mat-form-field>
+      <mat-select multiple>
+        <mat-option *ngFor="let activity of activityList" [value]="activity">{{activity}}</mat-option>
+      </mat-select>
+    </mat-form-field><br>
+
+    <div class="radio-tabs">
+      <p>I'm Looking To Meet</p>
+      <input type="radio" id="male" name="gender" value="male" class="radio">
+      <label for="male">- Any -</label><br>
+      <input type="radio" id="female" name="gender" value="female" class="radio">
+      <label for="female">Does not Matter</label><br>
+      <input type="radio" id="other" name="gender" value="other" class="radio">
+      <label for="other">A few good friends</label><br>
+      <input type="radio" id="diverse" name="diverse" value="diverse" class="radio">
+      <label for="diverse">A lot of acquaintances</label>
+    </div>
+
+    <label class="form-label">Sort By</label><br>
+    <select id="alcohol" class="country-field search-country">
+      <option value="week">Newest Member</option>
+      <option value="daily">Oldes Member</option>
+    </select>
+    <div class="button-container">
+      <button type="button" class="button-common button-prev">Reset</button>
+      <button type="button" class="button-common" routerLink="/search-result">Search</button>
+
+
+    </div>
+  </div>
+</ion-content>
