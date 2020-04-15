@@ -71,17 +71,25 @@
           <form class="form-fields">
             <label for="name" class="form-label">First Name</label><br>
             <input type="text" id="name" name="name" class="form-field-zip-code search-country"><br>
+            <p  class="note-under-text">First name will not be displayed.</p><br>
 
             <label for="name" class="form-label">Last Name</label><br>
             <input type="text" id="lname" name="lname" class="form-field-zip-code search-country"><br>
-
+            <p  class="note-under-text">Last name will not be displayed.</p><br>
+           
+           
             <label for="dateofbirth">Date Of Birth</label><br>
             <input type="date" name="dateofbirth" id="dateofbirth" class="form-field-zip-code search-country"><br>
+            <p  class="note-under-text">DOB will not be displayed.</p><br>
 
+            <label class="form-label">Gender</label><br>
+            <select id="Gender" class="country-field search-country">
+              <option value="Anyone">Anyone</option>
+              <option value="Male"> Male</option>
+              <option value="Female">Female</option>
+            </select>
 
-
-            <label for="name" class="form-label">Gender</label><br>
-            <input type="text" id="gender" name="gender" class="form-field-zip-code search-country"><br>
+            
 
             <label for="name" class="form-label">Contry</label><br>
             <input type="text" id="country" name="country" class="form-field-zip-code search-country"><br>
@@ -98,170 +106,14 @@
             <label for="other">A lot of acquaintances</label>
 
             <p>I Want To Be Contacted By*</p>
-            <input type="radio" id="male" name="gender" value="male" class="radio">
-            <label for="male">Either One</label><br>
-            <input type="radio" id="female" name="gender" value="female" class="radio">
-            <label for="female">Female Only</label><br>
-            <input type="radio" id="other" name="gender" value="other" class="radio">
-            <label for="other">Male Only</label><br>
-            <input type="radio" id="diverse" name="diverse" value="diverse" class="radio">
-            <label for="diverse">Gender Diverse</label>
-            <div class="button-container">
-              <button type="button" class="button-common">Next</button>
-            </div>
-          </form>
-          <div class="having-trouble">
+            <input type="radio" id="Anyone" name="Anyone" value="Anyone" class="radio">
+            <label for="male">Anyone</label><br>
+            <input type="radio" id="Female" name="Female" value="Female" class="radio">
+            <label for="female">Female</label><br>
+            <input type="radio" id="Male" name="Male" value="Male" class="radio">
+            <label for="other">Male</label><br>
+           
 
-            <p class="text-having-trouble">'Having trouble registering?'</p>
-            <img src="../../assets/Images/chat.png" class="chat-image">
-          </div>
-
-
-
-
-
-
-        </div>
-
-      </mat-tab>
-
-
-      <mat-tab label="Operational Details">
-
-        <div class="card-one-white">
-          <form class="form-fields">
-            <label class="form-label">How Long Have You Lived In The Area?</label><br>
-            <select id="country" class="country-field search-country">
-              <option value="2 year"> 2 year </option>
-              <option value="3 year"> 3 year</option>
-              <option value="4 year">4 year</option>
-              <option value="5 year">5 year</option>
-            </select>
-
-            <label class="form-label">Relationship status</label><br>
-            <select id="status" class="country-field search-country">
-              <option value="single">Single</option>
-              <option value="Married">Married</option>
-            </select>
-
-
-            <label class="form-label">Education Level</label><br>
-            <select id="level" class="country-field search-country">
-              <option value="graduate">Graduate</option>
-              <option value="graduate">Married</option>
-            </select>
-
-
-
-            <label class="form-label">How Often Do You Smoke?</label><br>
-            <select id="smoke" class="country-field search-country">
-              <option value="rarely">Rarely</option>
-              <option value="daily">Daily</option>
-            </select>
-
-
-            <label class="form-label">How Often Do You Drink Alcohol?</label><br>
-            <select id="alcohol" class="country-field search-country">
-              <option value="week">Couple of week</option>
-              <option value="daily">Daily</option>
-            </select>
-
-
-            <label for="name" class="form-label">Languages Spoken Other than English</label><br>
-            <input type="text" id="gender" name="gender" class="form-field-zip-code search-country"><br>
-
-
-            <label class="form-label">Any Pets?</label><br>
-            <mat-form-field>
-              
-              <mat-select  multiple>
-                <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-     
-
-
-
-            <label class="form-label">Most Of My Friends Tend To Be</label><br>
-            <select id="most" class="country-field search-country">
-              <option value="week">Don't Know/Don't care</option>
-              <option value="daily">Daily</option>
-            </select>
-
-
-            <label class="form-label">How Do you React If Plans Get Cancelled?</label><br>
-            <select id="react" class="country-field search-country">
-              <option value="week">Things happen-no big Deal</option>
-              <option value="daily">Daily</option>
-            </select>
-
-
-            <label class="form-label">How Do You Spend Your Days</label><br>
-            <textarea rows="10" cols="50" name="comment" form="usrform">
-             </textarea>
-            <p class="caution">Content limited to 500 characters, remaining: 500</p>
-
-
-
-            <label class="form-label">Favorite Movies</label><br>
-            <textarea rows="10" cols="50" name="comment" form="usrform">
-             </textarea>
-            <p class="caution">Content limited to 500 characters, remaining: 500</p>
-
-
-            <label class="form-label">Favorite Music</label><br>
-            <textarea rows="10" cols="50" name="comment" form="usrform">
-              </textarea>
-            <p class="caution">Content limited to 500 characters, remaining: 500</p>
-
-            <label class="form-label">Favorite TV Shows</label><br>
-            <textarea rows="10" cols="50" name="comment" form="usrform">
-              </textarea>
-            <p class="caution">Content limited to 500 characters, remaining: 500</p>
-
-
-
-            <label class="form-label">Favorite Books</label><br>
-            <textarea rows="10" cols="50" name="comment" form="usrform">
-              </textarea>
-            <p class="caution">Content limited to 500 characters, remaining: 500</p>
-
-
-
-            <label class="form-label">My Friends And I Usually Talk About</label><br>
-          <mat-form-field>
-              <mat-select multiple>  
-              <mat-option *ngFor="let talkabout of talkaboutList" [value]="talkabout">{{talkabout}}</mat-option>
-              </mat-select>
-            </mat-form-field><br>
-
-
-            <label class="form-label">A Good Friend Is Someone Who...</label><br>
-            <mat-form-field>
-              <mat-select multiple>
-                <mat-option *ngFor="let goodfriend of goodfriendList" [value]="goodfriend">{{goodfriend}}</mat-option>
-              </mat-select>
-            </mat-form-field><br>
-
-            <label class="form-label">Anything else you want to say?</label><br>
-            <textarea rows="10" cols="50" name="comment" form="usrform">
-               </textarea>
-            <p class="caution">Content limited to 500 characters, remaining: 500</p>
-
-
-            <label class="form-label">Time Zone</label><br>
-            <select id="react" class="country-field search-country">
-              <option value="week">Time zone in India(GMT+5:30) </option>
-              <option value="daily">Daily</option>
-            </select>
-
-            <label class="form-label">Communication Preferences</label><br>
-            <mat-form-field>
-              <mat-select multiple>
-                <mat-option *ngFor="let Communication of CommunicationList" [value]="Communication">{{Communication}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field><br>
 
 
             <label class="form-label">Terms & Conditions</label><br>
@@ -467,11 +319,158 @@
             <mat-checkbox>I certify that I am at least 18 years of age *</mat-checkbox>
             <mat-checkbox>Accept Terms & Conditions of Use *</mat-checkbox>
           </div>
+            <div class="button-container">
+              <button type="button" class="button-common">Next</button>
+            </div>
+          </form>
+          <div class="having-trouble">
+
+            <p class="text-having-trouble">'Having trouble registering?'</p>
+            <img src="../../assets/Images/chat.png" class="chat-image">
+          </div>
 
 
 
 
 
+
+        </div>
+
+      </mat-tab>
+
+
+      <mat-tab label="Operational Details">
+
+        <div class="card-one-white">
+          
+          <form class="form-fields">
+            <a href=""> I’ll do this later</a>
+            <label class="form-label">How Long Have You Lived In The Area?</label><br>
+            <select id="country" class="country-field search-country">
+              <option value="2 year"> 2 year </option>
+              <option value="3 year"> 3 year</option>
+              <option value="4 year">4 year</option>
+              <option value="5 year">5 year</option>
+            </select>
+
+            <label class="form-label">Relationship status</label><br>
+            <select id="status" class="country-field search-country">
+              <option value="single">Single</option>
+              <option value="Married">Married</option>
+            </select>
+
+
+            <label class="form-label">Education Level</label><br>
+            <select id="level" class="country-field search-country">
+              <option value="graduate">Graduate</option>
+              <option value="graduate">Married</option>
+            </select>
+
+
+
+            <label class="form-label">How Often Do You Smoke?</label><br>
+            <select id="smoke" class="country-field search-country">
+              <option value="rarely">Rarely</option>
+              <option value="daily">Daily</option>
+            </select>
+
+
+            <label class="form-label">How Often Do You Drink Alcohol?</label><br>
+            <select id="alcohol" class="country-field search-country">
+              <option value="week">Couple of week</option>
+              <option value="daily">Daily</option>
+            </select>
+
+
+            <label for="name" class="form-label">Languages Spoken Other than English</label><br>
+            <input type="text" id="gender" name="gender" class="form-field-zip-code search-country"><br>
+
+
+            <label class="form-label">Any Pets?</label><br>
+            <mat-form-field>
+              
+              <mat-select  multiple>
+                <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+     
+
+
+
+            <label class="form-label">Most Of My Friends Tend To Be</label><br>
+            <select id="most" class="country-field search-country">
+              <option value="week">Don't Know/Don't care</option>
+              <option value="daily">Daily</option>
+            </select>
+
+
+            <label class="form-label">How Do you React If Plans Get Cancelled?</label><br>
+            <select id="react" class="country-field search-country">
+              <option value="week">Things happen-no big Deal</option>
+              <option value="daily">Daily</option>
+            </select>
+
+
+            <label class="form-label">How Do You Spend Your Days</label><br>
+            <textarea rows="10" cols="50" name="comment" form="usrform">
+             </textarea>
+            <p class="caution">Content limited to 500 characters, remaining: 500</p>
+
+
+
+            <label class="form-label">Favorite Movies</label><br>
+            <textarea rows="10" cols="50" name="comment" form="usrform">
+             </textarea>
+            <p class="caution">Content limited to 500 characters, remaining: 500</p>
+
+
+            <label class="form-label">Favorite Music</label><br>
+            <textarea rows="10" cols="50" name="comment" form="usrform">
+              </textarea>
+            <p class="caution">Content limited to 500 characters, remaining: 500</p>
+
+            <label class="form-label">Favorite TV Shows</label><br>
+            <textarea rows="10" cols="50" name="comment" form="usrform">
+              </textarea>
+            <p class="caution">Content limited to 500 characters, remaining: 500</p>
+
+
+
+            <label class="form-label">Favorite Books</label><br>
+            <textarea rows="10" cols="50" name="comment" form="usrform">
+              </textarea>
+            <p class="caution">Content limited to 500 characters, remaining: 500</p>
+
+
+
+            <label class="form-label">My Friends And I Usually Talk About</label><br>
+          <mat-form-field>
+              <mat-select multiple>  
+              <mat-option *ngFor="let talkabout of talkaboutList" [value]="talkabout">{{talkabout}}</mat-option>
+              </mat-select>
+            </mat-form-field><br>
+
+
+            <label class="form-label">A Good Friend Is Someone Who...</label><br>
+            <mat-form-field>
+              <mat-select multiple>
+                <mat-option *ngFor="let goodfriend of goodfriendList" [value]="goodfriend">{{goodfriend}}</mat-option>
+              </mat-select>
+            </mat-form-field><br>
+
+            <label class="form-label">Anything else you want to say?</label><br>
+            <textarea rows="10" cols="50" name="comment" form="usrform">
+               </textarea>
+            <p class="caution">Content limited to 500 characters, remaining: 500</p>
+
+
+            <label class="form-label">Communication Preferences</label><br>
+            <mat-form-field>
+              <mat-select multiple>
+                <mat-option *ngFor="let Communication of CommunicationList" [value]="Communication">{{Communication}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field><br>
 
 
             <div class="button-container">
@@ -527,14 +526,17 @@
               <img src="../../assets/Images/subscheck.png" class="chcek-box-subscribe">
               <p class="text-subscribe-check">Verified accounts</p>
             </div>
+            <div class="other-option">
+              <img src="../../assets/Images/subscheck.png" class="chcek-box-subscribe">
+              <p class="text-subscribe-check">Improved Search Functions</p>
+            </div>
           </ion-card>
 
 
           <ion-card class="subscribe-card">
           <div class="membership">
          
-            <p class="membership-text">Start your 7 day trial of premium
-              now (No card required).</p>
+            <p class="membership-text">Start your 7 day trial of the app now (No card required).</p>
               <button type="button" class="button-common" routerLink="/chat/searchTab">Try Now</button>
 
           </div>
@@ -542,14 +544,17 @@
 
           <ion-card class="subscribe-card">
             <div class="membership">
-           
-              <p class="membership-text">99 per month<br>
-                or<br>
-                19.99 per annum afterwards</p>
+              <p class="membership-text">Become a verified member</p>
                 <button type="button" class="button-common" routerLink="/chat/searchTab">Buy Now</button>
-  
             </div>
             </ion-card>
+
+            <ion-card class="subscribe-card">
+              <div class="membership">
+                <p class="membership-text">Not interested in the app? You can use our website for free. <a href="https://www.not4dating.com/">not4dating.com</a> Check your email to verify your account and get started!</p>
+                
+              </div>
+              </ion-card>
             <div class="having-trouble">
 
               <p class="text-having-trouble">'Having trouble registering?'</p>
