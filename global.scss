@@ -44,7 +44,7 @@
 .modal-open .modal {
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 0em 1em;
+  padding: 0em 2em;
 }
 .mat-form-field {
   display: inline-block;
@@ -80,4 +80,26 @@
 }
 .ion-color-light {
   margin-top: -2px !important;
+  --ion-color-contrast: black !important;
+  --ion-color-base: #e2d9d9a1 !important;
+}
+.ios.overscroll.hydrated {
+  background-color: white !important;
+}
+
+
+ body
+{
+  --ion-background-color: white !important;
+
+--ion-text-color: black !important;
+}
+ion-card-subtitle.ion-inherit-color.ios.hydrated {
+  background-color: transparent !important;
+}
+@media (prefers-color-scheme: dark) {
+  body {
+      background-color: transparent!important;
+      color: black !important;
+  }
 }

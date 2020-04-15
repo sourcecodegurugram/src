@@ -63,7 +63,12 @@
                 <input type="file" id="myFile" name="filename" class="input-choose">
                 <button type="button" class="btn btn-success"> <i class="fas fa-arrow-circle-up"></i>Upload</button>
               </form>
-              <p class="terms">Files must less than 100 MB<br>
+              <form>
+                <button type="button" class="btn btn-success">Add Another</button>
+              </form>
+              <p class="terms">
+                *You can add up till 10 images<br>
+                Files must less than 100 MB<br>
                 Allowed file types png gif jpg jpeg<br>
                 Images must be smaller than 1024x768 pixels</p>
             </div>
@@ -71,22 +76,23 @@
           <form class="form-fields">
             <label for="name" class="form-label">First Name</label><br>
             <input type="text" id="name" name="name" class="form-field-zip-code search-country"><br>
-            <p  class="note-under-text">First name will not be displayed.</p><br>
+            
 
             <label for="name" class="form-label">Last Name</label><br>
             <input type="text" id="lname" name="lname" class="form-field-zip-code search-country"><br>
-            <p  class="note-under-text">Last name will not be displayed.</p><br>
+            
            
            
             <label for="dateofbirth">Date Of Birth</label><br>
             <input type="date" name="dateofbirth" id="dateofbirth" class="form-field-zip-code search-country"><br>
-            <p  class="note-under-text">DOB will not be displayed.</p><br>
+            <p  class="note-under-text">First,Last Name and Date of Birth will not be displayed.</p><br>
 
             <label class="form-label">Gender</label><br>
             <select id="Gender" class="country-field search-country">
               <option value="Anyone">Anyone</option>
               <option value="Male"> Male</option>
               <option value="Female">Female</option>
+              <option value="Gender Diverse">Gender Diverse</option>
             </select>
 
             
