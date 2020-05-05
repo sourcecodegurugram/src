@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {NavigationbarComponent} from '../navigationbar/navigationbar.component'
 import { HomePage } from './home.page';
-
+import { ConfigService } from "../config.service";
 @NgModule({
   imports: [
     CommonModule,

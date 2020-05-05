@@ -2,7 +2,7 @@
 
 <div class="background">
   <ion-card class="main-register-card">
-    <mat-tab-group class="mat-background" [selectedIndex]="selectedIndex">
+    <mat-tab-group class="mat-background" [(selectedIndex)]="selectedIndex">
       <mat-tab label="Register">
         <div class="card-one-white">
           <p class="register-with-us">Register with us</p>
@@ -31,7 +31,7 @@
 
 
             <div class="button-container">
-              <button type="button" class="button-common" >Next</button>
+              <button type="button" class="button-common" (click)="nextStep()">Next</button>
             </div>
           </form>
           <div class="having-trouble">
@@ -68,7 +68,7 @@
               </form>
               <p class="terms">
                 *You can add up till 10 images<br>
-                Files must less than 100 MB<br>
+                Files must less than 2 MB<br>
                 Allowed file types png gif jpg jpeg<br>
                 Images must be smaller than 1024x768 pixels</p>
             </div>
@@ -85,7 +85,8 @@
            
             <label for="dateofbirth">Date Of Birth</label><br>
             <input type="date" name="dateofbirth" id="dateofbirth" class="form-field-zip-code search-country"><br>
-            <p  class="note-under-text">First,Last Name and Date of Birth will not be displayed.</p><br>
+            <p  class="note-under-text">* First ,
+              Last Name and Date of Birth will not be displayed.</p><br>
 
             <label class="form-label">Gender</label><br>
             <select id="Gender" class="country-field search-country">
@@ -325,9 +326,10 @@
             <mat-checkbox>I certify that I am at least 18 years of age *</mat-checkbox>
             <mat-checkbox>Accept Terms & Conditions of Use *</mat-checkbox>
           </div>
-            <div class="button-container">
-              <button type="button" class="button-common">Next</button>
-            </div>
+          <div class="button-container">
+            <button type="button" class="button-common button-prev" (click)="previousStep()">Previous</button>
+            <button type="button" class="button-common" (click)="nextStep()">Next</button>
+          </div>
           </form>
           <div class="having-trouble">
 
@@ -480,8 +482,8 @@
 
 
             <div class="button-container">
-              <button type="button" class="button-common button-prev">Previous</button>
-              <button type="button" class="button-common">Next</button>
+              <button type="button" class="button-common button-prev" (click)="previousStep()">Previous</button>
+              <button type="button" class="button-common" (click)="nextStep()">Next</button>
 
 
             </div>
@@ -561,11 +563,13 @@
                 
               </div>
               </ion-card>
-            <div class="having-trouble">
 
-              <p class="text-having-trouble">'Having trouble registering?'</p>
-              <img src="../../assets/Images/chat.png" class="chat-image">
-            </div>
+
+              <div class="having-trouble">
+                <p class="text-having-trouble">'Having trouble registering?'</p>
+                <img src="../../assets/Images/chat.png" class="chat-image" (click)="chat()">
+              </div>
+           
         </div>
 
       </mat-tab>
@@ -575,3 +579,5 @@
 
 
 </div>
+
+
