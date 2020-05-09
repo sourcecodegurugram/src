@@ -6,10 +6,30 @@ import { retry, catchError } from 'rxjs/operators';
   providedIn: "root"
 })
 export class ConfigService {
-  articleUrl="http://latdating.dd:8083/api/json/user.json";
+  articleUrl="https://gowebtutorial.com/api/json/user.json";
+  userUrl="https://gowebtutorial.com/api/json/user/"; 
+  hobbieUrl="https://gowebtutorial.com/api/json/hobbies-json";
+  postalUrl="https://gowebtutorial.com/api/json/post-json?postal_code=";
+
+
   constructor(private http: HttpClient) { }
 
   getArticle() {
     return this.http.get(this.articleUrl);
     }
+
+    getUser(uid)
+    {
+      return this.http.get(this.userUrl + uid)
+    }
+
+    getHobbies()
+    {
+      return this.http.get(this.hobbieUrl)
+    }
+    getPostal(post)
+    {
+      return this.http.get(this.postalUrl + post)
+    }
+    
 }

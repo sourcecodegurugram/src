@@ -5,7 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {NavigationbarComponent} from '../navigationbar/navigationbar.component'
 import { HomePage } from './home.page';
-import { ConfigService } from "../config.service";
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+
+import { ReplacePipe } from '../replace.pipe';
 @NgModule({
   imports: [
     CommonModule,
@@ -19,6 +21,6 @@ import { ConfigService } from "../config.service";
       }
     ])
   ],
-  declarations: [HomePage]
+  declarations: [HomePage,ReplacePipe]
 })
 export class HomePageModule {}

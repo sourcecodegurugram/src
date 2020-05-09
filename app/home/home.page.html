@@ -5,110 +5,27 @@
     <ion-card-subtitle class="tittle-home">Recent members in you area</ion-card-subtitle>
   </div>
 
-  <div class="member-cards" data-toggle="modal" data-target="#myModal">
-    <div class="member-card-image">
-      <img src="../../assets/Images/user_1.png" alt="" srcset="" class="user-image">
-    </div>
-    <div class="member-card-text">
-      <p class="name card-item">Vibrant_chef<ion-badge slot="end"  color="light">Parent</ion-badge></p>
-     
-      <ion-label class="hobbies card-item"><span class="left-heading">Hobbies:</span>Travel,Driving…</ion-label>
-      <ion-badge slot="end"  color="light">22</ion-badge>
-      <ion-label class="hobbies card-item"><span class="left-heading">Activities:</span>Happyhour..</ion-label>
-      <ion-badge slot="end"  color="light">22</ion-badge>
-      <p class="distance card-item"><span class="left-heading">Distance:</span>1 miles away</p> 
-    </div>
-  </div>
-
-
-
-
-
-
-  <div class="member-cards">
-    <div class="member-card-image">
-      <img src="../../assets/Images/user_2.png" alt="" srcset="" class="user-image">
-    </div>
-    <div class="member-card-text">
-      <p class="name card-item">ikial_55<ion-badge slot="end"  color="light">Pet Owner</ion-badge></p>
-      <ion-label class="hobbies card-item"><span class="left-heading">Hobbies:</span>Travel,Driving…</ion-label>
-      <ion-badge slot="end"  color="light">22</ion-badge>
-      <ion-label class="hobbies card-item"><span class="left-heading">Activities:</span>Happyhour..</ion-label>
-      <ion-badge slot="end"  color="light">22</ion-badge>
-      <p class="distance card-item"><span class="left-heading">Distance:</span>10 miles away</p> 
-    </div>
-  </div>
-
   
-  <div class="member-cards">
-    <div class="member-card-image">
-      <img src="../../assets/Images/user_4.png" alt="" srcset="" class="user-image">
-    </div>
-    <div class="member-card-text">
-      <p class="name card-item">faithorg<ion-badge slot="end"  color="light">Parent</ion-badge></p>
-      <ion-label class="hobbies card-item"><span class="left-heading">Hobbies:</span>CookingDriving..</ion-label>
-      <ion-badge slot="end"  color="light">22</ion-badge>
-      <ion-label class="hobbies card-item"><span class="left-heading">Activities:</span>Videogames,yoga...</ion-label>
-      <ion-badge slot="end"  color="light">22</ion-badge>
-      <p class="distance card-item"><span class="left-heading">Distance:</span>10 miles away</p> 
-    </div>
-  </div>
 
-  <div class="member-cards">
+  <div class="member-cards" *ngFor="let posts of  postse  | slice:0:25;" routerLink="/detail/{{posts.name}}/{{posts.mail}}/{{posts.uid}}">
     <div class="member-card-image">
-      <img src="../../assets/Images/user_5.png" alt="" srcset="" class="user-image">
+    
+ 
+<img src="../../assets/Images/user_-4.png" alt="" srcset="" class="user-image">
     </div>
     <div class="member-card-text">
-      <p class="name card-item">dedrick96<ion-badge slot="end"  color="light">Pet Owner</ion-badge></p>
-      <ion-label class="hobbies card-item"><span class="left-heading">Hobbies:</span>Travel,Driving…</ion-label>
-      <ion-badge slot="end"  color="light">22</ion-badge>
-      <ion-label class="hobbies card-item"><span class="left-heading">Activities:</span>Happyhour..</ion-label>
-      <ion-badge slot="end"  color="light">22</ion-badge>
-      <p class="distance card-item"><span class="left-heading">Distance:</span>4 miles away</p> 
-    </div>
-  </div>
-
-  <div class="member-cards">
-    <div class="member-card-image">
-      <img src="../../assets/Images/user_-4.png" alt="" srcset="" class="user-image">
-    </div>
-    <div class="member-card-text">
-      <p class="name card-item">YogaGuy<ion-badge slot="end"  color="light">Parent</ion-badge></p>
-      <ion-label class="hobbies card-item"><span class="left-heading">Hobbies:</span>Travel,Driving…</ion-label>
-      <ion-badge slot="end"  color="light">22</ion-badge>
-      <ion-label class="hobbies card-item"><span class="left-heading">Activities:</span>Happyhour,..</ion-label>
-      <ion-badge slot="end"  color="light">22</ion-badge>
+      <p class="name card-item">{{posts.name}}<ion-badge slot="end"  color="light" *ngIf="posts.Pets.length==0">Parent</ion-badge><ion-badge slot="end"  color="light" *ngIf="posts.Pets.length>0">Pet Owner</ion-badge></p>
+      <ion-label class="hobbies card-item"><span class="left-heading" >Activities:&nbsp;</span>{{posts.Activity | slice:3:5}}... </ion-label>
+      <ion-badge slot="end"  color="light">{{posts.Activity.length}}</ion-badge><br>
+      <!-- <ion-label class="hobbies card-item" ><span class="left-heading">Activities:</span>{{posts.Activity | slice:-2:-1}}</ion-label>
+      <ion-badge slot="end"  color="light"></ion-badge> -->
       <p class="distance card-item"><span class="left-heading">Distance:</span>1 miles away</p> 
     </div>
   </div>
-
-
-
-  <div class="member-cards">
-    <div class="member-card-image">
-      <img src="../../assets/Images/user_7.png" alt="" srcset="" class="user-image">
-    </div>
-    <div class="member-card-text">
-      <p class="name card-item">DLeigh<ion-badge slot="end"  color="light">Pet Owner</ion-badge></p>
-      <ion-label class="hobbies card-item"><span class="left-heading">Hobbies:</span>Travel,Driving…</ion-label>
-      <ion-badge slot="end"  color="light">22</ion-badge>
-      <ion-label class="hobbies card-item"><span class="left-heading">Activities:</span>Happyhour..</ion-label>
-      <ion-badge slot="end"  color="light">22</ion-badge>
-      <p class="distance card-item"><span class="left-heading">Distance:</span>2 miles away</p> 
-    </div>
-  </div>
-
-  <div class="member-cards" (click)="test()" >
-    <div class="member-card-image">
-      <img src="../../assets/Images/user_1.png" alt="" srcset="" class="user-image">
-    </div>
-    <div class="member-card-text">
-      
-  </div>
-
+ 
 </div>
 
-
+<div class="Load-more" *ngIf="showmore" >Load More</div>
 
 
   <!-- The Modal -->

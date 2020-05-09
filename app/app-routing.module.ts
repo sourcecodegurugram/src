@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'location-targetting', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
   {
     path: 'location-targetting',
@@ -37,8 +37,16 @@ const routes: Routes = [
     loadChildren: () => import('./notificationchat/notificationchat.module').then( m => m.NotificationchatPageModule)
   },
   {
-    path: 'search-result',
+    path: 'search-result/:post',
     loadChildren: () => import('./search-result/search-result.module').then( m => m.SearchResultPageModule)
+  },
+  {
+    path: 'detail/:name/:mail/:uid',
+    loadChildren: () => import('./detail/detail.module').then( m => m.DetailPageModule)
+  },
+  {
+    path: 'elipsispipe',
+    loadChildren: () => import('./elipsispipe/elipsispipe.module').then( m => m.ElipsispipePageModule)
   },
 ];
 

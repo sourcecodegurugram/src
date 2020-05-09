@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { SearchResultPageRoutingModule } from './search-result-routing.module';
-
+import { EllipsisPipe } from '../../ellipsis.pipe';
 import { SearchResultPage } from './search-result.page';
 
 @NgModule({
@@ -15,6 +15,6 @@ import { SearchResultPage } from './search-result.page';
     IonicModule,
     SearchResultPageRoutingModule
   ],
-  declarations: [SearchResultPage]
+  declarations: [SearchResultPage,  ]
 })
 export class SearchResultPageModule {}

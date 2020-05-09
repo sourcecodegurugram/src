@@ -11,10 +11,14 @@ import { LivechatWidgetModule } from '@livechat/angular-widget'
 import{NavigationbarComponent} from './navigationbar/navigationbar.component';
   import { from } from 'rxjs';
   import { HttpClientModule } from '@angular/common/http';
-  import {ConfigService} from './config.service'
+  import {ConfigService} from './config.service';
+  import { Geolocation } from '@ionic-native/geolocation/ngx';
+
+  import { EllipsisPipe } from '../ellipsis.pipe';
+
 @NgModule({
   
-  declarations: [AppComponent,NavigationbarComponent],
+  declarations: [AppComponent,NavigationbarComponent,EllipsisPipe,],
   entryComponents: [],
   imports: [BrowserModule,
     HttpClientModule,
@@ -22,13 +26,14 @@ import{NavigationbarComponent} from './navigationbar/navigationbar.component';
      IonicModule.forRoot(), 
      AppRoutingModule,
      LivechatWidgetModule,
+     
  
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    
+    Geolocation
   ],
   bootstrap: [AppComponent]
 })

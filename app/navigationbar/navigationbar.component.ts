@@ -28,11 +28,11 @@ export class NavigationbarComponent implements OnInit {
               private router: Router) { }
  
   ngOnInit() {
-    this.Configservice.getArticle()
-      .subscribe(data => {
-        this.post = data;
-       console.log(data)
-      });
+    // this.Configservice.getArticle()
+    //   .subscribe(data => {
+    //     this.post = data;
+    //    console.log(data)
+    //   });
 
   }
 
