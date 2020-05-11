@@ -8,14 +8,13 @@
 
   <ion-card class="card-one">
     <ion-card-content class="card-content-font">
-      Location targeting is turned off on your device.  Please provide the following details to see members in your area.  Postal code and Country.  Search button will say find friends.
+      Location targeting is turned off on your device. Please provide the following details to see members in your area.
+      Postal code and Country. Search button will say find friends.
     </ion-card-content>
 
-
-  
     <p class="tittle-card">Find Friends</p>
     <form class="form-fields">
-      <label for="fname" class="form-label"    >ZIP/Postal Code</label><br>
+      <label for="fname" class="form-label">ZIP/Postal Code</label><br>
       <input type="text" id="fname" name="post" class="form-field-zip-code" [(ngModel)]="post"><br>
 
       <label class="form-label-country">Country</label><br>
@@ -27,19 +26,20 @@
       </select>
       <br>
       <div class="button-container">
-        <button type="button" class="button-common" (click)="buttonClick()" routerLink="/search-result/{{post}}">Search</button>
+        <button type="button" class="button-common" (click)="buttonClick()"
+          routerLink="/search-result/{{post}}">Search</button>
       </div>
     </form>
- 
 
-  
-    <p class="tittle-card">Can’t find your 
+
+
+    <p class="tittle-card">Can’t find your
       country ?
       Send us a message here and we will add it
     </p>
 
     <form class="form-fields">
-      
+
       <label class="form-label-country form-label">Country</label><br>
       <select id="country" class="country-field search-country">
         <option value="country">Country</option>
@@ -51,7 +51,7 @@
       <label for="fname" class="form-label">Postcode</label><br>
       <input type="text" id="fname" name="fname" class="form-field-zip-code search-country"><br>
 
-      
+
       <div class="button-container">
         <button type="button" class="button-common">Submit</button>
       </div>
