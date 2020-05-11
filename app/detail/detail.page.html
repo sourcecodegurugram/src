@@ -1,143 +1,145 @@
 <div class="background">
-<div class="container-card">
+  <div class="container-card">
 
-  
-  <div class="picture">
-    <div class="image-card">
-    <img src="{{picture}}" class="picture-img">
-  </div>
-    <div class="top-card">
-    <div class="name-output">{{mail}}</div>
-      <p class="name-output">{{name}}</p>  
+
+    <div class="picture">
+      <div class="image-card">
+        <img src="{{picture}}" class="picture-img">
+      </div>
+      <div class="top-card">
+        <div class="name-output">{{mail}}</div>
+        <p class="name-output">{{name}}</p>
+      </div>
     </div>
-  </div>
 
 
 
 
-      <ion-card class="subscribe-card">
-        <div class="membership">
-          <div class="name">Gender</div>
-          <div class="name-output">{{gender}}</div>
-        </div>
-        </ion-card>
+    <ion-card class="subscribe-card">
+      <div class="membership">
+        <div class="name">Gender</div>
+        <div class="name-output">{{gender}}</div>
+      </div>
+    </ion-card>
 
-        <ion-card class="subscribe-card" >
-          <div class="membership">
-            <div class="name">Relationship Status:</div>
-            <div class="name-output">{{status}}</div>
-          </div>
-          </ion-card>
+    <ion-card class="subscribe-card">
+      <div class="membership">
+        <div class="name">Relationship Status:</div>
+        <div class="name-output">{{status}}</div>
+      </div>
+    </ion-card>
 
-          <ion-card class="subscribe-card" >
-            <div class="membership">
-              <div class="name">Activities/Interests</div>
-              <div class="name-output">{{actvities}}</div>
-            </div>
-            </ion-card>
-            <ion-card class="subscribe-card" >
-              <div class="membership">
-                <div class="name">Education Level</div>
-                <div class="name-output">{{edu}}</div>
-              </div>
-              </ion-card>
-            
-              <ion-card class="subscribe-card" >
-                <div class="membership">
-                  <div class="name">How Often Do You Smoke?:</div>
-                  <div *ngFor="let smoke of post.field_smoke.und" class="name-output">{{smoke}}</div>
-                </div>
-                </ion-card>
-              <ion-card class="subscribe-card" >
-                <div class="membership">
-                  <div class="name">Most Of My Friends Tend To Be:</div>
-                  <div class="name-output">{{tend}}</div>
-                </div>
-                </ion-card>
+    <ion-card class="subscribe-card">
+      <div class="membership">
+        <div class="name">Activities/Interests</div>
+        <div class="name-output">{{actvities}}</div>
+      </div>
+    </ion-card>
+    <ion-card class="subscribe-card">
+      <div class="membership">
+        <div class="name">Education Level</div>
+        <div class="name-output">{{edu}}</div>
+      </div>
+    </ion-card>
 
-                <ion-card class="subscribe-card" >
-                  <div class="membership">
-                    <div class="name">How Do you React If Plans Get Cancelled?:</div>
-                    <div class="name-output">{{cancel}}</div>
-                  </div>
-                  </ion-card>
-
-                  <ion-card class="subscribe-card" >
-                    <div class="membership">
-                      <div class="name">How Do You Spend Your Days:</div>
-                      <div class="name-output">{{days}}</div>
-                    </div>
-                    </ion-card>
-                  
-                    <ion-card class="subscribe-card" >
-                      <div class="membership">
-                        <div class="name">Favorite Movies:</div>
-                        <div class="name-output">{{movies}}</div>
-                      </div>
-                      </ion-card>
+    <ion-card class="subscribe-card" *ngIf="smokes">
+      <div class="membership">
+        <div class="name">How Often Do You Smoke?:</div>
+        <div *ngFor="let smoke of smokes" class="name-output">{{smoke.value}}</div>
+      </div>
+    </ion-card>
 
 
-                      <ion-card class="subscribe-card" *ngIf="Music">
-                        <div class="membership">
-                          <div class="name"> Favorite Music</div>
-                          <div class="name-output">{{Music}}</div>
-                        </div>
-                        </ion-card>
-                     
-                        <ion-card class="subscribe-card"  *ngIf="shows">
-                          <div class="membership">
-                            <div class="name">Favorite TV Shows</div>
-                            <div class="name-output">{{shows}}</div>
-                          </div>
-                          </ion-card>
-                          <ion-card class="subscribe-card" *ngIf="books">
-                            <div class="membership">
-                              <div class="name">Favorate Books</div>
-                              <div class="name-output">{{books}}</div>
-                            </div>
-                            </ion-card>
+    <ion-card class="subscribe-card">
+      <div class="membership">
+        <div class="name">Most Of My Friends Tend To Be:</div>
+        <div class="name-output">{{tend}}</div>
+      </div>
+    </ion-card>
 
-                            <ion-card class="subscribe-card" *ngIf="friends">
-                              <div class="membership">
-                                <div class="name">My Friends And I Usually Talk About:</div>
-                                <div class="name-output">{{friends}}</div>
-                              </div>
-                              </ion-card>
+    <ion-card class="subscribe-card">
+      <div class="membership">
+        <div class="name">How Do you React If Plans Get Cancelled?:</div>
+        <div class="name-output">{{cancel}}</div>
+      </div>
+    </ion-card>
 
+    <ion-card class="subscribe-card">
+      <div class="membership">
+        <div class="name">How Do You Spend Your Days:</div>
+        <div class="name-output">{{days}}</div>
+      </div>
+    </ion-card>
 
-
+    <ion-card class="subscribe-card">
+      <div class="membership">
+        <div class="name">Favorite Movies:</div>
+        <div class="name-output">{{movies}}</div>
+      </div>
+    </ion-card>
 
 
-                        
-                            
+    <ion-card class="subscribe-card" *ngIf="Music">
+      <div class="membership">
+        <div class="name"> Favorite Music</div>
+        <div class="name-output">{{Music}}</div>
+      </div>
+    </ion-card>
 
-          
-            <ion-card class="subscribe-card" *ngIf="meet">
-              <div class="membership">
-                <div class="name">I'm Looking To Meet:</div>
-                <div class="name-output">{{meet}}</div>
-              </div>
-              </ion-card>
-           
-              
-                <ion-card class="subscribe-card" *ngIf="long">
-                  <div class="membership">
-                    <div class="name">How Long Have You Lived In The Area?</div>
-                    <div class="name-output">{{long}}</div>
-                  </div>
-                  </ion-card>
+    <ion-card class="subscribe-card" *ngIf="shows">
+      <div class="membership">
+        <div class="name">Favorite TV Shows</div>
+        <div class="name-output">{{shows}}</div>
+      </div>
+    </ion-card>
+    <ion-card class="subscribe-card" *ngIf="books">
+      <div class="membership">
+        <div class="name">Favorate Books</div>
+        <div class="name-output">{{books}}</div>
+      </div>
+    </ion-card>
+
+    <ion-card class="subscribe-card" *ngIf="friends">
+      <div class="membership">
+        <div class="name">My Friends And I Usually Talk About:</div>
+        <div class="name-output">{{friends}}</div>
+      </div>
+    </ion-card>
 
 
-                  
-                
-
-                   
 
 
-                    
 
-                      
-                    
+
+
+
+
+    <ion-card class="subscribe-card" *ngIf="meet">
+      <div class="membership">
+        <div class="name">I'm Looking To Meet:</div>
+        <div class="name-output">{{meet}}</div>
+      </div>
+    </ion-card>
+
+
+    <ion-card class="subscribe-card" *ngIf="long">
+      <div class="membership">
+        <div class="name">How Long Have You Lived In The Area?</div>
+        <div class="name-output">{{long}}</div>
+      </div>
+    </ion-card>
+
+
+
+
+
+
+
+
+
+
+
+
   </div>
 
 
