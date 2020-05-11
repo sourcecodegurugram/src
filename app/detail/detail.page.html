@@ -45,7 +45,7 @@
               <ion-card class="subscribe-card" >
                 <div class="membership">
                   <div class="name">How Often Do You Smoke?:</div>
-                  <div class="name-output">{{smoke}}</div>
+                  <div *ngFor="let smoke of post.field_smoke.und" class="name-output">{{smoke}}</div>
                 </div>
                 </ion-card>
               <ion-card class="subscribe-card" >
