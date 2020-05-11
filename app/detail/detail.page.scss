@@ -11,9 +11,7 @@
     margin-top: 5vh;
 }
 .membership {
-    display: grid;
-  
-    grid-template-columns: 2fr 2fr;
+   
     padding: 10px;
     text-align: left;
     background-color: white;
@@ -59,4 +57,14 @@ p
     align-items: center;
     justify-content: center;
     width: 29vw;
+}
+.inner-group {
+    display: grid;
+
+    grid-template-columns: 2fr 1fr;
+    
+}
+.membership.inner-group-activity {
+    display: flex;
+    justify-content: space-between;
 }

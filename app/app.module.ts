@@ -15,6 +15,7 @@ import { Geolocation } from "@ionic-native/geolocation/ngx";
 
 import { EllipsisPipe } from "../ellipsis.pipe";
 
+import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 @NgModule({
   declarations: [AppComponent, NavigationbarComponent, EllipsisPipe],
   entryComponents: [],
@@ -28,8 +29,9 @@ import { EllipsisPipe } from "../ellipsis.pipe";
   providers: [
     StatusBar,
     SplashScreen,
+    Geolocation,NativeGeocoder,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    Geolocation,
+    
   ],
   bootstrap: [AppComponent],
 })

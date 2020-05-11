@@ -11,7 +11,7 @@ export class ConfigService {
   userUrl = this.serverUrl + "user/";
   hobbieUrl = this.serverUrl + "hobbies-json";
   postalUrl = this.serverUrl + "post-json?postal_code=";
-
+  locationUrl= "https://maps.googleapis.com/maps/api/geocode/json?latlng="
   constructor(private http: HttpClient) {}
 
   getArticle() {
@@ -27,5 +27,9 @@ export class ConfigService {
   }
   getPostal(post) {
     return this.http.get(this.postalUrl + post);
+  }
+  getLocation(lat,lng)
+  {
+    return this.http.get(this.locationUrl + lat + ","+ lng +"&key=AIzaSyDDR5cIbr6IoMR59m7iwj34HcGO6aEP15k");
   }
 }
