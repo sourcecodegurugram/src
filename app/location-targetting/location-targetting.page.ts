@@ -32,7 +32,7 @@ export class LocationTargettingPage implements OnInit {
   postal: (error: any) => void;
   addreess: any;
   help: any;
-  isLoading: boolean = true;
+  hide:boolean = false;
   addressData;
   postcode;
   constructor(
@@ -51,11 +51,19 @@ export class LocationTargettingPage implements OnInit {
       this.lng = resp.coords.longitude;
 
       // If we get lat long then we will pull Address details from reverse geo lookup
+      if(this.lat && this.lng)
+      { 
       this.reverseGeoLookup();
-
-      // If we do not get lat long, we will present page with form for address and post code
-      this.showFormPage();
+      }
+      else
+      {
+        this.showFormPage()
+      }
+    }) // If we do not get lat long, we will present page with form for address and post code
+    .catch((error) => {
+     this.showFormPage()
     });
+    
   }
 
   reverseGeoLookup() {
@@ -63,14 +71,15 @@ export class LocationTargettingPage implements OnInit {
     this.ConfigService.getLocation(this.lat, this.lng).subscribe((data) => {
       console.log(data);
       this.addressData = data;
-      this.postcode = this.addressData.results[0].address_components[7].long_name;
+      this.postcode = this.addressData.results[0].address_components[8].long_name;
       this.routes.navigate(["search-result/", this.postcode]);
     });
   }
 
   showFormPage() {
     // We will hide this page at starting. If lat long fails, we will unhide it so that people can fill information
-  }
+    this.hide=true
+  };
 
   buttonClick() {
     this.ConfigService.getPostal(this.post).subscribe((elements) => {});

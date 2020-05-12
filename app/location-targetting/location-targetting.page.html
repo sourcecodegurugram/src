@@ -3,13 +3,10 @@
     <ion-title>navigation</ion-title>
   </ion-toolbar>
 </ion-header>
-<!-- Loading spinner -->
-<div *ngIf="isLoading" class="loading-container">
-  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
-</div>
+
 <div class="background">
 
-  <ion-card class="card-one">
+  <ion-card class="card-one" *ngIf="hide">
     <ion-card-content class="card-content-font">
       Location targeting is turned off on your device. Please provide the following details to see members in your area.
       Postal code and Country. Search button will say find friends.

@@ -30,6 +30,6 @@ export class ConfigService {
   }
   getLocation(lat,lng)
   {
-    return this.http.get(this.locationUrl + lat + ","+ lng +"&key=AIzaSyDDR5cIbr6IoMR59m7iwj34HcGO6aEP15k");
+    return this.http.get(this.locationUrl + lat + ","+ lng +"&types;=postal_code" +"&key=AIzaSyDDR5cIbr6IoMR59m7iwj34HcGO6aEP15k");
   }
 }
