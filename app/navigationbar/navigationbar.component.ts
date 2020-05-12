@@ -27,6 +27,8 @@ export class NavigationbarComponent implements OnInit {
   password: any;
   user: string;
   pass: string;
+  url = "http://latdating.dd:8083/api/json/system/connect";
+  headerDict:any;
   constructor(private Configservice: ConfigService,
     private blogService: BlogService,
               private route: ActivatedRoute,
@@ -84,13 +86,17 @@ export class NavigationbarComponent implements OnInit {
 
   LoginForm(user,pass)
   {
-
-   
     console.log(user,pass)
-    this.http.post<any>('http://latdating.dd:8083/api/json/user/login', { username: user,password:pass }).subscribe(data => {
-            this.post = data;
-            console.log(this.post)
-        })
+    this.http.post<any>('http://gowebtutorial.com/api/json/user/login',{username: user,password:pass}).subscribe(data => {
+            this.post = data.token;
+         
+            this.headerDict ={"X-CSRF-Token":data.token};
+              return this.http.post(this.url,{headers: new HttpHeaders(this.headerDict)}),
+              console.log(data),
+              this.logggenIn=false
+           });
+      
+}
 
-  }
+
 }

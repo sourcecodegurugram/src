@@ -68,7 +68,6 @@ export class LocationTargettingPage implements OnInit {
     this.ConfigService.getLocation(this.lat, this.lng).subscribe((data) => {
       this.addressData = data;
       this.address = this.addressData.results[0].address_components;
-
       for (var i = 0; i < this.address.length; i++) {
         if (this.address[i].types.includes("postal_code")) {
           this.postcode = this.address[i].long_name;

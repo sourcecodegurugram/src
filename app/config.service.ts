@@ -6,13 +6,13 @@ import { retry, catchError } from "rxjs/operators";
   providedIn: "root",
 })
 export class ConfigService {
-  serverUrl = "https://gowebtutorial.com/api/json/";
+  serverUrl = "http://gowebtutorial.com/api/json/";
   articleUrl = this.serverUrl + "user.json";
   userUrl = this.serverUrl + "user/";
   hobbieUrl = this.serverUrl + "hobbies-json";
-  postalUrl = this.serverUrl + "post-json?Page=2&postal_code=";
+  postalUrl = this.serverUrl + "post-json?postal_code=";
   locationUrl= "https://maps.googleapis.com/maps/api/geocode/json?latlng="
- 
+  createUrl="http://latdating.dd:8083/api/json/user/register";
   constructor(private http: HttpClient) {}
 
   getArticle() {
@@ -33,10 +33,5 @@ export class ConfigService {
   {
     return this.http.get(this.locationUrl + lat + ","+ lng +"&types;=postal_code" +"&key=AIzaSyDDR5cIbr6IoMR59m7iwj34HcGO6aEP15k");
   }
-  Login()
-  {
-   
 
-    
-  }
 }
