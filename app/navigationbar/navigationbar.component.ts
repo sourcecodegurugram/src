@@ -5,7 +5,7 @@ import { BlogService } from '../blog.service';
 import { config } from '../config';
 import { environment } from '../../environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Component({
   selector: 'app-navigationbar',
@@ -22,10 +22,16 @@ export class NavigationbarComponent implements OnInit {
   public id: string = null;
   private sub: any;
   post: Object;
+  logggenIn:boolean =false
+  username: any;
+  password: any;
+  user: string;
+  pass: string;
   constructor(private Configservice: ConfigService,
     private blogService: BlogService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private http: HttpClient) { }
  
   ngOnInit() {
     // this.Configservice.getArticle()
@@ -60,5 +66,31 @@ export class NavigationbarComponent implements OnInit {
     this.mainMenu = false; 
     this.crossSign = false;
     this.humBurger = true;
+  }
+
+  LoginOpen()
+  {
+
+    if(this.logggenIn==false)
+    {
+  this.logggenIn=true
+    }
+    else if( this.logggenIn==true)
+    {
+      this.logggenIn=false
+    }
+  }
+
+
+  LoginForm(user,pass)
+  {
+
+   
+    console.log(user,pass)
+    this.http.post<any>('http://latdating.dd:8083/api/json/user/login', { username: user,password:pass }).subscribe(data => {
+            this.post = data;
+            console.log(this.post)
+        })
+
   }
 }

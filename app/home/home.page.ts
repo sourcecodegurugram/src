@@ -54,8 +54,6 @@ export class HomePage {
       .subscribe(element => {
         this.postse = element;
         console.log(element)
-
-
       });
 
 

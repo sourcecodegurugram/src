@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import {ConfigService} from '../config.service'
 import { element } from 'protractor';
+
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.page.html',
@@ -11,6 +12,7 @@ export class SearchResultPage implements OnInit {
   sub: any;
   post:any;
   postalcode: Object;
+
   constructor(private _Activatedroute:ActivatedRoute,
     private ConfigService:ConfigService) { }
 
@@ -29,6 +31,6 @@ export class SearchResultPage implements OnInit {
     });
    
    }
-  
+ 
 
 }

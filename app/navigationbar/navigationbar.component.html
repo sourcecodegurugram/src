@@ -6,7 +6,7 @@
     
     <div class="account-status">
     
-      <img src="../../assets/Images/user-12.png" class="status-check" >
+      <img src="../../assets/Images/user-12.png" class="status-check" (click)="LoginOpen()">
     </div>
     
     <div class="humburger-menu">
@@ -32,3 +32,20 @@
       </ul>
     </div>
   </ion-header>
+
+ <div class="login-form" *ngIf="logggenIn">
+
+  <form class="form-fields">
+    <label for="name" class="form-label">Username</label><br>
+    <input type="text" id="name"  class="form-field-zip-code search-country" name="username" #username><br>
+
+    <label for="name" class="form-label">Password</label><br>
+    <input  id="password" name="password" class="form-field-zip-code search-country" #password type="password">
+
+    <div class="button-container">
+      <button type="button" class="button-common" (click)="LoginForm(username.value,password.value)">Submit</button>
+    </div>
+</form>
+
+
+ </div>
