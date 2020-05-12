@@ -3,7 +3,10 @@
     <ion-title>navigation</ion-title>
   </ion-toolbar>
 </ion-header>
-
+<!-- Loading spinner -->
+<div *ngIf="isLoading" class="loading-container">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
 <div class="background">
 
   <ion-card class="card-one">

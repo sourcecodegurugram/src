@@ -22,17 +22,21 @@ export class LocationTargettingPage implements OnInit {
   location;
   latLngResult;
   userLocationFromLatLng;
- 
   address: any;
   sub: any;
   lngs: string;
   lats: string;
+  postal: (error: any) => void;
+  addreess: any;
+  help: any;
+  isLoading:boolean=true;
   constructor(private ConfigService: ConfigService,
     public geolocation: Geolocation,
     private platform: Platform,
     private nativeGeocoder: NativeGeocoder,
     public zone: NgZone,
-    private _Activatedroute: ActivatedRoute,) {
+    private _Activatedroute: ActivatedRoute,
+    private routes :Router) {
  
       
      }
@@ -40,32 +44,28 @@ export class LocationTargettingPage implements OnInit {
   ngOnInit() {
    
     this.geolocation.getCurrentPosition().then((resp) => {
-      this.lat=resp.coords.latitude
-      console.log(this.lat)
+      this.lat=resp.coords.latitude;
     this.lng=resp.coords.longitude;
-    this.ConfigService.getLocation(this.lat,this.lng).subscribe((elements)=>
-    console.log(elements)
-  
-  )
-     console.log(this.lng)
+     this.ConfigService.getLocation(this.lat,this.lng).subscribe((data)=>
+     this.onload(data.results[0].address_components[8].long_name))
      }).catch((error) => {
+       this.isLoading=false
        console.log('Error getting location', error);
      });
-    //  this.sub = this._Activatedroute.paramMap.subscribe((params) => {
-    //   this.lats = params.get("lat");
-    //   this.lngs = params.get("lng");
-    //   console.log(this.lats)
-    //   console.log(this.lngs)
-    // });
 
-  
   }
 
   buttonClick() {
     this.ConfigService.getPostal(this.post).subscribe((elements) => {
       console.log(elements);
     });
-    console.log(this.post);
   }
-
+onload(postcode)
+{
+  this.ConfigService.getPostal(postcode).subscribe((elements) => {
+    console.log(postcode); 
+    this.routes.navigate(["search-result/",postcode])
+  });
+ 
+}
 }
