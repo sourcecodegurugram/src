@@ -12,7 +12,7 @@ import { from } from "rxjs";
 import { HttpClientModule } from "@angular/common/http";
 import { ConfigService } from "./config.service";
 import { Geolocation } from "@ionic-native/geolocation/ngx";
-
+import { RecaptchaModule } from 'ng-recaptcha';
 import { EllipsisPipe } from "../ellipsis.pipe";
 
 import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
@@ -25,6 +25,7 @@ import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geoc
     BrowserAnimationsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    RecaptchaModule.forRoot(),
   ],
   providers: [
     StatusBar,

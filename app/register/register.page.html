@@ -2,38 +2,42 @@
 
 <div class="background">
   <ion-card class="main-register-card">
+    <form >
     <mat-tab-group class="mat-background" [(selectedIndex)]="selectedIndex">
+
       <mat-tab label="Register">
-        <div class="card-one-white">
+        <div class="card-one-white ">
           <p class="register-with-us">Register with us</p>
           <div class="social-button">
             <button type="button" class="btn btn-primary-google"><i class="fab fa-google-plus-square google"></i>Continue with Google</button>
             <button type="button" class="btn btn-primary facebook"><i class="fab fa-facebook-square"></i>Login with Facebook</button>
           </div>
 
-
+         <div class="form-fields">
           <p class="or-text">OR</p>
-          <form class="form-fields">
+       
             <label for="name" class="form-label">Username</label><br>
-            <input type="text" id="name" name="name" class="form-field-zip-code search-country"><br>
+            <input type="text" id="name" name="name" class="form-field-zip-code search-country" [(ngModel)]="name" ><br>
 
             <label for="name" class="form-label">Email</label><br>
-            <input type="text" id="email" name="Email" class="form-field-zip-code search-country"><br>
+            <input type="text" id="email" name="email" class="form-field-zip-code search-country" [(ngModel)]="email" ><br>
 
+            <label for="name" class="form-label">Confirm Email</label><br>
+            <input type="text" id="email" name="confirmemail " class="form-field-zip-code search-country" [(ngModel)]="confirmemail"><br>
 
-            <label for="name" class="form-label">Password</label><br>
+            <!-- <label for="name" class="form-label">Password</label><br>
             <input type="text" id="password" name="password" class="form-field-zip-code search-country"><br>
 
 
             <label for="name" class="form-label">Confirm Password</label><br>
             <input type="text" id="confirmpassword" name="confirmpassword"
-              class="form-field-zip-code search-country"><br>
-
+              class="form-field-zip-code search-country"><br> -->
+            </div>
 
             <div class="button-container">
               <button type="button" class="button-common" (click)="nextStep()">Next</button>
             </div>
-          </form>
+        
           <div class="having-trouble">
 
             <p class="text-having-trouble">'Having trouble registering?'</p>
@@ -43,7 +47,7 @@
 
 
 
-
+     
 
         </div>
 
@@ -59,13 +63,12 @@
               <p class="upload-text">Please upload up to 3 pictures.Drag pictures to reorder them.The first picture will
                 be used as your profile picture.</p>
               <p class="addnew">Add a new file</p>
-              <form>
+            
                 <input type="file" id="myFile" name="filename" class="input-choose">
                 <button type="button" class="btn btn-success"> <i class="fas fa-arrow-circle-up"></i>Upload</button>
-              </form>
-              <form>
+            
                 <button type="button" class="btn btn-success">Add Another</button>
-              </form>
+        
               <p class="terms">
                 *You can add up till 10 images<br>
                 Files must less than 2 MB<br>
@@ -73,36 +76,49 @@
                 Images must be smaller than 1024x768 pixels</p>
             </div>
           </div>
-          <form class="form-fields">
+          <div class="form-fields">
             <label for="name" class="form-label">First Name</label><br>
-            <input type="text" id="name" name="name" class="form-field-zip-code search-country"><br>
+            <input type="text" id="name" name="firstname" class="form-field-zip-code search-country" [(ngModel)]="firstname"><br>
             
 
             <label for="name" class="form-label">Last Name</label><br>
-            <input type="text" id="lname" name="lname" class="form-field-zip-code search-country"><br>
+            <input type="text" id="lname" name="lastname" class="form-field-zip-code search-country" [(ngModel)]="lastname"><br>
             
-           
-           
+            <label for="name" class="form-label">Zip Code/Postal Code</label><br>
+            <input type="text" id="zipcode" name="zipcode" class="form-field-zip-code search-country" [(ngModel)]="zipcode"><br>
+
             <label for="dateofbirth">Date Of Birth</label><br>
-            <input type="date" name="dateofbirth" id="dateofbirth" class="form-field-zip-code search-country"><br>
+            <input type="date" name="DOB" id="dateofbirth" class="form-field-zip-code search-country" [(ngModel)]="DOB"><br>
             <p  class="note-under-text">* First ,
               Last Name and Date of Birth will not be displayed.</p><br>
+            
+              <label class="form-label">Gender</label><br>
+              <select id="Gender" class="country-field search-country" name="gender" [(ngModel)]="gender">
+                <option value="Anyone">Anyone</option>
+                <option value="Male"> Male</option>
+                <option value="Female">Female</option>
+                <option value="Gender Diverse">Gender Diverse</option>
+              </select>
 
-            <label class="form-label">Gender</label><br>
-            <select id="Gender" class="country-field search-country">
-              <option value="Anyone">Anyone</option>
-              <option value="Male"> Male</option>
-              <option value="Female">Female</option>
-              <option value="Gender Diverse">Gender Diverse</option>
-            </select>
+
+              <label for="name" class="form-label">Zip Code/Postal Code</label><br>
+              <input type="text" id="zipcode" name="zipcode" class="form-field-zip-code search-country" [(ngModel)]="zipcode"><br>
+              <label for="name" class="form-label">Contry</label><br>
+              <input type="text" id="country" name="country" class="form-field-zip-code search-country"#Country><br>
+
+
+
+            <label class="form-label">Select Activities/Interests</label><br>
+            <mat-form-field >
+              
+              <mat-select    multiple name="activit" [(ngModel)]="activit.value">
+                <mat-option *ngFor="let activity of activities" [value]="activity"  >{{activity}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+           
 
             
-
-            <label for="name" class="form-label">Contry</label><br>
-            <input type="text" id="country" name="country" class="form-field-zip-code search-country"><br>
-
-            <label for="name" class="form-label">Zip Code/Postal Code</label><br>
-            <input type="text" id="zipcode" name="zipcode" class="form-field-zip-code search-country"><br>
 
             <p>I'm Looking To Meet*</p>
             <input type="radio" id="male" name="gender" value="male" class="radio">
@@ -326,11 +342,17 @@
             <mat-checkbox>I certify that I am at least 18 years of age *</mat-checkbox>
             <mat-checkbox>Accept Terms & Conditions of Use *</mat-checkbox>
           </div>
+        </div>
+        <div class="recaptcha">
+          <re-captcha (resolved)="captchaResolved($event)" siteKey="6LeGsfYUAAAAAGFslGW89es1TIhNThrIq0bH5NKK"></re-captcha>
+
+        </div>
           <div class="button-container">
+
             <button type="button" class="button-common button-prev" (click)="previousStep()">Previous</button>
-            <button type="button" class="button-common" (click)="nextStep()">Next</button>
+            <button type="button" class="button-common" (click)="LoginForm(name,email,confirmemail,firstname,lastname,zipcode,gender,DOB,activit)">Next</button>
           </div>
-          </form>
+        
           <div class="having-trouble">
 
             <p class="text-having-trouble">'Having trouble registering?'</p>
@@ -345,7 +367,7 @@
         </div>
 
       </mat-tab>
-
+    
 
       <mat-tab label="Operational Details">
 
@@ -574,6 +596,7 @@
 
       </mat-tab>
     </mat-tab-group>
+  </form>
   </ion-card>
 
 

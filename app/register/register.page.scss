@@ -28,7 +28,7 @@
     color: #707070;
     padding: 1em;
 }
-form.form-fields{
+.form-fields{
     margin: 2em;
 }
 input{
@@ -332,3 +332,10 @@ p.note-under-text {
     margin-bottom: 0px;
     margin-top: -15px;
 }
+.recaptcha {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
+

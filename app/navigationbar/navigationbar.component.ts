@@ -89,13 +89,10 @@ export class NavigationbarComponent implements OnInit {
     console.log(user,pass)
     this.http.post<any>('http://gowebtutorial.com/api/json/user/login',{username: user,password:pass}).subscribe(data => {
             this.post = data.token;
-         
             this.headerDict ={"X-CSRF-Token":data.token};
-              return this.http.post(this.url,{headers: new HttpHeaders(this.headerDict)}),
-              console.log(data),
-              this.logggenIn=false
            });
-      
+           return this.http.post(this.url,{headers: new HttpHeaders(this.headerDict)}),
+           this.logggenIn=false
 }
 
 

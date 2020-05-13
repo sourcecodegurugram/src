@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders,HttpHeaderResponse } from "@angular/common/http";
+import {RequestOptions, Request, RequestMethod} from '@angular';
 import { Observable, throwError } from "rxjs";
 import { retry, catchError } from "rxjs/operators";
+
 @Injectable({
   providedIn: "root",
 })
@@ -33,5 +35,5 @@ export class ConfigService {
   {
     return this.http.get(this.locationUrl + lat + ","+ lng +"&types;=postal_code" +"&key=AIzaSyDDR5cIbr6IoMR59m7iwj34HcGO6aEP15k");
   }
-
+  
 }
