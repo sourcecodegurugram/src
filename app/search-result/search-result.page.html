@@ -5,37 +5,34 @@
 </ion-header>
 
 <ion-content>
-<div class="background">
-  <div class="tittle-home-page">
-    <ion-card-subtitle class="tittle-home">Search > Result</ion-card-subtitle>
-  </div>
-
-
-  <div class="member-cards" *ngFor="let posts of  postalcode | slice:0:25;" routerLink="/detail/{{posts.name}}/{{posts.mail}}/{{posts.uid}}">
-   
-  
-    <div class="member-card-image">
-    
-      <img src="{{posts.Picture}}" alt="" srcset="" class="user-image">
-
+  <div class="background">
+    <div class="tittle-home-page">
+      <ion-card-subtitle class="tittle-home">Search > Result</ion-card-subtitle>
     </div>
-    <div class="member-card-text">
-      <p class="name card-item">{{posts.name}}<ion-badge slot="end"  color="light" *ngIf="posts.Pets.length==0">Parent</ion-badge><ion-badge slot="end"  color="light" *ngIf="posts.Pets.length>0">Pet Owner</ion-badge></p>
-      <ion-label class="hobbies card-item "><span class="left-heading">Activities:&nbsp;</span>{{posts.Activity | slice:3:5}} </ion-label>
-      <ion-badge slot="end"  color="light">{{posts.Activity.length}}</ion-badge><br>
-      <!-- <ion-label class="hobbies card-item" ><span class="left-heading">Activities:</span>{{posts.Activity | slice:-2:-1}}</ion-label>
+
+
+    <div class="member-cards" *ngFor="let posts of  searchResponse"
+      routerLink="/detail/{{posts.name}}/{{posts.mail}}/{{posts.uid}}">
+
+
+      <div class="member-card-image">
+
+        <img src="{{posts.Picture}}" alt="" srcset="" class="user-image">
+
+      </div>
+      <div class="member-card-text">
+        <p class="name card-item">{{posts.name}}<ion-badge slot="end" color="light" *ngIf="posts.Pets.length==0">Parent
+          </ion-badge>
+          <ion-badge slot="end" color="light" *ngIf="posts.Pets.length>0">Pet Owner</ion-badge>
+        </p>
+        <ion-label class="hobbies card-item "><span
+            class="left-heading">Activities:&nbsp;</span>{{posts.Activity | slice:3:5}} </ion-label>
+        <ion-badge slot="end" color="light">{{posts.Activity.length}}</ion-badge><br>
+        <!-- <ion-label class="hobbies card-item" ><span class="left-heading">Activities:</span>{{posts.Activity | slice:-2:-1}}</ion-label>
       <ion-badge slot="end"  color="light"></ion-badge> -->
-      <p class="distance card-item"><span class="left-heading">Distance:</span>1 miles away</p> 
+        <p class="distance card-item"><span class="left-heading">Distance:</span>1 miles away</p>
+      </div>
     </div>
+    <button class="showMore" (click)="getSearchData()">Show More</button>
   </div>
- 
-
-
-
-
-
-</div>
-
 </ion-content>
-
-

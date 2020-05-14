@@ -1,6 +1,9 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders,HttpHeaderResponse } from "@angular/common/http";
-import {RequestOptions, Request, RequestMethod} from '@angular';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpHeaderResponse,
+} from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { retry, catchError } from "rxjs/operators";
 
@@ -13,8 +16,8 @@ export class ConfigService {
   userUrl = this.serverUrl + "user/";
   hobbieUrl = this.serverUrl + "hobbies-json";
   postalUrl = this.serverUrl + "post-json?postal_code=";
-  locationUrl= "https://maps.googleapis.com/maps/api/geocode/json?latlng="
-  createUrl="http://latdating.dd:8083/api/json/user/register";
+  locationUrl = "https://maps.googleapis.com/maps/api/geocode/json?latlng=";
+  createUrl = "http://latdating.dd:8083/api/json/user/register";
   constructor(private http: HttpClient) {}
 
   getArticle() {
@@ -22,18 +25,23 @@ export class ConfigService {
   }
 
   getUser(uid) {
-    return this.http.get(this.userUrl + uid );
+    return this.http.get(this.userUrl + uid);
   }
 
   getHobbies() {
     return this.http.get(this.hobbieUrl);
   }
-  getPostal(post) {
-    return this.http.get(this.postalUrl + post );
+  getPostal(post, pageIndex) {
+    return this.http.get(this.postalUrl + post + "&page=" + pageIndex);
   }
-  getLocation(lat,lng)
-  {
-    return this.http.get(this.locationUrl + lat + ","+ lng +"&types;=postal_code" +"&key=AIzaSyDDR5cIbr6IoMR59m7iwj34HcGO6aEP15k");
+  getLocation(lat, lng) {
+    return this.http.get(
+      this.locationUrl +
+        lat +
+        "," +
+        lng +
+        "&types;=postal_code" +
+        "&key=AIzaSyDDR5cIbr6IoMR59m7iwj34HcGO6aEP15k"
+    );
   }
-  
 }

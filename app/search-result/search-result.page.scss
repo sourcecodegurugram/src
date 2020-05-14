@@ -29,46 +29,51 @@
 ion-content ion-toolbar {
   --background: translucent;
 }
-.background
-{
-    background-image: url('../../assets/Images/BackgroundTile.png');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    overflow-x: auto;
+
+.background {
+  background-image: url('../../assets/Images/BackgroundTile.png');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  overflow-x: auto;
 }
+
 ion-card.ios.hydrated {
   margin-top: 0px;
 }
+
 .tittle-home-page {
   padding: 1.5em;
   font-family: 'Open Sans', sans-serif;
   padding-top: 6em;
 }
+
 .tittle-home {
   font-size: 20px;
   font-family: 'Open Sans', sans-serif;
   text-transform: capitalize;
 }
+
 .member-cards {
 
   display: grid;
   grid-template-columns: 1fr 2fr;
-      background-color: white;
-      margin: 20px;
-    align-items: center;
-    border: 1px solid #717171;
-    margin-top: 0px;
-  
+  background-color: white;
+  margin: 20px;
+  align-items: center;
+  border: 1px solid #717171;
+  margin-top: 0px;
+
 }
 
 p.card-item {
   margin-bottom: 0px;
   margin-top: -2px;
   font-size: 14px;
- 
+
   color: #707070;
 }
+
 p.name.card-item {
   font-size: 16px;
 }
@@ -77,11 +82,12 @@ p.name.card-item {
   font-family: 'Open Sans', sans-serif;
   font-style: italic;
   font-size: 14px;
- 
+
   color: #707070;
 
 }
-.activities  {
+
+.activities {
   font-family: 'Open Sans', sans-serif;
   font-style: italic;
   font-size: 14px;
@@ -89,37 +95,43 @@ p.name.card-item {
   flex-direction: row;
 
 }
+
 .distance {
   font-family: 'Open Sans', sans-serif;
   font-style: italic;
   font-size: 14px;
 }
+
 img.number-mage {
   width: 9%;
 }
+
 .left-heading {
   font-family: 'Open Sans', sans-serif;
   font-style: normal;
 }
+
 img.user-image {
-  
+
   width: 100%;
   height: 14vh;
 }
-.modal-backdrop
-{
+
+.modal-backdrop {
   height: auto !important;
 }
-.modal-backdrop.show
-{
+
+.modal-backdrop.show {
   opacity: 1;
 }
+
 p.modal-para {
   text-align: justify;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   word-spacing: -1px;
 }
+
 .checkbox-popup {
   display: flex;
   flex-direction: row;
@@ -128,34 +140,46 @@ p.modal-para {
   font-weight: 400;
   margin-bottom: 10px;
 }
+
 img.check-box {
   margin-right: 10px;
   text-align: center;
 
 }
+
 h5.whos-on-site {
   font-size: 1.5em;
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
 }
+
 .button-flex {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
+
 .register-button {
   background-color: #5ADB00;
   height: 40px;
 }
+
 button.btn.btn-primary.login-button {
   height: 40px;
 }
+
 p.check-box-text {
   margin-bottom: 0px;
 }
+
 .member-card-text {
   margin-left: 3vw;
   overflow: hidden;
-    text-overflow: ellipsis;
-    margin-right: 3vw;
+  text-overflow: ellipsis;
+  margin-right: 3vw;
+}
+
+.showMore {
+  width: 100%;
+  padding: 20px 0px;
 }

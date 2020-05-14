@@ -84,6 +84,6 @@ export class LocationTargettingPage implements OnInit {
   }
 
   buttonClick() {
-    this.ConfigService.getPostal(this.post).subscribe((elements) => {});
+    // this.ConfigService.getPostal(this.post).subscribe((elements) => {});
   }
 }
