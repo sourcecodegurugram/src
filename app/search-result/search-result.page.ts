@@ -13,6 +13,7 @@ export class SearchResultPage implements OnInit {
   post: any;
   searchResponse = [];
   pageIndex = 0;
+  currPage = [];
 
   constructor(
     private _Activatedroute: ActivatedRoute,
@@ -29,7 +30,10 @@ export class SearchResultPage implements OnInit {
   getSearchData() {
     this.ConfigService.getPostal(this.post, this.pageIndex).subscribe(
       (elements) => {
-        this.searchResponse = this.searchResponse.concat(elements);
+        this.currPage = Object.keys(elements).map((i) => elements[i]);
+
+        console.log(this.currPage);
+        this.searchResponse = this.searchResponse.concat(this.currPage);
         console.log(this.searchResponse);
       }
     );

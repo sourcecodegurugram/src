@@ -33,6 +33,6 @@
         <p class="distance card-item"><span class="left-heading">Distance:</span>1 miles away</p>
       </div>
     </div>
-    <button class="showMore" (click)="getSearchData()">Show More</button>
+    <button *ngIf="currPage.length == 25" class="showMore" (click)="getSearchData()">Show More</button>
   </div>
 </ion-content>
