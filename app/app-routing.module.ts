@@ -48,6 +48,10 @@ const routes: Routes = [
     path: 'elipsispipe',
     loadChildren: () => import('./elipsispipe/elipsispipe.module').then( m => m.ElipsispipePageModule)
   },
+  {
+    path: 'welcome',
+    loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule)
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,44 @@
+.welcome-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    margin: 0px 2em;
+    /* margin-top: 6em; */
+    height: 100vh;
+}
+p.welcome-content-Para {
+    font-size: 19px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 200;
+}
+.blue-button {
+    background-color: #4472C4;
+    padding: 0.6em;
+    border-radius: 7px;
+    text-align: center;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+font-size: 19px;
+    margin: 1em 0px;
+    font-weight: 200;
+}
+.green-button {
+    background-color: green;
+    padding: 0.6em;
+    border-radius: 7px;
+    text-align: center;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 19px;
+    font-weight: 200;
+    margin: 1em 0px;
+}
+.alreday-member {
+    text-align: center;
+    font-size: 20px;
+    color: red;
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 0.7em;
+    font-weight: 200;
+}

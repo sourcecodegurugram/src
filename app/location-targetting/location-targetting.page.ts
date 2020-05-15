@@ -50,7 +50,8 @@ export class LocationTargettingPage implements OnInit {
       .then((resp) => {
         this.lat = resp.coords.latitude;
         this.lng = resp.coords.longitude;
-
+console.log(this.lat)
+console.log(this.lng)
         // If we get lat long then we will pull Address details from reverse geo lookup
         if (this.lat && this.lng) {
           this.reverseGeoLookup();

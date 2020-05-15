@@ -338,4 +338,13 @@ p.note-under-text {
     width: 100%;
     align-items: center;
 }
-
+.radio-button-align {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10px;
+}
+p
+{
+    margin-bottom: 0;
+}

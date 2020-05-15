@@ -118,24 +118,27 @@
 
            
 
-            
-
+            <mat-radio-group aria-label="Select an option" id="name " name="meet" [(ngModel)]="meet"
+            value="meet">
             <p>I'm Looking To Meet*</p>
-            <input type="radio" id="male" name="gender" value="male" class="radio">
-            <label for="male">Does not Matter</label><br>
-            <input type="radio" id="female" name="gender" value="female" class="radio">
-            <label for="female">A few goods friends</label><br>
-            <input type="radio" id="other" name="gender" value="other" class="radio">
-            <label for="other">A lot of acquaintances</label>
+            <div class="radio-button-align">
+              <mat-radio-button value="Does not matter" class="mr-2">Does not matter</mat-radio-button>
+              <mat-radio-button value="A few goods friends">A few goods friends</mat-radio-button>
+              <mat-radio-button value="A lot of accquaintances">A lot of accquaintances</mat-radio-button>
+            </div>
+          </mat-radio-group>
 
-            <p>I Want To Be Contacted By*</p>
-            <input type="radio" id="Anyone" name="Anyone" value="Anyone" class="radio">
-            <label for="male">Anyone</label><br>
-            <input type="radio" id="Female" name="Female" value="Female" class="radio">
-            <label for="female">Female</label><br>
-            <input type="radio" id="Male" name="Male" value="Male" class="radio">
-            <label for="other">Male</label><br>
            
+          <mat-radio-group aria-label="Select an option" id="name " name="contracted" [(ngModel)]="contracted"
+          value="contracted">
+          <p>I Want To Be Contacted By*</p>
+          <div class="radio-button-align">
+            <mat-radio-button value="Anyone" class="mr-2">Anyone</mat-radio-button>
+            <mat-radio-button value="Female">Female</mat-radio-button>
+            <mat-radio-button value="Male">Male</mat-radio-button>
+          </div>
+        </mat-radio-group>
+
 
 
 
@@ -350,7 +353,7 @@
           <div class="button-container">
 
             <button type="button" class="button-common button-prev" (click)="previousStep()">Previous</button>
-            <button type="button" class="button-common" (click)="LoginForm(name,email,confirmemail,firstname,lastname,zipcode,gender,DOB,activit)">Next</button>
+            <button type="button" class="button-common"(click)="nextStep()" >Next</button>
           </div>
         
           <div class="having-trouble">
@@ -376,7 +379,7 @@
           <form class="form-fields">
             <a href=""> I’ll do this later</a>
             <label class="form-label">How Long Have You Lived In The Area?</label><br>
-            <select id="country" class="country-field search-country">
+            <select id="country" class="country-field search-country" [(value)]="long" name="long" [(ngModel)]="long">
               <option value="2 year"> 2 year </option>
               <option value="3 year"> 3 year</option>
               <option value="4 year">4 year</option>
@@ -384,43 +387,43 @@
             </select>
 
             <label class="form-label">Relationship status</label><br>
-            <select id="status" class="country-field search-country">
+            <select id="status" class="country-field search-country" [(value)]="status" name="status" [(ngModel)]="status">
               <option value="single">Single</option>
               <option value="Married">Married</option>
             </select>
 
 
             <label class="form-label">Education Level</label><br>
-            <select id="level" class="country-field search-country">
+            <select id="level" class="country-field search-country" [(value)]="Education" name="Education" [(ngModel)]="Education">
               <option value="graduate">Graduate</option>
-              <option value="graduate">Married</option>
+              <option value="Postgraduate">Post Graduate</option>
             </select>
 
 
 
             <label class="form-label">How Often Do You Smoke?</label><br>
-            <select id="smoke" class="country-field search-country">
+            <select id="smoke" class="country-field search-country" [(value)]="smoke" name="smoke" [(ngModel)]="smoke">
               <option value="rarely">Rarely</option>
               <option value="daily">Daily</option>
             </select>
 
 
             <label class="form-label">How Often Do You Drink Alcohol?</label><br>
-            <select id="alcohol" class="country-field search-country">
+            <select id="alcohol" class="country-field search-country" [(value)]="alcohol" name="alcohol" [(ngModel)]="alcohol">
               <option value="week">Couple of week</option>
               <option value="daily">Daily</option>
             </select>
 
 
             <label for="name" class="form-label">Languages Spoken Other than English</label><br>
-            <input type="text" id="gender" name="gender" class="form-field-zip-code search-country"><br>
+            <input type="text" id="name" name="Languages" class="form-field-zip-code search-country" [(ngModel)]="Languages"><br>
 
 
             <label class="form-label">Any Pets?</label><br>
             <mat-form-field>
               
-              <mat-select  multiple>
-                <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+              <mat-select  multiple name="pets" [(ngModel)]="pets">
+                <mat-option *ngFor="let topping of toppingList" [value]="topping" >{{topping}}</mat-option>
               </mat-select>
             </mat-form-field>
      
@@ -428,14 +431,14 @@
 
 
             <label class="form-label">Most Of My Friends Tend To Be</label><br>
-            <select id="most" class="country-field search-country">
+            <select id="most" class="country-field search-country" name="mostfriend"  [(ngModel)]="mostfriend">
               <option value="week">Don't Know/Don't care</option>
               <option value="daily">Daily</option>
             </select>
 
 
             <label class="form-label">How Do you React If Plans Get Cancelled?</label><br>
-            <select id="react" class="country-field search-country">
+            <select id="react" class="country-field search-country"  name="cancel"  [(ngModel)]="cancel">
               <option value="week">Things happen-no big Deal</option>
               <option value="daily">Daily</option>
             </select>
@@ -505,7 +508,7 @@
 
             <div class="button-container">
               <button type="button" class="button-common button-prev" (click)="previousStep()">Previous</button>
-              <button type="button" class="button-common" (click)="nextStep()">Next</button>
+              <button type="button" class="button-common" (click)="LoginForm(name,email,confirmemail,firstname,lastname,zipcode,gender,DOB,activit,meet,contracted,long,status,Education,smoke,alcohol,Languages,pets,mostfriend,cancel)">Next</button>
 
 
             </div>
