@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { WelcomePageRoutingModule } from './welcome-routing.module';
-
+import { MaterialModule } from '../material.module';
 import { WelcomePage } from './welcome.page';
 
 @NgModule({
@@ -13,7 +13,8 @@ import { WelcomePage } from './welcome.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    WelcomePageRoutingModule
+    WelcomePageRoutingModule,
+    MaterialModule
   ],
   declarations: [WelcomePage]
 })
