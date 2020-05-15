@@ -57,6 +57,9 @@
 <div class="background" *ngIf="popup">
 
   <ion-card class="card-one" >
+    <div class="cross-pop" (click)="closepop()">
+      <img src="../../assets/Images/cross.png" class="cross-image">
+    </div><br>
     <ion-card-content class="card-content-font">
       Location targeting is turned off on your device. Please provide the following details to see members in your area.
       Postal code and Country. Search button will say find friends.

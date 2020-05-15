@@ -93,4 +93,8 @@ console.log(this.lng)
       this.showFormPage();
     });
 }
+closepop()
+{
+  this.popup=false;
+}
 }
