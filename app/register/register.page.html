@@ -5,7 +5,8 @@
     <form >
     <mat-tab-group class="mat-background" [(selectedIndex)]="selectedIndex">
 
-      <mat-tab label="Register">
+      <mat-tab >
+        <ion-progress-bar value="0.0"></ion-progress-bar>
         <div class="card-one-white ">
           <p class="register-with-us">Register with us</p>
           <div class="social-button">
@@ -52,8 +53,8 @@
         </div>
 
       </mat-tab>
-      <mat-tab label="Profile">
-
+      <mat-tab >
+        <ion-progress-bar value="0.5"></ion-progress-bar>
         <div class="card-one-white">
           <div class="upload-card-register">
             <div class="profile-heading">
@@ -372,8 +373,8 @@
       </mat-tab>
     
 
-      <mat-tab label="Operational Details">
-
+      <mat-tab >
+        <ion-progress-bar value="1"></ion-progress-bar>
         <div class="card-one-white">
           
           <form class="form-fields">

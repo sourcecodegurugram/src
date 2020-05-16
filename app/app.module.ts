@@ -14,7 +14,7 @@ import { ConfigService } from "./config.service";
 import { Geolocation } from "@ionic-native/geolocation/ngx";
 import { RecaptchaModule } from 'ng-recaptcha';
 import { EllipsisPipe } from "../ellipsis.pipe";
-
+import {SignupPageModule} from './signup/signup.module'
 import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 @NgModule({
   declarations: [AppComponent, NavigationbarComponent, EllipsisPipe],
@@ -26,6 +26,7 @@ import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geoc
     IonicModule.forRoot(),
     AppRoutingModule,
     RecaptchaModule.forRoot(),
+  
   ],
   providers: [
     StatusBar,

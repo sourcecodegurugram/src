@@ -3,46 +3,44 @@
 </div>
 
 <ion-content>
-<div class="welcome">
- <div class="welcome-content">
-   <p class="welcome-content-Para">
-   Welcome
-  </p>
+  <div class="welcome">
+    <div class="welcome-content">
+      <p class="welcome-content-Para">
+        Welcome
+      </p>
 
-<p class="welcome-content-Para">
-  We can help you make platonic
-  connections in your local area.
-</p>
-
-
-<P class="welcome-content-Para">
-  First, ONE BIG RULE:
-
-  Platonic = we will not help you
-  find a date or sexual partners. No
-  judgment if that is your goal, but
-  kindly save your energy and use another app
-
-</P>
+      <p class="welcome-content-Para">
+        We can help you make platonic
+        connections in your local area.
+      </p>
 
 
+      <P class="welcome-content-Para">
+        First, ONE BIG RULE:
 
-<div class="blue-button"  (click)="popOpen()">
-  Sound Cool! Who can I meet?
-</div>
+        Platonic = we will not help you
+        find a date or sexual partners. No
+        judgment if that is your goal, but
+        kindly save your energy and use another app
 
-<div class="green-button">
-  Awesome! Sign me up!
-
-</div>
-
-
-<div class="alreday-member">
-  I am already a member
-</div>
- </div>
+      </P>
 
 
+
+      <div class="blue-button" (click)="popOpen()">
+        Sound Cool! Who can I meet?
+      </div>
+
+      <div class="green-button" routerLink="/signup">
+        Awesome! Sign me up!
+
+      </div>
+
+
+      <div class="alreday-member">
+        I am already a member
+      </div>
+    </div>
 
 
 
@@ -50,16 +48,32 @@
 
 
 
-</div>
+
+
+  </div>
 
 </ion-content>
 
 <div class="background" *ngIf="popup">
 
-  <ion-card class="card-one" >
+  <ion-card class="card-one">
     <div class="cross-pop" (click)="closepop()">
       <img src="../../assets/Images/cross.png" class="cross-image">
     </div><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="search-container" >
     <ion-card-content class="card-content-font">
       Location targeting is turned off on your device. Please provide the following details to see members in your area.
       Postal code and Country. Search button will say find friends.
@@ -79,8 +93,7 @@
       </select>
       <br>
       <div class="button-container">
-        <button type="button" class="button-common" 
-          routerLink="/search-result/{{post}}">Search</button>
+        <button type="button" class="button-common" routerLink="/search-result/{{post}}">Search</button>
       </div>
     </form>
 
@@ -109,7 +122,10 @@
         <button type="button" class="button-common">Submit</button>
       </div>
     </form>
+  </div>
+
   </ion-card>
-
-
 </div>
+
+
+
