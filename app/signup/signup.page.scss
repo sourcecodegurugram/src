@@ -79,7 +79,7 @@ span.button-text {
     height: 23px;
 }
 .under-text {
-    color: #ada2a2;;
+    color: #ada2a2;
 }
 .age-limit{
     color: #ada2a2;;
@@ -228,4 +228,50 @@ img.image-icon {
 }
 .terms {
     margin: 1em 0px;
+}
+.continue-button-google
+{
+    background-color: #F64225;
+    padding: 0.6em 2em;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    margin: 2em 1em;
+    border-radius: 6px;
+}
+.continue-button-facebook
+{
+    background-color: #4472C4;
+    padding: 0.6em 2em;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    margin: 2em 1em;
+    border-radius: 6px;
+}
+.success-market {
+    text-align: center;
+    margin: 2em;
+    font-size: 18px;
+    margin-bottom: 0em;
+}
+.under-text-button
+{
+    color: #ada2a2;
+}
+.continue-button-last{
+    background-color: #54B151;
+    height: 3em;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 9px;
+    margin: 2em;
+    margin-bottom: 0px;
+}
+.button-last {
+    text-align: center;
+    margin: 0em 3em;
+
 }
