@@ -16,7 +16,12 @@ export class RegisterPage implements OnInit {
   activit = new FormControl();
   Communication = new FormControl();
   toppingList: string[] = ["Dog", "Cat", "Rabbit"];
-  activities: string[] = ["yoga", "playdates (parents and children)", "happy hour/cocktails/beers", "sightseeing"];
+  activities: string[] = [
+    "yoga",
+    "playdates (parents and children)",
+    "happy hour/cocktails/beers",
+    "sightseeing",
+  ];
   talkaboutList: string[] = ["work", "Relationship", "Gossip"];
   goodfriendList: string[] = [
     "is always there for me",
@@ -46,7 +51,7 @@ export class RegisterPage implements OnInit {
       { name: "Total order value", value: "$123" },
     ];
   }
-  ngOnInit() { }
+  ngOnInit() {}
   public tabChanged(tabChangeEvent: MatTabChangeEvent): void {
     this.selectedIndex = tabChangeEvent.index;
   }
@@ -59,173 +64,168 @@ export class RegisterPage implements OnInit {
     this.selectedIndex -= 1;
   }
   captchaResolved(response: string): void {
-
     this.zone.run(() => {
       this.captchaPassed = true;
       this.captchaResponse = response;
     });
-
   }
-  LoginForm(name, email, confirmemail, firstname, lastname, postalcode, DOB, gender, activity, meet, contracted, long, status, Education, smoke, alcohol, Languages, pets, mostfriend, cancel) {
-    console.log("status" + " " + status)
+  LoginForm(
+    name,
+    email,
+    confirmemail,
+    firstname,
+    lastname,
+    postalcode,
+    gender,
+    DOB,
+    activity,
+    meet,
+    contracted,
+    long,
+    status,
+    Education,
+    smoke,
+    alcohol,
+    Languages,
+    pets,
+    mostfriend,
+    cancel
+  ) {
+    console.log("firstname" + " " + firstname);
+    console.log("lastname" + " " + lastname);
+    console.log("DOB" + " " + DOB);
+    console.log("gender" + " " + gender);
+    console.log("Postal Code" + " " + postalcode);
+    console.log("Activity" + " " + JSON.stringify(activity));
 
-    console.log("Education" + " " + Education)
+    this.http
+      .post<any>("http://gowebtutorial.com/api/json/user/register", {
+        name: name,
+        mail: email,
+        conf_mail: confirmemail,
+        field_first_name: {
+          und: [
+            {
+              value: firstname,
+            },
+          ],
+        },
+        field_last_name: {
+          und: [
+            {
+              value: lastname,
+            },
+          ],
+        },
+        field_zip_code: {
+          und: [
+            {
+              postal_code: postalcode,
+              country: "in",
+            },
+          ],
+        },
 
-    console.log("smoke" + "" + smoke)
+        field_birth_date: {
+          und: [
+            {
+              value: DOB,
+            },
+          ],
+        },
 
-    console.log("alcohol" + " " + alcohol)
+        field_gender: {
+          und: gender,
+        },
 
-    console.log("Languages " + " " + Languages)
+        field_activities_interests: {
+          und: {
+            yoga: "yoga",
+            sightseeing: "sightseeing",
+          },
+        },
+        // field_look_meet: {
+        //   und: [
+        //     {
+        //       value: meet,
+        //     },
+        //   ],
+        // },
+        // field_want_contarct: {
+        //   und: [
+        //     {
+        //       value: contracted,
+        //     },
+        //   ],
+        // },
+        // field_long_in_city: {
+        //   und: [
+        //     {
+        //       value: long,
+        //     },
+        //   ],
+        // },
+        // field_relationship_status: {
+        //   und: [
+        //     {
+        //       value: status,
+        //     },
+        //   ],
+        // },
+        // field_education_level: {
+        //   und: [
+        //     {
+        //       Education,
+        //     },
+        //   ],
+        // },
+        // field_smoke: {
+        //   und: [
+        //     {
+        //       smoke,
+        //     },
+        //   ],
+        // },
+        // field_alcohol: {
+        //   und: [
+        //     {
+        //       alcohol,
+        //     },
+        //   ],
+        // },
+        // field_languages: {
+        //   und: [
+        //     {
+        //       Languages,
+        //     },
+        //   ],
+        // },
+        // field_any_pets: {
+        //   und: [
+        //     {
+        //       pets,
+        //     },
+        //   ],
+        // },
+        // field_good_friend: {
+        //   und: [
+        //     {
+        //       mostfriend,
+        //     },
+        //   ],
+        // },
+        // field_plans_get_cancelled: {
+        //   und: [
+        //     {
+        //       cancel,
+        //     },
+        //   ],
+        // },
 
-    console.log("pets" + "" + pets)
-
-    console.log("mostfriend " + " " + mostfriend)
-
-    console.log("cancel" + " " + cancel)
-
-    this.http.post<any>('http://gowebtutorial.com/api/json/user/register', {
-      name: name,
-      mail: email,
-      conf_mail: confirmemail,
-      field_first_name:
-      {
-        "und":
-          [{
-            "value": firstname
-          }]
-      },
-      field_last_name:
-      {
-        "und":
-          [{
-            "value": lastname
-          }]
-      },
-      field_zip_code:
-      {
-        "und":
-          [{
-            "postal_code": postalcode
-          }]
-      },
-      
-      field_birth_date:
-      {
-        "und":
-          [{
-            "value": DOB
-          }]
-      },
-      field_gender:
-      {
-        "und":
-          [{
-            "value": gender
-          }]
-      },
-      field_activities_interests:
-      {
-        "und":
-          [{
-            activity
-          }]
-      },
-      field_look_meet:
-      {
-        "und":
-          [{
-            "value": meet
-          }]
-
-      },
-      field_want_contarct:
-      {
-        "und":
-          [{
-            "value": contracted
-          }]
-
-      },
-      field_long_in_city:
-      {
-        "und":
-          [{
-            "value": long
-          }]
-
-      },
-      field_relationship_status:
-      {
-        "und":
-          [{
-            "value": status
-          }]
-
-      },
-      field_education_level:
-      {
-        "und":
-          [{
-            Education
-          }]
-
-      },
-      field_smoke:
-      {
-        "und":
-          [{
-            smoke
-          }]
-
-      },
-      field_alcohol:
-      {
-        "und":
-          [{
-            alcohol
-          }]
-
-      },
-      field_languages:
-      {
-        "und":
-          [{
-            Languages
-          }]
-
-      },
-      field_any_pets:
-      {
-        "und":
-          [{
-            pets
-          }]
-
-      },
-      field_good_friend:
-      {
-        "und":
-          [{
-            mostfriend
-          }]
-
-      },
-      field_plans_get_cancelled:
-      {
-        "und":
-          [{
-            cancel
-          }]
-
-      },
-
-      captcha_response: this.captchaResponse
-
-    }).subscribe(data => {
-      this.post = data;
-
-    });
-
+        // captcha_response: this.captchaResponse,
+      })
+      .subscribe((data) => {
+        this.post = data;
+      });
   }
-
 }
