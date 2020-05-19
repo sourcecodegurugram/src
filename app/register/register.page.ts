@@ -1,3 +1,4 @@
+
 import { Component, OnInit, ViewChild, NgZone } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { MatTabChangeEvent } from "@angular/material/tabs";
@@ -33,6 +34,7 @@ export class RegisterPage implements OnInit {
     "Weekly private message reminder",
     "Inactivity reminder email",
   ];
+  submit:boolean=false
   public visitor: { name: string; email: string };
   public params: { name: string; value: string }[];
   __lc: any;
@@ -79,6 +81,8 @@ export class RegisterPage implements OnInit {
     gender,
     DOB,
     activity,
+    country,
+    yogas,playdatess,sightseeings,
     meet,
     contracted,
     long,
@@ -87,16 +91,15 @@ export class RegisterPage implements OnInit {
     smoke,
     alcohol,
     Languages,
-    pets,
+    cats,dogs,rabbits,
     mostfriend,
     cancel
   ) {
     console.log("firstname" + " " + firstname);
     console.log("lastname" + " " + lastname);
     console.log("DOB" + " " + DOB);
-    console.log("gender" + " " + gender);
-    console.log("Postal Code" + " " + postalcode);
-    console.log("Activity" + " " + JSON.stringify(activity));
+ 
+    console.log("Activity" + " " + status);
 
     this.http
       .post<any>("http://gowebtutorial.com/api/json/user/register", {
@@ -121,7 +124,7 @@ export class RegisterPage implements OnInit {
           und: [
             {
               postal_code: postalcode,
-              country: "in",
+              country: country,
             },
           ],
         },
@@ -140,92 +143,63 @@ export class RegisterPage implements OnInit {
 
         field_activities_interests: {
           und: {
-            yoga: "yoga",
-            sightseeing: "sightseeing",
+            yoga:  yogas,
+            playdates:playdatess,
+            sightseeing: sightseeings
+            
           },
         },
-        // field_look_meet: {
-        //   und: [
-        //     {
-        //       value: meet,
-        //     },
-        //   ],
-        // },
-        // field_want_contarct: {
-        //   und: [
-        //     {
-        //       value: contracted,
-        //     },
-        //   ],
-        // },
-        // field_long_in_city: {
-        //   und: [
-        //     {
-        //       value: long,
-        //     },
-        //   ],
-        // },
-        // field_relationship_status: {
-        //   und: [
-        //     {
-        //       value: status,
-        //     },
-        //   ],
-        // },
-        // field_education_level: {
-        //   und: [
-        //     {
-        //       Education,
-        //     },
-        //   ],
-        // },
-        // field_smoke: {
-        //   und: [
-        //     {
-        //       smoke,
-        //     },
-        //   ],
-        // },
-        // field_alcohol: {
-        //   und: [
-        //     {
-        //       alcohol,
-        //     },
-        //   ],
-        // },
-        // field_languages: {
-        //   und: [
-        //     {
-        //       Languages,
-        //     },
-        //   ],
-        // },
-        // field_any_pets: {
-        //   und: [
-        //     {
-        //       pets,
-        //     },
-        //   ],
-        // },
-        // field_good_friend: {
-        //   und: [
-        //     {
-        //       mostfriend,
-        //     },
-        //   ],
-        // },
-        // field_plans_get_cancelled: {
-        //   und: [
-        //     {
-        //       cancel,
-        //     },
-        //   ],
-        // },
+        field_look_meet: {
+          und:meet,
+        },
+        field_want_contarct: {
+          und: contracted,
+        },
+        field_long_in_city: {
+          und: long,
+        },
+        field_relationship_status: {
+          und:status,
+        },
+        field_education_level: {
+          und: Education,
+        },
+        field_smoke: {
+          und: smoke,
+        },
+        field_alcohol: {
+          und:alcohol ,
+        },
 
-        // captcha_response: this.captchaResponse,
+        field_any_pets: {
+          und: 
+            {
+             Dog:dogs,
+             Cat:cats,
+             Rabbit:rabbits,
+            },
+          
+        },
+
+        field_friends_tend_to_be:
+        { und:mostfriend,
+          
+          
+        },
+    
       })
       .subscribe((data) => {
         this.post = data;
+        if(this.post.uid){
+         this.submit=true
+          } else {
+          alert(this.post)
+          }
+    
       });
+  }
+  onsubmit()
+  {
+    this.submit=false
   }
 }

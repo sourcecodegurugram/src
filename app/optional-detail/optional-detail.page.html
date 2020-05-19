@@ -1,0 +1,306 @@
+<ion-content>
+  <div class="main-sign-up">
+    <mat-tab-group class="mat-background" [(selectedIndex)]="selectedIndex">
+
+      <mat-tab>
+        <div class="progress">
+          <div class="progress-bar" style="width:20%"></div>
+        </div>
+        <div class="forms-field">
+
+
+          <div class="form-group">
+            <label for="usr">What do you like to do for fun?</label>
+            <div class="form-check">
+              <label class="form-check-label" for="check1">
+                <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>Option 1
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label" for="check2">
+                <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">Option 2
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input">Option 3
+              </label>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label for="usr">How long have you lived here?</label>
+            <select class="form-control" id="sel1">
+              <option>Option1</option>
+              <option>Option2</option>
+              <option>Option3</option>
+              <option>Option4</option>
+            </select>
+          </div>
+
+
+          <div class="form-group">
+            <label for="usr">My friends and I usually talk about</label>
+            <select class="form-control" id="sel1">
+              <option>Option1</option>
+              <option>Option2</option>
+              <option>Option3</option>
+              <option>Option4</option>
+            </select>
+          </div>
+
+
+          <div class="form-group">
+            <label for="usr">A good friend is someone who</label>
+            <select class="form-control" id="sel1">
+              <option>Option1</option>
+              <option>Option2</option>
+              <option>Option3</option>
+              <option>Option4</option>
+            </select>
+          </div>
+  
+          <div class="form-group">
+            <label for="usr">When someone cancels plans we made, I think</label>
+            <select class="form-control" id="sel1">
+              <option>Option1</option>
+              <option>Option2</option>
+              <option>Option3</option>
+              <option>Option4</option>
+            </select>
+          </div>
+          
+          <div class="continue-button" (click)="nextStep()">
+            Continue
+          </div>
+
+        </div>
+      </mat-tab>
+
+      <mat-tab>
+
+        <div class="progress">
+          <div class="progress-bar" style="width:80%"></div>
+        </div>
+
+        <div class="forms-field">
+          <div class="form-group">
+            <label for="sel1">Are you in a relationship? </label>
+            <select class="form-control" id="sel1">
+              <option>Single</option>
+              <option>Married</option>
+              <option>Co-Habitating</option>
+              <option>In a Relationship</option>
+            </select>
+          </div>
+
+
+          <div class="blue-button-second-tab">
+            Why do we ask this if its
+            not for dating or sex?
+          </div>
+
+
+          <div class="form-group">
+            <label for="sel1">Do youhave kids</label>
+            <select class="form-control" id="sel1">
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+
+    
+
+
+          <div class="form-group">
+            <label for="sel1">How about pets?</label>
+            <input type="text" class="form-control" id="usr">
+          </div>
+
+
+          <div class="form-group">
+            <label for="sel1">I spend my days…</label>
+            <input type="text" class="form-control" id="usr">
+          </div>
+
+          <div class="form-group">
+            <label for="sel1">I also speak</label>
+            <input type="text" class="form-control" id="usr">
+          </div>
+          <div class="continue-button" (click)="nextStep()">
+            Continue
+          </div>
+
+
+
+
+        </div>
+      </mat-tab>
+
+
+
+      <mat-tab>
+
+        <div class="progress">
+          <div class="progress-bar" style="width:85%"></div>
+        </div>
+
+        <div class="forms-field">
+          <div class="form-group">
+            <label for="sel1">Do you smoke?</label>
+            <select class="form-control" id="sel1">
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+         
+          <div class="form-group">
+            <label for="sel1">How about drinking alcohol? </label>
+            <select class="form-control" id="sel1">
+        
+              <option>NO</option>
+              <option>Sometimes</option>
+              <option>Rarely</option>
+              <option>Of Course</option>       
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="sel1">Favorite Books</label>
+            <input type="text" class="form-control" id="usr">
+          </div>
+
+          <div class="form-group">
+            <label for="sel1">Favorite Movies</label>
+            <input type="text" class="form-control" id="usr">
+          </div>
+
+          <div class="form-group">
+            <label for="sel1">Favorite TV Shows</label>
+            <input type="text" class="form-control" id="usr">
+          </div>
+
+          <div class="form-group">
+            <label for="sel1">Favorite Music</label>
+            <input type="text" class="form-control" id="usr">
+          </div>
+
+
+          </div>
+          <div class="continue-button" (click)="nextStep()">
+            Continue
+          </div>
+       
+      </mat-tab>
+
+
+
+
+      <mat-tab>
+        <div class="progress">
+          <div class="progress-bar" style="width:100%"></div>
+        </div>
+        <div class="forms-field">
+          <div class="form-group">
+            <label for="sel1">Do you want to add some more photos?</label>
+           <div class="ad-more-pics">
+            <div class="image-upload-container">
+              <img src="../../assets/Images/food.png" class="food">
+            </div>
+            <div class="image-upload-container">
+              <img src="../../assets/Images/food.png" class="food">
+            </div>
+            <div class="image-upload-container">
+              <img src="../../assets/Images/food.png" class="food">
+            </div>
+            <div class="image-upload-container">
+              <img src="../../assets/Images/food.png" class="food">
+            </div>
+            <div class="image-upload-container">
+              <img src="../../assets/Images/food.png" class="food">
+            </div>
+            <div class="image-upload-container">
+              <img src="../../assets/Images/food.png" class="food">
+            </div>
+            <div class="image-upload-container">
+              <img src="../../assets/Images/food.png" class="food">
+            </div>
+            <div class="image-upload-container">
+              <img src="../../assets/Images/food.png" class="food">
+            </div>
+            </div>
+
+          </div>
+
+          <div class="form-group">
+          <label for="comment">Anything else you want to share?</label>
+          <textarea class="form-control" rows="5" id="comment"></textarea>
+        </div>
+          <div class="continue-button" (click)="nextStep()">
+            Complete
+          </div>
+        </div>
+      </mat-tab>
+
+
+<mat-tab>
+  <div class="forms-field">
+<div class="upper-text-changes">
+  Hello!  Would you like to add your hobbies and interests to your profile to improve your results?
+</div>
+
+<div class="form-group">
+
+  <input type="text" class="form-control" id="usr" placeholder="First Pick your top 3">
+</div>
+
+<div class="form-group">
+
+  <input type="text" class="form-control" id="usr" placeholder="Now pick the rest">
+</div>
+
+    <div class="continue-button" (click)="nextStep()">
+      Save Changes
+    </div>
+
+    <div class="continue-button-blue" >
+      Add More to Profile
+    </div>
+<div class="span-container">
+    <span class="under-text-button">Not right now, Thanks.</span>
+  </div>
+    </div>
+
+</mat-tab>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </mat-tab-group>
+  </div>
+
+</ion-content>

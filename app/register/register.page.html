@@ -1,4 +1,8 @@
+
+
 <div class="background">
+
+
   <ion-card class="main-register-card">
     <form>
       <mat-tab-group class="mat-background" [(selectedIndex)]="selectedIndex">
@@ -31,8 +35,6 @@
 
               <!-- <label for="name" class="form-label">Password</label><br>
             <input type="text" id="password" name="password" class="form-field-zip-code search-country"><br>
-
-
             <label for="name" class="form-label">Confirm Password</label><br>
             <input type="text" id="confirmpassword" name="confirmpassword"
               class="form-field-zip-code search-country"><br> -->
@@ -113,40 +115,62 @@
               <label for="name" class="form-label">Zip Code/Postal Code</label><br>
               <input type="text" id="zipcode" name="zipcode" class="form-field-zip-code search-country"
                 [(ngModel)]="zipcode"><br>
-              <label for="name" class="form-label">Contry</label><br>
-              <input type="text" id="country" name="country" class="form-field-zip-code search-country" #Country><br>
+
+
+                
+              <label class="form-label">country</label><br>
+              <select id="country" class="country-field search-country" name="country" [(ngModel)]="country">
+                <option value="au">Australia</option>
+                <option value="ca">Canada</option>
+                <option value="in">India</option>
+                <option value="nz">New Zealand</option>
+                <option value="sg">Singapore</option>
+                <option value="gb">United Kingdom</option>
+                <option value="us" selected="selected">United States</option>
+              </select>
+
+          
 
 
 
               <label class="form-label">Select Activities/Interests</label><br>
-              <mat-form-field>
 
-                <mat-select multiple name="activit" [(ngModel)]="activit.value">
-                  <mat-option *ngFor="let activity of activities" [value]="activity">{{activity}}</mat-option>
-                </mat-select>
-              </mat-form-field>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" value="yoga" #yogas>yoga
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" value="playdates (parents and children)"#playdatess>playdates (parents and children)
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" value="sightseeing" #sightseeings>sightseeing
+                </label>
+              </div>
+        
+
+              <label class="form-label">I m Looking to meet</label><br>
+              <select id="meet" class="country-field search-country" name="meet" [(ngModel)]="meet">
+                <option value="3">Does not matter</option>
+                <option value="1">A few goods friends</option>
+                <option value="2">A lot of accquaintances</option>
+           
+              </select>
 
 
+            
 
-              <mat-radio-group aria-label="Select an option" id="name " name="meet" [(ngModel)]="meet" value="meet">
-                <p>I'm Looking To Meet*</p>
-                <div class="radio-button-align">
-                  <mat-radio-button value="Does not matter" class="mr-2">Does not matter</mat-radio-button>
-                  <mat-radio-button value="A few goods friends">A few goods friends</mat-radio-button>
-                  <mat-radio-button value="A lot of accquaintances">A lot of accquaintances</mat-radio-button>
-                </div>
-              </mat-radio-group>
-
-
-              <mat-radio-group aria-label="Select an option" id="name " name="contracted" [(ngModel)]="contracted"
-                value="contracted">
-                <p>I Want To Be Contacted By*</p>
-                <div class="radio-button-align">
-                  <mat-radio-button value="Anyone" class="mr-2">Anyone</mat-radio-button>
-                  <mat-radio-button value="Female">Female</mat-radio-button>
-                  <mat-radio-button value="Male">Male</mat-radio-button>
-                </div>
-              </mat-radio-group>
+              <label class="form-label">I Want To Be Contacted By*</label><br>
+              <select id="contracted" class="country-field search-country"  name="contracted" [(ngModel)]="contracted">
+                <option value="0">Either one</option>
+                <option value="1">Female only</option>
+                <option value="2">Male only</option>
+           
+              </select>
+         
 
 
 
@@ -433,32 +457,32 @@
             <form class="form-fields">
               <a href=""> I’ll do this later</a>
               <label class="form-label">How Long Have You Lived In The Area?</label><br>
-              <select id="country" class="country-field search-country" [(value)]="long" name="long" [(ngModel)]="long">
-                <option value="2 year"> 2 year </option>
-                <option value="3 year"> 3 year</option>
-                <option value="4 year">4 year</option>
-                <option value="5 year">5 year</option>
+              <select id="country" class="country-field search-country"  name="long" [(ngModel)]="long">
+                <option value="0"> 2 year </option>
+                <option value="1"> 3 year</option>
+                <option value="2">4 year</option>
+                <option value="3">5 year</option>
               </select>
 
               <label class="form-label">Relationship status</label><br>
-              <select id="status" class="country-field search-country" [(value)]="status" name="status"
+              <select id="status" class="country-field search-country" name="status"
                 [(ngModel)]="status">
-                <option value="single">Single</option>
-                <option value="Married">Married</option>
+                <option value="0">Single</option>
+                <option value="1">Married</option>
               </select>
 
 
               <label class="form-label">Education Level</label><br>
-              <select id="level" class="country-field search-country" [(value)]="Education" name="Education"
+              <select id="level" class="country-field search-country"  name="Education"
                 [(ngModel)]="Education">
-                <option value="graduate">Graduate</option>
-                <option value="Postgraduate">Post Graduate</option>
+                <option value="Less Than High School Diploma">Less Than High School Diploma</option>
+                <option value="High School Diploma">High School Diploma</option>
               </select>
 
 
 
               <label class="form-label">How Often Do You Smoke?</label><br>
-              <select id="smoke" class="country-field search-country" [(value)]="smoke" name="smoke"
+              <select id="smoke" class="country-field search-country"  name="smoke"
                 [(ngModel)]="smoke">
                 <option value="rarely">Rarely</option>
                 <option value="daily">Daily</option>
@@ -466,7 +490,7 @@
 
 
               <label class="form-label">How Often Do You Drink Alcohol?</label><br>
-              <select id="alcohol" class="country-field search-country" [(value)]="alcohol" name="alcohol"
+              <select id="alcohol" class="country-field search-country"  name="alcohol"
                 [(ngModel)]="alcohol">
                 <option value="week">Couple of week</option>
                 <option value="daily">Daily</option>
@@ -479,20 +503,33 @@
 
 
               <label class="form-label">Any Pets?</label><br>
-              <mat-form-field>
 
-                <mat-select multiple name="pets" [(ngModel)]="pets">
-                  <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
-                </mat-select>
-              </mat-form-field>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" value="Dog" #dogs>Dog
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" value="cat"#cats>cat
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" value="Rabbit" #rabbits>rabbit
+                </label>
+              </div>
+              
 
+            
 
 
 
               <label class="form-label">Most Of My Friends Tend To Be</label><br>
               <select id="most" class="country-field search-country" name="mostfriend" [(ngModel)]="mostfriend">
-                <option value="week">Don't Know/Don't care</option>
-                <option value="daily">Daily</option>
+                <option value="Only Child">Only Child</option>
+                <option value="Eldest Child">Eldest Child</option>
+                <option value="Youngest Child">Youngest Child</option>
               </select>
 
 
@@ -568,7 +605,7 @@
               <div class="button-container">
                 <button type="button" class="button-common button-prev" (click)="previousStep()">Previous</button>
                 <button type="button" class="button-common"
-                  (click)="LoginForm(name,email,confirmemail,firstname,lastname,zipcode,gender,DOB,activit,meet,contracted,long,status,Education,smoke,alcohol,Languages,pets,mostfriend,cancel)">Next</button>
+                  (click)="LoginForm(name,email,confirmemail,firstname,lastname,zipcode,gender,DOB,activit,country,yogas.value,playdatess.value,sightseeings.value,meet,contracted,long,status,Education,smoke,alcohol,Languages,cats.value,dogs.value,rabbits.value,mostfriend,cancel)">Next</button>
 
 
               </div>
@@ -663,7 +700,16 @@
       </mat-tab-group>
     </form>
   </ion-card>
+ 
+
+</div>
 
 
+<div class="main-modal" *ngIf="submit">
+<div class="content">
+   Your Have Registered successfully<br>
 
+   <button type="submit" class="btn btn-primary mt-2" (click)="onsubmit()">Submit</button>
+
+  </div>
 </div>

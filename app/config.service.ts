@@ -41,7 +41,7 @@ export class ConfigService {
         "," +
         lng +
         "&types;=postal_code" +
-        "&key=AIzaSyDDR5cIbr6IoMR59m7iwj34HcGO6aEP15k"
+        "&key=AIzaSyBru6wNx3CwcvRbACg2G4-Cq7o6Lt4wOvI"
     );
   }
 }

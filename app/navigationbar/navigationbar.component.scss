@@ -56,16 +56,7 @@ li {
     position: relative;
     z-index: 1;
 }
-input{
-    /* height: 6vh; */
-    border-radius: 7px;
-    height: 47px;
-    margin-top: 15px;
-    border: 1px solid;
-    margin-bottom: 20px;
 
-
-  }
 
   .background
 {
@@ -103,16 +94,7 @@ form.form-fields{
     padding-top: 33px;
 }
 
-input{
-    /* height: 6vh; */
-    border-radius: 7px;
-    height: 47px;
-    margin-top: 15px;
-    border: 1px solid;
-    margin-bottom: 20px;
 
-
-  }
 
   textarea
   {
@@ -276,12 +258,7 @@ p.profile-card-title {
 .upload-content {
     margin: 10px;
 }
-.input-choose
-{
-    border: none !important;
-    height: 30px;
 
-}
 .submit-button {
     margin: 0px;
     border: none;
@@ -302,22 +279,8 @@ margin-top: 2px;
 margin-left: 5vw;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
-    color: rgba(0, 0, 0, 0);
-    opacity: 1;
-    display: block;
-    background: url(https://mywildalberta.ca/images/GFX-MWA-Parks-Reservations.png) no-repeat;
-    width: 20px;
-    height: 20px;
-    border-width: thin;
-}
-select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background: url("../../assets/Images/dropdown.png") no-repeat 96% !important;
-   
-  }
+
+
   
   select::-ms-expand { display: none; }
 
@@ -415,4 +378,77 @@ p.note-under-text {
     z-index: 1;
     position: relative;
     height: 100vh;
+}
+.continue-button{
+    background-color: #54B151;
+    height: 3em;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 9px;
+    margin: 2em;
+    font-size: 18px;
+}
+.logout-text-container {
+    text-align: center;
+    font-size: 21px;
+    margin: 1em;
+    text-transform: uppercase;
+}
+.modal-grid {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    grid-gap: 11px;
+}
+.profile-name-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 18px;
+}
+.sidebar-content {
+    margin-top: 1em;
+}
+.modal-header {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 0.5em 1rem;
+    border-bottom: none;
+    border-top-left-radius: calc(.3rem - 1px);
+    border-top-right-radius: calc(.3rem - 1px);
+}
+.forms-field{
+    margin: 1em 1em;
+}
+.form-control {
+    border: 1px solid;
+}
+.font {
+    font-size: 20px;
+}
+.form-check {
+
+    font-size: 18px;
+}
+.blue
+{
+background-color: #4372c4;
+}
+.close-account
+{
+    color:red;
+    margin: 1em;
+    text-align: center;
+   
+}
+img.status-check {
+    width: 80%;
+}
+.modal{
+    background: #000000a1;
 }

@@ -11,7 +11,7 @@
 
           <div class="form-group">
             <label for="usr">What should we call you here?</label>
-            <input type="text" class="form-control" id="usr">
+            <input type="text" class="form-control" id="usr" name="name" [(ngModel)]="name">
             <span class="under-text">(This is your username)</span>
           </div>
 
@@ -25,7 +25,7 @@
 
           <div class="form-group">
             <label for="usr">When is your birthday*?</label>
-            <input type="text" class="form-control" id="usr">
+            <input type="date" class="form-control" id="usr" id="DOB" [(ngModel)]="DOB">
             <span class="under-text">(Only age is displayed publicly)</span>
           </div>
 
@@ -49,12 +49,11 @@
         <div class="forms-field">
           <div class="form-group">
             <label for="sel1">I am</label>
-            <select class="form-control" id="sel1">
-              <option>Man</option>
-              <option>Woman</option>
-              <option>Gender
+            <select class="form-control" id="sel1" name="Gender" [(ngModel)]="Gender">
+              <option value="Man">Man</option>
+              <option value="Woman">Woman</option>
+              <option value="Gender Diverse">Gender
                 Diverse</option>
-              <option>4</option>
             </select>
             <span class="under-text">(Man, Woman, Gender
               Diverse)</span>
@@ -72,7 +71,7 @@
               <option>Everyone</option>
             </select>
             <span class="under-text">(Only
-              Men, Only Women, Only Gender Diverse,Everyone))</span>
+              Men, Only Women, Only Gender Diverse,Everyone)</span>
           </div>
 
 
@@ -542,7 +541,7 @@
    
    <div class="last-tab-button" (click)="nextStep()">
     <div class="continue-button-last">
-    Free 7 day Trial
+      Become Verified
   </div>
 
   <div class="button-last"> 

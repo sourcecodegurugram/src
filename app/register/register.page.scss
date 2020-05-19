@@ -31,16 +31,16 @@
 .form-fields{
     margin: 2em;
 }
-input{
-    /* height: 6vh; */
-    border-radius: 7px;
-    height: 47px;
-    margin-top: 15px;
-    border: 1px solid;
-    margin-bottom: 20px;
+// input{
+//     /* height: 6vh; */
+//     border-radius: 7px;
+//     height: 47px;
+//     margin-top: 15px;
+//     border: 1px solid;
+//     margin-bottom: 20px;
 
 
-  }
+//   }
 
   textarea
   {
@@ -347,4 +347,36 @@ p.note-under-text {
 p
 {
     margin-bottom: 0;
+}
+.main-modal {
+    height: 100vh;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #00000073;
+    padding: 17em 2em;
+}
+
+.ion-page {
+
+
+    position: none;
+    flex-direction: column;
+    justify-content: space-between;
+    contain: layout size style;
+    overflow: hidden;
+    z-index: 0;
+    background-color: black;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    background-color: white;
+    padding: 15px;
+    text-align: center;
 }

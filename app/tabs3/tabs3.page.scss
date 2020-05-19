@@ -1,0 +1,31 @@
+.members-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    justify-content: center;
+    align-content: center;
+    border: 1px solid;
+    margin: 1em;
+}
+.data-member-grid {
+    margin-left: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+p
+{
+    margin-bottom: 1em;
+    font-size: 17px;
+} 
+.background {
+    margin-top: 7em;
+}
+.blue-star {
+    position: absolute;
+    width: 7%;
+    margin: 4px;
+}
+p
+{
+    margin-bottom: 0px;
+}

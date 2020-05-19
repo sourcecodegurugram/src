@@ -1,76 +1,264 @@
 <ion-content class="background-card">
-<div class="background-card">
-  <div class="search-main-container">
-     <div class="username-search">
-      <!-- <input type="text" id="gender" name="gender" class="form-field-zip-code search-country">
-      <p class="caution">Enter atleast 4 characters of the username</p>
-      <div class="button-container">
-        <button type="button" class="button-common" routerLink="/search-result">Search</button>
-      </div> -->
+  <div class="background" *ngIf="search">
+    <div class="forms-field">
+      <div class="form-group">
+        <label for="sel1">Show me:</label>
+        <select class="form-control" id="sel1">
+          <option>Man</option>
+          <option>Woman</option>
+          <option>Gender
+            Diverse</option>
+          <option>4</option>
+        </select>
+        <span class="under-text">(Man, Woman, Gender
+          Diverse)</span>
+      </div>
+
+
+      <label for="age">Aged</label>
+      <div class="dropdown-aged">
+        <div class="form-group">
+
+          <select class="form-control" id="age">
+            <option>20</option>
+            <option>25</option>
+            <option>30</option>
+          </select>
+        </div>
+        <span class="to">To</span>
+        <div class="form-group">
+
+          <select class="form-control" id="age">
+            <option>20</option>
+            <option>25</option>
+            <option>30</option>
+          </select>
+        </div>
+
+      </div>
+
+
+      <label for="age">Within</label>
+      <div class="dropdown-aged">
+        <div class="form-group">
+
+          <select class="form-control" id="age">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+          </select>
+        </div>
+        <span class="to">miles/km</span>
+      </div>
+      <label for="age">of me, who are looking for</label>
+      <div class="form-group">
+        <select class="form-control" id="sel1">
+          <option>a few good friends</option>
+          <option>lots of acquaintances</option>
+          <option>no preference</option>
+
+        </select>
+        <span class="under-text">(a few good friends,
+          lots of acquaintances, no preference)</span>
+      </div>
+      <div class="form-group">
+        <label for="usr">And Likes</label>
+        <input type="text" class="form-control" id="usr">
+      </div>
+      <div class="form-group">
+        <label for="age">Sort By</label>
+        <select class="form-control" id="sel1">
+          <option>Best Match</option>
+          <option>Recent Logins</option>
+          <option>Newest Members</option>
+        </select>
+      </div>
     </div>
-    <!-- <p class="or-text">OR</p>
-    <p class="username-serch-text">Advanced Search</p> -->
 
-    <label for="name" class="form-label">Zip/Postalcode</label><br>
-    <input type="text" id="Postalcode" name="Postalcode" class="form-field-zip-code search-country"><br>
 
-    <label class="form-label">Distance</label><br>
-    <select id="alcohol" class="country-field search-country">
-      <option value="week">30 miles</option>
-      <option value="daily">20 miles</option>
-    </select>
 
-    <label class="form-label">Gender</label><br>
-    <select id="alcohol" class="country-field search-country">
-      <option value="week">Male</option>
-      <option value="daily">Female</option>
-    </select><br>
-
-    <label class="form-label">Age</label>
-<div class="age-text-boxes">
- 
-  <select id="alcohol" class="country-field search-country age-min">
-    <option value="week">10</option>
-    <option value="daily">15</option>
-  </select>
-
-  <select id="alcohol" class="country-field search-country age-min">
-    <option value="week">20</option>
-    <option value="daily">25</option>
-  </select>
-
-</div>
-
-    <label class="form-label">Activities/Interest</label><br>
-    <mat-form-field>
-      <mat-select multiple>
-        <mat-option *ngFor="let activity of activityList" [value]="activity">{{activity}}</mat-option>
-      </mat-select>
-    </mat-form-field><br>
-
-    <div class="radio-tabs">
-      <p>I'm Looking To Meet</p>
-      <input type="radio" id="male" name="gender" value="male" class="radio">
-      <label for="male">- Any -</label><br>
-      <input type="radio" id="female" name="gender" value="female" class="radio">
-      <label for="female">Does not Matter</label><br>
-      <input type="radio" id="other" name="gender" value="other" class="radio">
-      <label for="other">A few good friends</label><br>
-      <input type="radio" id="diverse" name="diverse" value="diverse" class="radio">
-      <label for="diverse">A lot of acquaintances</label>
+    <div class="continue-button" (click)="searchResult()">
+      Find Friends
     </div>
 
-    <label class="form-label">Sort By</label><br>
-    <select id="alcohol" class="country-field search-country">
-      <option value="week">Newest Member</option>
-      <option value="daily">Oldes Member</option>
-    </select>
-    <div class="button-container">
-      <button type="button" class="button-common button-prev">Reset</button>
-      <button type="button" class="button-common" routerLink="/search-result">Search</button>
-
-
+    <div class="alreday-member">
+      Reset Filter
     </div>
   </div>
+
+
+  <div class="background" *ngIf="searchitem">
+
+    <div class="members-grid" style="background-color: #4372C4;color: white;" data-toggle="modal" data-target="#myModal">
+
+      <div class="photo-member-grid">
+        <img src="../../assets/Images/p1.jpg" class="image-profile">
+
+      </div>
+
+      <div class="data-member-grid">
+        <p class="name card-item">Lorem</p>
+        <ion-label class="hobbies card-item "><span class="left-heading">Activities:&nbsp;</span>Lorem1,Lorem2...
+        </ion-label>
+        <p class="distance card-item"><span class="left-heading">Distance:</span>1 miles away</p>
+
+      </div>
+
+    </div>
+
+
+
+
+
+    <div class="members-grid">
+
+      <div class="photo-member-grid">
+        <img src="../../assets/Images/p1.jpg" class="image-profile">
+
+      </div>
+
+      <div class="data-member-grid">
+        <p class="name card-item">Lorem</p>
+        <ion-label class="hobbies card-item "><span class="left-heading">Activities:&nbsp;</span>Lorem1,Lorem2...
+        </ion-label>
+        <p class="distance card-item"><span class="left-heading">Distance:</span>1 miles away</p>
+
+      </div>
+
+    </div>
+
+    <div class="members-grid">
+
+      <div class="photo-member-grid">
+        <img src="../../assets/Images/p1.jpg" class="image-profile">
+
+      </div>
+
+      <div class="data-member-grid">
+        <p class="name card-item">Lorem</p>
+        <ion-label class="hobbies card-item "><span class="left-heading">Activities:&nbsp;</span>Lorem1,Lorem2...
+        </ion-label>
+        <p class="distance card-item"><span class="left-heading">Distance:</span>1 miles away</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+<div class="popup-chat-page" *ngIf="chatpage">
+<p class="pop-up chat-page-text">Hello!  What are you currently reading or listening to?  </p>
+<p class="pop-up chat-page-text">Hey there!  What is one thing that always makes you laugh or puts a smile on your face? </p>
+<p class="pop-up chat-page-text">Hiyah!  What is one thing you are looking forward to in the next few months and wouldn’t miss for the world?  
+</p>
+<p class="pop-up chat-page-text">Hi! What did you do on your best day ever?</p>
+<p class="pop-up chat-page-text">Helloooo!  What is the best gift you have ever given?   </p>
+
+
+<div class="form-group">
+  <input type="text" class="form-control" id="usr">
 </div>
+
+<div class="continue-button" (click)="sendMsg()">
+  Send
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--Modal-->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+   
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="modal-grid">
+       
+               <div class="profile-picture-modal">
+                <img src="../../assets/Images/p1.jpg" class="image-profile">
+
+               </div>
+
+               <div class="profile-name-modal">
+                 <span class="name">Lorem</span>
+                 <span class="not-verified">Verified</span>
+
+              </div>
+
+          </div>
+
+<div class="siderbar-icon-data">
+  <div class="side-bar-icon">
+    <div class="group-text-image">
+   <img src="../../assets/Images/popchat.png" class="chat-bubble" data-dismiss="modal" (click)="chatOpenPage()">
+   <span class="name-icon">Chat</span>
+  </div>
+  <div class="group-text-image">
+   <img src="../../assets/Images/star.png" class="chat-bubble">
+   <span class="name-icon">Favorite</span>
+  </div>
+  <div class="group-text-image">
+   <img src="../../assets/Images/sign.png" class="chat-bubble" data-dismiss="modal">
+  </div>
+<div class="group-text-image mt-3">
+  <span class="name-icon">Never See again</span>
+  <img src="../../assets/Images/feeling.png" class="chat-bubble mb-3">
+</div>
+
+<div class="group-text-image">
+   <span class="name-icon">Report to admin</span>
+  </div>
+  </div>
+<div class="sidebar-content">
+<p class="detail-data">FullName:<br><span class="output-text">Lorem10</span></p>
+<p class="detail-data">Activities:<br><span class="output-text">Lorem,lorem,lorem...</span></p>
+<p class="detail-data">Favorate Music:<br><span class="output-text">English,Punjabi..</span></p>
+<p class="detail-data">Favorate Show:<br><span class="output-text">Big Bang.</span></p>
+<p class="detail-data">Languages:<br><span class="output-text">Hindi,English</span></p>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        
+      
+        
+      </div>
+    </div>
+  </div>
+
 </ion-content>
