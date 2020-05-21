@@ -7,6 +7,7 @@ import { environment } from '../../environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-navigationbar',
   templateUrl: './navigationbar.component.html',
@@ -27,13 +28,15 @@ export class NavigationbarComponent implements OnInit {
   password: any;
   user: string;
   pass: string;
+  isLoading:boolean=false
   url = "http://latdating.dd:8083/api/json/system/connect";
   headerDict:any;
   constructor(private Configservice: ConfigService,
     private blogService: BlogService,
               private route: ActivatedRoute,
               private router: Router,
-              private http: HttpClient) { }
+              private http: HttpClient,
+              public _location: Location) { }
  
   ngOnInit() {
     // this.Configservice.getArticle()
@@ -95,5 +98,16 @@ export class NavigationbarComponent implements OnInit {
            this.logggenIn=false
 }
 
+close()
+{
+  this.isLoading=false
+}
+refresh() {
+  
+ 
+    this.router.navigate(['/']);
 
+  
+  
+}
 }

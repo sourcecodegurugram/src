@@ -42,10 +42,11 @@
     justify-content: center;
     padding: 2vw;
     padding-top: 8vh;
-    width: 90vw;
+    width: 86vw;
     background-color: white;
     margin: -5px;
     padding-bottom: 2vh;
+    box-shadow: 2px 2px 6px 4px #2125294d;
 }
 p
 {
@@ -61,10 +62,22 @@ p
 .inner-group {
     display: grid;
 
-    grid-template-columns: 2fr 1fr;
     
 }
 .membership.inner-group-activity {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+
+}
+ion-card.subscribe-card.md.hydrated {
+    margin: 2.5em 2em;
+    box-shadow: 2px 2px 6px 4px#2125294d;
+}
+.name {
+    font-size: 18px;
+    font-weight: 600;
+}
+.name-output {
+    font-size: 17px;
+    font-weight: 400;
+    margin: 3px 0px;
 }

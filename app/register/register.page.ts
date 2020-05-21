@@ -3,6 +3,8 @@ import { Component, OnInit, ViewChild, NgZone } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { MatTabChangeEvent } from "@angular/material/tabs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { AlertController } from '@ionic/angular';
+
 @Component({
   selector: "app-register",
   templateUrl: "./register.page.html",
@@ -41,7 +43,8 @@ export class RegisterPage implements OnInit {
   post: any;
   private captchaPassed: boolean = false;
   private captchaResponse: string;
-  constructor(private http: HttpClient, private zone: NgZone) {
+  
+  constructor(private http: HttpClient, private zone: NgZone,public alertController: AlertController) {
     this.visitor = {
       name: "John Doe",
       email: "john@doe.com",
@@ -93,16 +96,28 @@ export class RegisterPage implements OnInit {
     Languages,
     cats,dogs,rabbits,
     mostfriend,
-    cancel
+    cancel,
+    days,
+    movies,
+    music,
+    shows,
+    books,
+    workss,
+    familys,
+    relation,
+    always,
+    sides,
+    advice,
+    comment
   ) {
-    console.log("firstname" + " " + firstname);
-    console.log("lastname" + " " + lastname);
-    console.log("DOB" + " " + DOB);
+    console.log("firstname" + " " + long);
+    console.log("lastname" + " " + status);
+    console.log("DOB" + " " + Education);
  
     console.log("Activity" + " " + status);
 
     this.http
-      .post<any>("http://gowebtutorial.com/api/json/user/register", {
+      .post<any>("https://gowebtutorial.com/api/json/user/register", {
         name: name,
         mail: email,
         conf_mail: confirmemail,
@@ -156,7 +171,11 @@ export class RegisterPage implements OnInit {
           und: contracted,
         },
         field_long_in_city: {
-          und: long,
+          und: 
+          {
+            value:long,
+          },
+          
         },
         field_relationship_status: {
           und:status,
@@ -186,12 +205,70 @@ export class RegisterPage implements OnInit {
           
           
         },
-    
+        field_plans_get_cancelled:
+        {und:cancel,
+        },
+        field_spend_your_days:
+        {und:
+        {
+          value:days,
+        },
+        
+        },
+        field_favorite_movies:{
+          und:{
+value: movies,
+          },
+        },
+        field_favorite_music:
+        {und:
+        {
+          value:music,
+        },
+        
+        },
+        field_favorite_tv_shows:
+        {und:
+        {
+          value:shows,
+        },
+        
+        },
+
+        field_favorite_books:
+        {und:
+        {
+          value:books,
+        },
+        
+        },
+        field_talk_about:{
+          
+          und:{
+            Work:workss,
+            Family:familys,
+            Relationships:relation
+          },
+        },
+        field_good_friend:
+        {und:
+          {
+            isalwaysthereforme:always,
+            alwayssideswithmenomatterwhat: sides,
+            givesadvice:advice
+          },
+        },
+        field_you_say:
+        {
+          und:{
+            value:comment
+          }
+        }
       })
       .subscribe((data) => {
         this.post = data;
         if(this.post.uid){
-         this.submit=true
+         this.presentAlert()
           } else {
           alert(this.post)
           }
@@ -201,5 +278,13 @@ export class RegisterPage implements OnInit {
   onsubmit()
   {
     this.submit=false
+  }
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      message: ' Your Have Registered successfully',
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 }

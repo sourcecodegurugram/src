@@ -16,6 +16,7 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { EllipsisPipe } from "../ellipsis.pipe";
 import {SignupPageModule} from './signup/signup.module'
 import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
+
 @NgModule({
   declarations: [AppComponent, NavigationbarComponent, EllipsisPipe],
   entryComponents: [],

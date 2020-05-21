@@ -64,6 +64,7 @@ const routes: Routes = [
     path: 'optional-detail',
     loadChildren: () => import('./optional-detail/optional-detail.module').then( m => m.OptionalDetailPageModule)
   },
+ 
 ];
 
 @NgModule({

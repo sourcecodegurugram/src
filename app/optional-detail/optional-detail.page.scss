@@ -9,7 +9,7 @@
     width: 100%;
 }
 .forms-field{
-    margin: 1em 1em;
+    margin: 3em 1em;
 }
 p.register-with-us {
     padding: 1.5em;
@@ -102,6 +102,8 @@ span.button-text {
     border-radius: .25rem;
     margin: 0px 1.5em;
     border: 1px solid;
+    position: fixed;
+    width: 90%;
 }
 .blue-button-second-tab {
     background-color: #4472C4;

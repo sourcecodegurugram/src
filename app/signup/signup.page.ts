@@ -1,6 +1,7 @@
-import { Component, OnInit ,NgZone} from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { MatTabChangeEvent } from "@angular/material/tabs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -10,7 +11,22 @@ export class SignupPage implements OnInit {
   maxNumberOfTabs = 5;
   selectedIndex = 0;
   post: any;
-  constructor(private http: HttpClient, private zone: NgZone) { }
+  name: any;
+  real: any;
+  DOB: any;
+  Gender: any;
+  contract: any;
+  myself: any;
+  meet: any;
+  live: any;
+  zip: any;
+  email: any;
+  password: any;
+  confirmpassword: any;
+  fname: any;
+  lname: any;
+  confirmemail: any;
+  constructor(private http: HttpClient, private zone: NgZone, public alertController: AlertController) { }
 
   ngOnInit() {
   }
@@ -25,164 +41,218 @@ export class SignupPage implements OnInit {
     this.selectedIndex -= 1;
   }
 
-  LoginForm(name, email, confirmemail, firstname, lastname, postalcode, DOB, gender, activity, meet, contracted, long, status, Education, smoke, alcohol, Languages, pets, mostfriend, cancel) {
-    console.log("status" + " " + status)
 
-    console.log("Education" + " " + Education)
+  selectTab(nextIndex: number, presentIndex: number): void {
+    //Screen 1  
+    if (presentIndex == 0) {
+      if (this.name == null) {
+        this.presentAlert();
+      }
 
-    console.log("smoke" + "" + smoke)
+      else if (this.fname == null) {
+        this.presentAlert();
+      }
+      else if (this.lname == null) {
+        this.presentAlert();
+      }
+      else if (this.DOB == null) {
+        this.presentAlert();
+      }
 
-    console.log("alcohol" + " " + alcohol)
+      else {
 
-    console.log("Languages " + " " + Languages)
+        this.selectedIndex = nextIndex;
+      }
 
-    console.log("pets" + "" + pets)
+    }
+    else if (presentIndex == 1) {
+      if (nextIndex > presentIndex) {
+        if (this.Gender == null) {
+          this.presentAlert();
+        }
+        else if (this.contract == null) {
+          this.presentAlert();
+        }
 
-    console.log("mostfriend " + " " + mostfriend)
+        else if (this.myself == null) {
+          this.presentAlert();
+        }
+        else if (this.meet == null) {
+          this.presentAlert();
+        }
 
-    console.log("cancel" + " " + cancel)
+        else {
+          this.selectedIndex = nextIndex;
+        }
+      }
+      else {
+        this.selectedIndex = nextIndex;
+      }
+    }
 
-    this.http.post<any>('http://gowebtutorial.com/api/json/user/register', {
-      name: name,
-      mail: email,
-      conf_mail: confirmemail,
-      field_first_name:
-      {
-        "und":
-          [{
-            "value": firstname
-          }]
-      },
-      field_last_name:
-      {
-        "und":
-          [{
-            "value": lastname
-          }]
-      },
-      field_zip_code:
-      {
-        "und":
-          [{
-            "postal_code": postalcode
-          }]
-      },
+    else if (presentIndex == 2) {
+      if (nextIndex > presentIndex) {
+
+
+        this.selectedIndex = nextIndex;
+
+
+      }
+    }
+    else if (presentIndex == 3) {
+      if (nextIndex > presentIndex) {
+
+        if (this.live == null) {
+          this.presentAlert();
+        }
+
+        else if (this.zip == null) {
+          this.presentAlert();
+        }
+
+        else {
+          this.selectedIndex = nextIndex;
+        }
+      }
       
-      field_birth_date:
-      {
-        "und":
-          [{
-            "value": DOB
-          }]
-      },
-      field_gender:
-      {
-        "und":
-          [{
-            "value": gender
-          }]
-      },
-      field_activities_interests:
-      {
-        "und":
-          [{
-            activity
-          }]
-      },
-      field_look_meet:
-      {
-        "und":
-          [{
-            "value": meet
-          }]
+    }
+    else if (presentIndex == 4) {
+      if (nextIndex > presentIndex) {
 
-      },
-      field_want_contarct:
-      {
-        "und":
-          [{
-            "value": contracted
-          }]
-
-      },
-      field_long_in_city:
-      {
-        "und":
-          [{
-            "value": long
-          }]
-
-      },
-      field_relationship_status:
-      {
-        "und":
-          [{
-            "value": status
-          }]
-
-      },
-      field_education_level:
-      {
-        "und":
-          [{
-            Education
-          }]
-
-      },
-      field_smoke:
-      {
-        "und":
-          [{
-            smoke
-          }]
-
-      },
-      field_alcohol:
-      {
-        "und":
-          [{
-            alcohol
-          }]
-
-      },
-      field_languages:
-      {
-        "und":
-          [{
-            Languages
-          }]
-
-      },
-      field_any_pets:
-      {
-        "und":
-          [{
-            pets
-          }]
-
-      },
-      field_good_friend:
-      {
-        "und":
-          [{
-            mostfriend
-          }]
-
-      },
-      field_plans_get_cancelled:
-      {
-        "und":
-          [{
-            cancel
-          }]
-
-      },
-
+        if (this.email == null) {
+          this.presentAlert();
+        }
+        if (this.confirmemail == null) {
+          this.presentAlert();
+        }
      
-    }).subscribe(data => {
-      this.post = data;
+        else if (this.password == null) {
+          this.presentAlert();
+        }
 
+        else if (this.confirmpassword == null) {
+          this.presentAlert();
+        }
+
+
+        
+        
+      }
+      
+    }
+    
+  }
+
+
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      message: ' All Fields are required',
+      buttons: ['OK']
     });
 
+    await alert.present();
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+  //Form
+  LoginForm(name,fname,lname,DOB,Gender,contract,meet,live,zip,yogas,playdatess,sightseeings,email,confirmemail) {
+
+ 
+    console.log(name,fname,lname,DOB,Gender,contract,meet,live,zip,yogas,playdatess,sightseeings,email,confirmemail);
+
+    this.http
+      .post<any>("https://gowebtutorial.com/api/json/user/register", {
+        name: name,
+        mail: email,
+        conf_mail: confirmemail,
+        field_first_name: {
+          und: [
+            {
+              value: fname,
+            },
+          ],
+        },
+        field_last_name: {
+          und: [
+            {
+              value:lname,
+            },
+          ],
+        },
+        field_zip_code: {
+          und: [
+            {
+              postal_code: zip,
+              country: live,
+            },
+          ],
+        },
+
+        field_birth_date: {
+          und: [
+            {
+              value: DOB,
+            },
+          ],
+        },
+
+        field_gender: {
+          und: Gender,
+        },
+
+        field_activities_interests: {
+          und: {
+            yoga:  yogas,
+            playdates:playdatess,
+            sightseeing: sightseeings
+            
+          },
+        },
+        field_look_meet: {
+          und:meet,
+        },
+        field_want_contarct: {
+          und: contract,
+        },
+        
+      })
+      .subscribe((data) => {
+        this.post = data;
+        if(this.post.uid){
+          this.nextStep()
+          this.correctAlert()
+          } else {
+           
+          alert(this.post)
+    
+          }
+         
+      });
+  }
+
+  async correctAlert() {
+    const correct = await this.alertController.create({
+      message: ' Account is created',
+      buttons: ['OK']
+    });
+
+    await correct.present();
+  }
+ 
 }

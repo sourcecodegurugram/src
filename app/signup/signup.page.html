@@ -16,16 +16,26 @@
           </div>
 
 
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label for="usr">What is your real name?</label>
-            <input type="text" class="form-control" id="usr">
+            <input type="text" class="form-control" id="usr" name="real" [(ngModel)]="real">
+            <span class="under-text">(Not for display publicly for account management only)</span>
+          </div> -->
+
+          <div class="form-group">
+            <label for="usr">What is your First name</label>
+            <input type="text" class="form-control" id="usr" name="fname" [(ngModel)]="fname">
+            <span class="under-text">(Not for display publicly for account management only)</span>
+          </div>
+          <div class="form-group">
+            <label for="usr">What is your Last name</label>
+            <input type="text" class="form-control" id="usr" name="lname" [(ngModel)]="lname">
             <span class="under-text">(Not for display publicly for account management only)</span>
           </div>
 
-
           <div class="form-group">
             <label for="usr">When is your birthday*?</label>
-            <input type="date" class="form-control" id="usr" id="DOB" [(ngModel)]="DOB">
+            <input type="date" class="form-control" id="usr" name="DOB" [(ngModel)]="DOB">
             <span class="under-text">(Only age is displayed publicly)</span>
           </div>
 
@@ -33,7 +43,7 @@
           <span class="age-limit">*Must be over 18 years old to
             be a member and use the app</span>
 
-          <div class="continue-button" (click)="nextStep()">
+          <div class="continue-button" (click)="selectTab(1, 0)">
             Continue
           </div>
 
@@ -50,10 +60,10 @@
           <div class="form-group">
             <label for="sel1">I am</label>
             <select class="form-control" id="sel1" name="Gender" [(ngModel)]="Gender">
-              <option value="Man">Man</option>
-              <option value="Woman">Woman</option>
-              <option value="Gender Diverse">Gender
-                Diverse</option>
+  
+              <option value="Male"> Male</option>
+              <option value="Female">Female</option>
+              <option value="Gender Diverse">Gender Diverse</option>
             </select>
             <span class="under-text">(Man, Woman, Gender
               Diverse)</span>
@@ -63,12 +73,10 @@
 
           <div class="form-group">
             <label for="sel1">Wanting to be contacted by</label>
-            <select class="form-control" id="sel1">
-              <option>Only
-                Men</option>
-              <option>Only Women</option>
-              <option>Only Gender Diverse</option>
-              <option>Everyone</option>
+            <select class="form-control" id="sel1" name="contract" [(ngModel)]="contract">
+              <option value="0">Either one</option>
+              <option value="1">Female only</option>
+              <option value="2">Male only</option>
             </select>
             <span class="under-text">(Only
               Men, Only Women, Only Gender Diverse,Everyone)</span>
@@ -85,10 +93,10 @@
 
           <div class="form-group">
             <label for="sel1">I consider myself an</label>
-            <select class="form-control" id="sel1">
-              <option>introvert</option>
-              <option>extrovert</option>
-              <option>ambivert</option>
+            <select class="form-control" id="sel1" name="myself" [(ngModel)]="myself">
+              <option value="introvert">introvert</option>
+              <option value="extrovert">extrovert</option>
+              <option value="ambivert">ambivert</option>
 
             </select>
             <span class="under-text">(introvert,
@@ -100,21 +108,23 @@
 
           <div class="form-group">
             <label for="sel1">I want to meet</label>
-            <select class="form-control" id="sel1">
-              <option>a few good friends</option>
-              <option>lots of acquaintances</option>
-              <option>no preference</option>
-
+            <select class="form-control" id="sel1"  name="meet" [(ngModel)]="meet">
+              <option value="3">Does not matter</option>
+              <option value="1">A few goods friends</option>
+              <option value="2">A lot of accquaintances</option>
             </select>
             <span class="under-text">(a few good friends,
               lots of acquaintances, no preference)</span>
           </div>
 
-          <div class="continue-button" (click)="nextStep()">
+          <div class="continue-button" (click)="selectTab(2, 1)">
             Continue
           </div>
 
 
+          <div class="previous-button" (click)="previousStep()">
+            Previous
+          </div>
 
 
         </div>
@@ -219,8 +229,12 @@
             </div>
 
           </div>
-          <div class="continue-button" (click)="nextStep()">
+          <div class="continue-button" (click)="selectTab(3, 2)">
             Continue
+          </div>
+
+          <div class="previous-button" (click)="previousStep()">
+            Previous
           </div>
         </div>
       </mat-tab>
@@ -235,10 +249,14 @@
         <div class="forms-field">
           <div class="form-group">
             <label for="sel1">I live in</label>
-            <select class="form-control" id="sel1">
-              <option>India</option>
-              <option>UK</option>
-              <option>US</option>
+            <select class="form-control" id="sel1" name="live" [(ngModel)]="live"> 
+              <option value="au">Australia</option>
+              <option value="ca">Canada</option>
+              <option value="in">India</option>
+              <option value="nz">New Zealand</option>
+              <option value="sg">Singapore</option>
+              <option value="gb">United Kingdom</option>
+              <option value="us" selected="selected">United States</option>
 
             </select>
             <span class="under-text"></span>
@@ -250,7 +268,7 @@
           </div>
           <div class="form-group">
             <label for="usr">At this postal/zip code</label>
-            <input type="text" class="form-control" id="usr">
+            <input type="text" class="form-control" id="usr" name="zip" [(ngModel)]="zip">
             <span class="under-text">(Not for display publicly, used to
               connect with people near you)</span>
           </div>
@@ -263,7 +281,22 @@
 
           </div>
 
-
+          <label for="sel1" class="mt-2">Activities/Interest</label>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="checkbox" class="form-check-input" value="yoga" #yogas>yoga
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="checkbox" class="form-check-input" value="playdates (parents and children)"#playdatess>playdates (parents and children)
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="checkbox" class="form-check-input" value="sightseeing" #sightseeings>sightseeing
+            </label>
+          </div>
           <div class="terms">
             <label for="usr">Terms and Conditios</label>
             <div id="usr" class="terms-text">This Terms of Use (“Agreement”) is a legally binding agreement made by and
@@ -465,8 +498,12 @@
 
 
 
-          <div class="continue-button" (click)="nextStep()">
+          <div class="continue-button" (click)="selectTab(4, 3)">
             Accept Terms & Continue
+          </div>
+
+          <div class="previous-button" (click)="previousStep()">
+            Previous
           </div>
         </div>
       </mat-tab>
@@ -495,24 +532,35 @@
         <div class="forms-field">
         <div class="form-group">
         
-          <input type="text" class="form-control" id="usr" placeholder="Email Address">
+          <input type="text" class="form-control" id="usr" placeholder="Email Address" name="email" [(ngModel)]="email">
     
         </div>
 
         <div class="form-group">
         
-          <input type="text" class="form-control" id="usr" placeholder="Password">
+          <input type="text" class="form-control" id="usr" placeholder="Email Address" name="confirmemail" [(ngModel)]="confirmemail">
+    
+        </div>
+
+
+        <div class="form-group">
+        
+          <input type="text" class="form-control" id="usr" placeholder="Password" name="password" [(ngModel)]="password">
     
         </div>
 
         <div class="form-group">
         
-          <input type="text" class="form-control" id="usr" placeholder="Confirm Password">
+          <input type="text" class="form-control" id="usr" placeholder="Confirm Password" name="confirmpassword"  [(ngModel)]="confirmpassword">
     
         </div>
 </div>
-<div class="continue-button" (click)="nextStep()">
+<div class="continue-button" (click)="LoginForm(name,fname,lname,DOB,Gender,contract,meet,live,zip,yogas.value,playdatess.value,sightseeings.value,email,confirmemail)">
  Continue
+</div>
+
+<div class="previous-button" (click)="previousStep()">
+  Previous
 </div>
       </mat-tab>
 
@@ -539,12 +587,12 @@
    <div class="success-market">Become a verified member now for ad-free app usage, unlimited instant messages, and enhanced search</div>
    
    
-   <div class="last-tab-button" (click)="nextStep()">
-    <div class="continue-button-last">
+   <div class="last-tab-button" >
+    <div class="continue-button-last" routerLink="/signin">
       Become Verified
   </div>
 
-  <div class="button-last"> 
+  <div class="button-last" >
     <span class="under-text-button">(No Thanks!  I am happy to be a basic member and use the free website version of not4dating. (Check your email to validate your account first).</span>
   </div>
    </div>

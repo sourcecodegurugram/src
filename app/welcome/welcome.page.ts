@@ -12,12 +12,14 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { element } from "protractor";
 import { MatTabChangeEvent } from "@angular/material/tabs";
 import { FormControl } from "@angular/forms";
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.page.html',
   styleUrls: ['./welcome.page.scss'],
 })
 export class WelcomePage implements OnInit {
+  isLoading: boolean = false;
   hide: boolean = false;
   popup: boolean = false;
   post: any;
@@ -25,7 +27,7 @@ export class WelcomePage implements OnInit {
   userCity;
   lat;
   lng;
-  location;
+ 
   latLngResult;
   userLocationFromLatLng;
   address: any;
@@ -34,7 +36,7 @@ export class WelcomePage implements OnInit {
   lats: string;
   postal: (error: any) => void;
   help: any;
-  isLoading: boolean = false;
+  
   addressData;
   postcode;
   signup: boolean = false;
@@ -46,7 +48,7 @@ export class WelcomePage implements OnInit {
   searchResponse = [];
   pageIndex = 0;
   currPage = [];
-
+  searchresult:boolean=false
  
   constructor(private ConfigService: ConfigService,
     public geolocation: Geolocation,
@@ -54,9 +56,14 @@ export class WelcomePage implements OnInit {
     private nativeGeocoder: NativeGeocoder,
     public zone: NgZone,
     private _Activatedroute: ActivatedRoute,
-    private routes: Router) { }
+    private routes: Router,
+    private locate:Location) { }
 
   ngOnInit() {
+   
+    this.ConfigService.getMsg().subscribe((msg) => {
+      console.log(msg);
+    });
 
   }
 
@@ -70,9 +77,11 @@ export class WelcomePage implements OnInit {
         if (this.address[i].types.includes("postal_code")) {
           this.postcode = this.address[i].long_name;
         }
+        this.isLoading = false
       }
-
-      this.routes.navigate(["search-result/", this.postcode]);
+       this.searchresult=true
+       this.getSearchData()
+      // this.routes.navigate(["search-result/", this.postcode]);
     });
   }
 
@@ -93,11 +102,12 @@ export class WelcomePage implements OnInit {
         console.log(this.lng)
         // If we get lat long then we will pull Address details from reverse geo lookup
         if (this.lat && this.lng) {
-
           this.reverseGeoLookup();
+        
         } else {
           this.showFormPage();
         }
+       
       }) // If we do not get lat long, we will present page with form for address and post code
       .catch((error) => {
         this.isLoading = false
@@ -121,5 +131,20 @@ export class WelcomePage implements OnInit {
   public previousStep() {
     this.selectedIndex -= 1;
   }
+  getSearchData() {
+    this.ConfigService.getPostal(this.postcode, this.pageIndex).subscribe(
+      (elements) => {
+        this.currPage = Object.keys(elements).map((i) => elements[i]);
   
+        console.log(this.currPage);
+        this.searchResponse = this.searchResponse.concat(this.currPage);
+        console.log(this.searchResponse);
+      }
+    );
+    this.pageIndex++;
+  }
+  closesearchpop()
+  {
+    this.searchresult=false
+  }
 }

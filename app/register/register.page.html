@@ -100,8 +100,7 @@
               <label for="dateofbirth">Date Of Birth</label><br>
               <input type="date" name="DOB" id="dateofbirth" class="form-field-zip-code search-country"
                 [(ngModel)]="DOB"><br>
-              <p class="note-under-text">* First ,
-                Last Name and Date of Birth will not be displayed.</p><br>
+             
 
               <label class="form-label">Gender</label><br>
               <select id="Gender" class="country-field search-country" name="gender" [(ngModel)]="gender">
@@ -535,60 +534,80 @@
 
               <label class="form-label">How Do you React If Plans Get Cancelled?</label><br>
               <select id="react" class="country-field search-country" name="cancel" [(ngModel)]="cancel">
-                <option value="week">Things happen-no big Deal</option>
-                <option value="daily">Daily</option>
+                <option value="Things happen-no big Deal">Things happen-no big Deal</option>
+                <option value="I’m generally understanding, but I can only be blown off so many times before I will start to question the friendship.">I’m generally understanding, but I can only be blown off so many times before I will start to question the friendship.</option>
               </select>
 
 
               <label class="form-label">How Do You Spend Your Days</label><br>
-              <textarea rows="10" cols="50" name="comment" form="usrform">
+              <textarea rows="10" cols="50" name="days" form="usrform" [(ngModel)]="days">
              </textarea>
               <p class="caution">Content limited to 500 characters, remaining: 500</p>
 
 
 
               <label class="form-label">Favorite Movies</label><br>
-              <textarea rows="10" cols="50" name="comment" form="usrform">
+              <textarea rows="10" cols="50" name="movies" form="usrform" [(ngModel)]="movies">
              </textarea>
               <p class="caution">Content limited to 500 characters, remaining: 500</p>
 
 
               <label class="form-label">Favorite Music</label><br>
-              <textarea rows="10" cols="50" name="comment" form="usrform">
+              <textarea rows="10" cols="50" name="music" form="usrform" [(ngModel)]="music">
               </textarea>
               <p class="caution">Content limited to 500 characters, remaining: 500</p>
 
               <label class="form-label">Favorite TV Shows</label><br>
-              <textarea rows="10" cols="50" name="comment" form="usrform">
+              <textarea rows="10" cols="50" name="shows" form="usrform" [(ngModel)]="shows">
               </textarea>
               <p class="caution">Content limited to 500 characters, remaining: 500</p>
 
 
 
               <label class="form-label">Favorite Books</label><br>
-              <textarea rows="10" cols="50" name="comment" form="usrform">
+              <textarea rows="10" cols="50" name="books" form="usrform" [(ngModel)]="books">
               </textarea>
               <p class="caution">Content limited to 500 characters, remaining: 500</p>
 
 
 
               <label class="form-label">My Friends And I Usually Talk About</label><br>
-              <mat-form-field>
-                <mat-select multiple>
-                  <mat-option *ngFor="let talkabout of talkaboutList" [value]="talkabout">{{talkabout}}</mat-option>
-                </mat-select>
-              </mat-form-field><br>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" value="Work" #workss>Work
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" value="Family" #familys>Family
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" value="Relationships" #relation>Relationships
+                </label>
+              </div><br>
 
 
               <label class="form-label">A Good Friend Is Someone Who...</label><br>
-              <mat-form-field>
-                <mat-select multiple>
-                  <mat-option *ngFor="let goodfriend of goodfriendList" [value]="goodfriend">{{goodfriend}}</mat-option>
-                </mat-select>
-              </mat-form-field><br>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" value="is always there for me." #always>is always there for me.
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" value="always sides with me no matter what." #sides>always sides with me no matter what.
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" value="gives advice." #advice>gives advice.
+                </label>
+              </div><br>
 
               <label class="form-label">Anything else you want to say?</label><br>
-              <textarea rows="10" cols="50" name="comment" form="usrform">
+              <textarea rows="10" cols="50" name="comment" form="usrform" [(ngModel)]="comment">
                </textarea>
               <p class="caution">Content limited to 500 characters, remaining: 500</p>
 
@@ -605,7 +624,7 @@
               <div class="button-container">
                 <button type="button" class="button-common button-prev" (click)="previousStep()">Previous</button>
                 <button type="button" class="button-common"
-                  (click)="LoginForm(name,email,confirmemail,firstname,lastname,zipcode,gender,DOB,activit,country,yogas.value,playdatess.value,sightseeings.value,meet,contracted,long,status,Education,smoke,alcohol,Languages,cats.value,dogs.value,rabbits.value,mostfriend,cancel)">Next</button>
+                  (click)="LoginForm(name,email,confirmemail,firstname,lastname,zipcode,gender,DOB,activit,country,yogas.value,playdatess.value,sightseeings.value,meet,contracted,long,status,Education,smoke,alcohol,Languages,cats.value,dogs.value,rabbits.value,mostfriend,cancel,days,movies,music,shows,books,workss.value,familys.value,relation.value,always.value,sides.value,advice.value,comment)">Next</button>
 
 
               </div>
@@ -705,11 +724,3 @@
 </div>
 
 
-<div class="main-modal" *ngIf="submit">
-<div class="content">
-   Your Have Registered successfully<br>
-
-   <button type="submit" class="btn btn-primary mt-2" (click)="onsubmit()">Submit</button>
-
-  </div>
-</div>
