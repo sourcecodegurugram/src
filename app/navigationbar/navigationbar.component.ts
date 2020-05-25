@@ -6,7 +6,7 @@ import { config } from '../config';
 import { environment } from '../../environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-
+import { AlertController } from '@ionic/angular';
 import { Location } from '@angular/common';
 @Component({
   selector: 'app-navigationbar',
@@ -28,22 +28,24 @@ export class NavigationbarComponent implements OnInit {
   password: any;
   user: string;
   pass: string;
-  isLoading:boolean=false
+  isLoading:boolean=false;
+  logoutUrl="http://gowebtutorial.com/api/json/user/logout"
   url = "http://latdating.dd:8083/api/json/system/connect";
   headerDict:any;
+  itrs: any;
   constructor(private Configservice: ConfigService,
     private blogService: BlogService,
               private route: ActivatedRoute,
               private router: Router,
               private http: HttpClient,
-              public _location: Location) { }
+              public _location: Location,
+              public alertController: AlertController) { }
  
   ngOnInit() {
-    // this.Configservice.getArticle()
-    //   .subscribe(data => {
-    //     this.post = data;
-    //    console.log(data)
-    //   });
+
+    this.itrs=JSON.parse(localStorage.getItem("currentUser"));
+      
+    console.log("Nav" + " "+ this.itrs.token)
 
   }
 
@@ -56,9 +58,7 @@ export class NavigationbarComponent implements OnInit {
 
   humburgereffect()
   {
-    this.crossSign = true;
-    this.humBurger = false;
-    this.mainMenu = true;
+    this.correctAlert();
   }
   humBurgerCross()
   {
@@ -109,5 +109,29 @@ refresh() {
 
   
   
+}
+async correctAlert() {
+  const correct = await this.alertController.create({
+    message: 'Logged In',
+    buttons: ['OK']
+  });
+
+  await correct.present();
+}
+
+
+logOut()
+{
+  let headers = new HttpHeaders();
+ console.log(this.itrs.token)
+
+ headers = headers.set('X-CSRF-Token',  this.itrs.token);
+console.log({headers: headers})
+ this.http.post(this.logoutUrl,  {headers: headers}).subscribe((head)=>{
+   console.log(head)
+ });
+
+
+
 }
 }

@@ -1,0 +1,59 @@
+
+
+
+<div class="main-pop-background">
+
+
+<div class="main-pop">
+
+
+  <div class="pop-grids">
+  <div class="modal-grid">
+       
+    <div class="profile-picture-modal">
+     <img src="../../assets/Images/p1.jpg" class="image-profile">
+
+    </div>
+
+    <div class="profile-name-modal">
+      <span class="name">{{name}}</span>
+      <span class="not-verified">Verified</span>
+
+   </div>
+
+</div>
+
+<div class="siderbar-icon-data">
+<div class="side-bar-icon">
+<div class="group-text-image">
+<img src="../../assets/Images/popchat.png" class="chat-bubble" routerLink="/chat/tabs2">
+<span class="name-icon">Chat</span>
+</div>
+<div class="group-text-image">
+<img src="../../assets/Images/star.png" class="chat-bubble">
+<span class="name-icon">Favorite</span>
+</div>
+<div class="group-text-image">
+<img src="../../assets/Images/sign.png" class="chat-bubble" (click)="backClicked()">
+</div>
+<div class="group-text-image mt-3">
+<span class="name-icon">Never See again</span>
+<img src="../../assets/Images/feeling.png" class="chat-bubble mb-3">
+</div>
+
+<div class="group-text-image">
+<span class="name-icon">Report to admin</span>
+</div>
+</div>
+<div class="sidebar-content">
+<p class="detail-data">FullName:<br><span class="output-text">{{name}}</span></p>
+<p class="detail-data">I Want To Be Contacted By:<br><span class="output-text" *ngFor="let actvities of contact" >{{actvities}}</span></p>
+<p class="detail-data" *ngIf="musics">Favorate Music:<br><span class="output-text" *ngFor="let Music of musics">{{Music.value}}</span></p>
+<p class="detail-data" *ngIf="book">Favorate Books:<br><span class="output-text"  *ngFor="let books of book">{{books.value}}</span></p>
+<p class="detail-data" *ngIf="statu">Relationship status:<br><span class="output-text"*ngFor="let status of statu">{{status.value}}</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+

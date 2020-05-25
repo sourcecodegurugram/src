@@ -43,12 +43,14 @@ font-size: 19px;
     font-weight: 200;
 }
 
-.background
+.background-oops
 {
     background-color: #0e0d0d29;
-    margin-top: 4em;
-    background-size: cover;
-    background-position: center;
+    padding-top: 6em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
    
     overflow-x: auto;
 }
@@ -59,6 +61,8 @@ font-size: 19px;
     font-size: 20px;
     text-align: center;
   color: #707070;
+  margin-right: 1em;
+  margin-left: 1em;
 
 }
 .card-one{
@@ -216,6 +220,8 @@ button.button-common {
     height:80vh;
     overflow-x: auto;
     width: 89vw;
+    margin-top: 5em;
+
   }
   
   ion-card.ios.hydrated {
@@ -366,3 +372,7 @@ button.button-common {
     width: 100%;
     padding: 20px 0px;
   }
+  input#usr {
+    height: 5vh;
+    padding: 1em;
+}

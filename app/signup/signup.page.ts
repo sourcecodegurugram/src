@@ -2,6 +2,9 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { MatTabChangeEvent } from "@angular/material/tabs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AlertController } from '@ionic/angular';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
+import { Camera } from '@ionic-native/camera';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -11,21 +14,24 @@ export class SignupPage implements OnInit {
   maxNumberOfTabs = 5;
   selectedIndex = 0;
   post: any;
-  name: any;
+  name:string;
   real: any;
   DOB: any;
-  Gender: any;
-  contract: any;
-  myself: any;
-  meet: any;
-  live: any;
+  Gender: any="Gender Diverse";
+  contract: any="2";
+  myself: any="Extrovert";
+  meet: any="1";
+  live: any="au";
   zip: any;
   email: any;
   password: any;
   confirmpassword: any;
   fname: any;
   lname: any;
-  confirmemail: any;
+  confirmemail: any; 
+  signup: any;
+  selectedFile: File = null ;
+ 
   constructor(private http: HttpClient, private zone: NgZone, public alertController: AlertController) { }
 
   ngOnInit() {
@@ -171,11 +177,17 @@ export class SignupPage implements OnInit {
 
 
   //Form
-  LoginForm(name,fname,lname,DOB,Gender,contract,meet,live,zip,yogas,playdatess,sightseeings,email,confirmemail) {
+  LoginForm(name,fname,lname,DOB,Gender,contract,meet,live,zip,yogas,playdatess,beers,sightseeings,artsy,cook,dancing,watching,games,travelling,history,
+    board ,sports ,mom ,outdoor ,dining ,concerts ,sportwatching ,shoppings ,crafty,photographs ,animal ,crime ,chess ,
+    movies,dog,fitness,music,trekking,cars,antiques,horses,anime,scifi,scuba,gardening,rock,cycling ,
+    
+    
+    
+    email,confirmemail) {
 
  
-    console.log(name,fname,lname,DOB,Gender,contract,meet,live,zip,yogas,playdatess,sightseeings,email,confirmemail);
-
+    console.log( movies,dog,fitness,music,trekking,cars,antiques,horses,anime,scifi,scuba,gardening,rock,cycling ,);
+ 
     this.http
       .post<any>("https://gowebtutorial.com/api/json/user/register", {
         name: name,
@@ -218,9 +230,44 @@ export class SignupPage implements OnInit {
 
         field_activities_interests: {
           und: {
-            yoga:  yogas,
+            yoga:yogas,
             playdates:playdatess,
-            sightseeing: sightseeings
+            happyhourcocktailsbeers:beers,
+            sightseeing: sightseeings,
+            artsyie:artsy,
+            cooking:cook,
+            dancing:dancing,
+            peoplewatching:watching,
+            games:games,
+            travelling:travelling,
+            history:history,
+            boardgames:board ,
+            sportsplaying:sports ,
+            momdadnightoutwokids:mom ,
+            outdooractivities:outdoor ,
+            diningout:dining ,
+            concertsshows:concerts ,
+            sportwatching:sportwatching ,
+            shopping:shoppings ,
+            craftythingsthingsyoumake:crafty,
+            photography:photographs ,
+            animalloverpetowner:animal ,
+            crimemysteryreader:crime ,
+            chesss:chess,
+            movie:movies ,
+             dogs:dog ,
+            fitnesss:fitness ,
+            musics:music ,
+            trek:trekking ,
+            car:cars ,
+             antique:antiques ,
+            horse:horses ,
+             animes:anime ,
+            scifis:scifi ,
+             scubas:scuba ,
+            //gardnings:gardening ,
+            rocks:rock ,
+            cycle:cycling 
             
           },
         },
@@ -253,6 +300,30 @@ export class SignupPage implements OnInit {
     });
 
     await correct.present();
+  }
+  onSelectedFile(event)
+  {
+    if(event.target.files.length>0)
+    {
+      const file = event.target.files[0];
+      this.signup.get('image').setValue(file);
+      console.log("test")
+    }
+  }
+  onFileChanged(event) {
+    this.selectedFile = <File>event.target.files[0]
+    console.log(event)
+  }
+
+
+  onUpload() {
+    // this.http is the injected HttpClient
+    const uploadData = new FormData();
+    uploadData.append('myFile', this.selectedFile, this.selectedFile.name);
+    this.http.post('http://localhost/upload/upload.php', uploadData)
+      .subscribe(res=>{
+        console.log(res)
+      })
   }
  
 }

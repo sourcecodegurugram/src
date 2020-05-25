@@ -55,6 +55,10 @@ span.to {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-left: 3vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 3vw;
 }
 p
 {

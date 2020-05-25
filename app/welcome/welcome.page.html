@@ -6,17 +6,17 @@
   <div class="welcome">
     <div class="welcome-content">
       <p class="welcome-content-Para">
-        Welcome
+        Welcome!
       </p>
 
       <p class="welcome-content-Para">
-        We can help you make platonic
+        We can help you make <u>platonic</u>
         connections in your local area.
       </p>
 
 
       <P class="welcome-content-Para">
-        First, ONE BIG RULE:
+        First, ONE BIG RULE:<br>
 
         Platonic = we will not help you
         find a date or sexual partners. No
@@ -28,7 +28,7 @@
 
 
       <div class="blue-button" (click)="popOpen()">
-        Sound Cool! Who can I meet?
+        Sounds Cool! Who can I meet?
       </div>
 
       <div class="green-button" routerLink="/signup">
@@ -54,7 +54,7 @@
 
 </ion-content>
 
-<div class="background" *ngIf="popup">
+<div class="background-oops" *ngIf="popup">
 
   <ion-card class="card-one">
     <div class="cross-pop" (click)="closepop()">
@@ -75,22 +75,37 @@
 
 <div class="search-container" >
     <ion-card-content class="card-content-font">
-      Location targeting is turned off on your device. Please provide the following details to see members in your area.
-      Postal code and Country. Search button will say find friends.
+      Oops! Looks like location targeting is
+      turned off on your device. Either turn it on or
+      input your postal code and country to see
+      members in your area.
     </ion-card-content>
 
     <p class="tittle-card">Find Friends</p>
     <form class="form-fields">
-      <label for="fname" class="form-label">ZIP/Postal Code</label><br>
-      <input type="text" id="fname" name="post" class="form-field-zip-code" [(ngModel)]="post"><br>
 
-      <label class="form-label-country">Country</label><br>
-      <select id="country" class="country-field">
-        <option value="United States">United States</option>
-        <option value="USA">USA</option>
-        <option value="Dubai">Dubai</option>
-        <option value="India">India</option>
-      </select>
+      
+      <div class="form-group">
+        <label for="fname" class="form-label">ZIP/Postal Code</label><br>
+        <input type="text" class="form-control" id="usr" placeholder="Postcode" name="post" class="form-field-zip-code" [(ngModel)]="post">
+  
+      </div>
+      <div class="form-group">
+        <label for="country">Country</label>
+        <select class="form-control" id="country" name="live" > 
+          <option value="au" >Australia</option>
+          <option value="ca">Canada</option>
+          <option value="in">India</option>
+          <option value="nz">New Zealand</option>
+          <option value="sg">Singapore</option>
+          <option value="gb">United Kingdom</option>
+          <option value="us" selected="selected">United States</option>
+
+        </select>
+        <span class="under-text"></span>
+      </div>
+
+    
       <br>
       <div class="button-container">
         <button type="button" class="button-common" routerLink="/search-result/{{post}}">Search</button>
@@ -98,30 +113,6 @@
     </form>
 
 
-
-    <p class="tittle-card">Can’t find your
-      country ?
-      Send us a message here and we will add it
-    </p>
-
-    <form class="form-fields">
-
-      <label class="form-label-country form-label">Country</label><br>
-      <select id="country" class="country-field search-country">
-        <option value="country">Country</option>
-        <option value="USA">USA</option>
-        <option value="Dubai">Dubai</option>
-        <option value="India">India</option>
-      </select>
-      <br>
-      <label for="fname" class="form-label">Postcode</label><br>
-      <input type="text" id="fname" name="fname" class="form-field-zip-code search-country"><br>
-
-
-      <div class="button-container">
-        <button type="button" class="button-common">Submit</button>
-      </div>
-    </form>
   </div>
 
   </ion-card>
@@ -133,7 +124,7 @@
 <div class="serach-result" *ngIf="searchresult">
   <div class="background">
     <div class="tittle-home-page">
-      <ion-card-subtitle class="tittle-home">Search > Result</ion-card-subtitle>
+      <ion-card-subtitle class="tittle-home">Members near you</ion-card-subtitle>
       <img src="../../assets/Images/crosspop.png" class="cross-pop-button" (click)="closesearchpop()">
     </div>
   

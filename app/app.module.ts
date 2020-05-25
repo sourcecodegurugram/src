@@ -16,6 +16,8 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { EllipsisPipe } from "../ellipsis.pipe";
 import {SignupPageModule} from './signup/signup.module'
 import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 
 @NgModule({
   declarations: [AppComponent, NavigationbarComponent, EllipsisPipe],
@@ -27,12 +29,13 @@ import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geoc
     IonicModule.forRoot(),
     AppRoutingModule,
     RecaptchaModule.forRoot(),
-  
+   
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Geolocation,NativeGeocoder,
+
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     
   ],

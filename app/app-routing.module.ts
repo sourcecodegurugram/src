@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-  { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
+  { path: 'home/upload.php', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
   {
     path: 'location-targetting',
     loadChildren: () => import('./location-targetting/location-targetting.module').then( m => m.LocationTargettingPageModule)
@@ -63,6 +63,10 @@ const routes: Routes = [
   {
     path: 'optional-detail',
     loadChildren: () => import('./optional-detail/optional-detail.module').then( m => m.OptionalDetailPageModule)
+  },
+  {
+    path: 'popup/:uid',
+    loadChildren: () => import('./popup/popup.module').then( m => m.PopupPageModule)
   },
  
 ];

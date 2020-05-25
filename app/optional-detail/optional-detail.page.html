@@ -3,9 +3,11 @@
     <mat-tab-group class="mat-background" [(selectedIndex)]="selectedIndex">
 
       <mat-tab>
+        <div class="progree-container">
         <div class="progress">
           <div class="progress-bar" style="width:20%"></div>
         </div>
+      </div>
         <div class="forms-field">
 
 
@@ -32,57 +34,74 @@
           <div class="form-group">
             <label for="usr">How long have you lived here?</label>
             <select class="form-control" id="sel1">
-              <option>Option1</option>
-              <option>Option2</option>
-              <option>Option3</option>
-              <option>Option4</option>
+              <option value="0">< 2 years</option>
+              <option value="1">2-5 years</option>
+              <option vlaue="2">>5 years</option>
             </select>
           </div>
 
 
-          <div class="form-group">
-            <label for="usr">My friends and I usually talk about</label>
-            <select class="form-control" id="sel1">
-              <option>Option1</option>
-              <option>Option2</option>
-              <option>Option3</option>
-              <option>Option4</option>
-            </select>
-          </div>
+          <ion-item class="mt-4 usually-dropdown">
+
+            <ion-label>My friends and I usually talk about</ion-label>
+            <ion-select multiple="true" cancelText="Close" okText="Okay">
+          
+              <ion-select-option value="Work" #Work>Work
+              </ion-select-option>
+              <ion-select-option value="Family" #Family>Family</ion-select-option>
+              <ion-select-option value="Relationships" #Relationships>Relationships
+              </ion-select-option>
+              <ion-select-option value="Gossip" #Gossip>Gossip</ion-select-option>
+              <ion-select-option value="Fashion" #Fashion>Fashion</ion-select-option>
+              <ion-select-option value="Sports" #Sports>Sports</ion-select-option>
+              <ion-select-option value="Other" #Other>Other</ion-select-option>
+            </ion-select>
+          </ion-item>
 
 
-          <div class="form-group">
-            <label for="usr">A good friend is someone who</label>
-            <select class="form-control" id="sel1">
-              <option>Option1</option>
-              <option>Option2</option>
-              <option>Option3</option>
-              <option>Option4</option>
-            </select>
-          </div>
+        
+
+          <ion-item class="mt-4 usually-dropdown mb-4">
+
+            <ion-label>A Good Friend Is Someone Who...</ion-label>
+            <ion-select multiple="true" cancelText="Close" okText="Okay">
+          
+              <ion-select-option value="is always there for me." #always>is always there for me.
+              </ion-select-option>
+              <ion-select-option value="Family" #Family>Family</ion-select-option>
+              <ion-select-option value="always sides with me no matter what." #sides>always sides with me no matter what.
+              </ion-select-option>
+              <ion-select-option value="will be honest with me even if it hurts." #hurts>will be honest with me even if it hurts.</ion-select-option>
+              <ion-select-option value="gives advice" #advice>gives advice</ion-select-option>
+              <ion-select-option value="takes my advice." #takes>takes my advice.</ion-select-option>
+              <ion-select-option value="is an activity partner." #partner>is an activity partner.</ion-select-option>
+            </ion-select>
+          </ion-item>
+      
   
           <div class="form-group">
             <label for="usr">When someone cancels plans we made, I think</label>
             <select class="form-control" id="sel1">
-              <option>Option1</option>
-              <option>Option2</option>
-              <option>Option3</option>
-              <option>Option4</option>
+              <option value="My reaction depends on the reason why.">My reaction depends on the reason why.</option>
+              <option value="Things happen – no big deal.">Things happen – no big deal.</option>
+              <option value="It really bothers me and I am wary of the friendship.">It really bothers me and I am wary of the friendship.</option>
+              <option value="I’m generally understanding, but I can only be blown off so many times before I will start to question the friendship.">I’m generally understanding, but I can only be blown off so many times before I will start to question the friendship.</option>
             </select>
           </div>
           
           <div class="continue-button" (click)="nextStep()">
             Continue
           </div>
-
+      
         </div>
       </mat-tab>
 
       <mat-tab>
-
+        <div class="progree-container">
         <div class="progress">
           <div class="progress-bar" style="width:80%"></div>
         </div>
+      </div>
 
         <div class="forms-field">
           <div class="form-group">
@@ -91,8 +110,12 @@
               <option>Single</option>
               <option>Married</option>
               <option>Co-Habitating</option>
-              <option>In a Relationship</option>
-            </select>
+              <option value="Significant Other But Not Living Together">Significant Other But Not Living Together</option>
+              <option value="Divorced">Divorced</option>
+              <option value="Widowed">Widowed</option>
+              <option value="Engaged">Engaged</option>
+            
+              </select>
           </div>
 
 
@@ -111,12 +134,24 @@
           </div>
 
     
+          <ion-item class="mt-4 usually-dropdown mb-4">
 
+            <ion-label>How about pets?</ion-label>
+            <ion-select multiple="true" cancelText="Close" okText="Okay">
+          
+              <ion-select-option value="Dog" #Dog>Dog
+              </ion-select-option>
+              <ion-select-option value="Cat" #Cat>Cat</ion-select-option>
+              <ion-select-option value="Rabbit" #Rabbit>Rabbit
+              </ion-select-option>
+              <ion-select-option value="Birds" #Birds>Birds</ion-select-option>
+              <ion-select-option value="Fish" #Fish>Fish</ion-select-option>
+              <ion-select-option value="Reptile" #Reptile>Reptile</ion-select-option>
+              <ion-select-option value="Other" #Other>Other</ion-select-option>
+            </ion-select>
+          </ion-item>
 
-          <div class="form-group">
-            <label for="sel1">How about pets?</label>
-            <input type="text" class="form-control" id="usr">
-          </div>
+       
 
 
           <div class="form-group">
@@ -131,7 +166,9 @@
           <div class="continue-button" (click)="nextStep()">
             Continue
           </div>
-
+          <div class="previous-button" (click)="previousStep()">
+            Previous
+          </div>
 
 
 
@@ -141,17 +178,21 @@
 
 
       <mat-tab>
-
+        <div class="progree-container">
         <div class="progress">
           <div class="progress-bar" style="width:85%"></div>
         </div>
-
+      </div>
         <div class="forms-field">
           <div class="form-group">
             <label for="sel1">Do you smoke?</label>
             <select class="form-control" id="sel1">
-              <option>Yes</option>
-              <option>No</option>
+              <option value="Never">Never</option>
+              <option value="Rarely">Rarely</option>
+              <option value="Weekends Only">Weekends Only</option>
+              <option value="Couple Times a Week">Couple Times a Week</option>
+              <option value=" Every Day"> Every Day</option>
+             
             </select>
           </div>
          
@@ -159,10 +200,11 @@
             <label for="sel1">How about drinking alcohol? </label>
             <select class="form-control" id="sel1">
         
-              <option>NO</option>
-              <option>Sometimes</option>
-              <option>Rarely</option>
-              <option>Of Course</option>       
+              <option value="Never">Never</option>
+              <option value="Rarely">Rarely</option>
+              <option value="Weekends Only">Weekends Only</option>
+              <option value="Couple Times a Week">Couple Times a Week</option>
+              <option value=" Every Day"> Every Day</option>     
             </select>
           </div>
 
@@ -191,6 +233,9 @@
           <div class="continue-button" (click)="nextStep()">
             Continue
           </div>
+          <div class="previous-button" (click)="previousStep()">
+            Previous
+          </div>
        
       </mat-tab>
 
@@ -198,9 +243,11 @@
 
 
       <mat-tab>
+        <div class="progree-container">
         <div class="progress">
           <div class="progress-bar" style="width:100%"></div>
         </div>
+      </div>
         <div class="forms-field">
           <div class="form-group">
             <label for="sel1">Do you want to add some more photos?</label>
@@ -239,6 +286,9 @@
         </div>
           <div class="continue-button" (click)="nextStep()">
             Complete
+          </div>
+          <div class="previous-button" (click)="previousStep()">
+            Previous
           </div>
         </div>
       </mat-tab>

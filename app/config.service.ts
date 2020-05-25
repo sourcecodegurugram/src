@@ -18,6 +18,7 @@ export class ConfigService {
   postalUrl = this.serverUrl + "post-json?postal_code=";
   locationUrl = "https://maps.googleapis.com/maps/api/geocode/json?latlng=";
   createUrl = "https://gowebtutorial.com/api/json/user/register";
+  searchUrl=this.serverUrl + "search-people?gender="
   constructor(private http: HttpClient) {}
 
   getArticle() {
@@ -47,5 +48,9 @@ export class ConfigService {
   getMsg()
   {
     return this.http.get("http://latdating.dd:8083/api/json/messages/list");
+  }
+  getSearchUrl(gender,meet,activity)
+  {
+    return this.http.get(this.searchUrl + gender + "&meet=" + meet + "&activity=" +activity);
   }
 }

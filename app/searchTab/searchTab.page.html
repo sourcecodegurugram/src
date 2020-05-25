@@ -3,15 +3,13 @@
     <div class="forms-field">
       <div class="form-group">
         <label for="sel1">Show me:</label>
-        <select class="form-control" id="sel1">
-          <option>Man</option>
-          <option>Woman</option>
-          <option>Gender
-            Diverse</option>
-          <option>4</option>
+        <select class="form-control" id="sel1" name="gender" [(ngModel)]="gender">
+          <option value="Male"> Male</option>
+          <option value="Female">Female</option>
+          <option value="Gender Diverse" selected="selected">Gender Diverse</option>
+         
         </select>
-        <span class="under-text">(Man, Woman, Gender
-          Diverse)</span>
+        <span class="under-text"></span>
       </div>
 
 
@@ -52,18 +50,39 @@
       </div>
       <label for="age">of me, who are looking for</label>
       <div class="form-group">
-        <select class="form-control" id="sel1">
-          <option>a few good friends</option>
-          <option>lots of acquaintances</option>
-          <option>no preference</option>
+        <select class="form-control" id="sel1" name="meet" [(ngModel)]="meet">
+          <option value="1">A few goods friends</option>
+          <option value="2">A lot of accquaintances</option>
+          <option value="3">No preference</option>
+
 
         </select>
-        <span class="under-text">(a few good friends,
-          lots of acquaintances, no preference)</span>
+        <span class="under-text"></span>
       </div>
       <div class="form-group">
         <label for="usr">And Likes</label>
-        <input type="text" class="form-control" id="usr">
+          <select class="form-control" id="sel1" name="activity" [(ngModel)]="activity">
+            <option value="yoga" #yogas>yoga</option>
+            <option value="playdates (parents and children)" #playdatess>playdates (parents and children)
+            </option >
+            <option value="happy hour/cocktails/beers" #beers>happy hour/cocktails/beers
+            </option >
+            <option value="sightseeing" #sightseeings>sightseeing</option >
+            <option value="artsy stuff (making or looking at)" #artsy>artsy stuff (making or looking at)
+            </option >
+            <option value="cooking" #cook>cooking</option >
+            <option value="dancing" #dancing>dancing</option >
+            <option value="people watching" #watching>people watching</option >
+            <option value="video games" #games>video games</option >
+            <option value="traveling/vacations" #traveling>traveling/vacations</option >
+
+            <option value="history buff" #history>history buff</option >
+            <option value="board games" #board>board games</option >
+            <option value="sports (playing)" #sports>sports (playing)</option >
+            <option value="mom's/dad's night out w/o kids" #mom>mom's/dad's night out w/o kids
+            </option >
+          </select>
+    
       </div>
       <div class="form-group">
         <label for="age">Sort By</label>
@@ -89,7 +108,13 @@
 
   <div class="background" *ngIf="searchitem">
 
-    <div class="members-grid" style="background-color: #4372C4;color: white;" data-toggle="modal" data-target="#myModal">
+  
+
+
+
+
+
+    <div class="members-grid" *ngFor="let result of searchResults" (click)="userDetails()" routerLink="/popup/{{result.Uid}}">
 
       <div class="photo-member-grid">
         <img src="../../assets/Images/p1.jpg" class="image-profile">
@@ -97,8 +122,8 @@
       </div>
 
       <div class="data-member-grid">
-        <p class="name card-item">Lorem</p>
-        <ion-label class="hobbies card-item "><span class="left-heading">Activities:&nbsp;</span>Lorem1,Lorem2...
+        <p class="name card-item">{{result.name}}</p>
+        <ion-label class="hobbies card-item "><span class="left-heading">Activities:&nbsp;</span>{{result.Activities | slice:3:5}}
         </ion-label>
         <p class="distance card-item"><span class="left-heading">Distance:</span>1 miles away</p>
 
@@ -106,43 +131,7 @@
 
     </div>
 
-
-
-
-
-    <div class="members-grid">
-
-      <div class="photo-member-grid">
-        <img src="../../assets/Images/p1.jpg" class="image-profile">
-
-      </div>
-
-      <div class="data-member-grid">
-        <p class="name card-item">Lorem</p>
-        <ion-label class="hobbies card-item "><span class="left-heading">Activities:&nbsp;</span>Lorem1,Lorem2...
-        </ion-label>
-        <p class="distance card-item"><span class="left-heading">Distance:</span>1 miles away</p>
-
-      </div>
-
-    </div>
-
-    <div class="members-grid">
-
-      <div class="photo-member-grid">
-        <img src="../../assets/Images/p1.jpg" class="image-profile">
-
-      </div>
-
-      <div class="data-member-grid">
-        <p class="name card-item">Lorem</p>
-        <ion-label class="hobbies card-item "><span class="left-heading">Activities:&nbsp;</span>Lorem1,Lorem2...
-        </ion-label>
-        <p class="distance card-item"><span class="left-heading">Distance:</span>1 miles away</p>
-
-      </div>
-
-    </div>
+    
 
   </div>
 
@@ -197,6 +186,9 @@
         
         <!-- Modal body -->
         <div class="modal-body">
+
+
+          
           <div class="modal-grid">
        
                <div class="profile-picture-modal">
@@ -205,7 +197,7 @@
                </div>
 
                <div class="profile-name-modal">
-                 <span class="name">Lorem</span>
+                 <span class="name">{{name}}</span>
                  <span class="not-verified">Verified</span>
 
               </div>

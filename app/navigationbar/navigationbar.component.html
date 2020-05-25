@@ -10,20 +10,23 @@
     </div>
     
     <div class="humburger-menu">
-      <img src="../../assets/Images/cross.png" class="hum-burger-menu-cross" *ngIf="crossSign" (click)="humBurgerCross()">
+      <!-- <img src="../../assets/Images/cross.png" class="hum-burger-menu-cross" *ngIf="crossSign" (click)="humBurgerCross()"> -->
       <img src="../../assets/Images/newmenu.png" class="hum-burger-menu" (click)="humburgereffect()" *ngIf="humBurger" >
     </div>
    
     </div>
     
     <div class="main-menu" *ngIf="mainMenu">
-      <ul class="main-list" (click)="itemclick()">
+
+          
+
+      <!-- <ul class="main-list" (click)="itemclick()">
         <li><a routerLink="/signup">Signup</a></li>
         <li><a routerLink="/signin">SignIn</a></li>
         <li><a routerLink="/chat/searchTab">Search Tab</a></li>
         <li><a routerLink="/optional-detail">optional-detail</a></li>
         <li><a routerLink="/register">Old Register</a></li>
-      </ul>
+      </ul> -->
     </div>
   </ion-header>
 
@@ -61,7 +64,7 @@
           <div class="continue-button" data-toggle="modal" data-target="#Account" data-dismiss="modal">
             Account Settings
           </div>
-<div class="logout-text-container">
+<div class="logout-text-container" (click)="logOut()">
           <span class="log-out-text">Log Out</span>
         </div>
         </div>
