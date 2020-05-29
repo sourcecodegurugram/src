@@ -136,16 +136,16 @@
       <div class="member-card-image">
   
         <img src="{{posts.Picture}}" alt="" srcset="" class="user-image">
-  
+      
       </div>
       <div class="member-card-text">
-        <p class="name card-item">{{posts.name}}<ion-badge slot="end" color="light" *ngIf="posts.Pets.length==0">Parent
+        <p class="name card-item">{{posts.name}}<ion-badge slot="end" color="light" >Parent
           </ion-badge>
-          <ion-badge slot="end" color="light" *ngIf="posts.Pets.length>0">Pet Owner</ion-badge>
+          <ion-badge slot="end" color="light" >Pet Owner</ion-badge>
         </p>
         <ion-label class="hobbies card-item "><span
             class="left-heading">Activities:&nbsp;</span>{{posts.Activity | slice:3:5}} </ion-label>
-        <ion-badge slot="end" color="light">{{posts.Activity.length}}</ion-badge><br>
+        <ion-badge slot="end" color="light">{{posts.Activity.length}}</ion-badge><br> 
         <!-- <ion-label class="hobbies card-item" ><span class="left-heading">Activities:</span>{{posts.Activity | slice:-2:-1}}</ion-label>
       <ion-badge slot="end"  color="light"></ion-badge> -->
         <p class="distance card-item"><span class="left-heading">Distance:</span>1 miles away</p>

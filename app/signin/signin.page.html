@@ -3,7 +3,7 @@
 
 <mat-tab-group class="mat-background" [(selectedIndex)]="selectedIndex">
 
-  <mat-tab>
+  <mat-tab *ngIf="!LoggedIn">
     
       <div class="login-buton">
 

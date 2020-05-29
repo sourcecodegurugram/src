@@ -49,6 +49,7 @@ export class WelcomePage implements OnInit {
   pageIndex = 0;
   currPage = [];
   searchresult:boolean=false
+  userLogged: any;
  
   constructor(private ConfigService: ConfigService,
     public geolocation: Geolocation,
@@ -60,11 +61,8 @@ export class WelcomePage implements OnInit {
     private locate:Location) { }
 
   ngOnInit() {
-   
-    this.ConfigService.getMsg().subscribe((msg) => {
-      console.log(msg);
-    });
-
+    
+ 
   }
 
 
@@ -135,7 +133,6 @@ export class WelcomePage implements OnInit {
     this.ConfigService.getPostal(this.postcode, this.pageIndex).subscribe(
       (elements) => {
         this.currPage = Object.keys(elements).map((i) => elements[i]);
-  
         console.log(this.currPage);
         this.searchResponse = this.searchResponse.concat(this.currPage);
         console.log(this.searchResponse);
@@ -147,4 +144,6 @@ export class WelcomePage implements OnInit {
   {
     this.searchresult=false
   }
+
+ 
 }

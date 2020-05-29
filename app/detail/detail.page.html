@@ -1,5 +1,41 @@
-<div class="background">
-  <div class="container-card">
+<div class="main-pop-background"*ngIf="!isLoggedIn">
+
+
+  <div class="main-pop">
+  
+  
+    <div class="pop-grids">
+
+      <div class="pop-content">
+        Not4Dating wants to help you create communities, build meaningful relationships and feel truly connected to others.
+        <h5 class="whos-on-site">Who’s on the site?</h5>
+
+
+        <div class="checkbox-popup">
+          <img src="../../assets/Images/check.png" class="check-box">
+          <p class="check-box-text">Our youngest member is 18,our oldest member is 85</p>
+        </div>
+        <div class="checkbox-popup">
+          <img src="../../assets/Images/check.png" class="check-box">
+          <p class="check-box-text">64% In a Relationship, 36% Not in a Relationship  </p>
+        </div>
+        <div class="button-flex">
+          <button type="button" class="btn btn-primary register-button" routerLink="/signup">Register Now</button>
+          <button type="button" class="btn btn-primary login-button" routerLink="/signin">Login Now</button>
+        </div>
+      </div>
+     
+    </div>
+    
+  
+  </div>
+  </div>
+
+
+
+
+<div class="background" *ngIf="isLoggedIn">
+  <div class="container-card" >
 
 
     <div class="picture">
@@ -144,6 +180,5 @@
   </div>
 
 
-
-
 </div>
+

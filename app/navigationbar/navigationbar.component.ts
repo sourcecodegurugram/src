@@ -29,10 +29,20 @@ export class NavigationbarComponent implements OnInit {
   user: string;
   pass: string;
   isLoading: boolean = false;
-  logoutUrl = "http://gowebtutorial.com/api/json/user/logout";
+  logoutUrl = "https://gowebtutorial.com/api/json/user/logout";
   url = "http://latdating.dd:8083/api/json/system/connect";
   headerDict: any;
   itrs: any;
+  userlogged: void;
+  name: any;
+  uid:any;
+  activity: any;
+  Email: any;
+  DOB: any;
+  fname: any;
+  lname: any;
+  isLoogedIn:boolean=false;
+  token="https://gowebtutorial.com/api/json/user/token"
   constructor(
     private Configservice: ConfigService,
     private blogService: BlogService,
@@ -44,10 +54,23 @@ export class NavigationbarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.itrs = JSON.parse(localStorage.getItem("currentUser"));
-    // console.log("Nav" + " " + this.itrs.token);
+    this.itrs = JSON.parse(localStorage.getItem("currentUser"));
+  if(this.itrs.user != null)
+  {
+    this.isLoogedIn=true
+    this.name = this.itrs.user.name
+  this.activity = this.itrs.user.field_activities_interests.und
+  this.Email = this.itrs.user.mail
+  this.DOB= this.itrs.user.field_birth_date.und[0].value
+  this.fname= this.itrs.user.field_first_name.und[0].value
+  this.lname =this.itrs.user.field_last_name.und[0].value
+   this.userlogged= JSON.parse(localStorage.getItem("Signinuser"));
+   console.log(this.userlogged)
   }
 
+  console.log(this.itrs.token)
+  }
+  
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
@@ -107,13 +130,24 @@ export class NavigationbarComponent implements OnInit {
   }
 
   logOut() {
-    let headers = new HttpHeaders();
-    console.log(this.itrs.token);
+    const headers = new HttpHeaders()
+    .set("X-CSRF-Token", this.itrs.token)
+    .set("Content-Type", "application/json")
+          .set("X-Cookie", this.itrs.session_name + "=" + this.itrs.sessid);
 
-    headers = headers.set("X-CSRF-Token", this.itrs.token);
-    console.log({ headers: headers });
-    this.http.post(this.logoutUrl, { headers: headers }).subscribe((head) => {
-      console.log(head);
-    });
+  const requestOptions = {
+    headers: headers,
+    withCredentials: true,
+  };
+
+  this.http.post<any>(this.logoutUrl, {}, requestOptions).subscribe((head) => {
+    console.log(head);
+  localStorage.clear();
+  window.location.reload();
+  });
+
+
+
+    
   }
 }

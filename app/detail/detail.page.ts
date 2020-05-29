@@ -54,12 +54,32 @@ export class DetailPage implements OnInit {
   friend: any;
   friends: any;
   genders: any;
+  userLogged: any;
+  isLoggedIn:Boolean=true
   constructor(
     private _Activatedroute: ActivatedRoute,
     private ConfigService: ConfigService
   ) {}
 
   ngOnInit() {
+    this.userLogged = JSON.parse(localStorage.getItem("currentUser"));
+
+     if(this.userLogged==null)
+     {
+      this.isLoggedIn=false
+       console.log("Please Login")
+     }
+else
+{
+  this.isLoggedIn=true
+}
+
+
+
+
+
+
+
     this.sub = this._Activatedroute.paramMap.subscribe((params) => {
       this.name = params.get("name");
       this.mail = params.get("mail");
@@ -93,4 +113,5 @@ export class DetailPage implements OnInit {
      
     });
   }
+  
 }

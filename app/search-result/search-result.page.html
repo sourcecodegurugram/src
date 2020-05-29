@@ -26,7 +26,7 @@
           <ion-badge slot="end" color="light" *ngIf="posts.Pets.length>0">Pet Owner</ion-badge>
         </p>
         <ion-label class="hobbies card-item "><span
-            class="left-heading">Activities:&nbsp;</span>{{posts.Activity | slice:3:5}} </ion-label>
+            class="left-heading">Activities:&nbsp;</span>{{posts.Activity.value | slice:3:5}} </ion-label>
         <ion-badge slot="end" color="light">{{posts.Activity.length}}</ion-badge><br>
         <!-- <ion-label class="hobbies card-item" ><span class="left-heading">Activities:</span>{{posts.Activity | slice:-2:-1}}</ion-label>
       <ion-badge slot="end"  color="light"></ion-badge> -->

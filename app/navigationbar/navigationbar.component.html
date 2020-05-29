@@ -6,7 +6,7 @@
     
     <div class="account-status">
     
-      <img src="../../assets/Images/user.png" class="status-check"  data-toggle="modal" data-target="#profile">
+      <img src="../../assets/Images/user.png" class="status-check"  data-toggle="modal" data-target="#profile" *ngIf="isLoogedIn">
     </div>
     
     <div class="humburger-menu">
@@ -97,7 +97,7 @@
             </div>
 
             <div class="profile-name-modal">
-              <span class="name">Lorem</span>
+              <span class="name">{{name}}</span>
               <span class="not-verified">Verified</span>
 
            </div>
@@ -105,10 +105,10 @@
        </div>
 
        <div class="sidebar-content">
-        <p class="detail-data">FullName:<br><span class="output-text">Lorem10</span></p>
-        <p class="detail-data">Activities:<br><span class="output-text">Lorem,lorem,lorem...</span></p>
-        <p class="detail-data">Favorate Music:<br><span class="output-text">English,Punjabi..</span></p>
-        <p class="detail-data">Favorate Show:<br><span class="output-text">Big Bang.</span></p>
+        <p class="detail-data">FullName:<br><span class="output-text">{{fname}} {{lname}}</span></p>
+        <p class="detail-data">Activities:<br><span class="output-text" *ngFor="let actvities of activity">{{actvities.value | slice:3:5}}</span></p>
+        <p class="detail-data">Email:<br><span class="output-text">{{Email}}</span></p>
+        <p class="detail-data">Date of Birth:<br><span class="output-text">{{DOB}}</span></p>
         <p class="detail-data">Languages:<br><span class="output-text">Hindi,English</span></p>
         </div>
         <div class="continue-button" >
