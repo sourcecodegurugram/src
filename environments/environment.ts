@@ -4,14 +4,17 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://ritin.website/uri/'
+  firebaseConfig : {
+    apiKey: "AIzaSyBWTVRij3BkCQ4PSg2jAlxyzORgy_yII1w",
+    authDomain: "chat-216c0.firebaseapp.com",
+    databaseURL: "https://chat-216c0.firebaseio.com",
+    projectId: "chat-216c0",
+    storageBucket: "chat-216c0.appspot.com",
+    messagingSenderId: "480997847828",
+    appId: "1:480997847828:web:2b64a4fba191e6ad344801"
+  }
+
 };
 
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+
+

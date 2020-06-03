@@ -19,6 +19,10 @@ import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geoc
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 
+
+
+
+
 @NgModule({
   declarations: [AppComponent, NavigationbarComponent, EllipsisPipe],
   entryComponents: [],
@@ -30,6 +34,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
     AppRoutingModule,
     RecaptchaModule.forRoot(),
    
+
   ],
   providers: [
     StatusBar,

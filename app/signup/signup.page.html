@@ -43,7 +43,7 @@
 
 
           <span class="age-limit">*Must be over 18 years old to
-            be a member and use the app</span>
+            be a member and use the app By continuing below</span>
             <div class="form-check">
               <label class="form-check-label">
                 <input type="checkbox" class="form-check-input" value="">I confirm I am over 18.
@@ -164,7 +164,7 @@
                   <button class="btn" (click)="fileInput.click()">Upload a Photo</button>
                 </div>
               </div>
-              <input type="file" name="image"  (change)="onFileChanged($event)">
+              <input type="file" name="image"  (change)="onFileChanged($event)" >
             </div>
             <button (click)="onUpload()">Upload!</button>
           </div>

@@ -9,20 +9,20 @@ const httpOptions = {
   })
 };
 
-@Injectable({
-  providedIn: 'root'
-})
-export class BlogService {
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class BlogService {
 
-  private API_URL = environment.apiUrl;
-  constructor(private http: HttpClient) { }
-  getBlogs(id: string): Observable<Blog[]> {
-    console.log(id);
-    if (id) {
-      return this.http.get<Blog[]>(this.API_URL + '/api/json/node/article/' + id);
-    }
-    else {
-      return this.http.get<Blog[]>(this.API_URL + '/api/json/node/article?sort=-created');
-    }
-  }
-}
+//   private API_URL = environment.apiUrl;
+//   constructor(private http: HttpClient) { }
+//   getBlogs(id: string): Observable<Blog[]> {
+//     console.log(id);
+//     if (id) {
+//       return this.http.get<Blog[]>(this.API_URL + '/api/json/node/article/' + id);
+//     }
+//     else {
+//       return this.http.get<Blog[]>(this.API_URL + '/api/json/node/article?sort=-created');
+//     }
+//   }
+// }

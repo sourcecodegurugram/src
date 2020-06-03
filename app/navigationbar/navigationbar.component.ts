@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ConfigService } from "../config.service";
 import { Blog } from "../blog";
-import { BlogService } from "../blog.service";
 import { config } from "../config";
 import { environment } from "../../environments/environment";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -45,7 +44,7 @@ export class NavigationbarComponent implements OnInit {
   token="https://gowebtutorial.com/api/json/user/token"
   constructor(
     private Configservice: ConfigService,
-    private blogService: BlogService,
+
     private route: ActivatedRoute,
     private router: Router,
     private http: HttpClient,
@@ -122,7 +121,7 @@ export class NavigationbarComponent implements OnInit {
   }
   async correctAlert() {
     const correct = await this.alertController.create({
-      message: "Logged In",
+      message: " chat for help",
       buttons: ["OK"],
     });
 

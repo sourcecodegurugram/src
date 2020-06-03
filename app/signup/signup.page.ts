@@ -31,7 +31,9 @@ export class SignupPage implements OnInit {
   confirmemail: any; 
   signup: any;
   selectedFile: File = null ;
- 
+  url:any;
+  Picurl: Object;
+  pictureUrl: any;
   constructor(private http: HttpClient, private zone: NgZone, public alertController: AlertController) { }
 
   ngOnInit() {
@@ -162,32 +164,26 @@ export class SignupPage implements OnInit {
 
 
 
-
-
-
-
-
-
-
-
-
-
- 
-
+  onUpload() {
+    // this.http is the injected HttpClient
+    const uploadData = new FormData();
+    uploadData.append('avatar', this.selectedFile, this.selectedFile.name);
+    this.http.post('https://gowebtutorial.com/sites/default/upload.php', uploadData)
+      .subscribe(res=>{
+        this.Picurl =res
+        console.log(res)
+      })
+  }
 
 
   //Form
   LoginForm(name,fname,lname,DOB,Gender,contract,meet,live,zip,yogas,playdatess,beers,sightseeings,artsy,cook,dancing,watching,games,travelling,history,
     board ,sports ,mom ,outdoor ,dining ,concerts ,sportwatching ,shoppings ,crafty,photographs ,animal ,crime ,chess ,
-    movies,dog,fitness,music,trekking,cars,antiques,horses,anime,scifi,scuba,gardening,rock,cycling ,
-    
-    
-    
+    movies,dog,fitness,music,trekking,cars,antiques,horses,anime,scifi,scuba,gardening,rock,cycling,
     email,confirmemail) {
-
- 
-    console.log( movies,dog,fitness,music,trekking,cars,antiques,horses,anime,scifi,scuba,gardening,rock,cycling ,);
- 
+      this.pictureUrl=this.Picurl.url
+      this.Picurl.filename
+       console.log(this.Picurl.filename)
     this.http
       .post<any>("https://gowebtutorial.com/api/json/user/register", {
         name: name,
@@ -227,7 +223,10 @@ export class SignupPage implements OnInit {
         field_gender: {
           und: Gender,
         },
-
+        picture:
+        {
+          filename: this.Picurl.filename,
+        },
         field_activities_interests: {
           und: {
             yoga:yogas,
@@ -316,14 +315,5 @@ export class SignupPage implements OnInit {
   }
 
 
-  onUpload() {
-    // this.http is the injected HttpClient
-    const uploadData = new FormData();
-    uploadData.append('myFile', this.selectedFile, this.selectedFile.name);
-    this.http.post('http://localhost/upload/upload.php', uploadData)
-      .subscribe(res=>{
-        console.log(res)
-      })
-  }
- 
+
 }
