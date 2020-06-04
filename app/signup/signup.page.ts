@@ -167,7 +167,6 @@ export class SignupPage implements OnInit {
 
 
   onUpload() {
-    // this.http is the injected HttpClient
     const uploadData = new FormData();
     uploadData.append('avatar', this.selectedFile, this.selectedFile.name);
     this.http.post('https://gowebtutorial.com/sites/default/upload.php', uploadData)
@@ -179,13 +178,13 @@ export class SignupPage implements OnInit {
 
 
   //Form
-  LoginForm(name,fname,lname,DOB,Gender,contract,meet,live,zip,yogas,playdatess,beers,sightseeings,artsy,cook,dancing,watching,games,travelling,history,
+  LoginForm(name,fname,lname,DOB,Gender,contract,meet,picture,live,zip,yogas,playdatess,beers,sightseeings,artsy,cook,dancing,watching,games,travelling,history,
     board ,sports ,mom ,outdoor ,dining ,concerts ,sportwatching ,shoppings ,crafty,photographs ,animal ,crime ,chess ,
     movies,dog,fitness,music,trekking,cars,antiques,horses,anime,scifi,scuba,gardening,rock,cycling,
     email,confirmemail) {
-      this.pictureUrl=this.Picurl.url
-      this.Picurl.filename
-       console.log(this.Picurl.filename)
+      // this.pictureUrl=this.Picurl.url
+      // this.Picurl.filename
+  console.log(picture)
     this.http
       .post<any>("https://gowebtutorial.com/api/json/user/register", {
         name: name,
@@ -227,20 +226,12 @@ export class SignupPage implements OnInit {
         },
        files:
        {
-       field_user_avatar_und_0: this.pictureUrl,
-       },
+       field_user_avatar_und_0:picture,
+        },
      
         // picture:
         // {
-        //   und:[
-        //  {
-       
-        //   url: this.Picurl.url,
-        //   filename: this.Picurl.filename,
-        // },
-            
-        //   ]
-
+        //   filename:picture,
         // },
        
         field_user_avatar:
@@ -299,7 +290,7 @@ export class SignupPage implements OnInit {
         },
         field_look_meet: {
           und:meet,
-        },
+        }, 
         field_want_contarct: {
           und: contract,
         },

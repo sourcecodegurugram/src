@@ -164,9 +164,9 @@
                   <button class="btn" (click)="fileInput.click()">Upload a Photo</button>
                 </div>
               </div>
-              <input type="file" name="image"  (change)="onFileChanged($event)" >
+              <input type="file"  [(ngModel)]="picture" value="picture" name="picture">
             </div>
-            <button (click)="onUpload()">Upload!</button>
+            <!-- <button (click)="onUpload()"  (change)="onFileChanged($event)">Upload!</button> -->
           </div>
 
 
@@ -578,7 +578,7 @@
 
           </div>
         </div>
-        <div class="continue-button" (click)="LoginForm(name,fname,lname,DOB,Gender,contract,meet,live,zip,yogas.value,playdatess.value,beers.value,sightseeings.value,artsy.value,       
+        <div class="continue-button" (click)="LoginForm(name,fname,lname,DOB,Gender,contract,meet,picture,live,zip,yogas.value,playdatess.value,beers.value,sightseeings.value,artsy.value,       
 cook.value,
 dancing.value,
 watching.value,
