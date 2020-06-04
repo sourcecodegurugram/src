@@ -17,11 +17,11 @@ export class SignupPage implements OnInit {
   name:string;
   real: any;
   DOB: any;
-  Gender: any="Gender Diverse";
-  contract: any="2";
-  myself: any="Extrovert";
-  meet: any="1";
-  live: any="au";
+  Gender: any;
+  contract: any;
+  myself: any;
+  meet: any;
+  live: any;
   zip: any;
   email: any;
   password: any;
