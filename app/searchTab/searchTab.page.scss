@@ -113,3 +113,28 @@ img.chat-bubble {
 .modal{
     background: #000000a1;
 }
+.badage-name {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    padding-top: 0.5em;
+}
+.badge-font {
+    font-size: 9px;
+}
+.right-heading {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.activity-container {
+    display: flex;
+    align-items: center;
+}
+.parent-badge {
+    margin-left: 10px;
+}
+.distance-container {
+    display: flex;
+}

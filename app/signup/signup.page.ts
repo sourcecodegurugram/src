@@ -33,7 +33,9 @@ export class SignupPage implements OnInit {
   selectedFile: File = null ;
   url:any;
   Picurl: Object;
-  pictureUrl: any;
+  pictureUrl: Array<any>;
+  fileename:any;
+
   constructor(private http: HttpClient, private zone: NgZone, public alertController: AlertController) { }
 
   ngOnInit() {
@@ -223,9 +225,34 @@ export class SignupPage implements OnInit {
         field_gender: {
           und: Gender,
         },
-        picture:
+       files:
+       {
+       field_user_avatar_und_0: this.pictureUrl,
+       },
+     
+        // picture:
+        // {
+        //   und:[
+        //  {
+       
+        //   url: this.Picurl.url,
+        //   filename: this.Picurl.filename,
+        // },
+            
+        //   ]
+
+        // },
+       
+        field_user_avatar:
         {
-          filename: this.Picurl.filename,
+        
+          und:[
+          {
+            _weight:0,
+            fid:0,
+            display:1,
+          }  
+          ]
         },
         field_activities_interests: {
           und: {
@@ -280,6 +307,7 @@ export class SignupPage implements OnInit {
       })
       .subscribe((data) => {
         this.post = data;
+        console.log(this.post)
         if(this.post.uid){
           this.nextStep()
           this.correctAlert()
@@ -288,8 +316,10 @@ export class SignupPage implements OnInit {
           alert(this.post)
     
           }
-         
-      });
+         });
+    //    (error: HttpErrorResponse) => {
+    //   console.log(error.error.message);
+    // })
   }
 
   async correctAlert() {

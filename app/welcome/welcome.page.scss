@@ -259,7 +259,7 @@ button.button-common {
     margin-bottom: 0px;
     margin-top: -2px;
     font-size: 14px;
-  
+      padding-bottom: 0.5em;
     color: #707070;
   }
   
@@ -298,6 +298,17 @@ button.button-common {
   .left-heading {
     font-family: 'Open Sans', sans-serif;
     font-style: normal;
+    display: block;
+    display: -webkit-box;
+    /* max-width: 100%; */
+    height: 43px;
+    margin: 0 auto;
+    font-size: 14px;
+    /* line-height: 1; */
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   img.user-image {
@@ -375,4 +386,37 @@ button.button-common {
   input#usr {
     height: 5vh;
     padding: 1em;
+}
+.badage-name {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    padding-top: 0.5em;
+}
+.badge-font {
+    font-size: 9px;
+}
+.right-heading {
+   display: block;
+  display: -webkit-box;
+  max-width: 100%;
+  height: 43px;
+  margin: 0 auto;
+  font-size: 14px;
+  line-height: 1;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.activity-container {
+    display: flex;
+    align-items: center;
+}
+.parent-badge {
+    margin-left: 10px;
+}
+.distance-container {
+    display: flex;
 }

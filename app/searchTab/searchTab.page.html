@@ -117,7 +117,8 @@
     <div class="members-grid" *ngFor="let result of searchResults" (click)="userDetails()" routerLink="/popup/{{result.Uid}}">
 
       <div class="photo-member-grid">
-        <img src="../../assets/Images/p1.jpg" class="image-profile">
+    <img src="{{result.Picture}}" alt="" srcset="" class="image-profile">
+    
 
       </div>
 

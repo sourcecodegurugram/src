@@ -11,27 +11,39 @@
     </div>
 
 
-    <div class="member-cards" *ngFor="let posts of  searchResponse"
+ <div class="member-cards" *ngFor="let posts of  searchResponse"
       routerLink="/detail/{{posts.name}}/{{posts.mail}}/{{posts.uid}}">
-
-
+  
+  
       <div class="member-card-image">
-
+  
         <img src="{{posts.Picture}}" alt="" srcset="" class="user-image">
-
+      
       </div>
       <div class="member-card-text">
-        <p class="name card-item">{{posts.name}}<ion-badge slot="end" color="light" *ngIf="posts.Pets.length==0">Parent
+<div class="badage-name">
+        <div class="name card-item">{{posts.name}} </div>
+        <div class="parent-badge">
+
+        <ion-badge slot="end" color="medium" *ngIf="posts.Pets.length==0" class="badge-font">Parent
           </ion-badge>
-          <ion-badge slot="end" color="light" *ngIf="posts.Pets.length>0">Pet Owner</ion-badge>
-        </p>
-        <ion-label class="hobbies card-item "><span
-            class="left-heading">Activities:&nbsp;</span>{{posts.Activity.value | slice:3:5}} </ion-label>
-        <ion-badge slot="end" color="light">{{posts.Activity.length}}</ion-badge><br>
-        <!-- <ion-label class="hobbies card-item" ><span class="left-heading">Activities:</span>{{posts.Activity | slice:-2:-1}}</ion-label>
-      <ion-badge slot="end"  color="light"></ion-badge> -->
-        <p class="distance card-item"><span class="left-heading">Distance:</span>1 miles away</p>
-      </div>
+        <ion-badge slot="end" color="medium"*ngIf="posts.Pets.length>0" class="badge-font" >Pet Owner</ion-badge>
+    </div>
+       </div>
+
+       <div class="activity-container">
+ <div class="left-heading ">Activities:</div>
+ <div class="right-heading">{{posts.Activity}}</div>
+<div class="badage-container"><ion-badge slot="end" color="medium">{{posts.Activity.length}}</ion-badge></div>
+       </div>
+       
+  <div class="distance-container">
+<div class="distance card-item">Distance:</div>
+<div class="distance-ouput">1 miles away</div>
+
+  </div>
+ 
+ 
     </div>
     <button *ngIf="currPage.length == 25" class="showMore" (click)="getSearchData()">Show More</button>
   </div>
