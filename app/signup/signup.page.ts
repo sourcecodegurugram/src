@@ -35,7 +35,10 @@ export class SignupPage implements OnInit {
   Picurl: Object;
   pictureUrl: Array<any>;
   fileename:any;
-
+  file: any;
+  filepath: any;
+  uploadData: { file: string; filename: string; filepath: string; };
+base64textString:String="";
   constructor(private http: HttpClient, private zone: NgZone, public alertController: AlertController) { }
 
   ngOnInit() {
@@ -165,11 +168,31 @@ export class SignupPage implements OnInit {
   }
 
 
-
-  onUpload() {
-    const uploadData = new FormData();
-    uploadData.append('avatar', this.selectedFile, this.selectedFile.name);
-    this.http.post('https://gowebtutorial.com/sites/default/upload.php', uploadData)
+  handleFileSelect(evt){
+    var files = evt.target.files;
+    var fil = files[0];
+  
+  if (files && fil) {
+      var reader = new FileReader();
+      reader.onload =this._handleReaderLoaded.bind(this);
+      reader.readAsBinaryString(fil);
+  }
+}
+_handleReaderLoaded(readerEvt) {
+   var binaryString = readerEvt.target.result;
+          this.base64textString= btoa(binaryString);
+          // console.log(btoa(binaryString));
+  }
+  onUpload(picture) {
+    console.log(this.base64textString)
+    console.log(picture)
+    const headers = new HttpHeaders().set("Content-Type", "application/x-www-form-urlencoded");
+   this.uploadData =  {
+      file:"data:image/png;base64,"+ this.base64textString,
+      filename:picture,
+      filepath:"public://"+picture
+    }
+    this.http.post('https://gowebtutorial.com/api/json/file', this.uploadData)
       .subscribe(res=>{
         this.Picurl =res
         console.log(res)
@@ -181,10 +204,10 @@ export class SignupPage implements OnInit {
   LoginForm(name,fname,lname,DOB,Gender,contract,meet,picture,live,zip,yogas,playdatess,beers,sightseeings,artsy,cook,dancing,watching,games,travelling,history,
     board ,sports ,mom ,outdoor ,dining ,concerts ,sportwatching ,shoppings ,crafty,photographs ,animal ,crime ,chess ,
     movies,dog,fitness,music,trekking,cars,antiques,horses,anime,scifi,scuba,gardening,rock,cycling,
-    email,confirmemail) {
+    email,confirmemail,password,confirmpassword) {
       // this.pictureUrl=this.Picurl.url
       // this.Picurl.filename
-  console.log(picture)
+  console.log(this.Picurl.fid)
     this.http
       .post<any>("https://gowebtutorial.com/api/json/user/register", {
         name: name,
@@ -224,27 +247,26 @@ export class SignupPage implements OnInit {
         field_gender: {
           und: Gender,
         },
-       files:
-       {
-       field_user_avatar_und_0:picture,
-        },
-     
-        // picture:
-        // {
-        //   filename:picture,
-        // },
-       
-        field_user_avatar:
-        {
-        
-          und:[
+        field_user_avatar: {
+          und: [
           {
-            _weight:0,
-            fid:0,
-            display:1,
-          }  
-          ]
-        },
+          fid:this.Picurl.fid,
+          // uid: "1",
+          // filename: this.uploadData.filename,
+          // uri:  this.uploadData.filepath,
+          // filemime:  "image/png",
+          // filesize: "65072",
+          // status: "1",
+          // timestamp: "1450077513",
+          // alt: "",
+          // title: "",
+          // width: "1024",
+          // height: "768"
+          }
+        ]
+          },
+        
+   
         field_activities_interests: {
           und: {
             yoga:yogas,
@@ -294,6 +316,13 @@ export class SignupPage implements OnInit {
         field_want_contarct: {
           und: contract,
         },
+        pass:
+        {
+          pass1:password,
+          pass2:confirmpassword
+        },
+        
+
         
       })
       .subscribe((data) => {
@@ -334,7 +363,5 @@ export class SignupPage implements OnInit {
     this.selectedFile = <File>event.target.files[0]
     console.log(event)
   }
-
-
 
 }
