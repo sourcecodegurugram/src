@@ -37,6 +37,7 @@ export class SignupPage implements OnInit {
   fileename:any;
   file: any;
   filepath: any;
+  fid:[any];
   uploadData: { file: string; filename: string; filepath: string; };
 base64textString:String="";
   constructor(private http: HttpClient, private zone: NgZone, public alertController: AlertController) { }
@@ -205,9 +206,17 @@ _handleReaderLoaded(readerEvt) {
     board ,sports ,mom ,outdoor ,dining ,concerts ,sportwatching ,shoppings ,crafty,photographs ,animal ,crime ,chess ,
     movies,dog,fitness,music,trekking,cars,antiques,horses,anime,scifi,scuba,gardening,rock,cycling,
     email,confirmemail,password,confirmpassword) {
-      // this.pictureUrl=this.Picurl.url
-      // this.Picurl.filename
-  console.log(this.Picurl.fid)
+  
+
+     New:this.Picurl 
+    this.http.get('http://gowebtutorial.com/api/json/file/'+this.Picurl.fid).subscribe(picture=>{
+      this.fid=picture.fid
+ console.log(picture.fid)
+
+
+    })
+
+
     this.http
       .post<any>("https://gowebtutorial.com/api/json/user/register", {
         name: name,
@@ -247,26 +256,18 @@ _handleReaderLoaded(readerEvt) {
         field_gender: {
           und: Gender,
         },
-        field_user_avatar: {
-          und: [
-          {
-          fid:this.Picurl.fid,
-          // uid: "1",
-          // filename: this.uploadData.filename,
-          // uri:  this.uploadData.filepath,
-          // filemime:  "image/png",
-          // filesize: "65072",
-          // status: "1",
-          // timestamp: "1450077513",
-          // alt: "",
-          // title: "",
-          // width: "1024",
-          // height: "768"
-          }
-        ]
-          },
-        
-   
+        files:
+        {
+          field_user_avatar_und_0:[
+
+            {
+              fid:this.fid
+            }
+          ]
+        },
+       
+         picture:this.fid,
+      
         field_activities_interests: {
           und: {
             yoga:yogas,
