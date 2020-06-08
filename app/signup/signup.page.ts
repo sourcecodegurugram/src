@@ -196,7 +196,7 @@ _handleReaderLoaded(readerEvt) {
     this.http.post('https://gowebtutorial.com/api/json/file', this.uploadData)
       .subscribe(res=>{
         this.Picurl =res
-        console.log(res)
+        console.log(res);
       })
   }
 
@@ -207,14 +207,7 @@ _handleReaderLoaded(readerEvt) {
     movies,dog,fitness,music,trekking,cars,antiques,horses,anime,scifi,scuba,gardening,rock,cycling,
     email,confirmemail,password,confirmpassword) {
   
-
-     New:this.Picurl 
-    this.http.get('http://gowebtutorial.com/api/json/file/'+this.Picurl.fid).subscribe(picture=>{
-      this.fid=picture.fid
- console.log(picture.fid)
-
-
-    })
+console.log(this.Picurl.fid)
 
 
     this.http
@@ -256,9 +249,22 @@ _handleReaderLoaded(readerEvt) {
         field_gender: {
           und: Gender,
         },
+
+        field_user_avatar:
+        {
+          und:[
+         {
+           fid:this.Picurl.fid,
+           display:"1",
+           width:"105",
+           height:"46"
+         },
+        ]
+          
+        },
         files:
         {
-          field_user_avatar_und_0:[
+          field_user_avatar_und_1:[
 
             {
               fid:this.fid
