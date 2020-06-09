@@ -33,7 +33,7 @@ const routes: Routes = [
     loadChildren: () => import('./personal-chat/personal-chat.module').then( m => m.PersonalChatPageModule)
   },
   {
-    path: 'notificationchat',
+    path: 'notificationchat/:thread_id',
     loadChildren: () => import('./notificationchat/notificationchat.module').then( m => m.NotificationchatPageModule)
   },
   {

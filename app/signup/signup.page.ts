@@ -14,7 +14,7 @@ export class SignupPage implements OnInit {
   maxNumberOfTabs = 5;
   selectedIndex = 0;
   post: any;
-  name:string;
+  name: string;
   real: any;
   DOB: any;
   Gender: any;
@@ -28,18 +28,21 @@ export class SignupPage implements OnInit {
   confirmpassword: any;
   fname: any;
   lname: any;
-  confirmemail: any; 
+  confirmemail: any;
   signup: any;
-  selectedFile: File = null ;
-  url:any;
+  selectedFile: File = null;
+  url: any;
   Picurl: Object;
   pictureUrl: Array<any>;
-  fileename:any;
-  file: any;
-  filepath: any;
-  fid:[any];
+  filename: any;
+  file:any;
+  filepath: object = {};
+  fid: object ={};
   uploadData: { file: string; filename: string; filepath: string; };
-base64textString:String="";
+  base64textString: String = "";
+  uploadPicture: any;
+  firstfid: any;
+  firstfile: any;
   constructor(private http: HttpClient, private zone: NgZone, public alertController: AlertController) { }
 
   ngOnInit() {
@@ -128,7 +131,7 @@ base64textString:String="";
           this.selectedIndex = nextIndex;
         }
       }
-      
+
     }
     else if (presentIndex == 4) {
       if (nextIndex > presentIndex) {
@@ -139,7 +142,7 @@ base64textString:String="";
         if (this.confirmemail == null) {
           this.presentAlert();
         }
-     
+
         else if (this.password == null) {
           this.presentAlert();
         }
@@ -149,12 +152,12 @@ base64textString:String="";
         }
 
 
-        
-        
+
+
       }
-      
+
     }
-    
+
   }
 
 
@@ -169,181 +172,174 @@ base64textString:String="";
   }
 
 
-  handleFileSelect(evt){
+  handleFileSelect(evt) {
     var files = evt.target.files;
     var fil = files[0];
-  
-  if (files && fil) {
+
+    if (files && fil) {
       var reader = new FileReader();
-      reader.onload =this._handleReaderLoaded.bind(this);
+      reader.onload = this._handleReaderLoaded.bind(this);
       reader.readAsBinaryString(fil);
+    }
   }
-}
-_handleReaderLoaded(readerEvt) {
-   var binaryString = readerEvt.target.result;
-          this.base64textString= btoa(binaryString);
-          // console.log(btoa(binaryString));
+  _handleReaderLoaded(readerEvt) {
+    var binaryString = readerEvt.target.result;
+    this.base64textString = btoa(binaryString);
+    // console.log(btoa(binaryString));
   }
   onUpload(picture) {
     console.log(this.base64textString)
     console.log(picture)
     const headers = new HttpHeaders().set("Content-Type", "application/x-www-form-urlencoded");
-   this.uploadData =  {
-      file:"data:image/png;base64,"+ this.base64textString,
-      filename:picture,
-      filepath:"public://"+picture
+    this.uploadData = {
+      file: "data:image/png;base64," + this.base64textString,
+      filename: picture,
+      filepath: "public://" + picture
     }
-    this.http.post('https://gowebtutorial.com/api/json/file', this.uploadData)
-      .subscribe(res=>{
-        this.Picurl =res
-        console.log(res);
-      })
+    this.http.post('https://gowebtutorial.com/api/json/file/', this.uploadData).subscribe(res => { this.Picurl = res,console.log(this.Picurl) })
+
+
   }
 
 
+
+
   //Form
-  LoginForm(name,fname,lname,DOB,Gender,contract,meet,picture,live,zip,yogas,playdatess,beers,sightseeings,artsy,cook,dancing,watching,games,travelling,history,
-    board ,sports ,mom ,outdoor ,dining ,concerts ,sportwatching ,shoppings ,crafty,photographs ,animal ,crime ,chess ,
-    movies,dog,fitness,music,trekking,cars,antiques,horses,anime,scifi,scuba,gardening,rock,cycling,
-    email,confirmemail,password,confirmpassword) {
-  
-console.log(this.Picurl.fid)
+  LoginForm(name, fname, lname, DOB, Gender, contract, meet, live, zip, yogas, playdatess, beers, sightseeings, artsy, cook, dancing, watching, games, travelling, history,
+    board, sports, mom, outdoor, dining, concerts, sportwatching, shoppings, crafty, photographs, animal, crime, chess,
+    movies, dog, fitness, music, trekking, cars, antiques, horses, anime, scifi, scuba, rock, cycling,
+    email, confirmemail, password, confirmpassword) {
 
 
-    this.http
-      .post<any>("https://gowebtutorial.com/api/json/user/register", {
-        name: name,
-        mail: email,
-        conf_mail: confirmemail,
-        field_first_name: {
-          und: [
-            {
-              value: fname,
-            },
-          ],
-        },
-        field_last_name: {
-          und: [
-            {
-              value:lname,
-            },
-          ],
-        },
-        field_zip_code: {
-          und: [
-            {
-              postal_code: zip,
-              country: live,
-            },
-          ],
-        },
 
-        field_birth_date: {
-          und: [
-            {
-              value: DOB,
-            },
-          ],
-        },
+    this.http.get('https://gowebtutorial.com/api/json/file/' + this.Picurl.fid).subscribe(upload => {
+    this.uploadPicture = JSON.stringify(upload),
+    
+    console.log(JSON.stringify(upload));});
 
-        field_gender: {
-          und: Gender,
-        },
+    this.http.post<any>("https://gowebtutorial.com/api/json/user/register", {
 
-        field_user_avatar:
-        {
-          und:[
-         {
-           fid:this.Picurl.fid,
-           display:"1",
-           width:"105",
-           height:"46"
-         },
-        ]
-          
-        },
-        files:
-        {
-          field_user_avatar_und_1:[
-
-            {
-              fid:this.fid
-            }
-          ]
-        },
-       
-         picture:this.fid,
-      
-        field_activities_interests: {
-          und: {
-            yoga:yogas,
-            playdates:playdatess,
-            happyhourcocktailsbeers:beers,
-            sightseeing: sightseeings,
-            artsyie:artsy,
-            cooking:cook,
-            dancing:dancing,
-            peoplewatching:watching,
-            games:games,
-            travelling:travelling,
-            history:history,
-            boardgames:board ,
-            sportsplaying:sports ,
-            momdadnightoutwokids:mom ,
-            outdooractivities:outdoor ,
-            diningout:dining ,
-            concertsshows:concerts ,
-            sportwatching:sportwatching ,
-            shopping:shoppings ,
-            craftythingsthingsyoumake:crafty,
-            photography:photographs ,
-            animalloverpetowner:animal ,
-            crimemysteryreader:crime ,
-            chesss:chess,
-            movie:movies ,
-             dogs:dog ,
-            fitnesss:fitness ,
-            musics:music ,
-            trek:trekking ,
-            car:cars ,
-             antique:antiques ,
-            horse:horses ,
-             animes:anime ,
-            scifis:scifi ,
-             scubas:scuba ,
-            //gardnings:gardening ,
-            rocks:rock ,
-            cycle:cycling 
-            
+      name: name,
+      mail: email,
+      conf_mail: confirmemail,
+      field_first_name: {
+        und: [
+          {
+            value: fname,
           },
-        },
-        field_look_meet: {
-          und:meet,
-        }, 
-        field_want_contarct: {
-          und: contract,
-        },
-        pass:
-        {
-          pass1:password,
-          pass2:confirmpassword
-        },
-        
+        ],
+      },
+      field_last_name: {
+        und: [
+          {
+            value: lname,
+          },
+        ],
+      },
+      field_zip_code: {
+        und: [
+          {
+            postal_code: zip,
+            country: live,
+          },
+        ],
+      },
 
-        
-      })
+      field_birth_date: {
+        und: [
+          {
+            value: DOB,
+          },
+        ],
+      },
+
+      field_gender: {
+        und: Gender,
+      },
+
+
+      field_activities_interests: {
+        und: {
+          yoga: yogas,
+          playdates: playdatess,
+          happyhourcocktailsbeers: beers,
+          sightseeing: sightseeings,
+          artsyie: artsy,
+          cooking: cook,
+          dancing: dancing,
+          peoplewatching: watching,
+          games: games,
+          travelling: travelling,
+          history: history,
+          boardgames: board,
+          sportsplaying: sports,
+          momdadnightoutwokids: mom,
+          outdooractivities: outdoor,
+          diningout: dining,
+          concertsshows: concerts,
+          sportwatching: sportwatching,
+          shopping: shoppings,
+          craftythingsthingsyoumake: crafty,
+          photography: photographs,
+          animalloverpetowner: animal,
+          crimemysteryreader: crime,
+          chesss: chess,
+          movie: movies,
+          dogs: dog,
+          fitnesss: fitness,
+          musics: music,
+          trek: trekking,
+          car: cars,
+          antique: antiques,
+          horse: horses,
+          animes: anime,
+          scifis: scifi,
+          scubas: scuba,
+          rocks: rock,
+          cycle: cycling
+
+        },
+      },
+      field_look_meet: {
+        und: meet,
+      },
+     
+      field_want_contarct: {
+        und: contract,
+      },
+      pass:
+      {
+        pass1: password,
+        pass2: confirmpassword
+      },
+      field_user_avatar: {
+        und: [
+          {
+            fid:this.Picurl.fid,
+          }
+        ]
+      },
+
+      picture:this.uploadPicture,
+
+
+
+
+
+    })
       .subscribe((data) => {
         this.post = data;
         console.log(this.post)
-        if(this.post.uid){
+        if (this.post.uid) {
           this.nextStep()
+          console.log(this.uploadPicture)
           this.correctAlert()
-          } else {
-           
+        } else {
+
           alert(this.post)
-    
-          }
-         });
+
+        }
+      });
     //    (error: HttpErrorResponse) => {
     //   console.log(error.error.message);
     // })
@@ -356,11 +352,9 @@ console.log(this.Picurl.fid)
     });
 
     await correct.present();
-  }
-  onSelectedFile(event)
-  {
-    if(event.target.files.length>0)
-    {
+  }  
+  onSelectedFile(event) {
+    if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.signup.get('image').setValue(file);
       console.log("test")

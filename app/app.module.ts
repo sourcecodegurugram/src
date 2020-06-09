@@ -18,8 +18,8 @@ import {SignupPageModule} from './signup/signup.module'
 import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
-
-
+import { IonicStorageModule } from '@ionic/storage';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 
 
 
@@ -33,14 +33,15 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
     IonicModule.forRoot(),
     AppRoutingModule,
     RecaptchaModule.forRoot(),
-   
+    IonicStorageModule.forRoot(),
+  
 
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Geolocation,NativeGeocoder,
-
+    Keyboard,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     
   ],

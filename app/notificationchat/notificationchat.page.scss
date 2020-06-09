@@ -4,7 +4,8 @@
     grid-template-columns: 2fr 4fr 16fr;
     background-color: #FAFAFA;
     padding: 0.5em;
-    margin-top: 1em;
+    position: fixed;
+   
 }
 img.image-chat {
     height: 7vh;
@@ -19,7 +20,7 @@ p.chat-name {
 {
     background-color: #FAFAFA;
     padding: 0.5em;
-    position: absolute;
+    position: fixed;
     bottom: 0px;
     display: flex;
     width: 100%;
@@ -37,18 +38,18 @@ img.img-send {
     height: 3vh;
 }
 .chat-time {
-    display: flex;
-    /* justify-content: center; */
-    justify-content: center;
-    margin: 2em;
-    font-size: 14px;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
+    height: 110vh;
+    overflow: scroll;
+    margin-bottom: 10vh;
+}
+.extra {
+    /* padding-bottom: 2em; */
+    padding-top: 6em;
 }
 .left-chat {
     background-color: #0182FF;
     width: 49%;
-    border-radius: 50px;
+    border-radius: 8px;
     height: fit-content;
     color: white;
     text-align: center;
@@ -56,13 +57,14 @@ img.img-send {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     font-size: 13px;
+    margin: 0.5em 0em;
 }
 
 .right-chat {
     float: right;
     background-color: #E7E7EB;
-    width: 49%;
-    border-radius: 50px;
+    border-radius: 8px;
+    margin: 0.5em 0em;
     text-align: center;
     height: fit-content;
     margin-top: 1em;
@@ -70,7 +72,7 @@ img.img-send {
 }
 p.chat-content {
     margin-bottom: 0px;
-    padding: 5px;
+    padding: 7px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
 
@@ -81,4 +83,18 @@ p.chat-content {
 }
 .new {
     margin-top: 10vh;
+}
+.right-chat-align {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.left-chat-align {
+    display: flex;
+    flex-direction: column;
+    float: right;
+    align-items: center;
+}
+.chat-align {
+    margin: 0em 1em;
 }

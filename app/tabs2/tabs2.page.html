@@ -1,47 +1,21 @@
 
 <div class="background-card">
   <div class="main-content-chat">
-  <div class="chat-grid" routerLink="/personal-chat">
-    <div class="image">
-      <img src="../../assets/Images/user_-6.png" class="image-chat">
-    </div>
-
-    <div class="name">
-      <p class="chat-name">Vibrant_chef</p>
-      <p class="last-chat">How are you</p>
-    </div>
-
-    <div class="time">
-      <p class="time-text">6:45Pm</p>
-    </div>
-  </div>
-  <div class="chat-grid">
+ 
+  <div class="chat-grid"  *ngFor="let message of messages" routerLink="/notificationchat/{{message.thread_id}}">
     <div class="image">
       <img src="../../assets/Images/user_-10.png" class="image-chat">
     </div>
 
     <div class="name">
-      <p class="chat-name">Ibrahim</p>
-      <p class="last-chat">Lets meet tomorrow at 8</p>
+      <p class="chat-name"></p>
+      <p class="last-chat">{{message.subject}}</p>
     </div>
 
     <div class="time">
       <p class="time-text">4:45Pm</p>
     </div>
   </div>
-  <div class="chat-grid">
-    <div class="image">
-      <img src="../../assets/Images/user_-11.png" class="image-chat">
-    </div>
 
-    <div class="name">
-      <p class="chat-name">dedrick96</p>
-      <p class="last-chat">I have similar taste in movies  as you</p>
-    </div>
-
-    <div class="time">
-      <p class="time-text">4:45Pm</p>
-    </div>
-  </div>
 </div>
 </div>

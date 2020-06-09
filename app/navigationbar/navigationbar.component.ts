@@ -28,8 +28,8 @@ export class NavigationbarComponent implements OnInit {
   user: string;
   pass: string;
   isLoading: boolean = false;
-  logoutUrl = "https://gowebtutorial.com/api/json/user/logout";
-  url = "http://latdating.dd:8083/api/json/system/connect";
+  logoutUrl = "http://gowebtutorial.com/api/json/user/logout";
+  url = "https://latdating.dd:8083/api/json/system/connect";
   headerDict: any;
   itrs: any;
   userlogged: void;
@@ -68,6 +68,7 @@ export class NavigationbarComponent implements OnInit {
   }
 
   console.log(this.itrs.token)
+  
   }
   
   ngOnDestroy() {
@@ -97,7 +98,6 @@ export class NavigationbarComponent implements OnInit {
   }
 
   LoginForm(user, pass) {
-    console.log(user, pass);
     this.http
       .post<any>("http://gowebtutorial.com/api/json/user/login", {
         username: user,

@@ -13,7 +13,7 @@ export class SigninPage implements OnInit {
   maxNumberOfTabs = 5;
   selectedIndex = 0;
   headerDict: any;
-  url = "https://gowebtutorial.com/api/json/system/connect";
+  url = "http://gowebtutorial.com/api/json/system/connect";
   post: any;
   user: any;
   pass: any;
@@ -29,7 +29,8 @@ export class SigninPage implements OnInit {
   constructor(
     private router: Router,
     private http: HttpClient,
-    public alertController: AlertController
+    public alertController: AlertController,
+  
   ) {}
 
   ngOnInit() {
@@ -42,6 +43,7 @@ export class SigninPage implements OnInit {
    {
      this.LoggedIn=true
    }
+
   }
   public tabChanged(tabChangeEvent: MatTabChangeEvent): void {
     this.selectedIndex = tabChangeEvent.index;
@@ -60,7 +62,7 @@ export class SigninPage implements OnInit {
 
   LoginForm(user, pass) {
     this.http
-      .post<any>("https://gowebtutorial.com/api/json/user/login", {
+      .post<any>("http://gowebtutorial.com/api/json/user/login", {
         username: user,
         password: pass,
       })
@@ -79,18 +81,18 @@ export class SigninPage implements OnInit {
           headers: headers,
           withCredentials: true,
         };
-
+        
         this.http.post<any>(this.url, {}, requestOptions).subscribe((head) => {
           console.log(
             "This is the response after sending token to connect " +
               JSON.stringify(head)
           );
-
+        
           localStorage.setItem("Signinuser", JSON.stringify(head));
           console.log(head)
           this.LoggedIn=false
+          
           window.location.reload();
-          this.router.navigate(["/"]);
         });
       
       });
@@ -104,4 +106,5 @@ export class SigninPage implements OnInit {
 
     await correct.present();
   }
+
 }
