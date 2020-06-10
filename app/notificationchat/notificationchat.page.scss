@@ -5,19 +5,21 @@
     background-color: #FAFAFA;
     padding: 0.5em;
     position: fixed;
-   
+
 }
+
 img.image-chat {
     height: 7vh;
 }
+
 p.chat-name {
     margin-bottom: 0px;
     font-size: 20px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
 }
-.text-message-writer
-{
+
+.text-message-writer {
     background-color: #FAFAFA;
     padding: 0.5em;
     position: fixed;
@@ -26,6 +28,7 @@ p.chat-name {
     width: 100%;
     align-items: center;
 }
+
 input#chat {
     width: 80%;
     border-radius: 13px;
@@ -34,18 +37,22 @@ input#chat {
     padding-left: 15px;
     font-size: 15px;
 }
+
 img.img-send {
     height: 3vh;
 }
+
 .chat-time {
     height: 110vh;
     overflow: scroll;
     margin-bottom: 10vh;
 }
+
 .extra {
     /* padding-bottom: 2em; */
     padding-top: 6em;
 }
+
 .left-chat {
     background-color: #0182FF;
     width: 49%;
@@ -70,6 +77,7 @@ img.img-send {
     margin-top: 1em;
     font-size: 13px;
 }
+
 p.chat-content {
     margin-bottom: 0px;
     padding: 7px;
@@ -77,24 +85,44 @@ p.chat-content {
     font-weight: 400;
 
 }
-.background-card
-{
+
+.background-card {
     background-color: white !important;
 }
+
 .new {
     margin-top: 10vh;
 }
+
 .right-chat-align {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
+
 .left-chat-align {
     display: flex;
     flex-direction: column;
     float: right;
     align-items: center;
 }
+
 .chat-align {
     margin: 0em 1em;
+}
+
+.image-chat {
+    min-width: 65px !important;
+    height: 65px !important;
+}
+
+.name {
+    margin: 0px 15px;
+}
+
+.image {
+    width: 65px;
+    height: 65px;
+    overflow: hidden !important;
+    border-radius: 50%;
 }

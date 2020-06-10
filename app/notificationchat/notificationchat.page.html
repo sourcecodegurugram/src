@@ -1,41 +1,38 @@
-
-
-
-
   <ion-content style="background-color: white;">
-  <div class="background-card new">
-    <div class="header-persona-chat" routerLink="/chat/tabs2">
-      <div class="arrow">
-  
-        <img src="../../assets/Images/asset-1.png" class="arrow-image">
+    <div class="background-card new">
+      <div class="header-persona-chat" routerLink="/chat/tabs2">
+        <div class="arrow">
+
+          <img src="../../assets/Images/asset-1.png" class="arrow-image">
+        </div>
+        <div class="image">
+          <img src="https://gowebtutorial.com/sites/default/files/{{image}}" class="image-chat">
+        </div>
+        <div class="name">
+          {{name}}
+        </div>
       </div>
-      <div class="image">
-        <img src="../../assets/Images/logo.png" class="image-chat">
+      <div class="extra"></div>
+      <div class="chat-time" id="test">
+        <div class="chat-align" *ngFor="let new of message">
+          <div class="left-chat-align">
+            <div class="right-chat">
+              <p class="chat-content" *ngIf="new.author!=itr.user.uid">{{new.body}}</p>
+            </div>
+          </div>
+          <div class="right-chat-align">
+            <div class="left-chat">
+              <p class="chat-content" *ngIf="new.author==itr.user.uid">{{new.body}}</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="name">
-     
-      </div>
-    </div> 
-    <div class="extra"></div>
-<div class="chat-time" id="test">
-<div class="chat-align" *ngFor="let new of message">
-  <div class="left-chat-align">
-<div class="right-chat" >
-  <p class="chat-content" *ngIf="new.author!=itr.user.uid" >{{new.body}}</p>
-</div>
-</div>
-<div class="right-chat-align">
-    <div class="left-chat" >
-      <p class="chat-content" *ngIf="new.author==itr.user.uid" >{{new.body}}</p>
     </div>
-  </div>
-  </div>
-  </div>
-</div>
-  <div class="background-card">
-    <div class="text-message-writer">
-      <input type="text" id="chat" name="chat" class="chat-field" placeholder="Type your message here" [(ngModel)]="chat" >
-      <img src="../../assets/Images/send.png" class="img-send" (click)="sendMsg(chat)">
+    <div class="background-card">
+      <div class="text-message-writer">
+        <input type="text" id="chat" name="chat" class="chat-field" placeholder="Type your message here"
+          [(ngModel)]="chat">
+        <img src="../../assets/Images/send.png" class="img-send" (click)="sendMsg(chat)">
+      </div>
     </div>
-  </div>
- </ion-content>
+  </ion-content>

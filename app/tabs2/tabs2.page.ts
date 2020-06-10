@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+
 @Component({
-  selector: 'app-tabs2',
-  templateUrl: './tabs2.page.html',
-  styleUrls: ['./tabs2.page.scss'],
+  selector: "app-tabs2",
+  templateUrl: "./tabs2.page.html",
+  styleUrls: ["./tabs2.page.scss"],
 })
 export class Tabs2Page implements OnInit {
   logged: any;
@@ -14,59 +15,98 @@ export class Tabs2Page implements OnInit {
   url = "https://gowebtutorial.com/api/json/system/connect";
   headerDict: any;
   messages: any;
-  user:any
+  user: any;
   uses: any;
   messag: Object;
-  obj:any;
-  constructor(private http: HttpClient) { }
+  obj: any;
+  formattedMessages = [];
+  height;
+  width;
+  isLoading: boolean = false;
+  participants;
+  counterpartParticipants = [];
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
     this.itr = JSON.parse(localStorage.getItem("currentUser"));
-    this.userlogged= JSON.parse(localStorage.getItem("Signinuser"));
-    if(this.itr!=null)
-    {
-    const headers = new HttpHeaders()
-    .set("X-CSRF-Token", this.itr.token)
-    .set("Content-Type", "application/json")
-    .set("X-Cookie", this.itr.session_name + "=" + this.itr.sessid);
+    this.userlogged = JSON.parse(localStorage.getItem("Signinuser"));
+    if (this.itr != null) {
+      console.log(this.itr.token);
+      const headers = new HttpHeaders()
+        .set("X-CSRF-Token", this.itr.token)
+        .set("Content-Type", "application/json")
+        .set("X-Cookie", this.itr.session_name + "=" + this.itr.sessid);
 
-  const requestOptions = {
-    headers: headers,
-    withCredentials: true,
-  };
-   return this.http.get('http://gowebtutorial.com/api/json/chat-user/',requestOptions).subscribe(getMessages =>{
+      const requestOptions = {
+        headers: headers,
+        withCredentials: true,
+      };
+      return this.http
+        .get("http://gowebtutorial.com/api/json/privatemsg/", requestOptions)
+        .subscribe((getMessages) => {
+          this.messages = getMessages;
+          for (var i = 0; i < this.messages.length; i++) {
+            for (this.participants in this.messages[i].participants) {
+              // Get counterparty
+              if (
+                this.messages[i].participants[this.participants].uid != "203820"
+              ) {
+                // Add subject and time in participant object
+                this.messages[i].participants[
+                  this.participants
+                ].subject = this.messages[i].subject;
 
-   this.messages = Object.keys(getMessages).map(function(key) {
-   return [ getMessages[key]];});
-  console.log(this.messages);
-    })
-  
+                this.messages[i].participants[
+                  this.participants
+                ].last_updated = this.convertTimestamp(
+                  this.messages[i].last_updated
+                );
+
+                this.messages[i].participants[
+                  this.participants
+                ].thread_id = this.messages[i].thread_id;
+
+                // populate rest of fields
+                this.counterpartParticipants.push(
+                  this.messages[i].participants[this.participants]
+                );
+              }
+            }
+          }
+        });
+    }
   }
-    
 
+  click() {
+    const headers = new HttpHeaders()
+      .set("X-CSRF-Token", this.itr.token)
+      .set("Content-Type", "application/json")
+      .set("X-Cookie", this.itr.session_name + "=" + this.itr.sessid);
 
-    
-
-
-
- 
-
-
-
-
+    const requestOptions = {
+      headers: headers,
+      withCredentials: true,
+    };
+    return this.http
+      .get("http://gowebtutorial.com/api/json/privatemsg/", requestOptions)
+      .subscribe((getMessages) => {});
   }
 
-  click()
-  {
-    const headers = new HttpHeaders()
-    .set("X-CSRF-Token", this.itr.token)
-    .set("Content-Type", "application/json")
-    .set("X-Cookie", this.itr.session_name + "=" + this.itr.sessid);
+  convertTimestamp(timestamp) {
+    let unix_timestamp = timestamp;
+    // Create a new JavaScript Date object based on the timestamp
+    // multiplied by 1000 so that the argument is in milliseconds, not seconds.
+    var date = new Date(unix_timestamp * 1000);
+    // Hours part from the timestamp
+    var hours = date.getHours();
+    // Minutes part from the timestamp
+    var minutes = "0" + date.getMinutes();
+    // Seconds part from the timestamp
+    var seconds = "0" + date.getSeconds();
 
-  const requestOptions = {
-    headers: headers,
-    withCredentials: true,
-  };
-   return this.http.get('http://gowebtutorial.com/api/json/privatemsg/',requestOptions).subscribe(getMessages => {});    
+    // Will display time in 10:30:23 format
+    var formattedTime =
+      hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
+    return formattedTime;
   }
 }

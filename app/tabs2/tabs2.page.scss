@@ -7,6 +7,7 @@
     align-items: center;
     align-content: center;
 }
+
 p.chat-name {
     margin-bottom: 0px;
     font-size: 20px;
@@ -19,23 +20,44 @@ p.chat-name {
     flex-direction: column;
     justify-content: center;
     margin-left: 2%;
+    margin: auto 20px;
 }
+
 p.last-chat {
     margin-bottom: 0px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     font-size: 12px;
 }
-.main-content-chat
-{
+
+.main-content-chat {
     padding-top: 6em !important;
     height: 110vh;
     overflow: auto;
 }
-.background-card
-{
+
+.background-card {
     background-color: white !important;
 }
+
 .chat-items {
     margin-bottom: 10em;
+}
+
+.time-text {
+    font-size: 14px;
+}
+
+.image-chat {
+    min-width: 65px !important;
+    height: 65px !important;
+    margin: auto !important;
+    display: block;
+}
+
+.image {
+    width: 65px;
+    height: 65px;
+    overflow: hidden !important;
+    border-radius: 50%;
 }

@@ -19,15 +19,28 @@ export class NotificationchatPage implements OnInit {
   keyboard;
   first: any;
   messages: any;
+  image;
+  name;
   constructor(
     private http: HttpClient,
     private _Activatedroute: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    //Thread
     this.sub = this._Activatedroute.paramMap.subscribe((params) => {
       this.thread = params.get("thread_id");
     });
+    // Image
+    this.sub = this._Activatedroute.paramMap.subscribe((params) => {
+      this.image = params.get("image_path");
+    });
+
+    //Name
+    this.sub = this._Activatedroute.paramMap.subscribe((params) => {
+      this.name = params.get("name");
+    });
+
     this.itr = JSON.parse(localStorage.getItem("currentUser"));
     console.log(this.itr.user.uid);
     this.getChat();
@@ -81,7 +94,7 @@ export class NotificationchatPage implements OnInit {
         .subscribe((getMessages) => {
           this.messages = getMessages;
           this.message = this.messages.messages;
-          this.thread = this.messages.pmtid
+          this.thread = this.messages.pmtid;
           console.log(getMessages);
         });
     }

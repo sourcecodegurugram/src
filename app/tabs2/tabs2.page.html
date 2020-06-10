@@ -1,23 +1,20 @@
-
 <div class="background-card">
   <div class="main-content-chat">
-    <div class="chat-items" >
-  <div class="chat-grid" *ngFor="let message of messages">
-    <div class="image">
-      <img src="../../assets/Images/user_-10.png" class="image-chat">
-    </div>
+    <div class="chat-items">
+      <div routerLink="/notificationchat/{{message.thread_id}}/{{message.picture.filename}}/{{message.name}}"
+        class="chat-grid" *ngFor="let message of counterpartParticipants">
+        <div class="image">
+          <img src="https://gowebtutorial.com/sites/default/files/{{message.picture.filename}}" class=" image-chat">
+        </div>
 
-    <div class="name" >
-      <p class="chat-name" *ngFor="let msg of message" >{{msg.First}} {{msg.Last}}</p>
-      <p class="last-chat" *ngFor="let sub of message" >{{sub.Subject}}</p>
-    </div>
-
-    <div class="time">
-      <!-- <p class="time-text">{{message.last_updated * 1000 | date:'HH:mm' }} </p> -->
-     
+        <div class="name">
+          <p class="chat-name">{{message.name}}</p>
+          <p class="last-chat">{{message.subject}}</p>
+        </div>
+        <div class="time">
+          <div class="time-text">{{message.last_updated}}</div>
+        </div>
+      </div>
     </div>
   </div>
-  </div>
-
-</div>
 </div>

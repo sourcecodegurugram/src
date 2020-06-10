@@ -1,80 +1,111 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 
 const routes: Routes = [
-  { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-  { path: 'home/upload.php', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
+  { path: "", redirectTo: "welcome", pathMatch: "full" },
   {
-    path: 'location-targetting',
-    loadChildren: () => import('./location-targetting/location-targetting.module').then( m => m.LocationTargettingPageModule)
+    path: "home/upload.php",
+    loadChildren: () =>
+      import("./home/home.module").then((m) => m.HomePageModule),
   },
   {
-    path: 'register',
-    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+    path: "location-targetting",
+    loadChildren: () =>
+      import("./location-targetting/location-targetting.module").then(
+        (m) => m.LocationTargettingPageModule
+      ),
   },
   {
-    path: 'chat',
-    loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
+    path: "register",
+    loadChildren: () =>
+      import("./register/register.module").then((m) => m.RegisterPageModule),
   },
   {
-    path: 'searchTab',
-    loadChildren: () => import('./searchTab/searchTab.module').then( m => m.SearchTabPageModule)
+    path: "chat",
+    loadChildren: () =>
+      import("./chat/chat.module").then((m) => m.ChatPageModule),
   },
   {
-    path: 'tabs2',
-    loadChildren: () => import('./tabs2/tabs2.module').then( m => m.Tabs2PageModule)
+    path: "searchTab",
+    loadChildren: () =>
+      import("./searchTab/searchTab.module").then((m) => m.SearchTabPageModule),
   },
   {
-    path: 'tabs3',
-    loadChildren: () => import('./tabs3/tabs3.module').then( m => m.Tabs3PageModule)
+    path: "tabs2",
+    loadChildren: () =>
+      import("./tabs2/tabs2.module").then((m) => m.Tabs2PageModule),
   },
   {
-    path: 'personal-chat',
-    loadChildren: () => import('./personal-chat/personal-chat.module').then( m => m.PersonalChatPageModule)
+    path: "tabs3",
+    loadChildren: () =>
+      import("./tabs3/tabs3.module").then((m) => m.Tabs3PageModule),
   },
   {
-    path: 'notificationchat/:thread_id',
-    loadChildren: () => import('./notificationchat/notificationchat.module').then( m => m.NotificationchatPageModule)
+    path: "personal-chat",
+    loadChildren: () =>
+      import("./personal-chat/personal-chat.module").then(
+        (m) => m.PersonalChatPageModule
+      ),
   },
   {
-    path: 'search-result/:post',
-    loadChildren: () => import('./search-result/search-result.module').then( m => m.SearchResultPageModule)
+    path: "notificationchat/:thread_id/:image_path/:name",
+    loadChildren: () =>
+      import("./notificationchat/notificationchat.module").then(
+        (m) => m.NotificationchatPageModule
+      ),
   },
   {
-    path: 'detail/:name/:mail/:uid',
-    loadChildren: () => import('./detail/detail.module').then( m => m.DetailPageModule)
+    path: "search-result/:post",
+    loadChildren: () =>
+      import("./search-result/search-result.module").then(
+        (m) => m.SearchResultPageModule
+      ),
   },
   {
-    path: 'elipsispipe',
-    loadChildren: () => import('./elipsispipe/elipsispipe.module').then( m => m.ElipsispipePageModule)
+    path: "detail/:name/:mail/:uid",
+    loadChildren: () =>
+      import("./detail/detail.module").then((m) => m.DetailPageModule),
   },
   {
-    path: 'welcome',
-    loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule)
+    path: "elipsispipe",
+    loadChildren: () =>
+      import("./elipsispipe/elipsispipe.module").then(
+        (m) => m.ElipsispipePageModule
+      ),
   },
   {
-    path: 'signup',
-    loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule)
+    path: "welcome",
+    loadChildren: () =>
+      import("./welcome/welcome.module").then((m) => m.WelcomePageModule),
   },
   {
-    path: 'signin',
-    loadChildren: () => import('./signin/signin.module').then( m => m.SigninPageModule)
+    path: "signup",
+    loadChildren: () =>
+      import("./signup/signup.module").then((m) => m.SignupPageModule),
   },
   {
-    path: 'optional-detail',
-    loadChildren: () => import('./optional-detail/optional-detail.module').then( m => m.OptionalDetailPageModule)
+    path: "signin",
+    loadChildren: () =>
+      import("./signin/signin.module").then((m) => m.SigninPageModule),
   },
   {
-    path: 'popup/:uid',
-    loadChildren: () => import('./popup/popup.module').then( m => m.PopupPageModule)
+    path: "optional-detail",
+    loadChildren: () =>
+      import("./optional-detail/optional-detail.module").then(
+        (m) => m.OptionalDetailPageModule
+      ),
   },
- 
+  {
+    path: "popup/:uid",
+    loadChildren: () =>
+      import("./popup/popup.module").then((m) => m.PopupPageModule),
+  },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
