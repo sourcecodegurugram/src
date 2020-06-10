@@ -29,8 +29,13 @@ p.last-chat {
 .main-content-chat
 {
     padding-top: 6em !important;
+    height: 110vh;
+    overflow: auto;
 }
 .background-card
 {
     background-color: white !important;
+}
+.chat-items {
+    margin-bottom: 10em;
 }

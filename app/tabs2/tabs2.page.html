@@ -1,7 +1,7 @@
 
 <div class="background-card">
   <div class="main-content-chat">
- 
+    <div class="chat-items">
   <div class="chat-grid"  *ngFor="let message of messages" routerLink="/notificationchat/{{message.thread_id}}">
     <div class="image">
       <img src="../../assets/Images/user_-10.png" class="image-chat">
@@ -13,8 +13,10 @@
     </div>
 
     <div class="time">
-      <p class="time-text">4:45Pm</p>
+      <p class="time-text">{{message.last_updated * 1000 | date:'HH:mm' }} </p>
+     
     </div>
+  </div>
   </div>
 
 </div>

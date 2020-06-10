@@ -18,12 +18,9 @@ export class Tabs2Page implements OnInit {
 
   ngOnInit() {
     this.itr = JSON.parse(localStorage.getItem("currentUser"));
-    console.log(this.itr)
-   
     this.userlogged= JSON.parse(localStorage.getItem("Signinuser"));
     if(this.itr!=null)
     {
-    console.log(this.itr.token+ " " + this.itr.session_name  + " " + this.itr.sessid)
     const headers = new HttpHeaders()
     .set("X-CSRF-Token", this.itr.token)
     .set("Content-Type", "application/json")
@@ -34,18 +31,23 @@ export class Tabs2Page implements OnInit {
     withCredentials: true,
   };
    return this.http.get('http://gowebtutorial.com/api/json/privatemsg/',requestOptions).subscribe(getMessages => {
-     this.messages = getMessages 
-  console.log(this.messages)
-    for(let i=0;i>this.messages.length;i++)
-     {
-         console.log(this.messages[i])
-     }
-  
-  ;});    
-   
-    }
+    this.messages = getMessages
+    
+    
+    
+    console.log(this.messages)
+    
+    
+    
+    })
 
 
+    
+
+
+    
+}
+    
 
 
  
@@ -57,8 +59,6 @@ export class Tabs2Page implements OnInit {
 
   click()
   {
-   
-    console.log(this.itr.token+ " " + this.itr.session_name  + " " + this.itr.sessid)
     const headers = new HttpHeaders()
     .set("X-CSRF-Token", this.itr.token)
     .set("Content-Type", "application/json")
@@ -68,7 +68,6 @@ export class Tabs2Page implements OnInit {
     headers: headers,
     withCredentials: true,
   };
-   return this.http.get('http://gowebtutorial.com/api/json/privatemsg/',requestOptions).subscribe(getMessages => {
-     console.log(getMessages);});    
+   return this.http.get('http://gowebtutorial.com/api/json/privatemsg/',requestOptions).subscribe(getMessages => {});    
   }
 }
