@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 @Component({
   selector: 'app-tabs2',
   templateUrl: './tabs2.page.html',
@@ -14,7 +16,9 @@ export class Tabs2Page implements OnInit {
   messages: any;
   user:any
   uses: any;
-  constructor(private http: HttpClient,) { }
+  messag: Object;
+  obj:any;
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.itr = JSON.parse(localStorage.getItem("currentUser"));
@@ -30,24 +34,19 @@ export class Tabs2Page implements OnInit {
     headers: headers,
     withCredentials: true,
   };
-   return this.http.get('http://gowebtutorial.com/api/json/privatemsg/',requestOptions).subscribe(getMessages => {
-    this.messages = getMessages
-    
-    
-    
-    console.log(this.messages)
-    
-    
-    
+   return this.http.get('http://gowebtutorial.com/api/json/chat-user/',requestOptions).subscribe(getMessages =>{
+
+   this.messages = Object.keys(getMessages).map(function(key) {
+   return [ getMessages[key]];});
+  console.log(this.messages);
     })
-
-
+  
+  }
     
 
 
     
-}
-    
+
 
 
  

@@ -1,19 +1,19 @@
 
 <div class="background-card">
   <div class="main-content-chat">
-    <div class="chat-items">
-  <div class="chat-grid"  *ngFor="let message of messages" routerLink="/notificationchat/{{message.thread_id}}">
+    <div class="chat-items" >
+  <div class="chat-grid" *ngFor="let message of messages">
     <div class="image">
       <img src="../../assets/Images/user_-10.png" class="image-chat">
     </div>
 
-    <div class="name">
-      <p class="chat-name"></p>
-      <p class="last-chat">{{message.subject}}</p>
+    <div class="name" >
+      <p class="chat-name" *ngFor="let msg of message" >{{msg.First}} {{msg.Last}}</p>
+      <p class="last-chat" *ngFor="let sub of message" >{{sub.Subject}}</p>
     </div>
 
     <div class="time">
-      <p class="time-text">{{message.last_updated * 1000 | date:'HH:mm' }} </p>
+      <!-- <p class="time-text">{{message.last_updated * 1000 | date:'HH:mm' }} </p> -->
      
     </div>
   </div>
