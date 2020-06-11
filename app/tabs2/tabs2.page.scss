@@ -61,3 +61,19 @@ p.last-chat {
     overflow: hidden !important;
     border-radius: 50%;
 }
+.loading-container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    z-index: 9;
+    background: black;
+    opacity: 0.5;
+  }

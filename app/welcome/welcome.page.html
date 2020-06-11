@@ -61,59 +61,48 @@
       <img src="../../assets/Images/cross.png" class="cross-image">
     </div><br>
 
+    <div class="search-container">
+      <ion-card-content class="card-content-font">
+        Oops! Looks like location targeting is
+        turned off on your device. Either turn it on or
+        input your postal code and country to see
+        members in your area.
+      </ion-card-content>
+
+      <p class="tittle-card">Find Friends</p>
+      <form class="form-fields">
 
 
+        <div class="form-group">
+          <label for="fname" class="form-label">ZIP/Postal Code</label><br>
+          <input type="text" class="form-control" id="usr" placeholder="Postcode" name="post"
+            class="form-field-zip-code" [(ngModel)]="post">
+
+        </div>
+        <div class="form-group">
+          <label for="country">Country</label>
+          <select class="form-control" id="country" name="live">
+            <option value="au">Australia</option>
+            <option value="ca">Canada</option>
+            <option value="in">India</option>
+            <option value="nz">New Zealand</option>
+            <option value="sg">Singapore</option>
+            <option value="gb">United Kingdom</option>
+            <option value="us" selected="selected">United States</option>
+
+          </select>
+          <span class="under-text"></span>
+        </div>
 
 
+        <br>
+        <div class="button-container">
+          <button type="button" class="button-common" routerLink="/search-result/{{post}}">Search</button>
+        </div>
+      </form>
 
 
-
-
-
-
-
-
-<div class="search-container" >
-    <ion-card-content class="card-content-font">
-      Oops! Looks like location targeting is
-      turned off on your device. Either turn it on or
-      input your postal code and country to see
-      members in your area.
-    </ion-card-content>
-
-    <p class="tittle-card">Find Friends</p>
-    <form class="form-fields">
-
-      
-      <div class="form-group">
-        <label for="fname" class="form-label">ZIP/Postal Code</label><br>
-        <input type="text" class="form-control" id="usr" placeholder="Postcode" name="post" class="form-field-zip-code" [(ngModel)]="post">
-  
-      </div>
-      <div class="form-group">
-        <label for="country">Country</label>
-        <select class="form-control" id="country" name="live" > 
-          <option value="au" >Australia</option>
-          <option value="ca">Canada</option>
-          <option value="in">India</option>
-          <option value="nz">New Zealand</option>
-          <option value="sg">Singapore</option>
-          <option value="gb">United Kingdom</option>
-          <option value="us" selected="selected">United States</option>
-
-        </select>
-        <span class="under-text"></span>
-      </div>
-
-    
-      <br>
-      <div class="button-container">
-        <button type="button" class="button-common" routerLink="/search-result/{{post}}">Search</button>
-      </div>
-    </form>
-
-
-  </div>
+    </div>
 
   </ion-card>
 </div>
@@ -127,43 +116,45 @@
       <ion-card-subtitle class="tittle-home">Members near you</ion-card-subtitle>
       <img src="../../assets/Images/crosspop.png" class="cross-pop-button" (click)="closesearchpop()">
     </div>
-  
-  
+
+
     <div class="member-cards" *ngFor="let posts of  searchResponse"
       routerLink="/detail/{{posts.name}}/{{posts.mail}}/{{posts.uid}}">
-  
-  
+
+
       <div class="member-card-image">
-  
+
         <img src="{{posts.Picture}}" alt="" srcset="" class="user-image">
-      
+
       </div>
       <div class="member-card-text">
-<div class="badage-name">
-        <div class="name card-item">{{posts.name}} </div>
-        <div class="parent-badge">
+        <div class="badage-name">
+          <div class="name card-item">{{posts.name}} </div>
+          <div class="parent-badge">
 
-        <ion-badge slot="end" color="medium" *ngIf="posts.Pets.length==0" class="badge-font">Parent
-          </ion-badge>
-        <ion-badge slot="end" color="medium"*ngIf="posts.Pets.length>0" class="badge-font" >Pet Owner</ion-badge>
+            <ion-badge slot="end" color="medium" *ngIf="posts.Pets.length==0" class="badge-font">Parent
+            </ion-badge>
+            <ion-badge slot="end" color="medium" *ngIf="posts.Pets.length>0" class="badge-font">Pet Owner</ion-badge>
+          </div>
+        </div>
+
+        <div class="activity-container">
+          <div class="left-heading ">Activities: {{posts.Activity}}</div>
+          <!-- <div class="right-heading"></div> -->
+          <div class="badage-container">
+            <ion-badge slot="end" color="medium">{{posts.Activity.length}}</ion-badge>
+          </div>
+        </div>
+
+        <div class="distance-container">
+          <div class="distance card-item">Distance:</div>
+          <div class="distance-ouput">1 miles away</div>
+
+        </div>
+
+
+      </div>
+      <button *ngIf="currPage.length == 25" class="showMore" (click)="getSearchData()">Show More</button>
     </div>
-       </div>
-
-       <div class="activity-container">
- <div class="left-heading ">Activities: {{posts.Activity}}</div>
- <!-- <div class="right-heading"></div> -->
-<div class="badage-container"><ion-badge slot="end" color="medium">{{posts.Activity.length}}</ion-badge></div>
-       </div>
-       
-  <div class="distance-container">
-<div class="distance card-item">Distance:</div>
-<div class="distance-ouput">1 miles away</div>
 
   </div>
- 
- 
-    </div>
-    <button *ngIf="currPage.length == 25" class="showMore" (click)="getSearchData()">Show More</button>
-  </div>
-
-</div>

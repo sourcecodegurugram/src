@@ -22,9 +22,10 @@ export class Tabs2Page implements OnInit {
   formattedMessages = [];
   height;
   width;
-  isLoading: boolean = false;
+  isLoading: boolean = true;
   participants;
   counterpartParticipants = [];
+
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
@@ -73,6 +74,7 @@ export class Tabs2Page implements OnInit {
               }
             }
           }
+          this.isLoading=false
         });
     }
   }

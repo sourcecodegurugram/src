@@ -21,10 +21,17 @@ export class SearchTabPage implements OnInit {
   userDetailss: any;
   uid: any;
   user: Object;
-  Postcode: any;
+  Postcode: any ;
+  notfound:boolean=false;
+  itrs: any;
+  live:any;
   constructor(    private ConfigService: ConfigService) { }
 
   ngOnInit() {
+    this.itrs = JSON.parse(localStorage.getItem("currentUser"));
+    console.log(this.itrs.user.field_zip_code.und[0])
+ this.Postcode=this.itrs.user.field_zip_code.und[0].postal_code
+ this.live =this.itrs.user.field_zip_code.und[0].country
   }
 searchResult()
 {
@@ -38,7 +45,12 @@ chatOpenPage()
   this.searchitem=false
   this.chatpage=true
 }
-
+notFoundResult()
+{
+  this.search = true
+  this.searchitem=false
+  this.notfound=false
+}
 sendMsg()
 {
   this.searchitem=true;
@@ -49,6 +61,12 @@ getResult(gender,meet,activity,Postcode){
 this.ConfigService.getSearchUrl(gender,meet,activity,Postcode).subscribe(
   (elements) => {
     this.searchResults=elements
+    console.log(this.searchResults.length)
+    if(this.searchResults.length==0)
+    {
+      this.notfound=true
+      console.log("oops no result Found")
+    }
     console.log(elements)
   });
 }

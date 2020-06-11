@@ -172,3 +172,45 @@ img.user-image {
   {
       font-size: 14px;
   }
+  .not-found-result {
+    background-color: #00000091;
+    height: 100vh;
+    top: 0em;
+    position: fixed;
+    width: 100vw;
+    z-index: 1000;
+}   
+.not-found-result-data {
+    background-color: white;
+    height: 17vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2em;
+ 
+}
+.not-found-result-container-second {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.align-box-not-found {
+    /* display: flex; */
+    justify-content: center;
+    /* height: 100vh; */
+    z-index: 1000;
+    align-items: center;
+    background-color: white;
+    width: 100vw;
+    margin: 0em 3em;
+    border-radius: 2em;
+    
+}
+.content-not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 67%;
+}

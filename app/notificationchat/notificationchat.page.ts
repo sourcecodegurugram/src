@@ -21,6 +21,8 @@ export class NotificationchatPage implements OnInit {
   messages: any;
   image;
   name;
+  Send:boolean=true;
+  Sending:boolean=false;
   constructor(
     private http: HttpClient,
     private _Activatedroute: ActivatedRoute
@@ -47,7 +49,10 @@ export class NotificationchatPage implements OnInit {
   }
 
   sendMsg(chat) {
+
     this.chat = "";
+    this.Send=false
+    this.Sending =true
     const headers = new HttpHeaders()
       .set("X-CSRF-Token", this.itr.token)
       .set("Content-Type", "application/json")
@@ -70,8 +75,10 @@ export class NotificationchatPage implements OnInit {
       )
       .subscribe((data) => {
         this.getChat();
+        this.Sending = false
+        this.Send=true
         console.log(data);
-        chat = "Type message here";
+     
       });
   }
 
