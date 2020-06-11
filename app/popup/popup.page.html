@@ -26,7 +26,7 @@
 <div class="siderbar-icon-data">
 <div class="side-bar-icon">
 <div class="group-text-image">
-<img src="../../assets/Images/popchat.png" class="chat-bubble" routerLink="/chat/tabs2">
+<img src="../../assets/Images/popchat.png" class="chat-bubble" routerLink="/new-message/{{uid}}/{{name}}">
 <span class="name-icon">Chat</span>
 </div>
 <div class="group-text-image">
@@ -47,7 +47,7 @@
 </div>
 <div class="sidebar-content">
 <p class="detail-data">FullName:<br><span class="output-text">{{name}}</span></p>
-<p class="detail-data">I Want To Be Contacted By:<br><span class="output-text" *ngFor="let actvities of contact" >{{actvities}}</span></p>
+<p class="detail-data">I Want To Be Contacted By:<br><span class="output-text" *ngFor="let actvities of contact" >{{actvities.value}}</span></p>
 <p class="detail-data" *ngIf="musics">Favorate Music:<br><span class="output-text" *ngFor="let Music of musics">{{Music.value}}</span></p>
 <p class="detail-data" *ngIf="book">Favorate Books:<br><span class="output-text"  *ngFor="let books of book">{{books.value}}</span></p>
 <p class="detail-data" *ngIf="statu">Relationship status:<br><span class="output-text"*ngFor="let status of statu">{{status.value}}</span></p>

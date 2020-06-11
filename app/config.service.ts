@@ -18,7 +18,7 @@ export class ConfigService {
   postalUrl = this.serverUrl + "post-json?postal_code=";
   locationUrl = "https://maps.googleapis.com/maps/api/geocode/json?latlng=";
   createUrl = "https://gowebtutorial.com/api/json/user/register";
-  searchUrl = this.serverUrl + "search-people?gender=";
+  searchUrl = this.serverUrl + "search-view?gender=";
   constructor(private http: HttpClient) {}
 
   getArticle() {
@@ -46,15 +46,20 @@ export class ConfigService {
     );
   }
 
-  getSearchUrl(gender, meet, activity) {
+  getSearchUrl(gender, meet, activity,Postalcode) {
     return this.http.get(
       this.serverUrl +
-        "search-people?gender=" +
+        "search-view?gender=" +
         gender +
         "&meet=" +
         meet +
         "&activity=" +
         activity
+        +
+        "&postal="
+        +
+        Postalcode
+
     );
   }
 }

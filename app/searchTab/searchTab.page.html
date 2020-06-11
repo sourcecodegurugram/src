@@ -35,19 +35,13 @@
 
       </div>
 
-
-      <label for="age">Within</label>
-      <div class="dropdown-aged">
-        <div class="form-group">
-
-          <select class="form-control" id="age">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </select>
-        </div>
-        <span class="to">miles/km</span>
+      <div class="form-group">
+ 
+        <input type="text" class="form-control" id="exampleInputEmail1"  placeholder="Enter Postcode" name="Postcode" [(ngModel)]="Postcode">
+        
       </div>
+      
+
       <label for="age">of me, who are looking for</label>
       <div class="form-group">
         <select class="form-control" id="sel1" name="meet" [(ngModel)]="meet">
@@ -93,7 +87,7 @@
         </select>
       </div>
     </div>
-
+ 
 
 
     <div class="continue-button" (click)="searchResult()">
@@ -117,16 +111,23 @@
     <div class="members-grid" *ngFor="let result of searchResults" (click)="userDetails()" routerLink="/popup/{{result.Uid}}">
 
       <div class="photo-member-grid">
-    <img src="{{result.Picture}}" alt="" srcset="" class="image-profile">
-    
-
+    <img src="{{result.Picture}}" alt="" srcset="" class="user-image">
       </div>
 
       <div class="data-member-grid">
-        <p class="name card-item">{{result.name}}</p>
-        <ion-label class="hobbies card-item "><span class="left-heading">Activities:&nbsp;</span>{{result.Activities | slice:3:5}}
-        </ion-label>
-        <p class="distance card-item"><span class="left-heading">Distance:</span>1 miles away</p>
+        <div class="grid-name">
+          {{result.name}}
+        </div>
+        
+        <div class="left-heading">Activities:&nbsp;{{result.Activities}}</div>
+       
+        <div class="distance-container">
+          <div class="distance card-item">Distance:</div>
+          <div class="distance-ouput">1 miles away</div>
+          
+            </div>
+
+       
 
       </div>
 

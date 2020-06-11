@@ -100,6 +100,11 @@ const routes: Routes = [
     loadChildren: () =>
       import("./popup/popup.module").then((m) => m.PopupPageModule),
   },
+  {
+    path: 'new-message/:uid/:name',
+    loadChildren: () => import('./new-message/new-message.module').then( m => m.NewMessagePageModule)
+  },
+
 ];
 
 @NgModule({

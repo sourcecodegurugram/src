@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>newMessage</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<div class="main-New-message-container">
+  <div class="form-group">
+    <input type="text" class="form-control" id="usr" name="Subject" [(ngModel)]="Subject" placeholder="Enter Subject">
+  </div>
+  <div class="form-group">
+  
+    <textarea class="form-control" rows="5" id="comment" name="Message" [(ngModel)]="Message"  placeholder="Enter Message"></textarea>
+  </div>
+
+<div class="button-align">
+
+  <button type="button" class="btn btn-primary" (click)="sendMessage()">Send</button>
+</div>
+</div>
+

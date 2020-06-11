@@ -21,6 +21,7 @@ export class SearchTabPage implements OnInit {
   userDetailss: any;
   uid: any;
   user: Object;
+  Postcode: any;
   constructor(    private ConfigService: ConfigService) { }
 
   ngOnInit() {
@@ -29,7 +30,7 @@ searchResult()
 {
   this.search = false
   this.searchitem=true
-  this.getResult(this.gender,this.meet,this.activity)
+  this.getResult(this.gender,this.meet,this.activity,this.Postcode)
 }
 chatOpenPage()
 {
@@ -44,14 +45,11 @@ sendMsg()
   this.chatpage = false;
 }
 
-getResult(gender,meet,activity){
-this.ConfigService.getSearchUrl(gender,meet,activity).subscribe(
+getResult(gender,meet,activity,Postcode){
+this.ConfigService.getSearchUrl(gender,meet,activity,Postcode).subscribe(
   (elements) => {
-
     this.searchResults=elements
     console.log(elements)
-
-
   });
 }
 
@@ -61,7 +59,6 @@ userDetails()
 this.uid=this.searchResults[0].Uid
 this.ConfigService.getUser(this.uid).subscribe((data)=>{
   this.user=data
- 
-})
+});
 }
 }

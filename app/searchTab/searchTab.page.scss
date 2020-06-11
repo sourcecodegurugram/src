@@ -49,6 +49,7 @@ span.to {
     align-content: center;
     border: 1px solid;
     margin: 1em;
+    height: 17vh;
 }
 .data-member-grid {
     margin-left: 1em;
@@ -138,3 +139,36 @@ img.chat-bubble {
 .distance-container {
     display: flex;
 }
+.left-heading {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    display: block;
+    display: -webkit-box;
+    /* max-width: 100%; */
+    height: 43px;
+    margin: 0 auto;
+    font-size: 14px;
+    /* line-height: 1; */
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+  }
+  .activity-container {
+    display: flex;
+    align-items: center;
+}
+.distance-container {
+    display: flex;
+    font-size: 14px;
+}
+img.user-image {
+  
+    width: 100%;
+    height: 16vh;
+  }
+  .grid-nmae
+  {
+      font-size: 14px;
+  }

@@ -1,0 +1,14 @@
+.main-New-message-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0em 2em;
+    align-items: center;
+    /* width: 100%; */
+    overflow: hidden;
+}
+.form-group {
+    margin-bottom: 1rem;
+    width: 100%;
+}
