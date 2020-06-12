@@ -1,17 +1,21 @@
 .header-persona-chat {
     display: grid;
     align-items: center;
-    grid-template-columns: 2fr 4fr 16fr;
+
+    grid-template-columns: 2fr 4fr 16fr 2fr;
     background-color: #FAFAFA;
     padding: 0.5em;
     position: fixed;
+    margin-top: 0.7em;
 
 }
 
 img.image-chat {
     height: 7vh;
 }
-
+img.refesh-button-image {
+    width: 75%;
+}
 p.chat-name {
     margin-bottom: 0px;
     font-size: 20px;

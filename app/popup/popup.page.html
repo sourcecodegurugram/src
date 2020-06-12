@@ -8,7 +8,7 @@
       <div class="modal-grid">
 
         <div class="profile-picture-modal">
-          <img src="../../assets/Images/p1.jpg" class="image-profile">
+          <img src={{picture}} class="image-profile">
 
         </div>
 
@@ -44,14 +44,39 @@
         </div>
         <div class="sidebar-content">
           <p class="detail-data">FullName:<br><span class="output-text">{{name}}</span></p>
+
+          <p class="detail-data">Gender:<br><span class="output-text"
+            *ngFor="let genders of genders">{{genders.value}}</span></p>
+          
+          <p class="detail-data">Actvities:<br><span class="output-text"
+            *ngFor="let activity of activity">{{activity.value}}</span></p>
           <p class="detail-data">I Want To Be Contacted By:<br><span class="output-text"
               *ngFor="let actvities of contact">{{actvities.value}}</span></p>
+             
           <p class="detail-data" *ngIf="musics">Favorite Music:<br><span class="output-text"
               *ngFor="let Music of musics">{{Music.value}}</span></p>
           <p class="detail-data" *ngIf="book">Favorate Books:<br><span class="output-text"
               *ngFor="let books of book">{{books.value}}</span></p>
-          <p class="detail-data" *ngIf="statu">Relationship status:<br><span class="output-text"
-              *ngFor="let status of statu">{{status.value}}</span></p>
+          
+              <p class="detail-data" *ngIf="movie">Favorate Movies:<br><span class="output-text"
+                *ngFor="let movies of movie">{{movies.value}}</span></p>
+                <p class="detail-data" *ngIf="day">How you spend your days?:<br><span class="output-text"
+                  *ngFor="let days of day">{{days.value}}</span></p>
+                  <p class="detail-data" *ngIf="cancels">If plan get cancels?:<br><span class="output-text"
+                    *ngFor="let cancel of cancels">{{cancel.value}}</span></p>
+
+                    <p class="detail-data" *ngIf="tends">Firends tends to be?:<br><span class="output-text"
+                      *ngFor="let tend of tends">{{tend.value}}</span></p>
+                      <p class="detail-data" *ngIf="edue">Education Level:<br><span class="output-text"
+                        *ngFor="let edue of edue">{{edue.value}}</span></p>
+                        <p class="detail-data" *ngIf="smokes">Do you smokes:<br><span class="output-text"
+                          *ngFor="let smokes of smokes">{{smokes.value}}</span></p>
+                          <p class="detail-data" *ngIf="statu">Relationship status:<br><span class="output-text"
+                            *ngFor="let statu of statu">{{statu.value}}</span></p>
+                            <p class="detail-data" *ngIf="long">How long you live:<br><span class="output-text"
+                              *ngFor="let long of long">{{long.value}}</span></p>
+                            
+                          
         </div>
       </div>
     </div>

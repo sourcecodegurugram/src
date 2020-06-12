@@ -221,12 +221,12 @@ export class SignupPage implements OnInit {
     password,
     confirmpassword
   ) {
-    this.http
-      .get("https://gowebtutorial.com/api/json/file/" + this.Picurl.fid)
-      .subscribe((upload) => {
-        (this.uploadPicture = JSON.stringify(upload)),
-          console.log(JSON.stringify(upload));
-      });
+    // this.http
+    //   .get("https://gowebtutorial.com/api/json/file/" + this.Picurl.fid)
+    //   .subscribe((upload) => {
+    //     (this.uploadPicture = JSON.stringify(upload)),
+    //       console.log(JSON.stringify(upload));
+    //   });
 
     this.http
       .post<any>("https://gowebtutorial.com/api/json/user/register", {
@@ -319,16 +319,16 @@ export class SignupPage implements OnInit {
         pass: {
           pass1: password,
           pass2: confirmpassword,
-        },
-        field_user_avatar: {
-          und: [
-            {
-              fid: this.Picurl.fid,
-            },
-          ],
-        },
+        }
+        // field_user_avatar: {
+        //   und: [
+        //     {
+        //       fid: this.Picurl.fid,
+        //     },
+        //   ],
+        // },
 
-        picture: this.uploadPicture,
+        // picture: this.uploadPicture,
       })
       .subscribe((data) => {
         this.post = data;

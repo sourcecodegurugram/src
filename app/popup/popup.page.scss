@@ -33,7 +33,9 @@ img.chat-bubble {
     margin: 0em 1em;
 }
 
-
+p.detail-data {
+    width: 63%;
+}
 .group-text-image {
     display: flex;
     flex-direction: column;
@@ -42,6 +44,7 @@ img.chat-bubble {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: 1em;
 }
 .popup-chat-page {
     margin-top: 7em;
@@ -76,4 +79,8 @@ img.chat-bubble {
     background-color: white;
     margin: 6em 2em;
     margin-bottom: 0px;
+}
+img.image-profile {
+    height: 17vh;
+    width: 100%;
 }
