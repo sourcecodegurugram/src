@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from "../config.service";
 import { Router, ActivatedRoute } from "@angular/router";
-
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 import {Location} from '@angular/common';
 @Component({
@@ -57,9 +57,13 @@ export class PopupPage implements OnInit {
   friends: any;
   genders: any;
   contact: any;
-  constructor(private ConfigService: ConfigService, private _Activatedroute: ActivatedRoute,private _location: Location) { }
+  scope: any;
+  itrs: any;
+  obj:any;
+  constructor(private ConfigService: ConfigService, private _Activatedroute: ActivatedRoute,private _location: Location,private http:HttpClient) { }
 
   ngOnInit( ) {
+    this.itrs = JSON.parse(localStorage.getItem("currentUser"));
     this.sub = this._Activatedroute.paramMap.subscribe((params) => {
       this.uid = params.get("uid");
     })
@@ -72,7 +76,7 @@ this.ConfigService.getUser(this.uid).subscribe((data)=>{
   this.long = this.post.field_long_in_city.length;
   this.genders = this.post.field_gender.und;
   this.statu = this.post.field_relationship_status.und;
-  this.smokes = this.post.field_smoke.und;
+  this.smokes = this.post.field_smoke.und;                         
   this.activity = this.post.field_activities_interests.und;
   this.edue = this.post.field_education_level.und;
   this.tends = this.post.field_friends_tend_to_be.und;
@@ -83,10 +87,48 @@ this.ConfigService.getUser(this.uid).subscribe((data)=>{
   this.book = this.post.field_favorite_books.und;
   this.friend = this.post.field_talk_about.und;
   this.contact = this.post.field_gender.und;
-
+  
 })
   }
   backClicked() {
     this._location.back();
   }
+  favorate(){
+    
+    
+
+   this.http.get('http://gowebtutorial.com/api/json/user/'+ this.itrs.user.uid).subscribe(users=>{
+    this.jsonParse=users.field_favorite_users.und[0].value
+      this.scope =JSON.parse(this.jsonParse);
+     console.log(this.scope)
+      const headers = new HttpHeaders()
+    .set("X-CSRF-Token", this.itrs.token)
+    .set("Content-Type", "application/json")
+    .set("X-Cookie", this.itrs.session_name + "=" + this.itrs.sessid);
+  const requestOptions = {
+    headers: headers,
+    withCredentials: true,
+  };
+
+    this.http.put('http://gowebtutorial.com/api/json/user/'+ this.itrs.user.uid,{
+      field_favorite_users:
+      {
+        und:
+        [
+          {
+            value:this.scope 
+          }
+        ]
+      }
+    },requestOptions).subscribe(favorate=>{
+      console.log(favorate)
+    })
+       });
+  }
+
+
+
+
+
+
 }

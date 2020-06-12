@@ -31,6 +31,7 @@ import {
     IonicModule.forRoot(),
     AppRoutingModule,
     RecaptchaModule.forRoot(),
+ 
   ],
   providers: [
     StatusBar,

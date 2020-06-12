@@ -29,10 +29,16 @@ export class SearchTabPage implements OnInit {
 
   ngOnInit() {
     this.itrs = JSON.parse(localStorage.getItem("currentUser"));
-    console.log(this.itrs.user.field_zip_code.und[0])
  this.Postcode=this.itrs.user.field_zip_code.und[0].postal_code
  this.live =this.itrs.user.field_zip_code.und[0].country
+
+ 
+
   }
+
+
+
+
 searchResult()
 {
   this.search = false

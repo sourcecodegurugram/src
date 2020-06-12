@@ -13,11 +13,15 @@ import { element } from "protractor";
 import { MatTabChangeEvent } from "@angular/material/tabs";
 import { FormControl } from "@angular/forms";
 import { Location } from '@angular/common';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+
+
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.page.html',
   styleUrls: ['./welcome.page.scss'],
 })
+
 export class WelcomePage implements OnInit {
   isLoading: boolean = false;
   hide: boolean = false;
@@ -50,6 +54,8 @@ export class WelcomePage implements OnInit {
   currPage = [];
   searchresult:boolean=false
   userLogged: any;
+  scope: any;
+  
  
   constructor(private ConfigService: ConfigService,
     public geolocation: Geolocation,
@@ -58,10 +64,12 @@ export class WelcomePage implements OnInit {
     public zone: NgZone,
     private _Activatedroute: ActivatedRoute,
     private routes: Router,
-    private locate:Location) { }
+    private locate:Location,
+    private http:HttpClient) { }
 
   ngOnInit() {
-    
+      
+   
  
   }
 
@@ -81,6 +89,11 @@ export class WelcomePage implements OnInit {
        this.getSearchData()
       // this.routes.navigate(["search-result/", this.postcode]);
     });
+
+
+
+
+
   }
 
   showFormPage() {
