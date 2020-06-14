@@ -19,6 +19,11 @@ export class ConfigService {
   locationUrl = "https://maps.googleapis.com/maps/api/geocode/json?latlng=";
   createUrl = "https://gowebtutorial.com/api/json/user/register";
   searchUrl = this.serverUrl + "search-view?gender=";
+  gender;
+  meet;
+  activity;
+  Postalcode;
+
   constructor(private http: HttpClient) {}
 
   getArticle() {
@@ -46,20 +51,46 @@ export class ConfigService {
     );
   }
 
-  getSearchUrl(gender, meet, activity,Postalcode) {
+  getSearchUrl(gender, meet, activity, Postalcode) {
+    // Only use fields that are specified
+
+    if (gender) {
+      this.gender = "&gender=" + gender;
+    } else {
+      this.gender = "";
+    }
+    if (meet) {
+      this.meet = "&meet=" + meet;
+    } else {
+      this.meet = "";
+    }
+    if (activity) {
+      this.activity = "&activity=" + activity;
+    } else {
+      this.activity = "";
+    }
+    if (Postalcode) {
+      this.Postalcode = "&postal=" + Postalcode;
+    } else {
+      this.Postalcode = "";
+    }
+
+    console.log(
+      this.serverUrl +
+        "search-view?test=test" +
+        this.gender +
+        this.meet +
+        this.activity +
+        this.Postalcode
+    );
+
     return this.http.get(
       this.serverUrl +
-        "search-view?gender=" +
-        gender +
-        "&meet=" +
-        meet +
-        "&activity=" +
-        activity
-        +
-        "&postal="
-        +
-        Postalcode
-
+        "search-view?test=test" +
+        this.gender +
+        this.meet +
+        this.activity +
+        this.Postalcode
     );
   }
 }
