@@ -1,39 +1,40 @@
 <ion-content>
-<div class="main-singin">
+  <div class="main-singin">
 
-<mat-tab-group class="mat-background" [(selectedIndex)]="selectedIndex">
+    <mat-tab-group class="mat-background" [(selectedIndex)]="selectedIndex">
 
-  <mat-tab *ngIf="!LoggedIn">
-    
-      <div class="login-buton">
-<p class="heading-login">Log in to Not 4 Dating below</p>
+      <mat-tab *ngIf="!LoggedIn">
 
-      </div> 
-
-      <div class="or"></div>
-
-
-      <div class="forms-field">
-        <div class="form-group">
-
-          <input type="text" class="form-control" id="usr" placeholder="Email Address" name="user"[(ngModel)]="user">
+        <div class="login-buton">
+          <p class="heading-login">Log in to Not 4 Dating below</p>
 
         </div>
 
-        <div class="form-group">
+        <div class="or"></div>
 
-          <input type="password" class="form-control" id="usr" placeholder="Password" name="password" [(ngModel)]="password">
+
+        <div class="forms-field">
+          <div class="form-group">
+
+            <input type="text" class="form-control" id="usr" placeholder="User Name" name="user" [(ngModel)]="user">
+
+          </div>
+
+          <div class="form-group">
+
+            <input type="password" class="form-control" id="usr" placeholder="Password" name="password"
+              [(ngModel)]="password">
+
+          </div>
+          <div class="continue-button" (click)="nextSteps()">
+            Continue
+          </div>
 
         </div>
-        <div class="continue-button" (click)="nextSteps()">
-          Continue
-        </div>
+      </mat-tab>
 
-      </div>
-  </mat-tab>
-
-  <!--Second Tab-->
-  <!-- <mat-tab>
+      <!--Second Tab-->
+      <!-- <mat-tab>
  
 
     <div class="success-market">We are happy to see you again and can’t wait to help you find friends!  I see this is the first time you have logged in to the app.
@@ -69,39 +70,41 @@
 
   </mat-tab> -->
 
-  <!--Third Tab-->
-  <mat-tab>
+      <!--Third Tab-->
+      <mat-tab>
 
 
-    <div class="success-market">Hello!  What would you like to do first?
-    </div> 
+        <div class="success-market">Hello! What would you like to do first?
+        </div>
 
-    <div class="last-tab-button" routerLink="/chat/searchTab">
-      <div class="continue-button-last singin-lasts">
-       Find Friends
-      </div>
-    </div>
-
-
-
-
-    <div class="or">OR</div>
-
-
-    <div class="last-tab-button" routerLink="/optional-detail">
-      <div class="continue-button-last-blue singin-last">
-        Finish My Profile
-      </div>
-
-      <div class="success-market">Your Profile is currently X% complete.  Our members who share more information in their profile get better results.  But, if you don’t want to finish now you can add to your profile later at any time.</div>
-    </div>
-
-  </mat-tab>
+        <div class="last-tab-button" routerLink="/chat/searchTab">
+          <div class="continue-button-last singin-lasts">
+            Find Friends
+          </div>
+        </div>
 
 
 
 
-</mat-tab-group>
+        <div class="or">OR</div>
 
-</div>
+
+        <div class="last-tab-button" routerLink="/optional-detail">
+          <div class="continue-button-last-blue singin-last">
+            Finish My Profile
+          </div>
+
+          <div class="success-market">Your Profile is currently X% complete. Our members who share more information in
+            their profile get better results. But, if you don’t want to finish now you can add to your profile later at
+            any time.</div>
+        </div>
+
+      </mat-tab>
+
+
+
+
+    </mat-tab-group>
+
+  </div>
 </ion-content>

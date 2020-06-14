@@ -25,26 +25,22 @@ export class SigninPage implements OnInit {
   data: any;
   itrs: any;
   token: any;
-  LoggedIn:boolean=true
+  LoggedIn: boolean = true;
   constructor(
     private router: Router,
     private http: HttpClient,
-    public alertController: AlertController,
-  
+    public alertController: AlertController
   ) {}
 
   ngOnInit() {
     this.itrs = JSON.parse(localStorage.getItem("currentUser"));
-   if(this.itrs == null)
-   {
-     this.LoggedIn=false
-   }
-   else
-   {
-     this.LoggedIn=true
-   }
-
+    if (this.itrs == null) {
+      this.LoggedIn = false;
+    } else {
+      this.LoggedIn = true;
+    }
   }
+
   public tabChanged(tabChangeEvent: MatTabChangeEvent): void {
     this.selectedIndex = tabChangeEvent.index;
   }
@@ -57,7 +53,6 @@ export class SigninPage implements OnInit {
   }
   public nextSteps() {
     this.LoginForm(this.user, this.password);
-    this.selectedIndex += 1;
   }
 
   LoginForm(user, pass) {
@@ -81,20 +76,19 @@ export class SigninPage implements OnInit {
           headers: headers,
           withCredentials: true,
         };
-        
+
         this.http.post<any>(this.url, {}, requestOptions).subscribe((head) => {
           console.log(
             "This is the response after sending token to connect " +
               JSON.stringify(head)
           );
-        
+
           localStorage.setItem("Signinuser", JSON.stringify(head));
-          console.log(head)
-          this.LoggedIn=false
-          
+          console.log(head);
+          this.LoggedIn = false;
+
           window.location.reload();
         });
-      
       });
   }
 
@@ -106,5 +100,4 @@ export class SigninPage implements OnInit {
 
     await correct.present();
   }
-
 }

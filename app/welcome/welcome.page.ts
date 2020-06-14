@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone } from "@angular/core";
 import { ConfigService } from "../config.service";
 import { Geolocation } from "@ionic-native/geolocation/ngx";
 import { Platform } from "@ionic/angular";
@@ -12,16 +12,14 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { element } from "protractor";
 import { MatTabChangeEvent } from "@angular/material/tabs";
 import { FormControl } from "@angular/forms";
-import { Location } from '@angular/common';
+import { Location } from "@angular/common";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
-
 @Component({
-  selector: 'app-welcome',
-  templateUrl: './welcome.page.html',
-  styleUrls: ['./welcome.page.scss'],
+  selector: "app-welcome",
+  templateUrl: "./welcome.page.html",
+  styleUrls: ["./welcome.page.scss"],
 })
-
 export class WelcomePage implements OnInit {
   isLoading: boolean = false;
   hide: boolean = false;
@@ -31,7 +29,7 @@ export class WelcomePage implements OnInit {
   userCity;
   lat;
   lng;
- 
+
   latLngResult;
   userLocationFromLatLng;
   address: any;
@@ -40,39 +38,40 @@ export class WelcomePage implements OnInit {
   lats: string;
   postal: (error: any) => void;
   help: any;
-  
+
   addressData;
   postcode;
   signup: boolean = false;
   maxNumberOfTabs = 2;
   selectedIndex = 0;
   activit = new FormControl();
-  activities: string[] = ["yoga", "playdates (parents and children)", "happy hour/cocktails/beers", "sightseeing"];
-  Result:boolean =false
+  activities: string[] = [
+    "yoga",
+    "playdates (parents and children)",
+    "happy hour/cocktails/beers",
+    "sightseeing",
+  ];
+  Result: boolean = false;
   searchResponse = [];
   pageIndex = 0;
   currPage = [];
-  searchresult:boolean=false
+  searchresult: boolean = false;
   userLogged: any;
   scope: any;
-  
- 
-  constructor(private ConfigService: ConfigService,
+
+  constructor(
+    private ConfigService: ConfigService,
     public geolocation: Geolocation,
     private platform: Platform,
     private nativeGeocoder: NativeGeocoder,
     public zone: NgZone,
     private _Activatedroute: ActivatedRoute,
     private routes: Router,
-    private locate:Location,
-    private http:HttpClient) { }
+    private locate: Location,
+    private http: HttpClient
+  ) {}
 
-  ngOnInit() {
-      
-   
- 
-  }
-
+  ngOnInit() {}
 
   reverseGeoLookup() {
     // This is where the code for reverse GEO lookup will come
@@ -83,17 +82,18 @@ export class WelcomePage implements OnInit {
         if (this.address[i].types.includes("postal_code")) {
           this.postcode = this.address[i].long_name;
         }
-        this.isLoading = false
+        this.isLoading = false;
       }
-       this.searchresult=true
-       this.getSearchData()
+      this.searchresult = true;
+      this.getSearchData();
       // this.routes.navigate(["search-result/", this.postcode]);
     });
+  }
 
-
-
-
-
+  postcodeManuallyEnter() {
+    this.postcode = this.post;
+    this.searchresult = true;
+    this.getSearchData();
   }
 
   showFormPage() {
@@ -101,27 +101,24 @@ export class WelcomePage implements OnInit {
     this.hide = true;
   }
 
-
   popOpen() {
-    this.isLoading = true
+    this.isLoading = true;
     this.geolocation
       .getCurrentPosition()
       .then((resp) => {
         this.lat = resp.coords.latitude;
         this.lng = resp.coords.longitude;
-        console.log(this.lat)
-        console.log(this.lng)
+        console.log(this.lat);
+        console.log(this.lng);
         // If we get lat long then we will pull Address details from reverse geo lookup
         if (this.lat && this.lng) {
           this.reverseGeoLookup();
-        
         } else {
           this.showFormPage();
         }
-       
       }) // If we do not get lat long, we will present page with form for address and post code
       .catch((error) => {
-        this.isLoading = false
+        this.isLoading = false;
         this.popup = true;
         this.showFormPage();
       });
@@ -130,7 +127,7 @@ export class WelcomePage implements OnInit {
     this.popup = false;
   }
   signups() {
-    this.signup = true
+    this.signup = true;
   }
   public tabChanged(tabChangeEvent: MatTabChangeEvent): void {
     this.selectedIndex = tabChangeEvent.index;
@@ -153,10 +150,7 @@ export class WelcomePage implements OnInit {
     );
     this.pageIndex++;
   }
-  closesearchpop()
-  {
-    this.searchresult=false
+  closesearchpop() {
+    this.searchresult = false;
   }
-
- 
 }
