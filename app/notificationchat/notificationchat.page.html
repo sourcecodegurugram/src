@@ -12,9 +12,10 @@
           {{name}}
         </div>
         <div class="refesh-button" (click)="refreshChat()">
+          <i class="fa fa-refresh fa-spin" style="font-size:24px" *ngIf="updating"></i>
+          <i style="font-size:24px" class="fa" *ngIf="!updating">&#xf021;</i>
 
-
-    <img src="../../assets/Images/refresh.png" class="refesh-button-image">
+    <!-- <img src="../../assets/Images/refresh.png" class="refesh-button-image"> -->
 
         </div>
       </div>

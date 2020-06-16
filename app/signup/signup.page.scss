@@ -295,3 +295,9 @@ img.image-icon {
     margin: 0px;
     margin-top: -4vh;
 }
+.align-date {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 15px;
+    justify-items: center;
+}

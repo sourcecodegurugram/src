@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Location } from "@angular/common";
 @Component({
   selector: 'app-new-message',
   templateUrl: './new-message.page.html',
@@ -13,8 +14,9 @@ export class NewMessagePage implements OnInit {
   Subject: any;
   Message: any;
   name: string;
+  isLoading:boolean=false
 
-  constructor( private _Activatedroute: ActivatedRoute,private http: HttpClient,private router: Router) { }
+  constructor( private _Activatedroute: ActivatedRoute,private http: HttpClient,private router: Router,private _location:Location) { }
 
   ngOnInit() {
     this.itr = JSON.parse(localStorage.getItem("currentUser"));
@@ -29,7 +31,7 @@ export class NewMessagePage implements OnInit {
 
   sendMessage()
   {
-    console.log(this.uid)
+   this.isLoading = true;
     const headers = new HttpHeaders()
     .set("X-CSRF-Token", this.itr.token)
     .set("Content-Type", "application/json")
@@ -40,7 +42,7 @@ export class NewMessagePage implements OnInit {
     withCredentials: true,
   };
   return this.http
-    .post("http://gowebtutorial.com/api/json/privatemsg",
+    .post("https://gowebtutorial.com/api/json/privatemsg",
     {
       recipients: this.name,
       subject:this.Subject,
@@ -48,8 +50,11 @@ export class NewMessagePage implements OnInit {
     }
     , requestOptions)
     .subscribe((getMessagesSend) => {
-      console.log(getMessagesSend)
+      this.isLoading =false
       this.router.navigate(["/chat/tabs2"]);
     });
+  }
+  backClicked() {
+    this._location.back();
   }
 }

@@ -6,7 +6,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { IonicModule } from '@ionic/angular';
 import { MaterialModule } from '../material.module';
 import { SignupPageRoutingModule } from './signup-routing.module';
-
+import {NavBarPage} from '../nav-bar/nav-bar.page'
 import { SignupPage } from './signup.page';
 
 @NgModule({
@@ -19,6 +19,6 @@ import { SignupPage } from './signup.page';
     MatTableModule,
     MatTabsModule
   ],
-  declarations: [SignupPage]
+  declarations: [SignupPage,NavBarPage]
 })
 export class SignupPageModule {}

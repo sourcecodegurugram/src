@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { WelcomePage } from './welcome.page';
-import {SignupPageModule} from '../signup/signup.module';
+import { FavoratePopupPage } from './favorate-popup.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: WelcomePage
+    component: FavoratePopupPage
   }
 ];
 
@@ -15,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class WelcomePageRoutingModule {}
+export class FavoratePopupPageRoutingModule {}

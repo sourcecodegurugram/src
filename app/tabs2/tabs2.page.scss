@@ -32,8 +32,7 @@ p.last-chat {
 
 .main-content-chat {
     padding-top: 6em !important;
-    height: 110vh;
-    overflow: auto;
+    overflow: scroll;
 }
 
 .background-card {

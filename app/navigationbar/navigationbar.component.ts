@@ -7,6 +7,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AlertController } from "@ionic/angular";
 import { Location } from "@angular/common";
+import {AuthService} from '../auth.service';
+
 @Component({
   selector: "app-navigationbar",
   templateUrl: "./navigationbar.component.html",
@@ -28,7 +30,7 @@ export class NavigationbarComponent implements OnInit {
   user: string;
   pass: string;
   isLoading: boolean = false;
-  logoutUrl = "http://gowebtutorial.com/api/json/user/logout";
+  logoutUrl = "https://gowebtutorial.com/api/json/user/logout";
   url = "https://latdating.dd:8083/api/json/system/connect";
   headerDict: any;
   itrs: any;
@@ -49,7 +51,8 @@ export class NavigationbarComponent implements OnInit {
     private router: Router,
     private http: HttpClient,
     public _location: Location,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private AuthService:AuthService
   ) {}
 
   ngOnInit() {
@@ -64,10 +67,10 @@ export class NavigationbarComponent implements OnInit {
   this.fname= this.itrs.user.field_first_name.und[0].value
   this.lname =this.itrs.user.field_last_name.und[0].value
    this.userlogged= JSON.parse(localStorage.getItem("Signinuser"));
-   console.log(this.userlogged)
+
   }
 
-  console.log(this.itrs.token)
+
   
   }
   
@@ -99,7 +102,7 @@ export class NavigationbarComponent implements OnInit {
 
   LoginForm(user, pass) {
     this.http
-      .post<any>("http://gowebtutorial.com/api/json/user/login", {
+      .post<any>("https://gowebtutorial.com/api/json/user/login", {
         username: user,
         password: pass,
       })

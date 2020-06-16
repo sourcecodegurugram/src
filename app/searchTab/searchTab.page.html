@@ -13,7 +13,7 @@
       </div>
 
 
-      <label for="age">Aged</label>
+      <!-- <label for="age">Aged</label>
       <div class="dropdown-aged">
         <div class="form-group">
 
@@ -33,7 +33,7 @@
           </select>
         </div>
 
-      </div>
+      </div> -->
 
       <div class="form-group">
  
@@ -113,6 +113,12 @@
 
 <div>
   <div class="background" *ngIf="searchitem">
+    <div class="back-button">
+
+      <button type="button" class="btn btn-primary custom-back-button" (click)="searchBack()">Back</button>
+
+    </div>
+    
     <div class="members-grid" *ngFor="let result of searchResults" (click)="userDetails()" routerLink="/popup/{{result.Uid}}">
 
       <div class="photo-member-grid">

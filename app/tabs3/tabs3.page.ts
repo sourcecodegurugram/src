@@ -16,13 +16,11 @@ export class Tabs3Page implements OnInit {
 
   ngOnInit() {
     this.itrs = JSON.parse(localStorage.getItem("currentUser"));
-    this.http.get('http://gowebtutorial.com/api/json/user/' + this.itrs.user.uid).subscribe(users => {
+    this.http.get('https://gowebtutorial.com/api/json/user/' + this.itrs.user.uid).subscribe(users => {
       this.allfavorate = users
       this.listFavorate = this.allfavorate.field_favorite_users.und[0].value
       this.ParseFavorate = JSON.parse(this.listFavorate) 
       console.log(this.ParseFavorate)
-    
-
 
     })
 

@@ -34,11 +34,10 @@
 
           <div class="form-group">
             <label for="usr">How long have you lived here?</label>
-            <select class="form-control" id="sel1">
-              <option value="0">
-                < 2 years</option> <option value="1">2-5 years
-              </option>
-              <option vlaue="2">>5 years</option>
+            <select class="form-control" id="sel1" name="long" [(ngModel)]="live">
+              <option value="0"> < 2 years</option> 
+              <option value="1">2-5 years </option>
+              <option value="2">>5 years</option>
             </select>
           </div>
 
@@ -46,7 +45,7 @@
           <ion-item class="mt-4 usually-dropdown">
 
             <ion-label>My friends and I usually talk about</ion-label>
-            <ion-select multiple="true" cancelText="Close" okText="Okay">
+            <ion-select multiple="true" cancelText="Close" okText="Okay" name="talkabout" [(ngModel)]="talkabout">
 
               <ion-select-option value="Work" #Work>Work
               </ion-select-option>
@@ -66,7 +65,7 @@
           <ion-item class="mt-4 usually-dropdown mb-4">
 
             <ion-label>A Good Friend Is Someone Who...</ion-label>
-            <ion-select multiple="true" cancelText="Close" okText="Okay">
+            <ion-select multiple="true" cancelText="Close" okText="Okay" name="goodFriend" [(ngModel)]="goodFriend">
 
               <ion-select-option value="is always there for me." #always>is always there for me.
               </ion-select-option>
@@ -85,7 +84,7 @@
 
           <div class="form-group">
             <label for="usr">When someone cancels plans we made, I think</label>
-            <select class="form-control" id="sel1">
+            <select class="form-control" id="sel1" name="cancels" [(ngModel)]="cancels">
               <option value="My reaction depends on the reason why.">My reaction depends on the reason why.</option>
               <option value="Things happen – no big deal.">Things happen – no big deal.</option>
               <option value="It really bothers me and I am wary of the friendship.">It really bothers me and I am wary
@@ -97,7 +96,7 @@
             </select>
           </div>
 
-          <div class="continue-button" (click)="nextStep()">
+          <div class="continue-button" (click)="nextStep()" >
             Continue
           </div>
 
@@ -114,7 +113,7 @@
         <div class="forms-field">
           <div class="form-group">
             <label for="sel1">Are you in a relationship? </label>
-            <select class="form-control" id="sel1">
+            <select class="form-control" id="sel1" name="status" [(ngModel)]="status">
               <option>Single</option>
               <option>Married</option>
               <option>Co-Habitating</option>
@@ -146,8 +145,7 @@
           <ion-item class="mt-4 usually-dropdown mb-4">
 
             <ion-label>How about pets?</ion-label>
-            <ion-select multiple="true" cancelText="Close" okText="Okay">
-
+            <ion-select multiple="true" cancelText="Close" okText="Okay" name="pets" [(ngModel)]="pets">
               <ion-select-option value="Dog" #Dog>Dog
               </ion-select-option>
               <ion-select-option value="Cat" #Cat>Cat</ion-select-option>
@@ -165,14 +163,14 @@
 
           <div class="form-group">
             <label for="sel1">I spend my days…</label>
-            <input type="text" class="form-control" id="usr">
+            <textarea class="form-control" rows="5" id="usr" name="spend" [(ngModel)]="spend"></textarea>
           </div>
 
           <div class="form-group">
             <label for="sel1">I also speak</label>
-            <input type="text" class="form-control" id="usr">
+            <input type="text" class="form-control" id="usr" name="speak" [(ngModel)]="speak">
           </div>
-          <div class="continue-button" (click)="nextStep()">
+          <div class="continue-button"  (click)="nextStep()">
             Continue
           </div>
           <div class="previous-button" (click)="previousStep()">
@@ -195,7 +193,7 @@
         <div class="forms-field">
           <div class="form-group">
             <label for="sel1">Do you smoke?</label>
-            <select class="form-control" id="sel1">
+            <select class="form-control" id="sel1" name="smoke" [(ngModel)]="smoke">
               <option value="Never">Never</option>
               <option value="Rarely">Rarely</option>
               <option value="Weekends Only">Weekends Only</option>
@@ -207,7 +205,7 @@
 
           <div class="form-group">
             <label for="sel1">How about drinking alcohol? </label>
-            <select class="form-control" id="sel1">
+            <select class="form-control" id="sel1" name="alcohol" [(ngModel)]="alcohol">
 
               <option value="Never">Never</option>
               <option value="Rarely">Rarely</option>
@@ -217,29 +215,48 @@
             </select>
           </div>
 
+
+          <div class="form-group">
+            <label for="sel1">Education Level</label>
+            <select class="form-control" id="sel1" name="education" [(ngModel)]="education">
+
+              <option value="_none">- None -</option>
+              <option value="Less Than High School Diploma">Less Than High School Diploma</option>
+              <option value="High School Diploma">High School Diploma</option>
+              <option value="Some College/Technical School">Some College/Technical School</option>
+              <option value="Associates Degree">Associates Degree</option>
+              <option value="Technical School Degree">Technical School Degree</option>
+              <option value="College Degree">College Degree</option>
+              <option value="Graduate Degree">Graduate Degree</option>
+            </select>
+          </div>
+
+
           <div class="form-group">
             <label for="sel1">Favorite Books</label>
-            <input type="text" class="form-control" id="usr">
+            <textarea class="form-control" rows="5" id="usr" name="books" [(ngModel)]="books"></textarea>
           </div>
 
           <div class="form-group">
             <label for="sel1">Favorite Movies</label>
-            <input type="text" class="form-control" id="usr">
+            <textarea class="form-control" rows="5" id="usr" name="movies" [(ngModel)]="movies"></textarea>
           </div>
 
           <div class="form-group">
             <label for="sel1">Favorite TV Shows</label>
-            <input type="text" class="form-control" id="usr">
+            <textarea class="form-control" rows="5" id="usr" name="shows" [(ngModel)]="shows"></textarea>
           </div>
 
           <div class="form-group">
             <label for="sel1">Favorite Music</label>
-            <input type="text" class="form-control" id="usr">
+            <textarea class="form-control" rows="5" id="usr" name="music" [(ngModel)]="music"></textarea>
           </div>
+
+       
 
 
         </div>
-        <div class="continue-button" (click)="nextStep()">
+        <div class="continue-button"  (click)="nextStep()">
           Continue
         </div>
         <div class="previous-button" (click)="previousStep()">
@@ -291,9 +308,9 @@
 
           <div class="form-group">
             <label for="comment">Anything else you want to share?</label>
-            <textarea class="form-control" rows="5" id="comment"></textarea>
+            <textarea class="form-control" rows="5" id="comment" name="anything" [(ngModel)]="anything"></textarea>
           </div>
-          <div class="continue-button" (click)="nextStep()">
+          <div class="continue-button"  (click)="optionDetail(live,talkabout,goodFriend,cancels,status,pets,spend,speak,smoke,alcohol,education,books,movies,shows,music,anything)">
             Complete
           </div>
           <div class="previous-button" (click)="previousStep()">

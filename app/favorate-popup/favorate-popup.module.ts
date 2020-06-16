@@ -4,18 +4,18 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../material.module';
 import { IonicModule } from '@ionic/angular';
 
-import { NewMessagePageRoutingModule } from './new-message-routing.module';
+import { FavoratePopupPageRoutingModule } from './favorate-popup-routing.module';
 
-import { NewMessagePage } from './new-message.page';
+import { FavoratePopupPage } from './favorate-popup.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NewMessagePageRoutingModule,
+    FavoratePopupPageRoutingModule,
     MaterialModule
   ],
-  declarations: [NewMessagePage]
+  declarations: [FavoratePopupPage]
 })
-export class NewMessagePageModule {}
+export class FavoratePopupPageModule {}

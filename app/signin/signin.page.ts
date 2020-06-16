@@ -3,6 +3,7 @@ import { MatTabChangeEvent } from "@angular/material/tabs";
 import { ActivatedRoute, Router } from "@angular/router";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AlertController } from "@ionic/angular";
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: "app-signin",
@@ -26,18 +27,35 @@ export class SigninPage implements OnInit {
   itrs: any;
   token: any;
   LoggedIn: boolean = true;
+  isLoading:boolean =false;
+  signIn: any;
+  siginUser: any;
+  UserDetails: any;
   constructor(
     private router: Router,
     private http: HttpClient,
-    public alertController: AlertController
+    public alertController: AlertController,
+    public AuthService:AuthService
   ) {}
 
   ngOnInit() {
-    this.itrs = JSON.parse(localStorage.getItem("currentUser"));
-    if (this.itrs == null) {
-      this.LoggedIn = false;
-    } else {
-      this.LoggedIn = true;
+   
+    this.siginUser = JSON.parse(localStorage.getItem("currentUser"));
+    this.isLoading =true
+     if (this.siginUser!=null) {
+      this.AuthService.systemConnect().subscribe(UserLoggedIn=>
+      {
+        localStorage.setItem("Signinuser", JSON.stringify(UserLoggedIn))
+        this.UserDetails = UserLoggedIn
+        if(this.UserDetails != null)
+        {
+          this.router.navigate(['/find-friends'])
+        }
+      })
+    } 
+    else
+    {
+      this.isLoading =false
     }
   }
 
@@ -56,45 +74,28 @@ export class SigninPage implements OnInit {
   }
 
   LoginForm(user, pass) {
-    this.http
-      .post<any>("http://gowebtutorial.com/api/json/user/login", {
-        username: user,
-        password: pass,
+    this.isLoading =true
+   this.AuthService.loginUser(user, pass).subscribe(userDetail=>{
+    localStorage.setItem("currentUser", JSON.stringify(userDetail));
+    this.AuthService.systemConnect().subscribe(UserLoggedIn=>
+      {
+        localStorage.setItem("Signinuser", JSON.stringify(UserLoggedIn))
+        this.UserDetails = UserLoggedIn
+     
+        if(this.UserDetails != null)
+        {
+          this.router.navigate(['/find-friends'])
+        }
       })
-      .subscribe((data) => {
-        this.post = data;
-        localStorage.setItem("currentUser", JSON.stringify(data));
-        this.itr = JSON.parse(localStorage.getItem("currentUser"));
-        console.log(this.itr);
 
-        const headers = new HttpHeaders()
-          .set("X-CSRF-Token", this.itr.token)
-          .set("Content-Type", "application/json")
-          .set("X-Cookie", this.itr.session_name + "=" + this.itr.sessid);
-
-        const requestOptions = {
-          headers: headers,
-          withCredentials: true,
-        };
-
-        this.http.post<any>(this.url, {}, requestOptions).subscribe((head) => {
-          console.log(
-            "This is the response after sending token to connect " +
-              JSON.stringify(head)
-          );
-
-          localStorage.setItem("Signinuser", JSON.stringify(head));
-          console.log(head);
-          this.LoggedIn = false;
-
-          window.location.reload();
-        });
-      });
+   })
+  
+ 
   }
 
   async correctAlert() {
     const correct = await this.alertController.create({
-      message: "Logged In",
+      message: "Please Provide Valid Details",
       buttons: ["OK"],
     });
 

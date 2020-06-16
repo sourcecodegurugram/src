@@ -1,11 +1,10 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>newMessage</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<div  *ngIf="isLoading" class="loading-container">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
 
 <div class="main-New-message-container">
+
+  
   <div class="form-group">
     <input type="text" class="form-control" id="usr" name="Subject" [(ngModel)]="Subject" placeholder="Enter Subject">
   </div>
@@ -16,7 +15,10 @@
 
 <div class="button-align">
 
-  <button type="button" class="btn btn-primary" (click)="sendMessage()">Send</button>
+  <button type="button" class="btn btn-primary send-button" (click)="sendMessage()">Send</button>
+
+
+  <button type="button" class="btn btn-primary custom-back-button" (click)="backClicked()">Back</button>
 </div>
 </div>
 

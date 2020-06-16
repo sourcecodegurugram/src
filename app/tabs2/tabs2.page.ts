@@ -43,7 +43,7 @@ export class Tabs2Page implements OnInit {
         withCredentials: true,
       };
       return this.http
-        .get("http://gowebtutorial.com/api/json/privatemsg/", requestOptions)
+        .get("https://gowebtutorial.com/api/json/privatemsg/", requestOptions)
         .subscribe((getMessages) => {
           this.messages = getMessages;
           for (var i = 0; i < this.messages.length; i++) {
@@ -90,7 +90,7 @@ export class Tabs2Page implements OnInit {
       withCredentials: true,
     };
     return this.http
-      .get("http://gowebtutorial.com/api/json/privatemsg/", requestOptions)
+      .get("https://gowebtutorial.com/api/json/privatemsg/", requestOptions)
       .subscribe((getMessages) => {});
   }
 

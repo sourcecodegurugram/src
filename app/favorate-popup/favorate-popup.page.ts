@@ -1,15 +1,15 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import { ConfigService } from "../config.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AlertController } from "@ionic/angular";
 import { Location } from "@angular/common";
 @Component({
-  selector: "app-popup",
-  templateUrl: "./popup.page.html",
-  styleUrls: ["./popup.page.scss"],
+  selector: 'app-favorate-popup',
+  templateUrl: './favorate-popup.page.html',
+  styleUrls: ['./favorate-popup.page.scss'],
 })
-export class PopupPage implements OnInit {
+export class FavoratePopupPage implements OnInit {
   sub: any;
   name: string;
   mail: string;
@@ -124,75 +124,5 @@ export class PopupPage implements OnInit {
   }
   backClicked() {
     this._location.back();
-  }
-
-  getFavorite() {
-    this.isLoading =true;
-    this.scope = [];
-    this.http
-      .get("https://gowebtutorial.com/api/json/user/" + this.itrs.user.uid)
-      .subscribe((users) => {
-        this.respnoseJSON = users;
-        if (this.respnoseJSON.field_favorite_users.und) {
-          console.log("value exists");
-          this.scope = JSON.parse(
-            this.respnoseJSON.field_favorite_users["und"][0]["value"]
-          );
-          this.scope.push(this.favInfo);
-        } else {
-          console.log("value doesnt exist");
-          this.scope.push(this.favInfo);
-        }
-        this.addFavorite();
- 
-      });
-  }
-
-  addFavorite() {
-    // Add
-    const headers = new HttpHeaders()
-      .set("X-CSRF-Token", this.itrs.token)
-      .set("Content-Type", "application/json")
-      .set("X-Cookie", this.itrs.session_name + "=" + this.itrs.sessid);
-    const requestOptions = {
-      headers: headers,
-      withCredentials: true,
-    };
-
-    // Add entry into favorites
-
-    this.responseString = JSON.stringify(this.scope);
-    console.log(this.scope);
-
-    this.http
-      .put("https://gowebtutorial.com/api/json/user/" + this.itrs.user.uid,
-        {
-          field_favorite_users: {
-            und: [
-              {
-                value: this.responseString,
-              },
-            ],
-          },
-        },
-        requestOptions
-      )
-      .subscribe((favorate) => {
-        this.isLoading= false
-        this.addedFavorate()
-      });
-  }
-
-  async  addedFavorate()
-  {
-    
- 
-    const correct = await this.alertController.create({
-      message: "Added to favorites",
-      buttons: ["OK"],
-    });
-
-    await correct.present();
-
   }
 }

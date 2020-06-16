@@ -1,23 +1,20 @@
-<ion-content>
+<div  *ngIf="isLoading" class="loading-container">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+<ion-header>
+  <app-navigationbar></app-navigationbar>
+</ion-header>  
+
+
+
   <div class="main-singin">
-
-    <mat-tab-group class="mat-background" [(selectedIndex)]="selectedIndex">
-
-      <mat-tab *ngIf="!LoggedIn">
-
         <div class="login-buton">
           <p class="heading-login">Log in to Not 4 Dating below</p>
-
         </div>
-
         <div class="or"></div>
-
-
         <div class="forms-field">
           <div class="form-group">
-
             <input type="text" class="form-control" id="usr" placeholder="User Name" name="user" [(ngModel)]="user">
-
           </div>
 
           <div class="form-group">
@@ -31,80 +28,6 @@
           </div>
 
         </div>
-      </mat-tab>
-
-      <!--Second Tab-->
-      <!-- <mat-tab>
- 
-
-    <div class="success-market">We are happy to see you again and can’t wait to help you find friends!  I see this is the first time you have logged in to the app.
-    </div>
-
-    <div class="last-tab-button" (click)="nextStep()">
-      <div class="continue-button-last">
-        Free 7 day Trial
-      </div>
-
-      <div class="button-last">
-        <span class="under-text-button">(No card required)</span>
-      </div>
-    </div>
-
-
-
-
-    <div class="success-market">Become a verified member now for ad-free app usage, unlimited instant messages, and
-      enhanced search</div>
-
-
-    <div class="last-tab-button" (click)="nextStep()">
-      <div class="continue-button-last">
-        Become Verified
-      </div>
-
-      <div class="button-last">
-        <span class="under-text-button">
-          No Thanks!  I am happy to stay a basic member. Take me to the free web version at www.not4dating.com.</span>
-      </div>
-    </div>
-
-  </mat-tab> -->
-
-      <!--Third Tab-->
-      <mat-tab>
-
-
-        <div class="success-market">Hello! What would you like to do first?
-        </div>
-
-        <div class="last-tab-button" routerLink="/chat/searchTab">
-          <div class="continue-button-last singin-lasts">
-            Find Friends
-          </div>
-        </div>
-
-
-
-
-        <div class="or">OR</div>
-
-
-        <div class="last-tab-button" routerLink="/optional-detail">
-          <div class="continue-button-last-blue singin-last">
-            Finish My Profile
-          </div>
-
-          <div class="success-market">Your Profile is currently X% complete. Our members who share more information in
-            their profile get better results. But, if you don’t want to finish now you can add to your profile later at
-            any time.</div>
-        </div>
-
-      </mat-tab>
-
-
-
-
-    </mat-tab-group>
+  
 
   </div>
-</ion-content>

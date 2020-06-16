@@ -60,16 +60,7 @@ export class SearchTabPage implements OnInit {
     {
       this.live =this.Locallive
     }
-  
-
-
-
-//  this.Postcode=this.itrs.user.field_zip_code.und[0].postal_code
-//  this.live =this.itrs.user.field_zip_code.und[0].country
-
- 
-
-  }
+}
 
 
 
@@ -128,8 +119,10 @@ this.ConfigService.getUser(this.uid).subscribe((data)=>{
 });
 }
 
-autofill()
+searchBack()
 {
-
+  this.search = true
+  this.searchitem=false
+ 
 }
 }

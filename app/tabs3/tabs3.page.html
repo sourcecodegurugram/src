@@ -1,7 +1,7 @@
 
 <ion-content>
-  <div class="background" >
-    <div class="members-grid" *ngFor="let favorite of ParseFavorate">
+  <div class="background">
+    <div class="members-grid" *ngFor="let favorite of ParseFavorate" routerLink="/favorate-popup/{{favorite[0].uid}}">
       <div class="photo-member-grid">
         <img src={{favorite[0].picture}} class="image-profile">
       </div>

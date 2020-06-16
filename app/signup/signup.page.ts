@@ -53,7 +53,12 @@ export class SignupPage implements OnInit {
     public alertController: AlertController
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+
+   
+
+
+  }
   public tabChanged(tabChangeEvent: MatTabChangeEvent): void {
     this.selectedIndex = tabChangeEvent.index;
   }
@@ -74,9 +79,7 @@ export class SignupPage implements OnInit {
         this.presentAlert();
       } else if (this.lname == null) {
         this.presentAlert();
-      } else if (this.DOB == null) {
-        this.presentAlert();
-      } else {
+      }  else {
         this.selectedIndex = nextIndex;
       }
     } else if (presentIndex == 1) {
@@ -173,66 +176,35 @@ export class SignupPage implements OnInit {
     name,
     fname,
     lname,
-    DOB,
+    Month,
+    day,
+    year,
     Gender,
     contract,
     meet,
     live,
     zip,
-    yogas,
-    playdatess,
-    beers,
-    sightseeings,
-    artsy,
-    cook,
-    dancing,
-    watching,
-    games,
-    travelling,
-    history,
-    board,
-    sports,
-    mom,
-    outdoor,
-    dining,
-    concerts,
-    sportwatching,
-    shoppings,
-    crafty,
-    photographs,
-    animal,
-    crime,
-    chess,
-    movies,
-    dog,
-    fitness,
-    music,
-    trekking,
-    cars,
-    antiques,
-    horses,
-    anime,
-    scifi,
-    scuba,
-    rock,
-    cycling,
+    activity,
     email,
     confirmemail,
     password,
     confirmpassword
   ) {
-    // this.http
-    //   .get("https://gowebtutorial.com/api/json/file/" + this.Picurl.fid)
-    //   .subscribe((upload) => {
-    //     (this.uploadPicture = JSON.stringify(upload)),
-    //       console.log(JSON.stringify(upload));
-    //   });
-
+    var ts = Math.round((new Date()).getTime() / 1000);
+    console.log(ts)
+    this.http
+    .post("https://gowebtutorial.com/api/json/file/", this.uploadData)
+    .subscribe((res) => {
+      (this.Picurl = res), console.log(this.Picurl);
+    });
     this.http
       .post<any>("https://gowebtutorial.com/api/json/user/register", {
         name: name,
         mail: email,
         conf_mail: confirmemail,
+        timezone:ts,
+        login:ts,
+        access:ts,
         field_first_name: {
           und: [
             {
@@ -255,59 +227,29 @@ export class SignupPage implements OnInit {
             },
           ],
         },
-
-        field_birth_date: {
-          und: [
-            {
-              value: DOB,
-            },
-          ],
-        },
+        field_birth_date:
+        {und:[{
+          value:Month + - + day + - +year,
+          timezone: "America/Los_Angeles",
+          timezone_db: "America/Los_Angeles",
+          date_type: "datetime"
+        }
+      ]
+      },
+        // field_birth_date: {
+        //   und: [
+        //     {
+        //       value: DOB,
+        //     },
+        //   ],
+        // },
 
         field_gender: {
           und: Gender,
         },
 
         field_activities_interests: {
-          und: {
-            yoga: yogas,
-            playdates: playdatess,
-            happyhourcocktailsbeers: beers,
-            sightseeing: sightseeings,
-            artsyie: artsy,
-            cooking: cook,
-            dancing: dancing,
-            peoplewatching: watching,
-            games: games,
-            travelling: travelling,
-            history: history,
-            boardgames: board,
-            sportsplaying: sports,
-            momdadnightoutwokids: mom,
-            outdooractivities: outdoor,
-            diningout: dining,
-            concertsshows: concerts,
-            sportwatching: sportwatching,
-            shopping: shoppings,
-            craftythingsthingsyoumake: crafty,
-            photography: photographs,
-            animalloverpetowner: animal,
-            crimemysteryreader: crime,
-            chesss: chess,
-            movie: movies,
-            dogs: dog,
-            fitnesss: fitness,
-            musics: music,
-            trek: trekking,
-            car: cars,
-            antique: antiques,
-            horse: horses,
-            animes: anime,
-            scifis: scifi,
-            scubas: scuba,
-            rocks: rock,
-            cycle: cycling,
-          },
+          und:activity 
         },
         field_look_meet: {
           und: meet,
@@ -316,19 +258,31 @@ export class SignupPage implements OnInit {
         field_want_contarct: {
           und: contract,
         },
-        pass: {
-          pass1: password,
-          pass2: confirmpassword,
-        }
-        // field_user_avatar: {
-        //   und: [
-        //     {
-        //       fid: this.Picurl.fid,
-        //     },
-        //   ],
+        // pass: {
+        //   pass1: password,
+        //   pass2: confirmpassword,
         // },
+        field_user_avatar: {
+          und: [
+            {
+              fid: this.Picurl.fid,
+            },
+          ],
+        },
 
-        // picture: this.uploadPicture,
+        picture:  {
+          fid:"262761",
+          uid:"0",
+          filename: "CfakepathScreenshot 2020-06-08 at 4.13.59 PM.png",
+          uri:"public://CfakepathScreenshot 2020-06-08 at 4.13.59 PM_4.png",
+          filemime: "image/png",
+          filesize: "160407",
+          status: "1",
+          timestamp: "1591629823",
+          uri_full: "https://gowebtutorial.com/sites/default/files/CfakepathScreenshot%202020-06-08%20at%204.13.59%20PM_4.png",
+          target_uri: "CfakepathScreenshot 2020-06-08 at 4.13.59 PM_4.png",
+          
+        }
       })
       .subscribe((data) => {
         this.post = data;

@@ -10,7 +10,9 @@ import { SigninPage } from './signin.page';
 import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MaterialModule } from '../material.module';
+
 @NgModule({
+
   imports: [
     CommonModule,
     FormsModule,
@@ -18,7 +20,8 @@ import { MaterialModule } from '../material.module';
     SigninPageRoutingModule,
     MatTableModule,
     MatTabsModule,
-    MaterialModule 
+    MaterialModule ,
+    
   ],
   declarations: [SigninPage]
 })

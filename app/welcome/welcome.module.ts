@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { WelcomePageRoutingModule } from './welcome-routing.module';
 import { MaterialModule } from '../material.module';
 import { WelcomePage } from './welcome.page';
+import {NavigationbarComponent} from '../navigationbar/navigationbar.component'
 
 @NgModule({
   imports: [
@@ -13,8 +14,8 @@ import { WelcomePage } from './welcome.page';
     IonicModule,
     WelcomePageRoutingModule,
     MaterialModule,
-   
+  
   ],
-  declarations: [WelcomePage]
+  declarations: [WelcomePage,NavigationbarComponent]
 })
 export class WelcomePageModule {}

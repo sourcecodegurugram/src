@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { NavigationbarComponent } from './navigationbar.component';
+import { FavoratePopupPage } from './favorate-popup.page';
 
-describe('NavigationbarComponent', () => {
-  let component: NavigationbarComponent;
-  let fixture: ComponentFixture<NavigationbarComponent>;
+describe('FavoratePopupPage', () => {
+  let component: FavoratePopupPage;
+  let fixture: ComponentFixture<FavoratePopupPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavigationbarComponent ],
+      declarations: [ FavoratePopupPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(NavigationbarComponent);
+    fixture = TestBed.createComponent(FavoratePopupPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

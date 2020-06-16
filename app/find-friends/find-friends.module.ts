@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { Tabs3PageRoutingModule } from './tabs3-routing.module';
+import { FindFriendsPageRoutingModule } from './find-friends-routing.module';
 
-import { Tabs3Page } from './tabs3.page';
-import {NavBarPage} from '../nav-bar/nav-bar.page'
+import { FindFriendsPage } from './find-friends.page';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    Tabs3PageRoutingModule
+    FindFriendsPageRoutingModule
   ],
-  declarations: [Tabs3Page,NavBarPage]
+  declarations: [FindFriendsPage]
 })
-export class Tabs3PageModule {}
+export class FindFriendsPageModule {}

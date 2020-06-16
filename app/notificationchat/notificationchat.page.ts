@@ -23,6 +23,7 @@ export class NotificationchatPage implements OnInit {
   name;
   Send:boolean=true;
   Sending:boolean=false;
+  updating:boolean=false;
   constructor(
     private http: HttpClient,
     private _Activatedroute: ActivatedRoute
@@ -64,7 +65,7 @@ export class NotificationchatPage implements OnInit {
     };
     this.http
       .post<any>(
-        "http://gowebtutorial.com/api/json/privatemsg/",
+        "https://gowebtutorial.com/api/json/privatemsg/",
         {
           thread_id: this.thread,
           recipients: "44135",
@@ -84,6 +85,7 @@ export class NotificationchatPage implements OnInit {
 
   getChat() {
     if (this.itr != null) {
+      this.updating=true;
       const headers = new HttpHeaders()
         .set("X-CSRF-Token", this.itr.token)
         .set("Content-Type", "application/json")
@@ -94,7 +96,7 @@ export class NotificationchatPage implements OnInit {
       };
       return this.http
         .get(
-          "http://gowebtutorial.com/api/json/privatemsg/" + this.thread,
+          "https://gowebtutorial.com/api/json/privatemsg/" + this.thread,
           requestOptions
         )
         .subscribe((getMessages) => {
@@ -102,6 +104,7 @@ export class NotificationchatPage implements OnInit {
           this.message = this.messages.messages;
           this.thread = this.messages.pmtid;
           console.log(getMessages);
+          this.updating=false
         });
     }
   }

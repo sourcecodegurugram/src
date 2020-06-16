@@ -104,6 +104,21 @@ const routes: Routes = [
     path: 'new-message/:uid/:name',
     loadChildren: () => import('./new-message/new-message.module').then( m => m.NewMessagePageModule)
   },
+  {
+    path: 'find-friends',
+    loadChildren: () => import('./find-friends/find-friends.module').then( m => m.FindFriendsPageModule)
+  },
+  {
+    path: 'favorate-popup/:uid',
+    loadChildren: () => import('./favorate-popup/favorate-popup.module').then( m => m.FavoratePopupPageModule)
+  },
+  {
+    path: 'nav-bar',
+    loadChildren: () => import('./nav-bar/nav-bar.module').then( m => m.NavBarPageModule)
+  },
+
+
+
 
 ];
 
