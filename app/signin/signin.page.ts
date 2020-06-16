@@ -3,7 +3,7 @@ import { MatTabChangeEvent } from "@angular/material/tabs";
 import { ActivatedRoute, Router } from "@angular/router";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AlertController } from "@ionic/angular";
-import {AuthService} from "../auth.service";
+import { AuthService } from "../auth.service";
 
 @Component({
   selector: "app-signin",
@@ -27,7 +27,7 @@ export class SigninPage implements OnInit {
   itrs: any;
   token: any;
   LoggedIn: boolean = true;
-  isLoading:boolean =false;
+  isLoading: boolean = false;
   signIn: any;
   siginUser: any;
   UserDetails: any;
@@ -35,27 +35,22 @@ export class SigninPage implements OnInit {
     private router: Router,
     private http: HttpClient,
     public alertController: AlertController,
-    public AuthService:AuthService
+    public AuthService: AuthService
   ) {}
 
   ngOnInit() {
-   
     this.siginUser = JSON.parse(localStorage.getItem("currentUser"));
-    this.isLoading =true
-     if (this.siginUser!=null) {
-      this.AuthService.systemConnect().subscribe(UserLoggedIn=>
-      {
-        localStorage.setItem("Signinuser", JSON.stringify(UserLoggedIn))
-        this.UserDetails = UserLoggedIn
-        if(this.UserDetails != null)
-        {
-          this.router.navigate(['/find-friends'])
+    this.isLoading = true;
+    if (this.siginUser != null) {
+      this.AuthService.systemConnect().subscribe((UserLoggedIn) => {
+        localStorage.setItem("Signinuser", JSON.stringify(UserLoggedIn));
+        this.UserDetails = UserLoggedIn;
+        if (this.UserDetails != null) {
+          this.router.navigate(["/find-friends"]);
         }
-      })
-    } 
-    else
-    {
-      this.isLoading =false
+      });
+    } else {
+      this.isLoading = false;
     }
   }
 
@@ -74,23 +69,18 @@ export class SigninPage implements OnInit {
   }
 
   LoginForm(user, pass) {
-    this.isLoading =true
-   this.AuthService.loginUser(user, pass).subscribe(userDetail=>{
-    localStorage.setItem("currentUser", JSON.stringify(userDetail));
-    this.AuthService.systemConnect().subscribe(UserLoggedIn=>
-      {
-        localStorage.setItem("Signinuser", JSON.stringify(UserLoggedIn))
-        this.UserDetails = UserLoggedIn
-     
-        if(this.UserDetails != null)
-        {
-          this.router.navigate(['/find-friends'])
-        }
-      })
+    this.isLoading = true;
+    this.AuthService.loginUser(user, pass).subscribe((userDetail) => {
+      localStorage.setItem("currentUser", JSON.stringify(userDetail));
+      this.AuthService.systemConnect().subscribe((UserLoggedIn) => {
+        localStorage.setItem("Signinuser", JSON.stringify(UserLoggedIn));
+        this.UserDetails = UserLoggedIn;
 
-   })
-  
- 
+        if (this.UserDetails != null) {
+          this.router.navigate(["/find-friends"]);
+        }
+      });
+    });
   }
 
   async correctAlert() {

@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AlertController } from "@ionic/angular";
 import { Location } from "@angular/common";
-import {AuthService} from '../auth.service';
+import { AuthService } from "../auth.service";
 
 @Component({
   selector: "app-navigationbar",
@@ -36,14 +36,14 @@ export class NavigationbarComponent implements OnInit {
   itrs: any;
   userlogged: void;
   name: any;
-  uid:any;
+  uid: any;
   activity: any;
   Email: any;
   DOB: any;
   fname: any;
   lname: any;
-  isLoogedIn:boolean=false;
-  token="https://gowebtutorial.com/api/json/user/token"
+  isLoogedIn: boolean = false;
+  token = "https://gowebtutorial.com/api/json/user/token";
   constructor(
     private Configservice: ConfigService,
 
@@ -52,28 +52,23 @@ export class NavigationbarComponent implements OnInit {
     private http: HttpClient,
     public _location: Location,
     public alertController: AlertController,
-    private AuthService:AuthService
+    private AuthService: AuthService
   ) {}
 
   ngOnInit() {
     this.itrs = JSON.parse(localStorage.getItem("currentUser"));
-  if(this.itrs.user != null)
-  {
-    this.isLoogedIn=true
-    this.name = this.itrs.user.name
-  this.activity = this.itrs.user.field_activities_interests.und
-  this.Email = this.itrs.user.mail
-  this.DOB= this.itrs.user.field_birth_date.und[0].value
-  this.fname= this.itrs.user.field_first_name.und[0].value
-  this.lname =this.itrs.user.field_last_name.und[0].value
-   this.userlogged= JSON.parse(localStorage.getItem("Signinuser"));
-
+    if (this.itrs.user != null) {
+      this.isLoogedIn = true;
+      this.name = this.itrs.user.name;
+      this.activity = this.itrs.user.field_activities_interests.und;
+      this.Email = this.itrs.user.mail;
+      this.DOB = this.itrs.user.field_birth_date.und[0].value;
+      this.fname = this.itrs.user.field_first_name.und[0].value;
+      this.lname = this.itrs.user.field_last_name.und[0].value;
+      this.userlogged = JSON.parse(localStorage.getItem("Signinuser"));
+    }
   }
 
-
-  
-  }
-  
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
@@ -133,23 +128,21 @@ export class NavigationbarComponent implements OnInit {
 
   logOut() {
     const headers = new HttpHeaders()
-    .set("X-CSRF-Token", this.itrs.token)
-    .set("Content-Type", "application/json")
-          .set("X-Cookie", this.itrs.session_name + "=" + this.itrs.sessid);
+      .set("X-CSRF-Token", this.itrs.token)
+      .set("Content-Type", "application/json")
+      .set("X-Cookie", this.itrs.session_name + "=" + this.itrs.sessid);
 
-  const requestOptions = {
-    headers: headers,
-    withCredentials: true,
-  };
+    const requestOptions = {
+      headers: headers,
+      withCredentials: true,
+    };
 
-  this.http.post<any>(this.logoutUrl, {}, requestOptions).subscribe((head) => {
-    console.log(head);
-  localStorage.clear();
-  window.location.reload();
-  });
-
-
-
-    
+    this.http
+      .post<any>(this.logoutUrl, {}, requestOptions)
+      .subscribe((head) => {
+        console.log(head);
+        localStorage.clear();
+        window.location.reload();
+      });
   }
 }

@@ -14,7 +14,7 @@ import { MatTabChangeEvent } from "@angular/material/tabs";
 import { FormControl } from "@angular/forms";
 import { Location } from "@angular/common";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import {NavigationbarComponent} from '../navigationbar/navigationbar.component'
+
 @Component({
   selector: "app-welcome",
   templateUrl: "./welcome.page.html",

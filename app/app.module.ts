@@ -19,7 +19,6 @@ import {
   NativeGeocoderOptions,
 } from "@ionic-native/native-geocoder/ngx";
 
-
 @NgModule({
   declarations: [AppComponent, EllipsisPipe],
   entryComponents: [],
@@ -30,7 +29,6 @@ import {
     IonicModule.forRoot(),
     AppRoutingModule,
     RecaptchaModule.forRoot(),
- 
   ],
   providers: [
     StatusBar,
