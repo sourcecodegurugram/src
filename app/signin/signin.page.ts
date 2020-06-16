@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MatTabChangeEvent } from "@angular/material/tabs";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AlertController } from "@ionic/angular";
 import { AuthService } from "../auth.service";

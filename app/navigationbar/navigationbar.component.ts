@@ -57,15 +57,20 @@ export class NavigationbarComponent implements OnInit {
 
   ngOnInit() {
     this.itrs = JSON.parse(localStorage.getItem("currentUser"));
-    if (this.itrs.user != null) {
-      this.isLoogedIn = true;
-      this.name = this.itrs.user.name;
-      this.activity = this.itrs.user.field_activities_interests.und;
-      this.Email = this.itrs.user.mail;
-      this.DOB = this.itrs.user.field_birth_date.und[0].value;
-      this.fname = this.itrs.user.field_first_name.und[0].value;
-      this.lname = this.itrs.user.field_last_name.und[0].value;
-      this.userlogged = JSON.parse(localStorage.getItem("Signinuser"));
+
+    if (this.itrs) {
+      if (this.itrs.user != null) {
+        this.isLoogedIn = true;
+        this.name = this.itrs.user.name;
+        this.activity = this.itrs.user.field_activities_interests.und;
+        this.Email = this.itrs.user.mail;
+        this.DOB = this.itrs.user.field_birth_date.und[0].value;
+        this.fname = this.itrs.user.field_first_name.und[0].value;
+        this.lname = this.itrs.user.field_last_name.und[0].value;
+        this.userlogged = JSON.parse(localStorage.getItem("Signinuser"));
+      }
+    } else {
+      this.isLoogedIn = false;
     }
   }
 
