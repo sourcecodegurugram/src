@@ -1,16 +1,23 @@
-import { Component, OnInit ,ViewChild} from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatTabChangeEvent } from "@angular/material/tabs";
 import { ActivatedRoute, Router } from "@angular/router";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AlertController } from "@ionic/angular";
 import { AuthService } from "../auth.service";
-import { RouterOutlet,  ActivationStart } from '@angular/router';
+import { RouterOutlet, ActivationStart } from "@angular/router";
+import { catchError, retry } from "rxjs/operators";
+import { Observable, throwError } from "rxjs";
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpResponse,
+  HttpErrorResponse,
+} from "@angular/common/http";
+
 @Component({
   selector: "app-signin",
   templateUrl: "./signin.page.html",
   styleUrls: ["./signin.page.scss"],
 })
-
 export class SigninPage implements OnInit {
   maxNumberOfTabs = 5;
   selectedIndex = 0;
@@ -42,22 +49,19 @@ export class SigninPage implements OnInit {
 
   ngOnInit() {
     this.siginUser = JSON.parse(localStorage.getItem("currentUser"));
-       if(this.siginUser==null)
-       {
-  this.isLoading=false
-       }
-     
-     else if (this.siginUser != null) {
+    if (this.siginUser == null) {
+      this.isLoading = false;
+    } else if (this.siginUser != null) {
       this.isLoading = true;
-       this.AuthService.systemConnect().subscribe((UserLoggedIn) => {
-       localStorage.setItem("Signinuser", JSON.stringify(UserLoggedIn));
+      this.AuthService.systemConnect().subscribe((UserLoggedIn) => {
+        localStorage.setItem("Signinuser", JSON.stringify(UserLoggedIn));
         this.UserDetails = UserLoggedIn;
         if (this.UserDetails != null) {
-          this.isLoading=false
+          this.isLoading = false;
           this.router.navigate(["/find-friends"]);
-      }
+        }
       });
-    } 
+    }
   }
 
   public tabChanged(tabChangeEvent: MatTabChangeEvent): void {
@@ -76,17 +80,29 @@ export class SigninPage implements OnInit {
 
   LoginForm(user, pass) {
     this.isLoading = true;
-    this.AuthService.loginUser(user, pass).subscribe((userDetail) => {
-      localStorage.setItem("currentUser", JSON.stringify(userDetail));
-      this.AuthService.systemConnect().subscribe((UserLoggedIn) => {
-        localStorage.setItem("Signinuser", JSON.stringify(UserLoggedIn));
-        this.UserDetails = UserLoggedIn;
-
-        if (this.UserDetails != null) {
-          this.router.navigate(["/find-friends"]);
-        }
+    this.AuthService.loginUser(user, pass)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.status == 401) {
+            alert("Your username or password is incorrect");
+          } else if (error.status == 403) {
+            alert("The username  has not been activated or is blocked");
+          }
+          this.isLoading = false;
+          return throwError("Something bad happened; please try again later.");
+        })
+      )
+      .subscribe((userDetail) => {
+        localStorage.setItem("currentUser", JSON.stringify(userDetail));
+        this.AuthService.systemConnect().subscribe((UserLoggedIn) => {
+          localStorage.setItem("Signinuser", JSON.stringify(UserLoggedIn));
+          this.UserDetails = UserLoggedIn;
+          if (this.UserDetails != null) {
+            this.router.navigate(["/find-friends"]);
+          }
+          console.log(UserLoggedIn);
+        });
       });
-    });
   }
 
   async correctAlert() {
