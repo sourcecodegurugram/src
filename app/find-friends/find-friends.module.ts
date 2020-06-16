@@ -7,13 +7,13 @@ import { IonicModule } from '@ionic/angular';
 import { FindFriendsPageRoutingModule } from './find-friends-routing.module';
 
 import { FindFriendsPage } from './find-friends.page';
-
+import { NavigationbarModule } from "../navigationbar/navigationbar.module";
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FindFriendsPageRoutingModule
+    FindFriendsPageRoutingModule,NavigationbarModule
   ],
   declarations: [FindFriendsPage]
 })

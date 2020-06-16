@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { ChatPageRoutingModule } from './chat-routing.module';
-import{NavigationbarComponent} from '../navigationbar/navigationbar.component';
+import { NavigationbarModule } from "../navigationbar/navigationbar.module";
 import { ChatPage } from './chat.page';
 
 @NgModule({
@@ -14,6 +14,7 @@ import { ChatPage } from './chat.page';
     FormsModule,
     IonicModule,
     ChatPageRoutingModule,
+    NavigationbarModule
   ],
   declarations: [ChatPage]
 })

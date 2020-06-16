@@ -1,4 +1,7 @@
 
+<ion-header>
+  <app-navigationbar></app-navigationbar>
+</ion-header>
 <ion-content>
   <div class="background">
     <div class="members-grid" *ngFor="let favorite of ParseFavorate" routerLink="/favorate-popup/{{favorite[0].uid}}">

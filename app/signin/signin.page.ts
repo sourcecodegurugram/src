@@ -1,15 +1,16 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit ,ViewChild} from "@angular/core";
 import { MatTabChangeEvent } from "@angular/material/tabs";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AlertController } from "@ionic/angular";
 import { AuthService } from "../auth.service";
-
+import { RouterOutlet,  ActivationStart } from '@angular/router';
 @Component({
   selector: "app-signin",
   templateUrl: "./signin.page.html",
   styleUrls: ["./signin.page.scss"],
 })
+
 export class SigninPage implements OnInit {
   maxNumberOfTabs = 5;
   selectedIndex = 0;
@@ -31,6 +32,7 @@ export class SigninPage implements OnInit {
   signIn: any;
   siginUser: any;
   UserDetails: any;
+
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -40,18 +42,22 @@ export class SigninPage implements OnInit {
 
   ngOnInit() {
     this.siginUser = JSON.parse(localStorage.getItem("currentUser"));
-    this.isLoading = true;
-    if (this.siginUser != null) {
-      this.AuthService.systemConnect().subscribe((UserLoggedIn) => {
-        localStorage.setItem("Signinuser", JSON.stringify(UserLoggedIn));
+       if(this.siginUser==null)
+       {
+  this.isLoading=false
+       }
+     
+     else if (this.siginUser != null) {
+      this.isLoading = true;
+       this.AuthService.systemConnect().subscribe((UserLoggedIn) => {
+       localStorage.setItem("Signinuser", JSON.stringify(UserLoggedIn));
         this.UserDetails = UserLoggedIn;
         if (this.UserDetails != null) {
+          this.isLoading=false
           this.router.navigate(["/find-friends"]);
-        }
+      }
       });
-    } else {
-      this.isLoading = false;
-    }
+    } 
   }
 
   public tabChanged(tabChangeEvent: MatTabChangeEvent): void {

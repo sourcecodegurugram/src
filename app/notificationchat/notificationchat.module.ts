@@ -7,13 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { NotificationchatPageRoutingModule } from './notificationchat-routing.module';
 
 import { NotificationchatPage } from './notificationchat.page';
-
+import { NavigationbarModule } from "../navigationbar/navigationbar.module";
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NotificationchatPageRoutingModule
+    NotificationchatPageRoutingModule,
+    NavigationbarModule
   ],
   declarations: [NotificationchatPage]
 })

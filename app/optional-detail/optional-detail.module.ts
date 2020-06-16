@@ -10,7 +10,7 @@ import { MaterialModule } from '../material.module';
 import { OptionalDetailPageRoutingModule } from './optional-detail-routing.module';
 
 import { OptionalDetailPage } from './optional-detail.page';
-
+import { NavigationbarModule } from "../navigationbar/navigationbar.module";
 @NgModule({
   imports: [
     CommonModule,
@@ -19,7 +19,8 @@ import { OptionalDetailPage } from './optional-detail.page';
     OptionalDetailPageRoutingModule,
     MatTableModule,
     MatTabsModule,
-    MaterialModule
+    MaterialModule,
+    NavigationbarModule
 
 
   ],

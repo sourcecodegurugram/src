@@ -6,7 +6,7 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { IonicModule } from "@ionic/angular";
 import { MaterialModule } from "../material.module";
 import { SignupPageRoutingModule } from "./signup-routing.module";
-import { NavBarPage } from "../nav-bar/nav-bar.page";
+
 import { SignupPage } from "./signup.page";
 import { NavigationbarModule } from "../navigationbar/navigationbar.module";
 
@@ -21,6 +21,6 @@ import { NavigationbarModule } from "../navigationbar/navigationbar.module";
     MatTabsModule,
     NavigationbarModule,
   ],
-  declarations: [SignupPage, NavBarPage],
+  declarations: [SignupPage],
 })
 export class SignupPageModule {}

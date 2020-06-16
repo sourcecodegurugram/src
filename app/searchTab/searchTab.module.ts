@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { SearchTabPageRoutingModule } from './searchTab-routing.module';
 import { MaterialModule } from '../material.module';
 import { SearchTabPage } from './searchTab.page';
-
+import { NavigationbarModule } from "../navigationbar/navigationbar.module";
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +15,7 @@ import { SearchTabPage } from './searchTab.page';
     IonicModule,
     MaterialModule,
     SearchTabPageRoutingModule,
+    NavigationbarModule
   ],
   declarations: [SearchTabPage]
 })

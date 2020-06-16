@@ -7,13 +7,13 @@ import { IonicModule } from '@ionic/angular';
 import { DetailPageRoutingModule } from './detail-routing.module';
 
 import { DetailPage } from './detail.page';
-
+import { NavigationbarModule } from "../navigationbar/navigationbar.module";
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DetailPageRoutingModule
+    DetailPageRoutingModule,NavigationbarModule
   ],
   declarations: [DetailPage]
 })

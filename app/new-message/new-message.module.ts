@@ -5,7 +5,7 @@ import { MaterialModule } from '../material.module';
 import { IonicModule } from '@ionic/angular';
 
 import { NewMessagePageRoutingModule } from './new-message-routing.module';
-
+import { NavigationbarModule } from "../navigationbar/navigationbar.module";
 import { NewMessagePage } from './new-message.page';
 
 @NgModule({
@@ -14,7 +14,8 @@ import { NewMessagePage } from './new-message.page';
     FormsModule,
     IonicModule,
     NewMessagePageRoutingModule,
-    MaterialModule
+    MaterialModule,
+    NavigationbarModule
   ],
   declarations: [NewMessagePage]
 })

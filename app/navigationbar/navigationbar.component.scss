@@ -452,3 +452,17 @@ img.status-check {
 .modal{
     background: #000000a1;
 }
+.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0em 2em;
+    z-index: 1000;
+}
+.new-popup
+{
+    height: 100vh;
+    background-color: black;
+    width:100%;
+    z-index: 1000;
+}
+    

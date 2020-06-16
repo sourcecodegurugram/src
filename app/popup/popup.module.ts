@@ -7,14 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { PopupPageRoutingModule } from './popup-routing.module';
 
 import { PopupPage } from './popup.page';
-
+import { NavigationbarModule } from "../navigationbar/navigationbar.module";
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     PopupPageRoutingModule,
-    MaterialModule
+    MaterialModule,
+    NavigationbarModule
   ],
   declarations: [PopupPage]
 })

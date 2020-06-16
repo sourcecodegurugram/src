@@ -10,6 +10,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { RegisterPage } from './register.page';
 import { MaterialModule } from '../material.module';
 import { RecaptchaModule } from 'ng-recaptcha';
+
 @NgModule({
   imports: [
     CommonModule,

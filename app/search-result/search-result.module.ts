@@ -7,13 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { SearchResultPageRoutingModule } from './search-result-routing.module';
 import { EllipsisPipe } from '../../ellipsis.pipe';
 import { SearchResultPage } from './search-result.page';
-
+import { NavigationbarModule } from "../navigationbar/navigationbar.module";
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SearchResultPageRoutingModule
+    SearchResultPageRoutingModule,
+    NavigationbarModule
   ],
   declarations: [SearchResultPage,  ]
 })
