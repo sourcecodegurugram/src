@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AlertController } from "@ionic/angular";
 import { Location } from "@angular/common";
+
 @Component({
   selector: "app-popup",
   templateUrl: "./popup.page.html",
@@ -71,6 +72,11 @@ export class PopupPage implements OnInit {
   pets: any;
   isLoading: boolean = false;
   uniqueScope;
+  favorites_status = 1;
+  loggedInUser;
+  parsedFavorites;
+  loggedUser;
+  loggedUserUid;
 
   constructor(
     private ConfigService: ConfigService,
@@ -81,18 +87,24 @@ export class PopupPage implements OnInit {
   ) {}
 
   ngOnInit() {
+    // Get uid for logged in user
     this.itrs = JSON.parse(localStorage.getItem("currentUser"));
+
+    // Get uid of user
     this.sub = this._Activatedroute.paramMap.subscribe((params) => {
       this.uid = params.get("uid");
     });
+    this.getUser();
+  }
 
+  getUser() {
+    // Get fields for user
     this.http
       .get("https://gowebtutorial.com/api/json/user/" + this.uid)
       .subscribe((data) => {
         this.post = data;
-
         this.name = this.post.name; //
-        // this.picture = this.post.picture.url; //
+        this.picture = this.post.picture.url; //
         this.long = this.post.field_long_in_city.length;
         this.genders = this.post.field_gender.und; //
         this.statu = this.post.field_relationship_status.und; //
@@ -116,13 +128,40 @@ export class PopupPage implements OnInit {
         this.favInfo = [
           {
             name: this.post.name,
-            // picture: this.post.picture.url,
+            picture: this.post.picture.url,
             activities: this.post.field_activities_interests.und,
             uid: this.uid,
           },
         ];
+        this.getLoggedInUser();
       });
   }
+
+  getLoggedInUser() {
+    // Get favorite fields for logged in user
+    this.ConfigService.getUser(this.itrs.user.uid).subscribe((data) => {
+      this.loggedUser = data;
+      this.favorites_status = this.checUserFavorites();
+    });
+  }
+
+  checUserFavorites() {
+    if (this.loggedUser.field_favorite_users.und) {
+      this.parsedFavorites = JSON.parse(
+        this.loggedUser.field_favorite_users.und[0].value
+      );
+
+      // Check if user is already a favorite
+      if (this.parsedFavorites.some((person) => person[0].uid === this.uid)) {
+        console.log("This person is already a favorite");
+        return 3;
+      } else {
+        console.log("This person is not yet a favorite");
+        return 2;
+      }
+    }
+  }
+
   backClicked() {
     this._location.back();
   }
@@ -156,7 +195,6 @@ export class PopupPage implements OnInit {
   }
 
   addFavorite() {
-    // Add
     const headers = new HttpHeaders()
       .set("X-CSRF-Token", this.itrs.token)
       .set("Content-Type", "application/json")
@@ -187,12 +225,22 @@ export class PopupPage implements OnInit {
       .subscribe((favorate) => {
         this.isLoading = false;
         this.addedFavorate();
+        this.getLoggedInUser();
       });
   }
 
   async addedFavorate() {
     const correct = await this.alertController.create({
       message: "Added to favorites",
+      buttons: ["OK"],
+    });
+
+    await correct.present();
+  }
+
+  async removedFavorate() {
+    const correct = await this.alertController.create({
+      message: "Removed from favorites",
       buttons: ["OK"],
     });
 
@@ -207,5 +255,43 @@ export class PopupPage implements OnInit {
       if (isNew) mySet.add(key);
       return isNew;
     });
+  }
+
+  removeFavorite() {
+    this.parsedFavorites = this.parsedFavorites.filter((obj) => {
+      return obj[0].uid !== this.uid;
+    });
+
+    const headers = new HttpHeaders()
+      .set("X-CSRF-Token", this.itrs.token)
+      .set("Content-Type", "application/json")
+      .set("X-Cookie", this.itrs.session_name + "=" + this.itrs.sessid);
+    const requestOptions = {
+      headers: headers,
+      withCredentials: true,
+    };
+
+    // Add entry into favorites
+    this.responseString = JSON.stringify(this.parsedFavorites);
+
+    this.http
+      .put(
+        "https://gowebtutorial.com/api/json/user/" + this.itrs.user.uid,
+        {
+          field_favorite_users: {
+            und: [
+              {
+                value: this.responseString,
+              },
+            ],
+          },
+        },
+        requestOptions
+      )
+      .subscribe((favorate) => {
+        this.isLoading = false;
+        this.removedFavorate();
+        this.getLoggedInUser();
+      });
   }
 }

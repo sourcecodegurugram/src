@@ -1,4 +1,4 @@
-<div  *ngIf="isLoading" class="loading-container">
+<div *ngIf="isLoading" class="loading-container">
   <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 </div>
 <ion-header>
@@ -9,11 +9,11 @@
 
   <div class="main-pop">
 
-    
+
     <div class="pop-grids">
 
       <div class="modal-grid">
-        
+
         <div class="profile-picture-modal">
           <img src={{picture}} class="image-profile">
         </div>
@@ -28,7 +28,7 @@
 
 
         </div>
-       
+
       </div>
 
       <div class="siderbar-icon-data">
@@ -37,10 +37,22 @@
             <img src="../../assets/Images/popchat.png" class="chat-bubble" routerLink="/new-message/{{uid}}/{{name}}">
             <span class="name-icon">Chat</span>
           </div>
-          <div class="group-text-image" (click)="getFavorite()">
-            <img src="../../assets/Images/star.png" class="chat-bubble">
+
+          <div *ngIf="favorites_status == 1" class="group-text-image" style="opacity: .4;">
+            <img src="../../assets/Images/star.png" disable class="chat-bubble disable_favorite">
             <span class="name-icon">Favorite</span>
           </div>
+
+          <div *ngIf="favorites_status == 2" class="group-text-image" (click)="getFavorite()">
+            <img src="../../assets/Images/star.png" class="chat-bubble get_favorite">
+            <span class="name-icon">ADD Favorite</span>
+          </div>
+
+          <div *ngIf="favorites_status == 3" class="group-text-image" (click)="removeFavorite()">
+            <img src="../../assets/Images/star.png" class="chat-bubble remove_favorite">
+            <span class="name-icon">Remove Favorite</span>
+          </div>
+
           <div class="group-text-image">
             <img src="../../assets/Images/sign.png" class="chat-bubble" (click)="backClicked()">
           </div>
@@ -99,72 +111,72 @@
 
           <div class="fields-data">
             <div class="field-name" *ngIf="day">How you spend your days?:</div>
-            <div class="output-text"  *ngFor="let days of day">{{days.value}}</div>
+            <div class="output-text" *ngFor="let days of day">{{days.value}}</div>
           </div>
 
           <div class="fields-data">
             <div class="field-name" *ngIf="cancels">If plan get cancels?:</div>
-            <div class="output-text"  *ngFor="let cancel of cancels">{{cancel.value}}</div>
+            <div class="output-text" *ngFor="let cancel of cancels">{{cancel.value}}</div>
           </div>
 
           <div class="fields-data">
             <div class="field-name" *ngIf="tends">Firends tends to be?:</div>
-            <div class="output-text"  *ngFor="let tend of tends">{{tend.value}}</div>
+            <div class="output-text" *ngFor="let tend of tends">{{tend.value}}</div>
           </div>
-      
+
           <div class="fields-data">
             <div class="field-name" *ngIf="edue">Education Level:</div>
-            <div class="output-text"  *ngFor="let edue of edue">{{edue.value}}</div>
+            <div class="output-text" *ngFor="let edue of edue">{{edue.value}}</div>
           </div>
-      
+
           <div class="fields-data">
             <div class="field-name" *ngIf="smokes">Do you smokes:</div>
-            <div class="output-text"  *ngFor="let smokes of smokes">{{smokes.value}}</div>
+            <div class="output-text" *ngFor="let smokes of smokes">{{smokes.value}}</div>
           </div>
 
 
           <div class="fields-data">
             <div class="field-name" *ngIf="statu">Relationship status:</div>
-            <div class="output-text"  *ngFor="let statu of statu">{{statu.value}}</div>
+            <div class="output-text" *ngFor="let statu of statu">{{statu.value}}</div>
           </div>
 
           <div class="fields-data">
             <div class="field-name" *ngIf="long">How long you live:</div>
-            <div class="output-text"  *ngFor="let long of long">{{long.value}}</div>
+            <div class="output-text" *ngFor="let long of long">{{long.value}}</div>
           </div>
-        
+
           <div class="fields-data">
             <div class="field-name" *ngIf="alcohol">Do you drink:</div>
-            <div class="output-text"  *ngFor="let alcohol of alcohol">{{alcohol.value}}</div>
+            <div class="output-text" *ngFor="let alcohol of alcohol">{{alcohol.value}}</div>
           </div>
 
           <div class="fields-data">
             <div class="field-name" *ngIf="language">Language:</div>
-            <div class="output-text"  *ngFor="let language of language">{{language.value}}</div>
+            <div class="output-text" *ngFor="let language of language">{{language.value}}</div>
           </div>
 
           <div class="fields-data">
             <div class="field-name" *ngIf="talk">Friends talk About:</div>
-            <div class="output-text"  *ngFor="let talk of talk">{{talk.value}}</div>
+            <div class="output-text" *ngFor="let talk of talk">{{talk.value}}</div>
           </div>
 
 
           <div class="fields-data">
             <div class="field-name" *ngIf="tv">TV Shows:</div>
-            <div class="output-text"  *ngFor="let tv of tv">{{tv.value}}</div>
+            <div class="output-text" *ngFor="let tv of tv">{{tv.value}}</div>
           </div>
 
           <div class="fields-data">
             <div class="field-name" *ngIf="good">Good Friends:</div>
-            <div class="output-text"  *ngFor="let good of good">{{good.value}}</div>
+            <div class="output-text" *ngFor="let good of good">{{good.value}}</div>
           </div>
 
 
           <div class="fields-data">
             <div class="field-name" *ngIf="pets">Pets:</div>
-            <div class="output-text"  *ngFor="let pets of pets">{{pets.value}}</div>
+            <div class="output-text" *ngFor="let pets of pets">{{pets.value}}</div>
           </div>
-         
+
 
 
 
