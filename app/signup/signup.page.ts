@@ -176,9 +176,7 @@ export class SignupPage implements OnInit {
     name,
     fname,
     lname,
-    Month,
-    day,
-    year,
+    DOB,
     Gender,
     contract,
     meet,
@@ -192,11 +190,11 @@ export class SignupPage implements OnInit {
   ) {
     var ts = Math.round((new Date()).getTime() / 1000);
     console.log(ts)
-    this.http
-    .post("https://gowebtutorial.com/api/json/file/", this.uploadData)
-    .subscribe((res) => {
-      (this.Picurl = res), console.log(this.Picurl);
-    });
+    // this.http
+    // .post("https://gowebtutorial.com/api/json/file/", this.uploadData)
+    // .subscribe((res) => {
+    //   (this.Picurl = res), console.log(this.Picurl);
+    // });
     this.http
       .post<any>("https://gowebtutorial.com/api/json/user/register", {
         name: name,
@@ -227,22 +225,16 @@ export class SignupPage implements OnInit {
             },
           ],
         },
-        field_birth_date:
-        {und:[{
-          value:Month + - + day + - +year,
-          timezone: "America/Los_Angeles",
-          timezone_db: "America/Los_Angeles",
-          date_type: "datetime"
-        }
-      ]
-      },
-        // field_birth_date: {
-        //   und: [
-        //     {
-        //       value: DOB,
-        //     },
-        //   ],
-        // },
+      //   field_birth_date:
+      //   {und:[
+      //     {
+      //     value:DOB,
+      //   }
+      // ]
+      // },
+        field_birth_date: {
+          und:DOB 
+        },
 
         field_gender: {
           und: Gender,
@@ -262,27 +254,27 @@ export class SignupPage implements OnInit {
         //   pass1: password,
         //   pass2: confirmpassword,
         // },
-        field_user_avatar: {
-          und: [
-            {
-              fid: this.Picurl.fid,
-            },
-          ],
-        },
+        // field_user_avatar: {
+        //   und: [
+        //     {
+        //       fid: this.Picurl.fid,
+        //     },
+        //   ],
+        // },
 
-        picture:  {
-          fid:"262761",
-          uid:"0",
-          filename: "CfakepathScreenshot 2020-06-08 at 4.13.59 PM.png",
-          uri:"public://CfakepathScreenshot 2020-06-08 at 4.13.59 PM_4.png",
-          filemime: "image/png",
-          filesize: "160407",
-          status: "1",
-          timestamp: "1591629823",
-          uri_full: "https://gowebtutorial.com/sites/default/files/CfakepathScreenshot%202020-06-08%20at%204.13.59%20PM_4.png",
-          target_uri: "CfakepathScreenshot 2020-06-08 at 4.13.59 PM_4.png",
+        // picture:  {
+        //   fid:"262761",
+        //   uid:"0",
+        //   filename: "CfakepathScreenshot 2020-06-08 at 4.13.59 PM.png",
+        //   uri:"public://CfakepathScreenshot 2020-06-08 at 4.13.59 PM_4.png",
+        //   filemime: "image/png",
+        //   filesize: "160407",
+        //   status: "1",
+        //   timestamp: "1591629823",
+        //   uri_full: "https://gowebtutorial.com/sites/default/files/CfakepathScreenshot%202020-06-08%20at%204.13.59%20PM_4.png",
+        //   target_uri: "CfakepathScreenshot 2020-06-08 at 4.13.59 PM_4.png",
           
-        }
+        // }
       })
       .subscribe((data) => {
         this.post = data;
