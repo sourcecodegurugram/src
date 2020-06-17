@@ -8,7 +8,12 @@ const routes: Routes = [
   {
     path: '',
     component: WelcomePage
-  }
+  },
+  {
+    path: 'signin',
+    redirectTo: '/signin',
+    pathMatch: 'full'
+  },
 ];
 
 @NgModule({

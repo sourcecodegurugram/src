@@ -5,14 +5,16 @@
     </div>
 
     <div class="account-status">
-      <img src="../../assets/Images/user.png" class="status-check" data-toggle="modal" data-target="#profile"
-        *ngIf="isLoogedIn">
+      <img src="../../assets/Images/user.png" class="status-check" 
+        *ngIf="isLoogedIn" (click)="openAlertDialog()">
     </div>
 
     <div class="humburger-menu">
       <!-- <img src="../../assets/Images/cross.png" class="hum-burger-menu-cross" *ngIf="crossSign" (click)="humBurgerCross()"> -->
       <img src="../../assets/Images/newmenu.png" class="hum-burger-menu" (click)="humburgereffect()" *ngIf="humBurger">
     </div>
+
+<div class="newpopup"></div>
 
   </div>
 
@@ -28,6 +30,7 @@
         <li><a routerLink="/register">Old Register</a></li>
       </ul> -->
   </div>
+
 </ion-header>
 
 <div class="login-form" *ngIf="logggenIn">
@@ -47,34 +50,7 @@
 
 
 </div>
-<!-- The Modal nav Option-->
-<div class="modal" id="profile">
-  <div class="modal-dialog">
-    <div class="modal-content" data-dismiss="modal">
-
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-        <div class="continue-button" data-toggle="modal" data-target="#profileedit" data-dismiss="modal">
-          View/Edit Profile
-        </div>
-        <div class="continue-button" data-toggle="modal" data-target="#Account" data-dismiss="modal">
-          Account Settings
-        </div>
-        <div class="logout-text-container" (click)="logOut()">
-          <span class="log-out-text">Log Out</span>
-        </div>
-      </div>
-
-
-
-    </div>
-  </div>
-</div>
-
+ 
 
 <!-- The Modal Profile Edit-->
 <div class="modal" id="profileedit">
@@ -99,7 +75,6 @@
           <div class="profile-name-modal">
             <span class="name">{{name}}</span>
             <span class="not-verified">Verified</span>
-
           </div>
 
         </div>
@@ -188,6 +163,3 @@
     </div>
 
 
-    <div class="new-popup">
-      
-    </div>

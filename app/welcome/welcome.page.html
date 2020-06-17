@@ -1,10 +1,11 @@
-<div *ngIf="isLoading" class="loading-container">
-  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
-</div>
 <ion-header>
   <app-navigationbar></app-navigationbar>
 </ion-header>
-<ion-content>
+<div *ngIf="isLoading" class="loading-container">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+
+
   <div class="welcome">
     <div class="welcome-content">
       <p class="welcome-content-Para">
@@ -38,14 +39,13 @@
 
       </div>
 
-
       <div class="alreday-member" routerLink="/signin">
         I am already a member
       </div>
     </div>
   </div>
 
-</ion-content>
+
 
 <div class="background-oops" *ngIf="popup">
 

@@ -84,12 +84,12 @@ export class SigninPage implements OnInit {
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status == 401) {
-            alert("Your username or password is incorrect");
+            this.username()
           } else if (error.status == 403) {
-            alert("The username  has not been activated or is blocked");
+            this.notActivated()
           }
           this.isLoading = false;
-          return throwError("Something bad happened; please try again later.");
+          return throwError(this.something());
         })
       )
       .subscribe((userDetail) => {
@@ -110,7 +110,27 @@ export class SigninPage implements OnInit {
       message: "Please Provide Valid Details",
       buttons: ["OK"],
     });
-
+    await correct.present();
+  }
+  async username() {
+    const correct = await this.alertController.create({
+      message: "Your username or password is incorrect",
+      buttons: ["OK"],
+    });
+    await correct.present();
+  }
+  async notActivated() {
+    const correct = await this.alertController.create({
+      message: "The username  has not been activated or is blocked",
+      buttons: ["OK"],
+    });
+    await correct.present();
+  }
+  async something() {
+    const correct = await this.alertController.create({
+      message: "Something bad happened; please try again later.",
+      buttons: ["OK"],
+    });
     await correct.present();
   }
 }

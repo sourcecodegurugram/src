@@ -15,6 +15,7 @@ import { NavigationbarModule } from "../navigationbar/navigationbar.module";
     WelcomePageRoutingModule,
     MaterialModule,
     NavigationbarModule,
+  
   ],
   declarations: [WelcomePage],
 })

@@ -2,10 +2,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* align-items: center; */
     margin: 0px 2em;
-    /* margin-top: 6em; */
-    height: 100vh;
+  
 }
 p.welcome-content-Para {
     font-size: 19px;
@@ -166,7 +164,10 @@ button.button-common {
 
 
 .welcome {
-    margin-top: 3em;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  background: white;
 }
 .serach-result {
     position: absolute;

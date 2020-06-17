@@ -37,4 +37,17 @@ export class AuthService {
     };
     return this.http.post<any>(this.url, {}, requestOptions);
   }
+
+  header()
+  {
+    this.itr = JSON.parse(localStorage.getItem("currentUser"));
+    const headers = new HttpHeaders()
+      .set("X-CSRF-Token", this.itr.token)
+      .set("Content-Type", "application/json")
+      .set("X-Cookie", this.itr.session_name + "=" + this.itr.sessid);
+    const requestOptions = {
+      headers: headers,
+      withCredentials: true,
+    };
+  }
 }

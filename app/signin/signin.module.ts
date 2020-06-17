@@ -19,6 +19,7 @@ import { NavigationbarModule } from "../navigationbar/navigationbar.module";
     MatTabsModule,
     MaterialModule,
     NavigationbarModule,
+   
   ],
   declarations: [SigninPage],
 })

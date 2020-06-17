@@ -8,6 +8,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AlertController } from "@ionic/angular";
 import { Location } from "@angular/common";
 import { AuthService } from "../auth.service";
+import { VERSION, MatDialogRef, MatDialog, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
+import {AlertProfileDialogComponent} from './alert-profile/alert-profile-dialog.component';
 
 @Component({
   selector: "app-navigationbar",
@@ -15,6 +17,7 @@ import { AuthService } from "../auth.service";
   styleUrls: ["./navigationbar.component.scss"],
 })
 export class NavigationbarComponent implements OnInit {
+  version = VERSION;
   crossSign: boolean = false;
   humBurger: boolean = true;
   mainMenu: boolean = false;
@@ -52,7 +55,9 @@ export class NavigationbarComponent implements OnInit {
     private http: HttpClient,
     public _location: Location,
     public alertController: AlertController,
-    private AuthService: AuthService
+    private AuthService: AuthService,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -149,5 +154,15 @@ export class NavigationbarComponent implements OnInit {
         localStorage.clear();
         window.location.reload();
       });
+  }
+  openAlertDialog() {
+    const dialogRef = this.dialog.open(AlertProfileDialogComponent,{
+      data:{
+        message: 'HelloWorld',
+        buttonText: {
+          cancel: 'Done'
+        }
+      },
+    });
   }
 }

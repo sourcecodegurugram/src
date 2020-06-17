@@ -14,14 +14,15 @@ import { Geolocation } from "@ionic-native/geolocation/ngx";
 import { RecaptchaModule } from "ng-recaptcha";
 import { EllipsisPipe } from "../ellipsis.pipe";
 import { SignupPageModule } from "./signup/signup.module";
+import { MaterialModule } from './material.module';
 import {
   NativeGeocoder,
   NativeGeocoderOptions,
 } from "@ionic-native/native-geocoder/ngx";
-
+import {AlertProfileDialogComponent} from './navigationbar/alert-profile/alert-profile-dialog.component'
 @NgModule({
-  declarations: [AppComponent, EllipsisPipe],
-  entryComponents: [],
+  declarations: [AppComponent, EllipsisPipe,AlertProfileDialogComponent],
+  entryComponents: [AlertProfileDialogComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -29,6 +30,7 @@ import {
     IonicModule.forRoot(),
     AppRoutingModule,
     RecaptchaModule.forRoot(),
+    MaterialModule
   ],
   providers: [
     StatusBar,

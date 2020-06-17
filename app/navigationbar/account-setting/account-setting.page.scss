@@ -1,0 +1,67 @@
+.main-background-black {
+    background-color: #00000085;
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    overflow: scroll;
+
+}
+.main-white-background {
+    background-color: white;
+    padding: 2em;
+    padding: 1em;
+    width: 88vw;
+    margin-top: 4em;
+
+
+}
+img.cross-image {
+    width: 11%;
+}
+.exit-button {
+    display: flex;
+    float: right;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+}
+.forms-field{
+    margin: 1em 1em;
+}
+.form-control {
+    border: 1px solid;
+}
+.font {
+    font-size: 20px;
+}
+.form-check {
+
+    font-size: 18px;
+}
+.blue
+{
+background-color: #4372c4;
+}
+.close-account
+{
+    color:red;
+    margin: 1em;
+    text-align: center;
+}
+img.status-check {
+    width: 80%;
+}
+.continue-button{
+    background-color: #54B151;
+    height: 3em;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 9px;
+    margin: 2em;
+    font-size: 18px;
+}

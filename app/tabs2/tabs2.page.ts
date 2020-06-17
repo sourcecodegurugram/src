@@ -37,7 +37,6 @@ export class Tabs2Page implements OnInit {
         .set("X-CSRF-Token", this.itr.token)
         .set("Content-Type", "application/json")
         .set("X-Cookie", this.itr.session_name + "=" + this.itr.sessid);
-
       const requestOptions = {
         headers: headers,
         withCredentials: true,

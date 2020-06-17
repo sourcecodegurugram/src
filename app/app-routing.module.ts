@@ -111,11 +111,16 @@ const routes: Routes = [
   {
     path: 'favorate-popup/:uid',
     loadChildren: () => import('./favorate-popup/favorate-popup.module').then( m => m.FavoratePopupPageModule)
+  },  {
+    path: 'edit-profile',
+    loadChildren: () => import('./navigationbar/edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
   },
   {
-    path: 'nav-bar',
-    loadChildren: () => import('./nav-bar/nav-bar.module').then( m => m.NavBarPageModule)
+    path: 'account-setting',
+    loadChildren: () => import('./navigationbar/account-setting/account-setting.module').then( m => m.AccountSettingPageModule)
   },
+
+
 
 
 

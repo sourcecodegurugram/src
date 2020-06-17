@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { NavBarPageRoutingModule } from './nav-bar-routing.module';
+import { EditProfilePageRoutingModule } from './edit-profile-routing.module';
 
-import { NavBarPage } from './nav-bar.page';
+import { EditProfilePage } from './edit-profile.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NavBarPageRoutingModule
+    EditProfilePageRoutingModule
   ],
-  declarations: [NavBarPage]
+  declarations: [EditProfilePage]
 })
-export class NavBarPageModule {}
+export class EditProfilePageModule {}
