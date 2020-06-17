@@ -4,11 +4,12 @@
     font-size: 18px;
     margin-bottom: 0em;
 }
-.under-text-button
-{
+
+.under-text-button {
     color: #ada2a2;
 }
-.continue-button-last{
+
+.continue-button-last {
     background-color: #54B151;
     height: 3em;
     color: white;
@@ -19,17 +20,18 @@
     margin: 2em;
     margin-bottom: 0px;
 }
+
 .button-last {
     text-align: center;
     margin: 0em 3em;
 
 }
-.singin-lasts
-{
+
+.singin-lasts {
     margin-bottom: 2em !important;
 }
-.continue-button-last-blue
-{
+
+.continue-button-last-blue {
     background-color: #4372C4;
     height: 3em;
     color: white;
@@ -38,22 +40,27 @@
     align-items: center;
     border-radius: 9px;
     margin: 2em;
-  
+
 }
+
 .login-buton {
     width: 100vw;
 }
+
 p.heading-login {
     text-align: center;
     font-size: 20px;
 }
+
 .or {
     width: 100vw;
     text-align: center;
 }
+
 .main-div {
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: white;
 }

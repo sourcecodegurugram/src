@@ -84,9 +84,9 @@ export class SigninPage implements OnInit {
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status == 401) {
-            this.username()
+            this.username();
           } else if (error.status == 403) {
-            this.notActivated()
+            this.notActivated();
           }
           this.isLoading = false;
           return throwError(this.something());
@@ -127,10 +127,10 @@ export class SigninPage implements OnInit {
     await correct.present();
   }
   async something() {
-    const correct = await this.alertController.create({
-      message: "Something bad happened; please try again later.",
-      buttons: ["OK"],
-    });
-    await correct.present();
+    // const correct = await this.alertController.create({
+    //   message: "Something bad happened; please try again later.",
+    //   buttons: ["OK"],
+    // });
+    // await correct.present();
   }
 }

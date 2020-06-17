@@ -69,13 +69,15 @@ export class PopupPage implements OnInit {
   tv: any;
   good: any;
   pets: any;
-  isLoading:boolean = false;
+  isLoading: boolean = false;
+  uniqueScope;
+
   constructor(
     private ConfigService: ConfigService,
     private _Activatedroute: ActivatedRoute,
     private _location: Location,
     private http: HttpClient,
-    public alertController: AlertController,
+    public alertController: AlertController
   ) {}
 
   ngOnInit() {
@@ -84,50 +86,49 @@ export class PopupPage implements OnInit {
       this.uid = params.get("uid");
     });
 
-    this.http.get("https://gowebtutorial.com/api/json/user/" + this.uid ).subscribe((data) => {
-      this.post = data;
-       
-      this.name = this.post.name;//
-      this.picture = this.post.picture.url;//
-      this.long = this.post.field_long_in_city.length;
-      this.genders = this.post.field_gender.und;//
-      this.statu = this.post.field_relationship_status.und;//
-      this.smokes = this.post.field_smoke.und;//
-      this.activity = this.post.field_activities_interests.und;//
-      this.edue = this.post.field_education_level.und;//
-      this.tends = this.post.field_friends_tend_to_be.und;//
-      this.cancels = this.post.field_plans_get_cancelled.und;//
-      this.day = this.post.field_spend_your_days.und;//
-      this.movie = this.post.field_favorite_movies.und;//
-      this.musics = this.post.field_favorite_music.und;//
-      this.book = this.post.field_favorite_books.und;//
-      this.friend = this.post.field_talk_about.und;
-      this.contact = this.post.field_gender.und;//
-     this.alcohol=this.post.field_alcohol.und;
-     this.language = this.post.field_languages.und;
-     this.talk =this.post.field_talk_about.und;
-     this.tv = this.post.field_favorite_tv_shows.und;
-     this.good = this.post.field_good_friend.und;
-     this.pets = this.post.field_any_pets.und;
-      this.favInfo = [
-        {
-          name: this.post.name,
-          picture: this.post.picture.url,
-          activities: this.post.field_activities_interests.und,
-          uid:this.uid
-        },
-      ];
-      console.log(this.post)
-     
-    });
-   
+    this.http
+      .get("https://gowebtutorial.com/api/json/user/" + this.uid)
+      .subscribe((data) => {
+        this.post = data;
+
+        this.name = this.post.name; //
+        // this.picture = this.post.picture.url; //
+        this.long = this.post.field_long_in_city.length;
+        this.genders = this.post.field_gender.und; //
+        this.statu = this.post.field_relationship_status.und; //
+        this.smokes = this.post.field_smoke.und; //
+        this.activity = this.post.field_activities_interests.und; //
+        this.edue = this.post.field_education_level.und; //
+        this.tends = this.post.field_friends_tend_to_be.und; //
+        this.cancels = this.post.field_plans_get_cancelled.und; //
+        this.day = this.post.field_spend_your_days.und; //
+        this.movie = this.post.field_favorite_movies.und; //
+        this.musics = this.post.field_favorite_music.und; //
+        this.book = this.post.field_favorite_books.und; //
+        this.friend = this.post.field_talk_about.und;
+        this.contact = this.post.field_gender.und; //
+        this.alcohol = this.post.field_alcohol.und;
+        this.language = this.post.field_languages.und;
+        this.talk = this.post.field_talk_about.und;
+        this.tv = this.post.field_favorite_tv_shows.und;
+        this.good = this.post.field_good_friend.und;
+        this.pets = this.post.field_any_pets.und;
+        this.favInfo = [
+          {
+            name: this.post.name,
+            // picture: this.post.picture.url,
+            activities: this.post.field_activities_interests.und,
+            uid: this.uid,
+          },
+        ];
+      });
   }
   backClicked() {
     this._location.back();
   }
 
   getFavorite() {
-    this.isLoading =true;
+    this.isLoading = true;
     this.scope = [];
     this.http
       .get("https://gowebtutorial.com/api/json/user/" + this.itrs.user.uid)
@@ -143,8 +144,14 @@ export class PopupPage implements OnInit {
           console.log("value doesnt exist");
           this.scope.push(this.favInfo);
         }
+
+        //Make scope unique
+        this.uniqueScope = this.removeDuplicatesBy(
+          (x) => x[0].name,
+          this.scope
+        );
+
         this.addFavorite();
- 
       });
   }
 
@@ -160,12 +167,12 @@ export class PopupPage implements OnInit {
     };
 
     // Add entry into favorites
-
-    this.responseString = JSON.stringify(this.scope);
-    console.log(this.scope);
+    this.responseString = JSON.stringify(this.uniqueScope);
+    console.log(this.uniqueScope);
 
     this.http
-      .put("https://gowebtutorial.com/api/json/user/" + this.itrs.user.uid,
+      .put(
+        "https://gowebtutorial.com/api/json/user/" + this.itrs.user.uid,
         {
           field_favorite_users: {
             und: [
@@ -178,21 +185,27 @@ export class PopupPage implements OnInit {
         requestOptions
       )
       .subscribe((favorate) => {
-        this.isLoading= false
-        this.addedFavorate()
+        this.isLoading = false;
+        this.addedFavorate();
       });
   }
 
-  async  addedFavorate()
-  {
-    
- 
+  async addedFavorate() {
     const correct = await this.alertController.create({
       message: "Added to favorites",
       buttons: ["OK"],
     });
 
     await correct.present();
+  }
 
+  removeDuplicatesBy(keyFn, array) {
+    var mySet = new Set();
+    return array.filter(function (x) {
+      var key = keyFn(x),
+        isNew = !mySet.has(key);
+      if (isNew) mySet.add(key);
+      return isNew;
+    });
   }
 }

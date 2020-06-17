@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { Location } from "@angular/common";
 @Component({
-  selector: 'app-edit-profile',
-  templateUrl: './edit-profile.page.html',
-  styleUrls: ['./edit-profile.page.scss'],
+  selector: "app-edit-profile",
+  templateUrl: "./edit-profile.page.html",
+  styleUrls: ["./edit-profile.page.scss"],
 })
 export class EditProfilePage implements OnInit {
-
   crossSign: boolean = false;
   humBurger: boolean = true;
   mainMenu: boolean = false;
@@ -33,26 +32,26 @@ export class EditProfilePage implements OnInit {
   fname: any;
   lname: any;
   isLoogedIn: boolean = false;
+  picture;
   token = "https://gowebtutorial.com/api/json/user/token";
-  constructor(  private _location: Location,) { }
+  constructor(private _location: Location) {}
 
   ngOnInit() {
     this.itrs = JSON.parse(localStorage.getItem("currentUser"));
-    if(this.itrs== null)
-    {
+    if (this.itrs == null) {
       this.isLoogedIn = false;
+    } else if (this.itrs.user != null) {
+      this.isLoogedIn = true;
+      this.name = this.itrs.user.name;
+      this.activity = this.itrs.user.field_activities_interests.und;
+      this.Email = this.itrs.user.mail;
+      this.DOB = this.itrs.user.field_birth_date.und[0].value;
+      this.fname = this.itrs.user.field_first_name.und[0].value;
+      this.lname = this.itrs.user.field_last_name.und[0].value;
+      this.picture = this.itrs.user.picture.url;
+      this.userlogged = JSON.parse(localStorage.getItem("Signinuser"));
+      // console.log(this.itrs);
     }
-          
-      else if (this.itrs.user != null) {
-        this.isLoogedIn = true;
-        this.name = this.itrs.user.name;
-        this.activity = this.itrs.user.field_activities_interests.und;
-        this.Email = this.itrs.user.mail;
-        this.DOB = this.itrs.user.field_birth_date.und[0].value;
-        this.fname = this.itrs.user.field_first_name.und[0].value;
-        this.lname = this.itrs.user.field_last_name.und[0].value;
-        this.userlogged = JSON.parse(localStorage.getItem("Signinuser"));
-      }
   }
   backClicked() {
     this._location.back();

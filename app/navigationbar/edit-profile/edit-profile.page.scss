@@ -1,4 +1,4 @@
-.continue-button{
+.continue-button {
     background-color: #54B151;
     height: 3em;
     color: white;
@@ -9,20 +9,24 @@
     margin: 2em;
     font-size: 18px;
 }
+
 .modal-grid {
     display: grid;
     grid-template-columns: 2fr 3fr 1fr;
     grid-gap: 11px;
 }
+
 .profile-name-modal {
     display: flex;
     flex-direction: column;
     justify-content: center;
     font-size: 18px;
 }
+
 .sidebar-content {
     margin-top: 1em;
 }
+
 .main-background {
     background-color: #00000085;
     height: 100vh;
@@ -31,13 +35,16 @@
     justify-content: center;
     align-items: center;
 }
+
 .second-background {
     background-color: white;
-    margin: 2em;
+    margin: 1em;
 }
+
 img.cross-image {
     width: 60%;
 }
+
 .detail-data-activity {
     /* font-family: 'Open Sans', sans-serif; */
     /* font-style: normal; */
@@ -53,9 +60,11 @@ img.cross-image {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .third-desktop {
     margin: 2em;
 }
+
 .activity {
     /* display: flex; */
     /* flex-direction: column; */
@@ -74,5 +83,5 @@ img.cross-image {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    
+
 }
