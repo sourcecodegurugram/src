@@ -3,23 +3,9 @@ import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 
 const routes: Routes = [
   { path: "", redirectTo: "welcome", pathMatch: "full" },
-  {
-    path: "home/upload.php",
-    loadChildren: () =>
-      import("./home/home.module").then((m) => m.HomePageModule),
-  },
-  {
-    path: "location-targetting",
-    loadChildren: () =>
-      import("./location-targetting/location-targetting.module").then(
-        (m) => m.LocationTargettingPageModule
-      ),
-  },
-  {
-    path: "register",
-    loadChildren: () =>
-      import("./register/register.module").then((m) => m.RegisterPageModule),
-  },
+ 
+
+
   {
     path: "chat",
     loadChildren: () =>
@@ -28,51 +14,32 @@ const routes: Routes = [
   {
     path: "searchTab",
     loadChildren: () =>
-      import("./searchTab/searchTab.module").then((m) => m.SearchTabPageModule),
+      import("./chat/searchUser/searchUser.module").then((m) => m.searchUserPageModule),
   },
   {
-    path: "tabs2",
-    loadChildren: () =>
-      import("./tabs2/tabs2.module").then((m) => m.Tabs2PageModule),
+    path: 'ChatsThreadListing',
+    loadChildren: () => import('./chat/ChatsThreadListing/ChatsThreadListing.module').then( m => m.ChatsThreadListingPageModule)
   },
   {
     path: "tabs3",
     loadChildren: () =>
-      import("./tabs3/tabs3.module").then((m) => m.Tabs3PageModule),
+      import("./chat/FavoriteUsers/FavoriteUsers.module").then((m) => m.FavoriteUsersPageModule),
   },
-  {
-    path: "personal-chat",
-    loadChildren: () =>
-      import("./personal-chat/personal-chat.module").then(
-        (m) => m.PersonalChatPageModule
-      ),
-  },
+
   {
     path: "notificationchat/:thread_id/:image_path/:name",
     loadChildren: () =>
-      import("./notificationchat/notificationchat.module").then(
+      import("./chat/ChatsThreadListing/notificationchat/notificationchat.module").then(
         (m) => m.NotificationchatPageModule
       ),
   },
-  {
-    path: "search-result/:post",
-    loadChildren: () =>
-      import("./search-result/search-result.module").then(
-        (m) => m.SearchResultPageModule
-      ),
-  },
+ 
   {
     path: "detail/:name/:mail/:uid",
     loadChildren: () =>
-      import("./detail/detail.module").then((m) => m.DetailPageModule),
+      import("./welcome/detail/detail.module").then((m) => m.DetailPageModule),
   },
-  {
-    path: "elipsispipe",
-    loadChildren: () =>
-      import("./elipsispipe/elipsispipe.module").then(
-        (m) => m.ElipsispipePageModule
-      ),
-  },
+
   {
     path: "welcome",
     loadChildren: () =>
@@ -91,38 +58,42 @@ const routes: Routes = [
   {
     path: "optional-detail",
     loadChildren: () =>
-      import("./optional-detail/optional-detail.module").then(
+      import("./Signin/optional-detail/optional-detail.module").then(
         (m) => m.OptionalDetailPageModule
       ),
   },
   {
     path: "popup/:uid",
     loadChildren: () =>
-      import("./popup/popup.module").then((m) => m.PopupPageModule),
+      import("./chat/userDetail/userDetail.module").then((m) => m.userDetailPageModule),
   },
   {
     path: 'new-message/:uid/:name',
-    loadChildren: () => import('./new-message/new-message.module').then( m => m.NewMessagePageModule)
+    loadChildren: () => import('./chat/searchUser/new-message/new-message.module').then( m => m.NewMessagePageModule)
   },
   {
     path: 'find-friends',
-    loadChildren: () => import('./find-friends/find-friends.module').then( m => m.FindFriendsPageModule)
+    loadChildren: () => import('./Signin/find-friends/find-friends.module').then( m => m.FindFriendsPageModule)
   },
+
   {
-    path: 'favorate-popup/:uid',
-    loadChildren: () => import('./favorate-popup/favorate-popup.module').then( m => m.FavoratePopupPageModule)
-  },  {
     path: 'edit-profile',
-    loadChildren: () => import('./navigationbar/edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
+    loadChildren: () => import('./Navigation/MyProfile/MyProfile.module').then( m => m.MyProfilePageModule)
   },
   {
     path: 'account-setting',
-    loadChildren: () => import('./navigationbar/account-setting/account-setting.module').then( m => m.AccountSettingPageModule)
+    loadChildren: () => import('./Navigation/AccountSettings/account-setting.module').then( m => m.AccountSettingPageModule)
   },
 
-
-
-
+  {
+    path: 'searchuserresult/:gender/:meet/:activity/:Postcode',
+    loadChildren: () => import('./chat/searchUser/searchUserResult/search-user-result.module').then( m => m.SearchUserResultPageModule)
+  },
+  {
+    path: 'blockedusers',
+    loadChildren: () => import('./Navigation/blockedusers/blockedusers.module').then( m => m.BlockedusersPageModule)
+  },
+  
 
 
 ];

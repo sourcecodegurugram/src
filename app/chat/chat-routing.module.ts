@@ -9,14 +9,14 @@ const routes: Routes = [
     path: '',
     component: ChatPage,
     children:[
-      {path: 'searchTab',
-      loadChildren: () => import('../searchTab/searchTab.module').then( m => m.SearchTabPageModule)},
+      {path: 'searchUser',
+      loadChildren: () => import('./searchUser/searchUser.module').then( m => m.searchUserPageModule)},
       {
-        path: 'tabs2',
-        loadChildren: () => import('../tabs2/tabs2.module').then( m => m.Tabs2PageModule)
+        path: 'ChatsThreadListing',
+        loadChildren: () => import('./ChatsThreadListing/ChatsThreadListing.module').then( m => m.ChatsThreadListingPageModule)
       },
-        { path: 'tabs3',
-        loadChildren: () => import('../tabs3/tabs3.module').then( m => m.Tabs3PageModule)}
+        { path: 'FavoriteUsers',
+        loadChildren: () => import('./FavoriteUsers/FavoriteUsers.module').then( m => m.FavoriteUsersPageModule)}
     ]
   },
   {

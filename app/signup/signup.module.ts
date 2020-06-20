@@ -8,7 +8,7 @@ import { MaterialModule } from "../material.module";
 import { SignupPageRoutingModule } from "./signup-routing.module";
 
 import { SignupPage } from "./signup.page";
-import { NavigationbarModule } from "../navigationbar/navigationbar.module";
+import { NavigationbarModule } from "../Navigation/NavigationBar/navigationbar.module";
 
 @NgModule({
   imports: [

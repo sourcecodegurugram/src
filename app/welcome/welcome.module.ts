@@ -5,7 +5,7 @@ import { IonicModule } from "@ionic/angular";
 import { WelcomePageRoutingModule } from "./welcome-routing.module";
 import { MaterialModule } from "../material.module";
 import { WelcomePage } from "./welcome.page";
-import { NavigationbarModule } from "../navigationbar/navigationbar.module";
+import { NavigationbarModule } from "../Navigation/NavigationBar/navigationbar.module";
 
 @NgModule({
   imports: [

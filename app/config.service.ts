@@ -51,46 +51,53 @@ export class ConfigService {
     );
   }
 
-  getSearchUrl(gender, meet, activity, Postalcode) {
+  getSearchUrl(Postalcode,gender, meet, activity) {
     // Only use fields that are specified
-
-    if (gender) {
-      this.gender = "&gender=" + gender;
-    } else {
-      this.gender = "";
-    }
-    if (meet) {
-      this.meet = "&meet=" + meet;
-    } else {
-      this.meet = "";
-    }
-    if (activity) {
-      this.activity = "&activity=" + activity;
-    } else {
-      this.activity = "";
-    }
     if (Postalcode) {
       this.Postalcode = "&postal=" + Postalcode;
     } else {
       this.Postalcode = "";
     }
+    if (gender!=0) {
+      this.gender = "&gender=" + gender;
+    } else if(gender==0){
+      this.gender = "";
+    }
+    if (meet!=0) {
+      this.meet= "&meet=" + meet;
+    } else if(meet==0)
+    {
+     this.meet="";
+    }
+    if (activity!=0) {
+      this.activity = "&activity=" + activity;
+    } else if(activity==0) {
+      this.activity="";
+    }
+    
+    
+   
+     
+  
 
     console.log(
       this.serverUrl +
-        "search-view?test=test" +
+        "search-view?" +
+        this.Postalcode+
         this.gender +
         this.meet +
-        this.activity +
-        this.Postalcode
+        this.activity 
+       
     );
 
     return this.http.get(
       this.serverUrl +
-        "search-view?test=test" +
+        "search-view?" +
+        this.Postalcode +
         this.gender +
         this.meet +
-        this.activity +
-        this.Postalcode
+        this.activity 
+        
     );
   }
 

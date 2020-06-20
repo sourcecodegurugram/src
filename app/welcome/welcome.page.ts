@@ -119,8 +119,6 @@ export class WelcomePage implements OnInit {
       }) // If we do not get lat long, we will present page with form for address and post code
       .catch((error) => {
         this.isLoading = false;
-        this.popup = true;
-        this.showFormPage();
       });
   }
   closepop() {

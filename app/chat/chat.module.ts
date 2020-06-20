@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { ChatPageRoutingModule } from './chat-routing.module';
-import { NavigationbarModule } from "../navigationbar/navigationbar.module";
+import { NavigationbarModule } from "../Navigation/NavigationBar/navigationbar.module";
 import { ChatPage } from './chat.page';
 
 @NgModule({

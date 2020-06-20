@@ -6,8 +6,8 @@ import { SigninPageRoutingModule } from "./signin-routing.module";
 import { SigninPage } from "./signin.page";
 import { MatTableModule } from "@angular/material/table";
 import { MatTabsModule } from "@angular/material/tabs";
-import { MaterialModule } from "../material.module";
-import { NavigationbarModule } from "../Navigation/NavigationBar/navigationbar.module";
+import { MaterialModule } from "../../material.module";
+import { NavigationbarModule } from "../../Navigation/NavigationBar/navigationbar.module";
 
 @NgModule({
   imports: [

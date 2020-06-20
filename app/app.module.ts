@@ -19,7 +19,7 @@ import {
   NativeGeocoder,
   NativeGeocoderOptions,
 } from "@ionic-native/native-geocoder/ngx";
-import {AlertProfileDialogComponent} from './navigationbar/alert-profile/alert-profile-dialog.component'
+import {AlertProfileDialogComponent} from './Navigation/NavigationBar/alert-profile/alert-profile-dialog.component'
 @NgModule({
   declarations: [AppComponent, EllipsisPipe,AlertProfileDialogComponent],
   entryComponents: [AlertProfileDialogComponent],
