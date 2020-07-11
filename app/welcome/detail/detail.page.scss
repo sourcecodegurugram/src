@@ -1,0 +1,205 @@
+.background
+{
+    background-image: url('../../../assets/Images/BackgroundTile.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    overflow-x: auto;
+}
+
+.membership {
+   
+    padding: 10px;
+    text-align: left;
+    background-color: white;
+}
+.picture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 0em;
+}
+.picture-img
+{
+  
+    width: 50vw;
+    height: 13vh;
+    border-radius: 50%;
+  
+
+    position: relative;
+    top: 7vh;
+    box-shadow: 0px 0px 0px 2px white;
+}
+.top-card {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    padding: 2vw;
+    padding-top: 8vh;
+    width: 86vw;
+    background-color: white;
+    margin: -5px;
+    padding-bottom: 2vh;
+    box-shadow: 2px 2px 6px 4px #2125294d;
+}
+p
+{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+.image-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 29vw;
+}
+.inner-group {
+    display: grid;
+
+    
+}
+.membership.inner-group-activity {
+    display: grid;
+
+}
+ion-card.subscribe-card.md.hydrated {
+    margin: 2.5em 2em;
+    box-shadow: 2px 2px 6px 4px#2125294d;
+}
+.name {
+    font-size: 18px;
+    font-weight: 600;
+}
+.name-output {
+    font-size: 17px;
+    font-weight: 400;
+    margin: 3px 0px;
+}
+.pop-background {
+    background-color: #00000094;
+    height: 100vh;
+}
+
+
+
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+   
+    grid-gap: 11px;
+    margin: 1em;
+    margin-top: 1em;
+    margin-bottom: 0px;
+}
+
+
+.profile-name-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 18px;
+}
+.side-bar-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 0em;
+}
+img.chat-bubble {
+    width: 46%;
+    margin-top: 1em;
+}
+.siderbar-icon-data {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 11px;
+    /* margin: 2em; */
+    margin: 0em 1em;
+}
+
+
+.group-text-image {
+    display: flex;
+    flex-direction: column;
+}
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.popup-chat-page {
+    margin-top: 7em;
+    margin-left: 1em;
+    text-align: justify;
+    margin-right: 1em;
+}
+.modal{
+    background: #000000a1;
+}
+.main-pop-background {
+    background-color: #000000a3;
+    background-position: center;
+ height: 100vh;
+ overflow: auto;
+}
+.main-pop {
+    display: block;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}
+.pop-grids {
+    display: flex;
+    flex-direction: column;
+ 
+    justify-content: center;
+    margin-top: 0em;
+    background-color: white;
+    margin: 0em 2em;
+    margin-bottom: 0px;
+}
+h5.whos-on-site {
+    font-size: 1.5em;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+  }
+  .checkbox-popup {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+  img.check-box {
+    margin-right: 10px;
+    text-align: center;
+  
+  }
+  .button-flex {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .register-button {
+    background-color: #5ADB00;
+    height: 40px;
+  }
+  button.btn.btn-primary.login-button {
+    height: 40px;
+  }
+  p.check-box-text {
+    margin-bottom: 0px;
+  }
+  .pop-content {
+    margin: 1em;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

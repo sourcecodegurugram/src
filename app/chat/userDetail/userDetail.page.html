@@ -1,0 +1,214 @@
+<div *ngIf="isLoading" class="loading-container">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+<ion-header>
+  <app-navigationbar></app-navigationbar>
+</ion-header>
+<div class="main-pop-background">
+  <div class="main-pop">
+    <div class="pop-grids">
+      <div class="modal-grid">
+        <div class="profile-picture-modal">
+          <img src={{picture}} class="image-profile">
+        </div>
+        <div class="profile-name-modal">
+          <span class="name">{{name}}</span>
+        </div>
+        <div class="close-button">
+          <img src="../../assets/Images/sign.png" class="close-chat-bubble" (click)="backClicked()">
+        </div>
+      </div>
+      <div class="siderbar-icon-data">
+        <div class="side-bar-icon">
+          <div class="group-text-image">
+            <ion-icon name="chatbubble-ellipses" routerLink="/new-message/{{uid}}/{{name}}" class="favorate_star">
+            </ion-icon>
+            <!-- <span class="name-icon">Chat</span> -->
+          </div>
+          <div *ngIf="favorites_status == 1" class="group-text-image" style="opacity: .4;">
+            <ion-icon name="star" class="favorate_star disable_fav"></ion-icon>
+
+            <!-- <span class="name-icon">Favorite</span> -->
+          </div>
+          <div *ngIf="favorites_status == 2" class="group-text-image" (click)="addFavorate()">
+            <ion-icon name="star" class="favorate_star"></ion-icon>
+            <!-- <span class="name-icon">ADD Favorite</span> -->
+          </div>
+          <div *ngIf="favorites_status == 3" class="group-text-image" (click)="removingFavorate()">
+            <ion-icon name="star" class="favorate_star remove_fav"></ion-icon>
+          </div>
+          <div class="group-text-image" *ngIf="Block_status == 1">
+            <ion-icon name="close-outline" (click)="blockuserpop()" class="favorate_close"></ion-icon>
+          </div>
+
+          <div class="group-text-image" *ngIf="Block_status == 3">
+            <ion-icon name="close-outline"  class="favorate_star remove_fav favorate_close" (click)="unblock()"></ion-icon>
+          </div>
+         
+          <div class="group-text-image">
+            <ion-icon name="sad" class="favorate_star "></ion-icon>
+          </div>
+          <div class="group-text-image">
+            <!-- <span class="name-icon">Report to admin</span> -->
+          </div>
+        </div>
+        <div class="sidebar-content">
+          <div class="fields-data">
+            <div class="field-name">FullName</div>
+            <div class="output-text">{{name}}</div>
+          </div>
+          <div class="fields-data">
+            <div class="field-name">Gender:</div>
+            <div class="output-text" *ngFor="let genders of genders">{{genders.value}}</div>
+          </div>
+          <div class="fields-data">
+            <div class="field-name">Actvities:</div>
+            <div class="output-text" *ngFor="let activity of activity">{{activity.value}}</div>
+          </div>
+          <div class="fields-data">
+            <div class="field-name" *ngIf="contact">I Want To Be Contacted By:</div>
+            <div class="output-text" *ngFor="let contact of contact">{{contact.value}}</div>
+          </div>
+          <div class="fields-data">
+            <div class="field-name" *ngIf="musics">Favorite Music:</div>
+            <div class="output-text" *ngFor="let Music of musics">{{Music.value}}</div>
+          </div>
+          <div class="fields-data">
+            <div class="field-name" *ngIf="book">Favorate Books:</div>
+            <div class="output-text" *ngFor="let books of book">{{books.value}}</div>
+          </div>
+          <div class="fields-data">
+            <div class="field-name" *ngIf="movie">Favorate Movies:</div>
+            <div class="output-text" *ngFor="let movies of movie">{{movies.value}}</div>
+          </div>
+          <div class="fields-data">
+            <div class="field-name" *ngIf="day">How you spend your days?:</div>
+            <div class="output-text" *ngFor="let days of day">{{days.value}}</div>
+          </div>
+          <div class="fields-data">
+            <div class="field-name" *ngIf="cancels">If plan get cancels?:</div>
+            <div class="output-text" *ngFor="let cancel of cancels">{{cancel.value}}</div>
+          </div>
+          <div class="fields-data">
+            <div class="field-name" *ngIf="tends">Firends tends to be?:</div>
+            <div class="output-text" *ngFor="let tend of tends">{{tend.value}}</div>
+          </div>
+          <div class="fields-data">
+            <div class="field-name" *ngIf="edue">Education Level:</div>
+            <div class="output-text" *ngFor="let edue of edue">{{edue.value}}</div>
+          </div>
+          <div class="fields-data">
+            <div class="field-name" *ngIf="smokes">Do you smokes:</div>
+            <div class="output-text" *ngFor="let smokes of smokes">{{smokes.value}}</div>
+          </div>
+          <div class="fields-data">
+            <div class="field-name" *ngIf="statu">Relationship status:</div>
+            <div class="output-text" *ngFor="let statu of statu">{{statu.value}}</div>
+          </div>
+          <div class="fields-data">
+            <div class="field-name" *ngIf="long">How long you live:</div>
+            <div class="output-text" *ngFor="let long of long">{{long.value}}</div>
+          </div>
+          <div class="fields-data">
+            <div class="field-name" *ngIf="alcohol">Do you drink:</div>
+            <div class="output-text" *ngFor="let alcohol of alcohol">{{alcohol.value}}</div>
+          </div>
+          <div class="fields-data">
+            <div class="field-name" *ngIf="language">Language:</div>
+            <div class="output-text" *ngFor="let language of language">{{language.value}}</div>
+          </div>
+          <div class="fields-data">
+            <div class="field-name" *ngIf="talk">Friends talk About:</div>
+            <div class="output-text" *ngFor="let talk of talk">{{talk.value}}</div>
+          </div>
+          <div class="fields-data">
+            <div class="field-name" *ngIf="tv">TV Shows:</div>
+            <div class="output-text" *ngFor="let tv of tv">{{tv.value}}</div>
+          </div>
+          <div class="fields-data">
+            <div class="field-name" *ngIf="good">Good Friends:</div>
+            <div class="output-text" *ngFor="let good of good">{{good.value}}</div>
+          </div>
+          <div class="fields-data">
+            <div class="field-name" *ngIf="pets">Pets:</div>
+            <div class="output-text" *ngFor="let pets of pets">{{pets.value}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Add user to favorites?-->
+<div class="favorate-popup" *ngIf="favoarte">
+  <div class="favorate-popup-content-one">
+    <div class="favorate-popup-content-two">
+      <div class="add_as_favorate">
+        <div class="content-add-as-favorate">
+          Add user to favorites?
+        </div>
+        <div class="button-add-as-favorate">
+          <ion-button color="success" (click)="getFavorite()">Confirm</ion-button>
+          <ion-button color="danger" (click)="closePopup()">Cancel</ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!--Remove user from favorites?-->
+<div class="favorate-popup" *ngIf="removingFav">
+  <div class="favorate-popup-content-one">
+    <div class="favorate-popup-content-two">
+      <div class="add_as_favorate">
+        <div class="content-add-as-favorate">
+          Remove user from favorites?
+        </div>
+        <div class="button-add-as-favorate">
+          <ion-button color="success" (click)="removeFavorite()">Confirm</ion-button>
+          <ion-button color="danger" (click)="closePopup()">Cancel</ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--Block user?-->
+<div class="favorate-popup" *ngIf="blockusers">
+  <div class="favorate-popup-content-one">
+    <div class="favorate-popup-content-two">
+      <div class="add_as_favorate">
+        <div class="content-add-as-favorate">
+          Block user?
+        </div>
+        <div class="button-add-as-favorate">
+          <ion-button color="success" (click)="Blockuser()">Confirm</ion-button>
+          <ion-button color="danger" (click)="closePopup()">Cancel</ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Block user?-->
+<div class="favorate-popup" *ngIf="unblockusers">
+  <div class="favorate-popup-content-one">  
+    <div class="favorate-popup-content-two">
+      <div class="add_as_favorate">
+        <div class="content-add-as-favorate">
+          Are you sure to unblock user?
+        </div>
+        <div class="button-add-as-favorate">
+          <ion-button color="success" (click)="removeBlock()">Confirm</ion-button>
+          <ion-button color="danger" (click)="closePopup()">Cancel</ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

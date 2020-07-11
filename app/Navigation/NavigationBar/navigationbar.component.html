@@ -1,0 +1,51 @@
+<ion-header>
+  
+  <div class="navigation">
+    <div class="back" >
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="welcome"></ion-back-button>
+      </ion-buttons>
+    </div>
+    <div class="main-logo">
+      <img src="../../assets/Images/header-logo.png" alt="" srcset="" class="header-logo" (click)="refresh()">
+    </div>
+
+    <div class="account-status">
+      <img src="../../assets/Images/user.png" class="status-check" 
+        *ngIf="isLoogedIn" (click)="openAlertDialog()">
+    </div>
+
+    <div class="humburger-menu">
+      <!-- <img src="../../assets/Images/cross.png" class="hum-burger-menu-cross" *ngIf="crossSign" (click)="humBurgerCross()"> -->
+      <img src="../../assets/Images/newmenu.png" class="hum-burger-menu" (click)="humburgereffect()" *ngIf="humBurger">
+    </div>
+
+<div class="newpopup"></div>
+
+  </div>
+
+  <div class="main-menu" *ngIf="mainMenu">
+
+
+
+    <!-- <ul class="main-list" (click)="itemclick()">
+        <li><a routerLink="/signup">Signup</a></li>
+        <li><a routerLink="/signin">SignIn</a></li>
+        <li><a routerLink="/chat/searchUser">Search Tab</a></li>
+        <li><a routerLink="/optional-detail">optional-detail</a></li>
+        <li><a routerLink="/register">Old Register</a></li>
+      </ul> -->
+  </div>
+
+</ion-header>
+
+
+ 
+
+
+
+
+
+
+
+

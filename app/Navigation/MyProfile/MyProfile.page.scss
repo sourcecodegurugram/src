@@ -1,0 +1,87 @@
+.continue-button {
+    background-color: #54B151;
+    height: 3em;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 9px;
+    margin: 2em;
+    font-size: 18px;
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: 2fr 3fr 1fr;
+    grid-gap: 11px;
+}
+
+.profile-name-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.sidebar-content {
+    margin-top: 1em;
+}
+
+.main-background {
+    background-color: #00000085;
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.second-background {
+    background-color: white;
+    margin: 1em;
+}
+
+img.cross-image {
+    width: 60%;
+}
+
+.detail-data-activity {
+    /* font-family: 'Open Sans', sans-serif; */
+    /* font-style: normal; */
+    /* display: block; */
+    display: -webkit-box;
+    /* max-width: 100%; */
+    /* height: 43px; */
+    /* margin: 0 auto; */
+    font-size: 14px;
+    /* line-height: 1; */
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.third-desktop {
+    margin: 2em;
+}
+
+.activity {
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* display: flex; */
+
+    /* font-family: 'Open Sans', sans-serif; */
+    /* font-style: normal; */
+    display: block;
+    display: -webkit-box;
+    max-width: 100%;
+    height: 43px;
+    /* margin: 0 auto; */
+    font-size: 14px;
+    /* line-height: 1; */
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}

@@ -1,0 +1,116 @@
+.modal-grid {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+   
+    grid-gap: 11px;
+    margin: 1em;
+    margin-top: 1em;
+    margin-bottom: 0px;
+}
+
+
+.profile-name-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 18px;
+}
+.side-bar-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 0em;
+}
+img.chat-bubble {
+    width: 46%;
+    margin-top: 1em;
+}
+.siderbar-icon-data {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 11px;
+    /* margin: 2em; */
+    margin: 0em 1em;
+}
+
+p.detail-data {
+    width: 50vw;
+
+}
+.group-text-image {
+    display: flex;
+    flex-direction: column;
+}
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1em;
+}
+.popup-chat-page {
+    margin-top: 7em;
+    margin-left: 1em;
+    text-align: justify;
+    margin-right: 1em;
+}
+.modal{
+    background: #000000a1;
+}
+.main-pop-background {
+    background-color: #000000a3;
+    background-position: center;
+ height: 100vh;
+ overflow: auto;
+}
+.main-pop {
+    display: block;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    /* height: 80vh; */
+    /* padding-top: 13vh; */
+    /* padding-right: 17em; */
+}
+.pop-grids {
+    display: flex;
+    flex-direction: column;
+ 
+    justify-content: center;
+    margin-top: 0em;
+    background-color: white;
+    margin: 6em 2em;
+    margin-bottom: 0px;
+}
+img.image-profile {
+    height: 17vh;
+    width: 100%;
+}
+.fields-data {
+    margin-bottom: 1em;
+}
+.output-text {
+    width: 50vw;
+}
+.field-name {
+    font-weight: bolder;
+}
+img.close-chat-bubble {
+    width: 22%;
+    float: right;
+}
+.loading-container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    z-index: 9;
+    background: black;
+    opacity: 0.5;
+  }

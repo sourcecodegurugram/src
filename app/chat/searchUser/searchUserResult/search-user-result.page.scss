@@ -1,0 +1,240 @@
+.background
+{
+   
+    overflow-x: auto;
+
+}
+.forms-field{
+    margin: 1em 1em;
+}
+.form-group {
+    margin-bottom: 1rem;
+    width: 100%;
+}
+span.to {
+    margin: 0px 1em;
+}
+.dropdown-aged {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.form-control {
+    border: 1px solid;
+}
+.continue-button{
+    background-color: #54B151;
+    height: 3em;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 9px;
+    margin: 2em;
+}
+.alreday-member {
+    text-align: center;
+    font-size: 20px;
+    color: red;
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 0.7em;
+    font-weight: 200;
+    margin-bottom: 0.7em;
+}
+.members-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    justify-content: center;
+    align-content: center;
+    border: 1px solid;
+    margin: 1em;
+    height: 17vh;
+}
+.data-member-grid {
+    margin-left: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 3vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 3vw;
+}
+p
+{
+    margin-bottom: 0em;
+    font-size: 17px;
+}
+.chat-page-text
+{
+    margin-bottom: 1em;
+}
+.modal-grid {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    grid-gap: 11px;
+}
+.profile-name-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 18px;
+}
+.side-bar-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 0em;
+}
+img.chat-bubble {
+    width: 46%;
+    margin-top: 1em;
+}
+.siderbar-icon-data {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 10px;
+}
+.group-text-image {
+    display: flex;
+    flex-direction: column;
+}
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.popup-chat-page {
+    margin-top: 7em;
+    margin-left: 1em;
+    text-align: justify;
+    margin-right: 1em;
+}
+.modal{
+    background: #000000a1;
+}
+.badage-name {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    padding-top: 0.5em;
+}
+.badge-font {
+    font-size: 9px;
+}
+.right-heading {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.activity-container {
+    display: flex;
+    align-items: center;
+}
+.parent-badge {
+    margin-left: 10px;
+}
+.distance-container {
+    display: flex;
+}
+.left-heading {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    display: block;
+    display: -webkit-box;
+    /* max-width: 100%; */
+    height: 43px;
+    margin: 0 auto;
+    font-size: 14px;
+    /* line-height: 1; */
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+  }
+  .activity-container {
+    display: flex;
+    align-items: center;
+}
+.distance-container {
+    display: flex;
+    font-size: 14px;
+}
+img.user-image {
+  
+    width: 100%;
+    height: 16vh;
+  }
+  .grid-nmae
+  {
+      font-size: 14px;
+  }
+  .not-found-result {
+    background-color: #00000091;
+    height: 100vh;
+    top: 0em;
+    position: fixed;
+    width: 100vw;
+    z-index: 1000;
+}   
+.not-found-result-data {
+    background-color: white;
+    height: 17vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2em;
+ 
+}
+.not-found-result-container-second {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.align-box-not-found {
+    /* display: flex; */
+    justify-content: center;
+    /* height: 100vh; */
+    z-index: 1000;
+    align-items: center;
+    background-color: white;
+    width: 100vw;
+    margin: 0em 3em;
+    border-radius: 2em;
+    
+}
+.content-not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 67%;
+}
+.back-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.custom-back-button {
+    width: 90%;
+}
+.loading-container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    z-index: 9;
+    background: black;
+    opacity: 0.5;
+  }

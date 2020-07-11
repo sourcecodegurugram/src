@@ -1,0 +1,33 @@
+
+  <app-navigationbar> </app-navigationbar>
+
+
+<div *ngIf="isLoading" class="loading-container">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+
+
+<div class="main-singin">
+  <div class="login-buton">
+    <p class="heading-login">Log in to Not 4 Dating below</p>
+  </div>
+  <div class="or"></div>
+  <div class="forms-field">
+    <div class="form-group">
+      <input type="text" class="form-control" id="usr" placeholder="User Name" name="user" [(ngModel)]="user">
+    </div>
+
+    <div class="form-group">
+
+      <input type="password" class="form-control" id="usr" placeholder="Password" name="password"
+        [(ngModel)]="password">
+
+    </div>
+    <div class="continue-button" (click)="nextSteps()">
+      Continue
+    </div>
+
+  </div>
+
+
+</div>

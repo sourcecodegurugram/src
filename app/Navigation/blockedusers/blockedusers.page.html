@@ -1,0 +1,20 @@
+<ion-header>
+  <app-navigationbar></app-navigationbar>
+</ion-header>
+<ion-content>
+  <div class="background">
+    <div class="members-grid" *ngFor="let favorite of uniqueFavorite" routerLink="/popup/{{favorite[0].uid}}">
+      <div class="photo-member-grid">
+        <img src={{favorite[0].picture}} class="image-profile">
+      </div>
+      <div class="data-member-grid">
+        <p class="name card-item">{{favorite[0].name}}</p>
+        <ion-label class="hobbies card-item "><span class="left-heading">Activities:&nbsp;</span><span
+            class="activities_values" *ngFor="let activity of favorite[0].activities">
+            {{activity.value}}
+          </span>.
+        </ion-label>
+      </div>
+    </div>
+  </div>
+</ion-content>
