@@ -88,10 +88,10 @@
 
 
           <div class="form-group">
-            <label for="usr">When someone cancels plans we made, I think</label>
+            <label for="usr">When someone cancels plans we made </label>
             <select class="form-control" id="sel1" name="cancels" [(ngModel)]="cancels">
               <option value="My reaction depends on the reason why.">My reaction depends on the reason why.</option>
-              <option value="Things happen – no big deal.">Things happen – no big deal.</option>
+              <option value="I think no big deal">I think no big deal</option>
               <option value="It really bothers me and I am wary of the friendship.">It really bothers me and I am wary
                 of the friendship.</option>
               <option
@@ -119,14 +119,16 @@
           <div class="form-group">
             <label for="sel1">Are you in a relationship? </label>
             <select class="form-control" id="sel1" name="status" [(ngModel)]="status">
-              <option>Single</option>
+              <option>Yes</option>
+              <option>No</option>
+              <!-- <option>Single</option>
               <option>Married</option>
               <option>Co-Habitating</option>
               <option value="Significant Other But Not Living Together">Significant Other But Not Living Together
               </option>
               <option value="Divorced">Divorced</option>
               <option value="Widowed">Widowed</option>
-              <option value="Engaged">Engaged</option>
+              <option value="Engaged">Engaged</option> -->
 
             </select>
           </div>
@@ -139,7 +141,7 @@
 
 
           <div class="form-group">
-            <label for="sel1">Do youhave kids</label>
+            <label for="sel1">Do you have kids?</label>
             <select class="form-control" id="sel1">
               <option>Yes</option>
               <option>No</option>
@@ -149,7 +151,7 @@
 
           <ion-item class="mt-4 usually-dropdown mb-4">
 
-            <ion-label>How about pets?</ion-label>
+            <ion-label>Do You Have Pets?</ion-label>
             <ion-select multiple="true" cancelText="Close" okText="Okay" name="pets" [(ngModel)]="pets">
               <ion-select-option value="Dog" #Dog>Dog
               </ion-select-option>
@@ -200,10 +202,10 @@
             <label for="sel1">Do you smoke?</label>
             <select class="form-control" id="sel1" name="smoke" [(ngModel)]="smoke">
               <option value="Never">Never</option>
-              <option value="Rarely">Rarely</option>
-              <option value="Weekends Only">Weekends Only</option>
-              <option value="Couple Times a Week">Couple Times a Week</option>
-              <option value=" Every Day"> Every Day</option>
+              <option value="Rarely">Socially</option>
+              <option value="Yes">Yes</option>
+              <!-- <option value="Couple Times a Week">Couple Times a Week</option>
+              <option value=" Every Day"> Every Day</option> -->
 
             </select>
           </div>
@@ -221,7 +223,7 @@
           </div>
 
 
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label for="sel1">Education Level</label>
             <select class="form-control" id="sel1" name="education" [(ngModel)]="education">
 
@@ -234,7 +236,7 @@
               <option value="College Degree">College Degree</option>
               <option value="Graduate Degree">Graduate Degree</option>
             </select>
-          </div>
+          </div> -->
 
 
           <div class="form-group">
@@ -326,6 +328,8 @@
 
 
       <mat-tab>
+
+        <div class="main-div-top-list">
         <div class="forms-field">
           <div class="upper-text-changes">
             Hello! Would you like to add your hobbies and interests to your profile to improve your results?
@@ -336,23 +340,23 @@
             <input type="text" class="form-control" id="usr" placeholder="First Pick your top 3">
           </div>
 
-          <div class="form-group">
+          <!-- <div class="form-group">
 
             <input type="text" class="form-control" id="usr" placeholder="Now pick the rest">
-          </div>
+          </div> -->
 
           <div class="continue-button" (click)="nextStep()">
             Save Changes
           </div>
 
-          <div class="continue-button-blue">
+          <!-- <div class="continue-button-blue">
             Add More to Profile
-          </div>
+          </div> -->
           <div class="span-container">
-            <span class="under-text-button">Not right now, Thanks.</span>
+            <span class="under-text-button">Don’t ask me this again</span>
           </div>
         </div>
-
+      </div>
       </mat-tab>
     </mat-tab-group>
   </div>

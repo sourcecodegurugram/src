@@ -102,7 +102,7 @@ ion-card-subtitle.ion-inherit-color.ios.hydrated {
 }
 @media (prefers-color-scheme: dark) {
   body {
-      background-color: transparent!important;
+    
       color: black !important;
   }
 }
@@ -138,3 +138,22 @@ mat-tab-header.mat-tab-header.mat-tab-header-pagination-controls-enabled {
   {
     background: white;
   }
+  .alert-wrapper.sc-ion-alert-ios {
+    border-radius: 13px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    overflow: hidden;
+    background: whitesmoke;
+}
+.item-native
+{
+  background-color: white;
+}
+@media (prefers-color-scheme: dark){
+.ios body {
+  
+   
+    background-color:white;
+    --ion-item-background: white;
+}
+}

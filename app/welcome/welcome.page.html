@@ -5,7 +5,7 @@
   <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 </div>
 
-
+<ion-content>
   <div class="welcome">
     <div class="welcome-content">
       <p class="welcome-content-Para">
@@ -44,10 +44,10 @@
       </div>
     </div>
   </div>
+</ion-content>
 
 
-
-<div class="background-oops" *ngIf="popup">
+<div class="background-oops" *ngIf="hide">
 
   <ion-card class="card-one">
     <div class="cross-pop" (click)="closepop()">

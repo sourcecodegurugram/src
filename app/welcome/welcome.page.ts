@@ -99,6 +99,7 @@ export class WelcomePage implements OnInit {
   showFormPage() {
     // We will hide this page at starting. If lat long fails, we will unhide it so that people can fill information
     this.hide = true;
+    console.log("getting-true")
   }
 
   popOpen() {
@@ -112,17 +113,20 @@ export class WelcomePage implements OnInit {
         console.log(this.lng);
         // If we get lat long then we will pull Address details from reverse geo lookup
         if (this.lat && this.lng) {
-          this.reverseGeoLookup();
-        } else {
+          this.reverseGeoLookup()
+        } 
+        else {
+
           this.showFormPage();
         }
       }) // If we do not get lat long, we will present page with form for address and post code
       .catch((error) => {
         this.isLoading = false;
+        this.showFormPage();
       });
   }
   closepop() {
-    this.popup = false;
+    this.hide = false;
   }
   signups() {
     this.signup = true;

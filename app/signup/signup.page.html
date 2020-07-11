@@ -104,7 +104,7 @@
           </div>
         </div> -->
             <label for="usr">When is your birthday*?</label>
-            <input type="date" class="form-control" id="usr" name="DOB" [(ngModel)]="DOB">
+            <input type="date" class="form-control" id="usr" name="DOB" [(ngModel)]="DOB" (click)="Check()">
             <span class="under-text">(Only age is displayed publicly)</span>
           
         </div>
@@ -113,7 +113,7 @@
             be a member and use the app By continuing below</span>
             <div class="form-check">
               <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" value="">I confirm I am over 18.
+                <input type="checkbox" class="form-check-input" value="CheckBox" [(ngModel)]="CheckBox"  (change)="onCheckboxChange($event)">I confirm I am over 18.
               </label>
             </div>
 
@@ -169,9 +169,9 @@
           <div class="form-group">
             <label for="sel1">I consider myself an</label>
             <select class="form-control" id="sel1" name="myself" [(ngModel)]="myself">
-              <option value="introvert">Introvert</option>
-              <option value="extrovert">Extrovert</option>
-              <option value="ambivert">Ambivert</option>
+              <option value="Outgoing">Outgoing</option>
+              <option value="On the Quieter Side">On the Quieter Side</option>
+              <option value="A Mix of Both">A Mix of Both</option>
 
             </select>
             <span class="under-text"></span>
@@ -298,7 +298,7 @@
           </div>
 
 
-          <ion-item class="mt-4">
+          <!-- <ion-item class="mt-4">
 
             <ion-label>Activities/Interest</ion-label>
             <ion-select multiple="true" cancelText="Close" okText="Okay" name="activity" [(ngModel)]="activity">
@@ -382,7 +382,7 @@
 
 
             </ion-select>
-          </ion-item>
+          </ion-item> -->
 
           <div class="terms">
             <label for="usr">Terms and Conditions</label>

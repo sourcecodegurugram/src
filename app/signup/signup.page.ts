@@ -47,15 +47,21 @@ export class SignupPage implements OnInit {
   uploadPicture: any;
   firstfid: any;
   firstfile: any;
+  CheckBox: boolean = false;
+  filter: any;
+  FieldMessage: string;
+  now: Date = new Date();
+  age: any;
+  picture: any;
   constructor(
     private http: HttpClient,
     private zone: NgZone,
     public alertController: AlertController
-  ) {}
+  ) { }
 
   ngOnInit() {
 
-   
+
 
 
   }
@@ -74,12 +80,29 @@ export class SignupPage implements OnInit {
     //Screen 1
     if (presentIndex == 0) {
       if (this.name == null) {
+
         this.presentAlert();
       } else if (this.fname == null) {
+
         this.presentAlert();
+
       } else if (this.lname == null) {
         this.presentAlert();
-      }  else {
+      }
+      else if (this.DOB == null) {
+
+        this.presentAlert();
+
+      }
+      else if (Math.floor(Math.abs(Date.now() - new Date(this.DOB).getTime()) / (1000 * 3600 * 24) / 365.25) < 18) {
+
+        this.ageAlert();
+
+      }
+      else if (this.CheckBox == false) {
+        this.checkBoxAlert();
+      }
+      else {
         this.selectedIndex = nextIndex;
       }
     } else if (presentIndex == 1) {
@@ -90,7 +113,9 @@ export class SignupPage implements OnInit {
           this.presentAlert();
         } else if (this.myself == null) {
           this.presentAlert();
-        } else if (this.meet == null) {
+        }
+
+        else if (this.meet == null) {
           this.presentAlert();
         } else {
           this.selectedIndex = nextIndex;
@@ -100,7 +125,13 @@ export class SignupPage implements OnInit {
       }
     } else if (presentIndex == 2) {
       if (nextIndex > presentIndex) {
+        if(this.picture == null)
+        {
+          this.presentAlert();
+        }
+        else{
         this.selectedIndex = nextIndex;
+        }
       }
     } else if (presentIndex == 3) {
       if (nextIndex > presentIndex) {
@@ -130,7 +161,23 @@ export class SignupPage implements OnInit {
 
   async presentAlert() {
     const alert = await this.alertController.create({
-      message: " All Fields are required",
+      message: "All Fields are required",
+      buttons: ["OK"],
+    });
+
+    await alert.present();
+  }
+  async ageAlert() {
+    const alert = await this.alertController.create({
+      message: "Age Must be 18+",
+      buttons: ["OK"],
+    });
+
+    await alert.present();
+  }
+  async checkBoxAlert() {
+    const alert = await this.alertController.create({
+      message: "Confirm your age",
       buttons: ["OK"],
     });
 
@@ -200,9 +247,9 @@ export class SignupPage implements OnInit {
         name: name,
         mail: email,
         conf_mail: confirmemail,
-        timezone:ts,
-        login:ts,
-        access:ts,
+        timezone: ts,
+        login: ts,
+        access: ts,
         field_first_name: {
           und: [
             {
@@ -225,15 +272,15 @@ export class SignupPage implements OnInit {
             },
           ],
         },
-      //   field_birth_date:
-      //   {und:[
-      //     {
-      //     value:DOB,
-      //   }
-      // ]
-      // },
+        //   field_birth_date:
+        //   {und:[
+        //     {
+        //     value:DOB,
+        //   }
+        // ]
+        // },
         field_birth_date: {
-          und:DOB 
+          und: DOB
         },
 
         field_gender: {
@@ -241,7 +288,7 @@ export class SignupPage implements OnInit {
         },
 
         field_activities_interests: {
-          und:activity 
+          und: activity
         },
         field_look_meet: {
           und: meet,
@@ -273,7 +320,7 @@ export class SignupPage implements OnInit {
         //   timestamp: "1591629823",
         //   uri_full: "https://gowebtutorial.com/sites/default/files/CfakepathScreenshot%202020-06-08%20at%204.13.59%20PM_4.png",
         //   target_uri: "CfakepathScreenshot 2020-06-08 at 4.13.59 PM_4.png",
-          
+
         // }
       })
       .subscribe((data) => {
@@ -310,5 +357,24 @@ export class SignupPage implements OnInit {
   onFileChanged(event) {
     this.selectedFile = <File>event.target.files[0];
     console.log(event);
+  }
+
+
+
+  onCheckboxChange(e) {
+    if (e.target.checked) {
+      this.CheckBox = true
+      console.log(this.CheckBox)
+    } else {
+      this.CheckBox = false
+      console.log(this.CheckBox)
+    }
+  }
+
+  Check() {
+
+    this.age = Math.floor(Math.abs(Date.now() - new Date(this.DOB).getTime()) / (1000 * 3600 * 24) / 365.25)
+    console.log(this.DOB)
+
   }
 }
