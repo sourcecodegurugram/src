@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone } from "@angular/core";
 import { MatTabChangeEvent } from "@angular/material/tabs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AlertController } from "@ionic/angular";
+import { DomSanitizer } from "@angular/platform-browser";
 import {
   FileTransfer,
   FileUploadOptions,
@@ -41,7 +42,7 @@ export class SignupPage implements OnInit {
   filename: any;
   file: any;
   filepath: object = {};
-
+  imageContinue: boolean = false;
   uploadData: { file: string; filename: string; filepath: string };
   base64textString: any;
   uploadPicture: any;
@@ -54,23 +55,19 @@ export class SignupPage implements OnInit {
   age: any;
   picture: any;
   fileName: any;
-
-  pictureDetail:any;
+  pictureDetail: any;
   userDetail: any;
   uid: any;
   picturesUrl;
+  displayImage;
   constructor(
     private http: HttpClient,
     private zone: NgZone,
-    public alertController: AlertController
-  ) { }
+    public alertController: AlertController,
+    private sanitizer: DomSanitizer
+  ) {}
 
-  ngOnInit() {
- 
-
-
-
-  }
+  ngOnInit() {}
   public tabChanged(tabChangeEvent: MatTabChangeEvent): void {
     this.selectedIndex = tabChangeEvent.index;
   }
@@ -86,29 +83,24 @@ export class SignupPage implements OnInit {
     //Screen 1
     if (presentIndex == 0) {
       if (this.name == null) {
-
         this.presentAlert();
       } else if (this.fname == null) {
-
         this.presentAlert();
-
       } else if (this.lname == null) {
         this.presentAlert();
-      }
-      else if (this.DOB == null) {
-
+      } else if (this.DOB == null) {
         this.presentAlert();
-
-      }
-      else if (Math.floor(Math.abs(Date.now() - new Date(this.DOB).getTime()) / (1000 * 3600 * 24) / 365.25) < 18) {
-
+      } else if (
+        Math.floor(
+          Math.abs(Date.now() - new Date(this.DOB).getTime()) /
+            (1000 * 3600 * 24) /
+            365.25
+        ) < 18
+      ) {
         this.ageAlert();
-
-      }
-      else if (this.CheckBox == false) {
+      } else if (this.CheckBox == false) {
         this.checkBoxAlert();
-      }
-      else {
+      } else {
         this.selectedIndex = nextIndex;
       }
     } else if (presentIndex == 1) {
@@ -119,9 +111,7 @@ export class SignupPage implements OnInit {
           this.presentAlert();
         } else if (this.myself == null) {
           this.presentAlert();
-        }
-
-        else if (this.meet == null) {
+        } else if (this.meet == null) {
           this.presentAlert();
         } else {
           this.selectedIndex = nextIndex;
@@ -131,12 +121,10 @@ export class SignupPage implements OnInit {
       }
     } else if (presentIndex == 2) {
       if (nextIndex > presentIndex) {
-        if(this.picture == null)
-        {
+        if (this.picture == null) {
           this.presentAlert();
-        }
-        else{
-        this.selectedIndex = nextIndex;
+        } else {
+          this.selectedIndex = nextIndex;
         }
       }
     } else if (presentIndex == 3) {
@@ -195,39 +183,45 @@ export class SignupPage implements OnInit {
     var fil = files[0];
 
     if (files && fil) {
+      this.fileName = files[0].name;
       var reader = new FileReader();
       reader.onload = this._handleReaderLoaded.bind(this);
       reader.readAsBinaryString(fil);
-      this.fileName = files[0].name
     }
   }
+
   _handleReaderLoaded(readerEvt) {
     var binaryString = readerEvt.target.result;
     this.base64textString = btoa(binaryString);
-    // console.log(btoa(binaryString));
+
+    //Automatically upload files
+    this.onUpload(this.picture);
+    this.displayImage = this.sanitizer.bypassSecurityTrustUrl(
+      "data:Image/*;base64," + this.base64textString
+    );
   }
+
   onUpload(picture) {
-    console.log(this.base64textString);
-    console.log(picture);
     const headers = new HttpHeaders().set(
       "Content-Type",
       "application/x-www-form-urlencoded"
     );
     this.uploadData = {
-      file:  this.base64textString,
+      file: this.base64textString,
       filename: this.fileName,
       filepath: "public://" + this.fileName,
     };
     this.http
       .post("https://gowebtutorial.com/api/json/file/", this.uploadData)
       .subscribe((rest) => {
-        (this.Picurl = rest), console.log(this.Picurl.fid);
+        this.Picurl = rest;
+        console.log(this.Picurl.fid);
 
+        // Show next button
+        this.imageContinue = true;
       });
-    
+    console.log(this.uploadData);
   }
-
-
 
   //Form
   LoginForm(
@@ -246,93 +240,88 @@ export class SignupPage implements OnInit {
     password,
     confirmpassword
   ) {
-   
- 
-    this.http.get("https://gowebtutorial.com/api/json/file/" + this.Picurl.fid).subscribe(res => {
-      this.picturesUrl = res
-    this.pictureDetail = this.picturesUrl.uri_full
-  
-    var ts = Math.round((new Date()).getTime() / 1000);
     this.http
-      .post<any>("https://gowebtutorial.com/api/json/user/register", {
-        name: name,
-        mail: email,
-        conf_mail: confirmemail,
-        timezone: ts,
-        login: ts,
-        access: ts,
-        field_first_name: {
-          und: [
-            {
-              value: fname,
+      .get("https://gowebtutorial.com/api/json/file/" + this.Picurl.fid)
+      .subscribe((res) => {
+        this.picturesUrl = res;
+        this.pictureDetail = this.picturesUrl.uri_full;
+
+        var ts = Math.round(new Date().getTime() / 1000);
+        this.http
+          .post<any>("https://gowebtutorial.com/api/json/user/register", {
+            name: name,
+            mail: email,
+            conf_mail: confirmemail,
+            timezone: ts,
+            login: ts,
+            access: ts,
+            field_first_name: {
+              und: [
+                {
+                  value: fname,
+                },
+              ],
             },
-          ],
-        },
-        field_last_name: {
-          und: [
-            {
-              value: lname,
+            field_last_name: {
+              und: [
+                {
+                  value: lname,
+                },
+              ],
             },
-          ],
-        },
-        field_zip_code: {
-          und: [
-            {
-              postal_code: zip,
-              country: live,
+            field_zip_code: {
+              und: [
+                {
+                  postal_code: zip,
+                  country: live,
+                },
+              ],
             },
-          ],
-        },
-        //   field_birth_date:
-        //   {und:[
-        //     {
-        //     value:DOB,
-        //   }
-        // ]
-        // },
-        field_birth_date: {
-          und: DOB
-        },
+            //   field_birth_date:
+            //   {und:[
+            //     {
+            //     value:DOB,
+            //   }
+            // ]
+            // },
+            field_birth_date: {
+              und: DOB,
+            },
 
-        field_gender: {
-          und: Gender,
-        },
+            field_gender: {
+              und: Gender,
+            },
 
-        field_activities_interests: {
-          und: activity
-        },
-        field_look_meet: {
-          und: meet,
-        },
-        field_temp_pic_field: {
-          und:[
+            field_activities_interests: {
+              und: activity,
+            },
+            field_look_meet: {
+              und: meet,
+            },
+            field_temp_pic_field: {
+              und: [
+                {
+                  value: this.pictureDetail,
+                },
+              ],
+            },
 
-{
-  value: this.pictureDetail
-}
-          ]
-          
-          
-        },
-
-        field_want_contarct: {
-          und: contract,
-        },
-     
-      })
-      .subscribe((data) => {
-    
-        this.post = data;
-        console.log(this.post);
-        if (this.post.uid) {
-          this.nextStep();
-          console.log(this.uploadPicture);
-          this.correctAlert();
-        } else {
-          alert(this.post);
-        }
+            field_want_contarct: {
+              und: contract,
+            },
+          })
+          .subscribe((data) => {
+            this.post = data;
+            console.log(this.post);
+            if (this.post.uid) {
+              this.nextStep();
+              console.log(this.uploadPicture);
+              this.correctAlert();
+            } else {
+              alert(this.post);
+            }
+          });
       });
-    });
   }
 
   async correctAlert() {
@@ -355,24 +344,22 @@ export class SignupPage implements OnInit {
     console.log(event);
   }
 
-
-
   onCheckboxChange(e) {
     if (e.target.checked) {
-      this.CheckBox = true
-      console.log(this.CheckBox)
+      this.CheckBox = true;
+      console.log(this.CheckBox);
     } else {
-      this.CheckBox = false
-      console.log(this.CheckBox)
+      this.CheckBox = false;
+      console.log(this.CheckBox);
     }
   }
 
   Check() {
-
-    this.age = Math.floor(Math.abs(Date.now() - new Date(this.DOB).getTime()) / (1000 * 3600 * 24) / 365.25)
-    console.log(this.DOB)
-
+    this.age = Math.floor(
+      Math.abs(Date.now() - new Date(this.DOB).getTime()) /
+        (1000 * 3600 * 24) /
+        365.25
+    );
+    console.log(this.DOB);
   }
-
- 
 }

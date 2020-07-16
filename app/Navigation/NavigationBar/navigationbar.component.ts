@@ -7,8 +7,14 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AlertController } from "@ionic/angular";
 import { Location } from "@angular/common";
 import { AuthService } from "../../auth.service";
-import { VERSION, MatDialogRef, MatDialog, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
-import {AlertProfileDialogComponent} from './alert-profile/alert-profile-dialog.component';
+import {
+  VERSION,
+  MatDialogRef,
+  MatDialog,
+  MatSnackBar,
+  MAT_DIALOG_DATA,
+} from "@angular/material";
+import { AlertProfileDialogComponent } from "./alert-profile/alert-profile-dialog.component";
 
 @Component({
   selector: "app-navigationbar",
@@ -23,7 +29,6 @@ export class NavigationbarComponent implements OnInit {
   mainMenuItem: boolean = true;
   config: config;
   public id: string = null;
-  private sub: any;
   post: Object;
   logggenIn: boolean = false;
   username: any;
@@ -44,7 +49,7 @@ export class NavigationbarComponent implements OnInit {
   fname: any;
   lname: any;
   isLoogedIn: boolean = false;
-  back : boolean  = false;
+  back: boolean = false;
   token = "https://gowebtutorial.com/api/json/user/token";
   constructor(
     private Configservice: ConfigService,
@@ -60,12 +65,7 @@ export class NavigationbarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-this.loginCheck()
-
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
+    this.loginCheck();
   }
 
   humburgereffect() {
@@ -110,10 +110,9 @@ this.loginCheck()
     this.isLoading = false;
   }
   refresh() {
-    this.loginCheck()
+    this.loginCheck();
     this.router.navigate(["/welcome"]);
     this.ngOnInit();
-
   }
   async correctAlert() {
     const correct = await this.alertController.create({
@@ -144,36 +143,29 @@ this.loginCheck()
       });
   }
   openAlertDialog() {
-    const dialogRef = this.dialog.open(AlertProfileDialogComponent,{
-      data:{
-        message: 'HelloWorld',
+    const dialogRef = this.dialog.open(AlertProfileDialogComponent, {
+      data: {
+        message: "HelloWorld",
         buttonText: {
-          cancel: 'Done'
-        }
+          cancel: "Done",
+        },
       },
     });
   }
-  
 
-  loginCheck()
-  {
+  loginCheck() {
     this.itrs = JSON.parse(localStorage.getItem("currentUser"));
-    if(this.itrs== null)
-    {
+    if (this.itrs == null) {
       this.isLoogedIn = false;
+    } else if (this.itrs.user != null) {
+      this.isLoogedIn = true;
+      this.name = this.itrs.user.name;
+      this.activity = this.itrs.user.field_activities_interests.und;
+      this.Email = this.itrs.user.mail;
+      //this.DOB = this.itrs.user.field_birth_date.und[0].value;
+      this.fname = this.itrs.user.field_first_name.und[0].value;
+      this.lname = this.itrs.user.field_last_name.und[0].value;
+      this.userlogged = JSON.parse(localStorage.getItem("Signinuser"));
     }
-          
-      else if (this.itrs.user != null) {
-        this.isLoogedIn = true;
-        this.name = this.itrs.user.name;
-        this.activity = this.itrs.user.field_activities_interests.und;
-        this.Email = this.itrs.user.mail;
-        //this.DOB = this.itrs.user.field_birth_date.und[0].value;
-        this.fname = this.itrs.user.field_first_name.und[0].value;
-        this.lname = this.itrs.user.field_last_name.und[0].value;
-        this.userlogged = JSON.parse(localStorage.getItem("Signinuser"));
-      }
-      
-    }
-  
+  }
 }

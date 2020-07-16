@@ -1,6 +1,6 @@
 <ion-header>
   <app-navigationbar></app-navigationbar>
-</ion-header> 
+</ion-header>
 
 
 
@@ -32,15 +32,15 @@
 
           <div class="form-group">
             <label for="usr">What is your First name</label>
-            <input type="text" class="form-control" id="usr" name="fname" [(ngModel)]="fname">
+            <input type="text" class="form-control" id="first_name" name="fname" [(ngModel)]="fname">
             <span class="under-text">(Not for display publicly, for account management only)</span>
           </div>
           <div class="form-group">
             <label for="usr">What is your Last name</label>
-            <input type="text" class="form-control" id="usr" name="lname" [(ngModel)]="lname">
+            <input type="text" class="form-control" id="last_name" name="lname" [(ngModel)]="lname">
             <span class="under-text">(Not for display publicly, for account management only)</span>
           </div>
-   
+
           <div class="form-group">
             <!-- <div class="align-date">
             <div class="month">
@@ -106,16 +106,17 @@
             <label for="usr">When is your birthday*?</label>
             <input type="date" class="form-control" id="usr" name="DOB" [(ngModel)]="DOB" (click)="Check()">
             <span class="under-text">(Only age is displayed publicly)</span>
-          
-        </div>
+
+          </div>
 
           <span class="age-limit">*Must be over 18 years old to
             be a member and use the app By continuing below</span>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" value="CheckBox" [(ngModel)]="CheckBox"  (change)="onCheckboxChange($event)">I confirm I am over 18.
-              </label>
-            </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="checkbox" class="form-check-input" value="CheckBox" [(ngModel)]="CheckBox"
+                (change)="onCheckboxChange($event)">I confirm I am over 18.
+            </label>
+          </div>
 
           <div class="continue-button" (click)="selectTab(1, 0)">
             Continue
@@ -217,31 +218,28 @@
         <div class="forms-field">
 
           <div class="upload-photos">
-            Choose Your Profile Photo
+            <!-- Before image chosen -->
+            <span *ngIf="!imageContinue">Choose Your Profile Photo</span>
 
+            <!-- After image chosen -->
+            <img *ngIf="imageContinue" [src]="displayImage" style="width: 50%; margin: auto; margin-bottom: 2em;" />
+            <span *ngIf="imageContinue">Image Uploaded</span>
 
             <div class="upload-btn-wrapper">
-
               <div class="upload-button">
-                <div class="logo-camera">
-
+                <div *ngIf="!imageContinue" class="logo-camera">
                   <img src="../../assets/Images/camera.png" class="camera-pic">
                 </div>
                 <div>
-                  <button class="btn" (click)="fileInput.click()">Upload a Photo</button>
+                  <button *ngIf="!imageContinue" class="btn" (click)="fileInput.click()">Upload a Photo</button>
                 </div>
               </div>
-              <input type="file"  [(ngModel)]="picture" value="picture" name="picture" (change)="handleFileSelect($event)">
+              <input type="file" [(ngModel)]="picture" value="picture" name="picture"
+                (change)="handleFileSelect($event)">
             </div>
-            <button (click)="onUpload(picture)" >Upload!</button> 
-
-            <p (click)="Check1()">Test</p>
           </div>
 
-
-
-
-          <div class="continue-button" (click)="selectTab(3, 2)">
+          <div *ngIf="imageContinue" class="continue-button" (click)="selectTab(3, 2)">
             Continue
           </div>
 
@@ -271,8 +269,8 @@
               <option value="au">Australia</option>
               <option value="nz">New Zealand</option>
               <option value="sg">Singapore</option>
-      
-            
+
+
 
             </select>
             <span class="under-text"></span>
@@ -604,7 +602,7 @@
         </div>
 
         <div class="login-buton">
-<!-- 
+          <!-- 
           <div class="continue-button-google">
             Sign Up with Google
           </div>
@@ -647,7 +645,8 @@
 
           </div>
         </div>
-        <div class="continue-button" (click)="LoginForm(name,fname,lname,DOB,Gender,contract,meet,live,zip,activity,email,confirmemail,password,confirmpassword)">
+        <div class="continue-button"
+          (click)="LoginForm(name,fname,lname,DOB,Gender,contract,meet,live,zip,activity,email,confirmemail,password,confirmpassword)">
           Continue
         </div>
 
@@ -688,8 +687,9 @@
           </div>
 
           <div class="button-last">
-        <a href="https://not4dating.com/"   > <span class="under-text-button">No Thanks! I am happy to be a basic member and use the free website version
-              of not4dating. (Check your email to validate your account first).</span></a>
+            <a href="https://not4dating.com/"> <span class="under-text-button">No Thanks! I am happy to be a basic
+                member and use the free website version
+                of not4dating. (Check your email to validate your account first).</span></a>
           </div>
         </div>
 
