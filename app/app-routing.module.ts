@@ -93,7 +93,11 @@ const routes: Routes = [
     path: 'blockedusers',
     loadChildren: () => import('./Navigation/blockedusers/blockedusers.module').then( m => m.BlockedusersPageModule)
   },
-  
+  {
+     path: 'topHobbies',
+     loadChildren: () => import('./Signin/tophobbies/tophobbies.module').then( m => m.TophobbiesPageModule),
+  },
+
 
 
 ];

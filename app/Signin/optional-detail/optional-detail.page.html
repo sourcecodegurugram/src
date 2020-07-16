@@ -50,7 +50,7 @@
           <ion-item class="mt-4 usually-dropdown">
 
             <ion-label>My friends and I usually talk about</ion-label>
-            <ion-select multiple="true" cancelText="Close" okText="Okay" name="talkabout" [(ngModel)]="talkabout">
+            <ion-select multiple="true" cancelText="Close" okText="Okay" name="talkabout" [(ngModel)]="talkabout" lines="none">
 
               <ion-select-option value="Work" #Work>Work
               </ion-select-option>
@@ -149,10 +149,10 @@
           </div>
 
 
-          <ion-item class="mt-4 usually-dropdown mb-4">
+          <ion-item class="mt-4 usually-dropdown mb-4" no-lines>
 
             <ion-label>Do You Have Pets?</ion-label>
-            <ion-select multiple="true" cancelText="Close" okText="Okay" name="pets" [(ngModel)]="pets">
+            <ion-select multiple="true" cancelText="Close" okText="Okay" name="pets" [(ngModel)]="pets" no-lines>
               <ion-select-option value="Dog" #Dog>Dog
               </ion-select-option>
               <ion-select-option value="Cat" #Cat>Cat</ion-select-option>
@@ -284,34 +284,33 @@
         <div class="forms-field">
           <div class="form-group">
             <label for="sel1">Do you want to add some more photos?</label>
-            <div class="ad-more-pics">
-              <div class="image-upload-container">
-                <img src="../../assets/Images/food.png" class="food">
-              </div>
-              <div class="image-upload-container">
-                <img src="../../assets/Images/food.png" class="food">
-              </div>
-              <div class="image-upload-container">
-                <img src="../../assets/Images/food.png" class="food">
-              </div>
-              <div class="image-upload-container">
-                <img src="../../assets/Images/food.png" class="food">
-              </div>
-              <div class="image-upload-container">
-                <img src="../../assets/Images/food.png" class="food">
-              </div>
-              <div class="image-upload-container">
-                <img src="../../assets/Images/food.png" class="food">
-              </div>
-              <div class="image-upload-container">
-                <img src="../../assets/Images/food.png" class="food">
-              </div>
-              <div class="image-upload-container">
-                <img src="../../assets/Images/food.png" class="food">
-              </div>
-            </div>
 
+            
+            <div class="upload-btn-wrapper">
+
+              <div class="upload-button">
+                <div class="logo-camera">
+
+                  <img src="../../assets/Images/camera.png" class="camera-pic">
+                </div>
+                <div>
+                  <button class="btn" (click)="fileInput.click()">Upload a Photo</button>
+                </div>
+              </div>
+              <input type="file"  [(ngModel)]="picture" value="picture" name="picture" (change)="handleFileSelect($event)">
+            </div>
+            <div class="upload-button-main">
+            <button (click)="onUpload()">Upload!</button> 
+            <button (click)="newUpload()">Save</button> 
+
+
+            
           </div>
+            
+          </div>
+           
+
+          
 
           <div class="form-group">
             <label for="comment">Anything else you want to share?</label>
@@ -326,38 +325,6 @@
         </div>
       </mat-tab>
 
-
-      <mat-tab>
-
-        <div class="main-div-top-list">
-        <div class="forms-field">
-          <div class="upper-text-changes">
-            Hello! Would you like to add your hobbies and interests to your profile to improve your results?
-          </div>
-
-          <div class="form-group">
-
-            <input type="text" class="form-control" id="usr" placeholder="First Pick your top 3">
-          </div>
-
-          <!-- <div class="form-group">
-
-            <input type="text" class="form-control" id="usr" placeholder="Now pick the rest">
-          </div> -->
-
-          <div class="continue-button" (click)="nextStep()">
-            Save Changes
-          </div>
-
-          <!-- <div class="continue-button-blue">
-            Add More to Profile
-          </div> -->
-          <div class="span-container">
-            <span class="under-text-button">Don’t ask me this again</span>
-          </div>
-        </div>
-      </div>
-      </mat-tab>
     </mat-tab-group>
   </div>
 

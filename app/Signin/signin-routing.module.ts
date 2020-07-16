@@ -8,7 +8,11 @@ const routes: Routes = [
   {
     path: '',
     component: SigninPage
+  },  {
+    path: 'tophobbies',
+    loadChildren: () => import('../Signin/tophobbies/tophobbies.module').then( m => m.TophobbiesPageModule)
   },
+
  
 ];
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from "@angular/core";
+import { Component, OnInit, NgZone, HostListener } from "@angular/core";
 import { ConfigService } from "../config.service";
 import { Geolocation } from "@ionic-native/geolocation/ngx";
 import { Platform } from "@ionic/angular";
@@ -38,7 +38,7 @@ export class WelcomePage implements OnInit {
   lats: string;
   postal: (error: any) => void;
   help: any;
-
+  mySubscription: any;
   addressData;
   postcode;
   signup: boolean = false;
@@ -58,6 +58,8 @@ export class WelcomePage implements OnInit {
   searchresult: boolean = false;
   userLogged: any;
   scope: any;
+  siginUser: any;
+  isLoggedIn: boolean = false;
 
   constructor(
     private ConfigService: ConfigService,
@@ -69,9 +71,19 @@ export class WelcomePage implements OnInit {
     private routes: Router,
     private locate: Location,
     private http: HttpClient
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loggedIncheck()
+    this.routes.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+    
+  
+    
+
+
+  }
 
   reverseGeoLookup() {
     // This is where the code for reverse GEO lookup will come
@@ -114,7 +126,7 @@ export class WelcomePage implements OnInit {
         // If we get lat long then we will pull Address details from reverse geo lookup
         if (this.lat && this.lng) {
           this.reverseGeoLookup()
-        } 
+        }
         else {
 
           this.showFormPage();
@@ -154,5 +166,19 @@ export class WelcomePage implements OnInit {
   }
   closesearchpop() {
     this.searchresult = false;
+  }
+
+  loggedIncheck()
+  {
+    this.siginUser = JSON.parse(localStorage.getItem("currentUser"));
+    this.isLoading = true
+    if (this.siginUser != null) {
+      this.isLoggedIn = true
+      this.isLoading = false
+    }
+    else {
+      this.isLoggedIn = false
+      this.isLoading = false
+    }
   }
 }

@@ -34,7 +34,8 @@ export class MyProfilePage implements OnInit {
   isLoogedIn: boolean = false;
   picture;
   token = "https://gowebtutorial.com/api/json/user/token";
-  constructor(private _location: Location) {}
+  newPicture: any;
+  constructor(private _location: Location) { }
 
   ngOnInit() {
     this.itrs = JSON.parse(localStorage.getItem("currentUser"));
@@ -48,9 +49,16 @@ export class MyProfilePage implements OnInit {
       //this.DOB = this.itrs.user.field_birth_date.und[0].value;
       this.fname = this.itrs.user.field_first_name.und[0].value;
       this.lname = this.itrs.user.field_last_name.und[0].value;
-      this.picture = this.itrs.user.picture.url;
+      if (this.itrs.user.picture == null) {
+        this.picture = this.itrs.user.field_temp_pic_field.und[0].value
+      }
+      else {
+        this.picture = this.itrs.user.picture.url;
+      }
+
+      this.newPicture = this.itrs.user.field_temp_pic_field
       this.userlogged = JSON.parse(localStorage.getItem("Signinuser"));
-      // console.log(this.itrs);
+  
     }
   }
   backClicked() {

@@ -41,9 +41,9 @@ export class SignupPage implements OnInit {
   filename: any;
   file: any;
   filepath: object = {};
-  fid: object = {};
+
   uploadData: { file: string; filename: string; filepath: string };
-  base64textString: String = "";
+  base64textString: any;
   uploadPicture: any;
   firstfid: any;
   firstfile: any;
@@ -53,6 +53,12 @@ export class SignupPage implements OnInit {
   now: Date = new Date();
   age: any;
   picture: any;
+  fileName: any;
+
+  pictureDetail:any;
+  userDetail: any;
+  uid: any;
+  picturesUrl;
   constructor(
     private http: HttpClient,
     private zone: NgZone,
@@ -60,7 +66,7 @@ export class SignupPage implements OnInit {
   ) { }
 
   ngOnInit() {
-
+ 
 
 
 
@@ -192,6 +198,7 @@ export class SignupPage implements OnInit {
       var reader = new FileReader();
       reader.onload = this._handleReaderLoaded.bind(this);
       reader.readAsBinaryString(fil);
+      this.fileName = files[0].name
     }
   }
   _handleReaderLoaded(readerEvt) {
@@ -207,16 +214,20 @@ export class SignupPage implements OnInit {
       "application/x-www-form-urlencoded"
     );
     this.uploadData = {
-      file: "data:image/png;base64," + this.base64textString,
-      filename: picture,
-      filepath: "public://" + picture,
+      file:  this.base64textString,
+      filename: this.fileName,
+      filepath: "public://" + this.fileName,
     };
     this.http
       .post("https://gowebtutorial.com/api/json/file/", this.uploadData)
-      .subscribe((res) => {
-        (this.Picurl = res), console.log(this.Picurl);
+      .subscribe((rest) => {
+        (this.Picurl = rest), console.log(this.Picurl.fid);
+
       });
+    
   }
+
+
 
   //Form
   LoginForm(
@@ -235,13 +246,13 @@ export class SignupPage implements OnInit {
     password,
     confirmpassword
   ) {
+   
+ 
+    this.http.get("https://gowebtutorial.com/api/json/file/" + this.Picurl.fid).subscribe(res => {
+      this.picturesUrl = res
+    this.pictureDetail = this.picturesUrl.uri_full
+  
     var ts = Math.round((new Date()).getTime() / 1000);
-    console.log(ts)
-    // this.http
-    // .post("https://gowebtutorial.com/api/json/file/", this.uploadData)
-    // .subscribe((res) => {
-    //   (this.Picurl = res), console.log(this.Picurl);
-    // });
     this.http
       .post<any>("https://gowebtutorial.com/api/json/user/register", {
         name: name,
@@ -293,37 +304,24 @@ export class SignupPage implements OnInit {
         field_look_meet: {
           und: meet,
         },
+        field_temp_pic_field: {
+          und:[
+
+{
+  value: this.pictureDetail
+}
+          ]
+          
+          
+        },
 
         field_want_contarct: {
           und: contract,
         },
-        // pass: {
-        //   pass1: password,
-        //   pass2: confirmpassword,
-        // },
-        // field_user_avatar: {
-        //   und: [
-        //     {
-        //       fid: this.Picurl.fid,
-        //     },
-        //   ],
-        // },
-
-        // picture:  {
-        //   fid:"262761",
-        //   uid:"0",
-        //   filename: "CfakepathScreenshot 2020-06-08 at 4.13.59 PM.png",
-        //   uri:"public://CfakepathScreenshot 2020-06-08 at 4.13.59 PM_4.png",
-        //   filemime: "image/png",
-        //   filesize: "160407",
-        //   status: "1",
-        //   timestamp: "1591629823",
-        //   uri_full: "https://gowebtutorial.com/sites/default/files/CfakepathScreenshot%202020-06-08%20at%204.13.59%20PM_4.png",
-        //   target_uri: "CfakepathScreenshot 2020-06-08 at 4.13.59 PM_4.png",
-
-        // }
+     
       })
       .subscribe((data) => {
+    
         this.post = data;
         console.log(this.post);
         if (this.post.uid) {
@@ -334,9 +332,7 @@ export class SignupPage implements OnInit {
           alert(this.post);
         }
       });
-    //    (error: HttpErrorResponse) => {
-    //   console.log(error.error.message);
-    // })
+    });
   }
 
   async correctAlert() {
@@ -377,4 +373,6 @@ export class SignupPage implements OnInit {
     console.log(this.DOB)
 
   }
+
+ 
 }

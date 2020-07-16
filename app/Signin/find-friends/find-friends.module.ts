@@ -15,6 +15,8 @@ import { NavigationbarModule } from "../../Navigation/NavigationBar/navigationba
     IonicModule,
     FindFriendsPageRoutingModule,NavigationbarModule
   ],
-  declarations: [FindFriendsPage]
+  exports: [FindFriendsPage],
+  declarations: [FindFriendsPage] 
+
 })
 export class FindFriendsPageModule {}

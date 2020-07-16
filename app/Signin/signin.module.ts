@@ -8,6 +8,7 @@ import { MatTableModule } from "@angular/material/table";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MaterialModule } from "../material.module";
 import { NavigationbarModule } from "../Navigation/NavigationBar/navigationbar.module";
+import { SigninPipe } from '../signin.pipe';
 
 @NgModule({
   imports: [
@@ -21,6 +22,6 @@ import { NavigationbarModule } from "../Navigation/NavigationBar/navigationbar.m
     NavigationbarModule,
    
   ],
-  declarations: [SigninPage],
+  declarations: [SigninPage, SigninPipe],
 })
 export class SigninPageModule {}

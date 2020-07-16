@@ -284,7 +284,7 @@ img.image-icon {
 }
 .image-upload-container {
     border: 1px solid;
-    /* height: 10vh; */
+    height: 10vh; 
 }
 .continue-button-blue{
     background-color: #4372c4;
@@ -331,4 +331,16 @@ img.image-icon {
     align-items: center;
     
     overflow: hidden;
+}
+input.upload-multiple {
+    position: relative;
+    /* visibility: hidden; */
+    top: -8vh;
+    width: 20vw;
+    height: 8vw;
+    opacity: 0;
+}
+.upload-button-main {
+    display: flex;
+    justify-content: center;
 }

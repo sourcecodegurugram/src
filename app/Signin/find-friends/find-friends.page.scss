@@ -58,9 +58,20 @@ p.heading-login {
 }
 
 .main-div {
-    height: 100vh;
+  
     display: flex;
     flex-direction: column;
     justify-content: center;
     background-color: white;
+    height: 100%;
+    overflow: scroll;
+}
+@media screen and (max-width:320px)
+{
+    .success-market {
+        text-align: center;
+        margin: 2em;
+        font-size: 16px;
+        
+}
 }
