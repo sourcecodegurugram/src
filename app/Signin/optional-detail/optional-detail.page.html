@@ -52,7 +52,7 @@
           <label class="label-ionic-dropdown">My friends and I usually talk about</label>
           <ion-item class="usually-dropdown">
             <ion-label></ion-label>
-            <ion-select multiple="true" cancelText="Close" okText="Okay" name="talkabout" [(ngModel)]="talkabout" lines="none">
+            <ion-select multiple="true" cancelText="Close" okText="Okay" name="talkabout" [(ngModel)]="talkabout" class="ion-select-option-setting">
 
               <ion-select-option value="Work" #Work>Work
               </ion-select-option>
@@ -284,22 +284,30 @@
           </div>
         </div>
         <div class="forms-field">
-        <form  (ngSubmit)="submit(fileSource)" >
-        <div class="form-group">
-          <label for="file">File</label>
-          <input 
-      
-              id="file" 
-              type="file" 
-              class="form-control"
-              multiple="" 
-              (change)="onFileChange($event)">
+          <form  (ngSubmit)="submit(fileSource)" >
+            <div class="form-group">
+              <label for="file">File</label>
+              <input 
+          
+                  id="file" 
+                  type="file" 
+                  class="form-control"
+                  multiple="" 
+                  (change)="onFileChange($event)">
+            
+          </div>
+       <div class="image-conatiner">
+         <div class="sub-image-container" *ngFor='let url of images' >
+          <img  [src]="url.uri" height="150" width="200px" style="margin: 3px;" class="images-uploaded" ><br/> 
+        <p style="text-align:center">{{url.name}}</p>
+
+         </div>
         
-      </div>
-      <!-- <img *ngFor='let url of images'  [src]="url" height="150" width="200px" style="margin: 3px;"> <br/> -->
-       
-      <button class="btn btn-primary" type="submit">Submit</button>
-  </form>
+            
+           
+        </div>
+          <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
   
           
 

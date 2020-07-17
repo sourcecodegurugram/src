@@ -40,10 +40,12 @@ export class OptionalDetailPage implements OnInit {
   pictureUrl;
   scope= []
   images = [];
-  myForm = new FormGroup({
-   file: new FormControl('', [Validators.required]),
-   fileSource: new FormControl('', [Validators.required])
- });
+  imageName;
+//   myForm = new FormGroup({
+//    file:,
+//    fileSource: new FormControl('', [Validators.required])
+//  });
+
   newFiles;
 
   constructor(private http:HttpClient, private _location: Location, private _Activatedroute: ActivatedRoute,private ConfigService:ConfigService,private router: Router, public alertController: AlertController,) { }
@@ -168,28 +170,28 @@ export class OptionalDetailPage implements OnInit {
     
   // }
  
-  onUpload(fileSource)
-   {
-    console.log(this.myForm.value.fileSource);
+  // onUpload(fileSource)
+  //  {
+  //   console.log(this.myForm.value.fileSource);
   
-    const headers = new HttpHeaders().set(
-      "Content-Type",
-      "application/x-www-form-urlencoded"
-    );
-    this.uploadData = {
-      file: this.myForm.value.fileSource,
-      filename: this.newFiles.name,
-      filepath: "public://" + this.newFiles.name,
-    };
-    console.log(this.uploadData)
-    this.http
-      .post("https://gowebtutorial.com/api/json/file/", this.uploadData)
-      .subscribe((rest) => {
-        (this.Picurl = rest), console.log(this.Picurl.fid);
-      });
+  //   const headers = new HttpHeaders().set(
+  //     "Content-Type",
+  //     "application/x-www-form-urlencoded"
+  //   );
+  //   this.uploadData = {
+  //     file: this.myForm.value.fileSource,
+  //     filename: this.newFiles.name,
+  //     filepath: "public://" + this.newFiles.name,
+  //   };
+  //   console.log(this.uploadData)
+  //   this.http
+  //     .post("https://gowebtutorial.com/api/json/file/", this.uploadData)
+  //     .subscribe((rest) => {
+  //       (this.Picurl = rest), console.log(this.Picurl.fid);
+  //     });
      
      
-  }
+  // }
 
 newUpload()
 {
@@ -229,30 +231,41 @@ async Alert() {
 
   await alert.present();
 }
-get f(){
-  return this.myForm.controls;
-}
- 
+// get f(){
+//   return this.myForm.controls;
+// }
+
 onFileChange(event) {
+
   if (event.target.files && event.target.files[0]) {
       var filesAmount = event.target.files.length;
+     
       for (let i = 0; i < filesAmount; i++) {
+     
+        var filesAmount = event.target.files.length;
+  
+         this.imageName  = event.target.files[i].name
+     
               var reader = new FileReader();
- 
+             
               reader.onload = (event:any) => {
-                console.log(event.target.result);
-                 this.images.push(event.target.result); 
-            
-                 this.myForm.patchValue({
-                    fileSource: this.images
-                 });
+                
+                 this.images.push({uri:event.target.result, name:this.imageName });
+           
+                 console.log(this.images)
+                //  this.myForm.patchValue({
+                //     fileSource: this.images
+                //  });
+                
               }
-
+             
               reader.readAsDataURL(event.target.files[i]);
-              console.log(event.target.files[i].name)
-              this.newFiles= JSON.stringify(event.target.files[i].name)
+              // console.log(event.target.files[i]);
+              // this.imageName.push(event.target.files[i].name);
+            //   console.log(this.imageName)
+            //  console.log(this.imageName)
 
-              console.log(this.newFiles)
+        
       }
   }
 }
@@ -261,9 +274,9 @@ onFileChange(event) {
 //   this.base64textString = btoa(binaryString);
 //   // console.log(btoa(binaryString));
 // }
-submit(fileSource){
-  console.log(this.newFiles);
-  this.onUpload(fileSource)
-}
+// submit(fileSource){
+//   console.log(this.newFiles);
+//   this.onUpload(fileSource)
+// }
  
 }

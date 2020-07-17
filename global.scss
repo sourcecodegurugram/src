@@ -257,3 +257,53 @@ select {
   -moz-appearance: none;
   background-color: white;
 }
+
+ion-select.ng-valid.ios.in-item.hydrated.ng-touched.ng-dirty.ion-valid.ion-touched.ion-dirty {
+  padding-left: 0em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+ion-label#ion-sel-0-lbl {
+  display: none;
+}
+ion-select.ng-valid.ios.in-item.hydrated.ng-touched.ng-dirty.ion-valid.ion-touched.ion-dirty div{
+ 
+  width: 100%;
+}
+.select-icon
+{
+  width: 100vw;
+}
+.item .sc-ion-label-ios-h {
+  --color: initial;
+  display: block;
+  color: var(--color);
+  font-family: var(--ion-font-family, inherit);
+  font-size: inherit;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: none;
+}
+div.ion-select
+{
+  padding-left: 10vw !important;
+}
+ion-select.ion-select-option-setting.ng-pristine.ng-valid.ion-pristine.ion-valid.ios.in-item.hydrated {
+  background-color: antiquewhite;
+  max-width: 100vw;
+}
+ion-select.ion-select-option-setting.ng-valid.ios.in-item.hydrated.ng-touched.ng-dirty.ion-valid.ion-touched.ion-dirty {
+  width: 100vw;
+}
+ion-select-option#ion-selopt-0 {
+  max-width: 100vw;
+}
+ion-select.ion-select-option-setting.ng-pristine.ng-valid.ion-pristine.ion-valid.ios.in-item.hydrated div
+{
+  min-width: 72vw;
+}

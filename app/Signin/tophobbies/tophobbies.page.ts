@@ -7,7 +7,7 @@ import {
 import { Router, ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
 import {ConfigService} from "../../config.service";
-
+import {FormControl} from '@angular/forms';
 @Component({
   selector: 'app-tophobbies',
   templateUrl: './tophobbies.page.html',
@@ -32,6 +32,9 @@ export class TophobbiesPage implements OnInit {
   donotStatus:boolean = false
   topactivity: any;
   isLoading:boolean  = false
+  toppings = new FormControl();
+  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato']
+
   constructor(private http:HttpClient, private _location: Location, private _Activatedroute: ActivatedRoute,private ConfigService:ConfigService,private router: Router,) { }
 
   ngOnInit() {
