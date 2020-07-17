@@ -60,6 +60,7 @@ export class SignupPage implements OnInit {
   uid: any;
   picturesUrl;
   displayImage;
+  isLoading:boolean = false
   constructor(
     private http: HttpClient,
     private zone: NgZone,
@@ -202,6 +203,7 @@ export class SignupPage implements OnInit {
   }
 
   onUpload(picture) {
+    this.isLoading = true
     const headers = new HttpHeaders().set(
       "Content-Type",
       "application/x-www-form-urlencoded"
@@ -219,6 +221,7 @@ export class SignupPage implements OnInit {
 
         // Show next button
         this.imageContinue = true;
+        this.isLoading = false
       });
     console.log(this.uploadData);
   }
@@ -240,6 +243,7 @@ export class SignupPage implements OnInit {
     password,
     confirmpassword
   ) {
+    this.isLoading = true
     this.http
       .get("https://gowebtutorial.com/api/json/file/" + this.Picurl.fid)
       .subscribe((res) => {
@@ -312,13 +316,15 @@ export class SignupPage implements OnInit {
           })
           .subscribe((data) => {
             this.post = data;
-            console.log(this.post);
+          
             if (this.post.uid) {
+              this.isLoading = false
               this.nextStep();
-              console.log(this.uploadPicture);
+              
               this.correctAlert();
             } else {
               alert(this.post);
+
             }
           });
       });

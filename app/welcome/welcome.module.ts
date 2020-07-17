@@ -6,7 +6,8 @@ import { WelcomePageRoutingModule } from "./welcome-routing.module";
 import { MaterialModule } from "../material.module";
 import { WelcomePage } from "./welcome.page";
 import { NavigationbarModule } from "../Navigation/NavigationBar/navigationbar.module";
-import {FindFriendsPageModule} from "../Signin/find-friends/find-friends.module"
+import {FindFriendsPageModule} from "../Signin/find-friends/find-friends.module";
+import {TophobbiesPageModule }  from "../Signin/tophobbies/tophobbies.module"
 @NgModule({
   imports: [
     CommonModule,
@@ -15,7 +16,8 @@ import {FindFriendsPageModule} from "../Signin/find-friends/find-friends.module"
     WelcomePageRoutingModule,
     MaterialModule,
     NavigationbarModule,
-    FindFriendsPageModule
+    FindFriendsPageModule,
+    TophobbiesPageModule,
   ],
   declarations: [WelcomePage],
 })

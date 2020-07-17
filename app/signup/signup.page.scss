@@ -293,7 +293,7 @@ img.image-icon {
     background-color: white;
     padding: 1.5em 0em;
     margin: 0px;
-    margin-top: -4vh;
+    margin-top: -5vh;
 }
 .align-date {
     display: grid;
@@ -301,3 +301,19 @@ img.image-icon {
     grid-gap: 15px;
     justify-items: center;
 }
+.loading-container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    z-index: 9;
+    background: black;
+    opacity: 0.5;
+  }

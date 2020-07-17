@@ -31,6 +31,7 @@ export class TophobbiesPage implements OnInit {
   activitiesDeclared: any;
   donotStatus:boolean = false
   topactivity: any;
+  isLoading:boolean  = false
   constructor(private http:HttpClient, private _location: Location, private _Activatedroute: ActivatedRoute,private ConfigService:ConfigService,private router: Router,) { }
 
   ngOnInit() {
@@ -39,7 +40,7 @@ export class TophobbiesPage implements OnInit {
   }
 
   notshowagain(topactivity,otheractivity) {
-    console.log(topactivity)
+   this.isLoading = true
     const headers = new HttpHeaders()
       .set("X-CSRF-Token", this.userDetail.token)
       .set("Content-Type", "application/json")
@@ -54,13 +55,13 @@ export class TophobbiesPage implements OnInit {
       .put(
         "https://gowebtutorial.com/api/json/user/" + this.userDetail.user.uid,
         {
-          // field_already_declared: {
-          //   und: [
-          //     {
-          //       value: "true",
-          //     },
-          //   ],
-          // },
+          field_already_declared: {
+            und: [
+              {
+                value: "true",
+              },
+            ],
+          },
           field_top3_activities:
           {
             und: topactivity
@@ -74,7 +75,9 @@ export class TophobbiesPage implements OnInit {
         requestOptions
       )
       .subscribe((favorate) => {
-  
+        console.log(favorate)
+ this.isLoading = false
+ this.router.navigate(["/chat/searchUser"]);
       });
   }
 

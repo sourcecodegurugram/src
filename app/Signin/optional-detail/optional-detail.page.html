@@ -47,9 +47,11 @@
           </div>
 
 
-          <ion-item class="mt-4 usually-dropdown">
-
-            <ion-label>My friends and I usually talk about</ion-label>
+         <div class="ionic-dropdowns">
+     
+          <label class="label-ionic-dropdown">My friends and I usually talk about</label>
+          <ion-item class="usually-dropdown">
+            <ion-label></ion-label>
             <ion-select multiple="true" cancelText="Close" okText="Okay" name="talkabout" [(ngModel)]="talkabout" lines="none">
 
               <ion-select-option value="Work" #Work>Work
@@ -63,13 +65,13 @@
               <ion-select-option value="Other" #Other>Other</ion-select-option>
             </ion-select>
           </ion-item>
+        </div>
 
 
+        <label class="label-ionic-dropdown mt-4">A Good Friend Is Someone Who...</label>
+          <ion-item class="usually-dropdown mb-4">
 
-
-          <ion-item class="mt-4 usually-dropdown mb-4">
-
-            <ion-label>A Good Friend Is Someone Who...</ion-label>
+            <ion-label></ion-label>
             <ion-select multiple="true" cancelText="Close" okText="Okay" name="goodFriend" [(ngModel)]="goodFriend">
 
               <ion-select-option value="is always there for me." #always>is always there for me.
@@ -134,7 +136,7 @@
           </div>
 
 
-          <div class="blue-button-second-tab">
+          <div class="blue-button-second-tab" (click)="Alert()">
             Why do we ask this if its
             not for dating or sex?
           </div>
@@ -148,10 +150,10 @@
             </select>
           </div>
 
+          <label class="label-ionic-dropdown mt-4">Do You Have Pets?</label>
+          <ion-item class="usually-dropdown mb-4" no-lines>
 
-          <ion-item class="mt-4 usually-dropdown mb-4" no-lines>
-
-            <ion-label>Do You Have Pets?</ion-label>
+            <ion-label></ion-label>
             <ion-select multiple="true" cancelText="Close" okText="Okay" name="pets" [(ngModel)]="pets" no-lines>
               <ion-select-option value="Dog" #Dog>Dog
               </ion-select-option>
@@ -282,34 +284,23 @@
           </div>
         </div>
         <div class="forms-field">
-          <div class="form-group">
-            <label for="sel1">Do you want to add some more photos?</label>
-
-            
-            <div class="upload-btn-wrapper">
-
-              <div class="upload-button">
-                <div class="logo-camera">
-
-                  <img src="../../assets/Images/camera.png" class="camera-pic">
-                </div>
-                <div>
-                  <button class="btn" (click)="fileInput.click()">Upload a Photo</button>
-                </div>
-              </div>
-              <input type="file"  [(ngModel)]="picture" value="picture" name="picture" (change)="handleFileSelect($event)">
-            </div>
-            <div class="upload-button-main">
-            <button (click)="onUpload()">Upload!</button> 
-            <button (click)="newUpload()">Save</button> 
-
-
-            
-          </div>
-            
-          </div>
-           
-
+        <form  (ngSubmit)="submit(fileSource)" >
+        <div class="form-group">
+          <label for="file">File</label>
+          <input 
+      
+              id="file" 
+              type="file" 
+              class="form-control"
+              multiple="" 
+              (change)="onFileChange($event)">
+        
+      </div>
+      <!-- <img *ngFor='let url of images'  [src]="url" height="150" width="200px" style="margin: 3px;"> <br/> -->
+       
+      <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+  
           
 
           <div class="form-group">

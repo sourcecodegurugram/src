@@ -7,7 +7,9 @@ import {
 } from "@angular/common/http";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
-import {ConfigService} from "../../config.service"
+import {ConfigService} from "../../config.service";
+import { AlertController } from "@ionic/angular";
+import { FormGroup, FormControl, Validators} from '@angular/forms'
 @Component({
   selector: 'app-optional-detail',
   templateUrl: './optional-detail.page.html',
@@ -37,8 +39,14 @@ export class OptionalDetailPage implements OnInit {
   pictureDetail;
   pictureUrl;
   scope= []
+  images = [];
+  myForm = new FormGroup({
+   file: new FormControl('', [Validators.required]),
+   fileSource: new FormControl('', [Validators.required])
+ });
+  newFiles;
 
-  constructor(private http:HttpClient, private _location: Location, private _Activatedroute: ActivatedRoute,private ConfigService:ConfigService,private router: Router,) { }
+  constructor(private http:HttpClient, private _location: Location, private _Activatedroute: ActivatedRoute,private ConfigService:ConfigService,private router: Router, public alertController: AlertController,) { }
 
   ngOnInit() {
     this.userDetail= JSON.parse(localStorage.getItem("currentUser"));
@@ -125,8 +133,7 @@ export class OptionalDetailPage implements OnInit {
    field_favorite_music:{und:{value:music}},
    field_you_say:{und:{value:anything}}
    },requestOptions).subscribe(UserData=>{
-     this.pagechange()
-     console.log(UserData)
+    this.router.navigate(["/welcome"]);
    })
 
   }
@@ -147,37 +154,34 @@ export class OptionalDetailPage implements OnInit {
       this.router.navigate(["/topHobbies"]);
     }
   }
-  handleFileSelect(evt) {
-    var files = evt.target.files;
-    var fil = files[0];
+  // handleFileSelect(evt) {
+  //   var files = evt.target.files;
+  //   var fil = files[0];
 
-    if (files && fil) {
-      var reader = new FileReader();
-      reader.onload = this._handleReaderLoaded.bind(this);
-      reader.readAsBinaryString(fil);
-      this.fileName = files[0].name
+  //   if (files && fil) {
+  //     var reader = new FileReader();
+  //     reader.onload = this._handleReaderLoaded.bind(this);
+  //     reader.readAsBinaryString(fil);
+  //     this.fileName = files[0].name
       
-    }
+  //   }
     
-  }
-  _handleReaderLoaded(readerEvt) {
-    var binaryString = readerEvt.target.result;
-    this.base64textString = btoa(binaryString);
-    // console.log(btoa(binaryString));
-  }
-  onUpload()
+  // }
+ 
+  onUpload(fileSource)
    {
-    console.log(this.base64textString);
+    console.log(this.myForm.value.fileSource);
   
     const headers = new HttpHeaders().set(
       "Content-Type",
       "application/x-www-form-urlencoded"
     );
     this.uploadData = {
-      file:  this.base64textString,
-      filename: this.fileName,
-      filepath: "public://" + this.fileName,
+      file: this.myForm.value.fileSource,
+      filename: this.newFiles.name,
+      filepath: "public://" + this.newFiles.name,
     };
+    console.log(this.uploadData)
     this.http
       .post("https://gowebtutorial.com/api/json/file/", this.uploadData)
       .subscribe((rest) => {
@@ -194,8 +198,6 @@ newUpload()
   .subscribe((res) => {
     (this.pictureDetail = res)
     this.pictureUrl = this.pictureDetail.uri_full
-    
-    console.log()
     const headers = new HttpHeaders()
     .set("X-CSRF-Token", this.userDetail.token)
     .set("Content-Type", "application/json")
@@ -215,9 +217,53 @@ newUpload()
           ],      
       },
     },requestOptions).subscribe(restem => {
-     console.log(restem);
+     
   });
 });
 }
+async Alert() {
+  const alert = await this.alertController.create({
+    message: "Information to be provided",
+    buttons: ["OK"],
+  });
 
+  await alert.present();
+}
+get f(){
+  return this.myForm.controls;
+}
+ 
+onFileChange(event) {
+  if (event.target.files && event.target.files[0]) {
+      var filesAmount = event.target.files.length;
+      for (let i = 0; i < filesAmount; i++) {
+              var reader = new FileReader();
+ 
+              reader.onload = (event:any) => {
+                console.log(event.target.result);
+                 this.images.push(event.target.result); 
+            
+                 this.myForm.patchValue({
+                    fileSource: this.images
+                 });
+              }
+
+              reader.readAsDataURL(event.target.files[i]);
+              console.log(event.target.files[i].name)
+              this.newFiles= JSON.stringify(event.target.files[i].name)
+
+              console.log(this.newFiles)
+      }
+  }
+}
+// _handleReaderLoaded(readerEvt) {
+//   var binaryString = readerEvt.target.result;
+//   this.base64textString = btoa(binaryString);
+//   // console.log(btoa(binaryString));
+// }
+submit(fileSource){
+  console.log(this.newFiles);
+  this.onUpload(fileSource)
+}
+ 
 }

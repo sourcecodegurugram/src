@@ -111,7 +111,10 @@ export class NavigationbarComponent implements OnInit {
   }
   refresh() {
     this.loginCheck();
-    this.router.navigate(["/welcome"]);
+    // localStorage.clear();
+    this.router.navigateByUrl('/welcome', { skipLocationChange: true }).then(() => {
+      this.router.navigate(["/welcome"]);
+  }); 
     this.ngOnInit();
   }
   async correctAlert() {
@@ -139,7 +142,10 @@ export class NavigationbarComponent implements OnInit {
       .subscribe((head) => {
         console.log(head);
         localStorage.clear();
-        window.location.reload();
+        this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+         
+      }); 
+        // this.router.navigate(["/welcome"]);
       });
   }
   openAlertDialog() {

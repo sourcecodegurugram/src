@@ -2,18 +2,20 @@
   <app-navigationbar></app-navigationbar>
 </ion-header>
 
+<div *ngIf="isLoading" class="loading-container">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
 
-<ion-content>
+
   <div class="main-div-top-list">
     <div class="forms-field">
       <div class="upper-text-changes">
         Hello! Would you like to add your hobbies and interests to your profile to improve your results?
       </div>
 
-
-     <ion-item class="mt-4">
-
-            <ion-label>Top 3 Activities/Interest</ion-label>
+      <label class="label-ionic-dropdown mt-3">Top 3 Activities/Interest</label>
+     <ion-item class="mb-4">
+            <ion-label></ion-label>
             <ion-select multiple="true" cancelText="Close" okText="Okay" name="activity" [(ngModel)]="topactivity">
               <ion-select-option value="yoga" #yogas>yoga</ion-select-option>
               <ion-select-option value="playdates (parents and children)" #playdatess>playdates (parents and children)
@@ -98,10 +100,10 @@
           </ion-item>
 
 
+          <label class="label-ionic-dropdown">Other Activities/Interest</label>
+    <ion-item class=""  no-lines>
 
-    <ion-item class="mt-4"  no-lines>
-
-            <ion-label>Other Activities/Interest</ion-label>
+            <ion-label></ion-label>
             <ion-select multiple="true" cancelText="Close" okText="Okay" name="activity" [(ngModel)]="otheractivity"  lines=“none”>
               <ion-select-option value="yoga" #yogas>yoga</ion-select-option>
               <ion-select-option value="playdates (parents and children)" #playdatess>playdates (parents and children)
@@ -193,4 +195,4 @@
       </div>
     </div>
   </div>
-</ion-content>
+

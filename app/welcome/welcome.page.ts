@@ -60,6 +60,7 @@ export class WelcomePage implements OnInit {
   scope: any;
   siginUser: any;
   isLoggedIn: boolean = false;
+  notEntered : boolean = false
 
   constructor(
     private ConfigService: ConfigService,
@@ -74,7 +75,32 @@ export class WelcomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loggedIncheck()
+    this.siginUser = JSON.parse(localStorage.getItem("currentUser"));
+  
+    this.isLoading = true
+    if (this.siginUser != null) {
+      console.log(this.siginUser.user.field_already_declared.und)  
+      if(this.siginUser.user.field_already_declared.length == 0)
+      {
+        this.notEntered = true
+        this.isLoggedIn = true
+        this.isLoading = false
+        this.routes.navigate(["/topHobbies"]);
+      }
+      if(this.siginUser.user.field_already_declared.und.length == 1)
+      {
+        this.notEntered = false
+        this.isLoggedIn = false
+        this.isLoading = false 
+      }
+     
+    }
+    else {
+      this.isLoggedIn = false
+      this.isLoading = false
+    }
+
+   
     this.routes.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };

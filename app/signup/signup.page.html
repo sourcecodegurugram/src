@@ -2,7 +2,9 @@
   <app-navigationbar></app-navigationbar>
 </ion-header>
 
-
+<div *ngIf="isLoading" class="loading-container">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
 
 <ion-content>
   <div class="main-sign-up">
@@ -631,7 +633,7 @@
           </div>
 
 
-          <div class="form-group">
+          <!-- <div class="form-group">
 
             <input type="text" class="form-control" id="usr" placeholder="Password" name="password"
               [(ngModel)]="password">
@@ -643,7 +645,7 @@
             <input type="text" class="form-control" id="usr" placeholder="Confirm Password" name="confirmpassword"
               [(ngModel)]="confirmpassword">
 
-          </div>
+          </div> -->
         </div>
         <div class="continue-button"
           (click)="LoginForm(name,fname,lname,DOB,Gender,contract,meet,live,zip,activity,email,confirmemail,password,confirmpassword)">

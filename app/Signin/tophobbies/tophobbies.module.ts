@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { TophobbiesPageRoutingModule } from './tophobbies-routing.module';
-
+import { MaterialModule } from "../../material.module";
 import { TophobbiesPage } from './tophobbies.page';
 import { NavigationbarModule } from "../../Navigation/NavigationBar/navigationbar.module";
 @NgModule({
@@ -15,6 +15,10 @@ import { NavigationbarModule } from "../../Navigation/NavigationBar/navigationba
     IonicModule,
     TophobbiesPageRoutingModule,
     NavigationbarModule ,
+    MaterialModule
+  ],
+  exports:[
+    TophobbiesPage
   ],
   declarations: [TophobbiesPage]
 })
