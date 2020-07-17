@@ -293,10 +293,7 @@ div.ion-select
 {
   padding-left: 10vw !important;
 }
-ion-select.ion-select-option-setting.ng-pristine.ng-valid.ion-pristine.ion-valid.ios.in-item.hydrated {
-  background-color: antiquewhite;
-  max-width: 100vw;
-}
+
 ion-select.ion-select-option-setting.ng-valid.ios.in-item.hydrated.ng-touched.ng-dirty.ion-valid.ion-touched.ion-dirty {
   width: 100vw;
 }
@@ -306,4 +303,14 @@ ion-select-option#ion-selopt-0 {
 ion-select.ion-select-option-setting.ng-pristine.ng-valid.ion-pristine.ion-valid.ios.in-item.hydrated div
 {
   min-width: 72vw;
+}
+ion-select.ng-pristine.ng-valid.ion-pristine.ion-valid.ios.in-item.hydrated {
+
+  width: 100vw;
+  max-width: 100%;
+
+}
+ion-select.ng-valid.ios.in-item.hydrated.ng-touched.ng-dirty.ion-valid.ion-touched.ion-dirty {
+  width: 100vw;
+  max-width: 100%;
 }

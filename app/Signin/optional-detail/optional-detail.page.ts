@@ -269,11 +269,11 @@ onFileChange(event) {
       }
   }
 }
-// _handleReaderLoaded(readerEvt) {
-//   var binaryString = readerEvt.target.result;
-//   this.base64textString = btoa(binaryString);
-//   // console.log(btoa(binaryString));
-// }
+_handleReaderLoaded(readerEvt) {
+  var binaryString = readerEvt.target.result;
+  this.base64textString = btoa(binaryString);
+  // console.log(btoa(binaryString));
+}
 // submit(fileSource){
 //   console.log(this.newFiles);
 //   this.onUpload(fileSource)
