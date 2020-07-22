@@ -14,7 +14,7 @@ import { MatTabChangeEvent } from "@angular/material/tabs";
 import { FormControl } from "@angular/forms";
 import { Location } from "@angular/common";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 @Component({
   selector: "app-welcome",
   templateUrl: "./welcome.page.html",
@@ -71,12 +71,13 @@ export class WelcomePage implements OnInit {
     private _Activatedroute: ActivatedRoute,
     private routes: Router,
     private locate: Location,
-    private http: HttpClient
+    private http: HttpClient,
+    private splashScreen: SplashScreen  
   ) { }
 
   ngOnInit() {
     this.siginUser = JSON.parse(localStorage.getItem("currentUser"));
-  
+    this.splashScreen.show();
     this.isLoading = true
     if (this.siginUser != null) {
       console.log(this.siginUser.user.field_already_declared.und)  
@@ -152,9 +153,10 @@ export class WelcomePage implements OnInit {
         // If we get lat long then we will pull Address details from reverse geo lookup
         if (this.lat && this.lng) {
           this.reverseGeoLookup()
+
         }
         else {
-
+        
           this.showFormPage();
         }
       }) // If we do not get lat long, we will present page with form for address and post code

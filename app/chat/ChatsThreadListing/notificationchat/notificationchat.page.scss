@@ -99,14 +99,18 @@ p.chat-content {
 .right-chat-align {
     display: flex;
     flex-direction: column;
+    float: right;
+    align-items: flex-end;
     width: 100%;
-}
 
+  
+}
 .left-chat-align {
     display: flex;
     flex-direction: column;
-    float: right;
-    align-items: center;
+    align-items: flex-start;
+
+ 
 }
 
 .chat-align {
