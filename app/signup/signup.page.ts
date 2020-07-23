@@ -8,8 +8,10 @@ import {
   FileUploadOptions,
   FileTransferObject,
 } from "@ionic-native/file-transfer";
-import { File } from "@ionic-native/file";
+import { File } from "@ionic-native/file/ngx";
 import { Camera } from "@ionic-native/camera";
+import { computeStackId } from '@ionic/angular/directives/navigation/stack-utils';
+
 @Component({
   selector: "app-signup",
   templateUrl: "./signup.page.html",
@@ -40,7 +42,7 @@ export class SignupPage implements OnInit {
   Picurl: any;
   pictureUrl: Array<any>;
   filename: any;
-  file: any;
+//file:any
   filepath: object = {};
   imageContinue: boolean = false;
   uploadData: { file: string; filename: string; filepath: string };
@@ -65,7 +67,8 @@ export class SignupPage implements OnInit {
     private http: HttpClient,
     private zone: NgZone,
     public alertController: AlertController,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private filed: File
   ) {}
 
   ngOnInit() {}
@@ -180,21 +183,25 @@ export class SignupPage implements OnInit {
   }
 
   handleFileSelect(evt) {
+
+// this.filed.checkDir(this.filed, 'mydir').then(_ => console.log('Directory exists')).catch(err =>
+//   console.log('Directory doesnt exist'));
     var files = evt.target.files;
     var fil = files[0];
-
-    if (files && fil) {
-      this.fileName = files[0].name;
-      var reader = new FileReader();
-      reader.onload = this._handleReaderLoaded.bind(this);
-      reader.readAsBinaryString(fil);
-    }
+    console.log(files + " " + fil)
+    // if (files && fil) {
+    //   this.fileName = files[0].name;
+    //   var reader = new FileReader();
+    //   reader.onload = this._handleReaderLoaded.bind(this);
+    //   reader.readAsBinaryString(fil);
+    //   console.log(files)
+    // }
   }
 
   _handleReaderLoaded(readerEvt) {
     var binaryString = readerEvt.target.result;
     this.base64textString = btoa(binaryString);
-
+console.log(this.base64textString)
     //Automatically upload files
     this.onUpload(this.picture);
     this.displayImage = this.sanitizer.bypassSecurityTrustUrl(

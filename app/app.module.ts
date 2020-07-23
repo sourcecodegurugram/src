@@ -19,6 +19,7 @@ import {
   NativeGeocoder,
   NativeGeocoderOptions,
 } from "@ionic-native/native-geocoder/ngx";
+import { File } from "@ionic-native/file/ngx";
 import {AlertProfileDialogComponent} from './Navigation/NavigationBar/alert-profile/alert-profile-dialog.component'
 @NgModule({
   declarations: [AppComponent, EllipsisPipe,AlertProfileDialogComponent],
@@ -37,6 +38,7 @@ import {AlertProfileDialogComponent} from './Navigation/NavigationBar/alert-prof
     SplashScreen,
     Geolocation,
     NativeGeocoder,
+    File,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent],
