@@ -232,12 +232,17 @@
                 <div *ngIf="!imageContinue" class="logo-camera">
                   <img src="../../assets/Images/camera.png" class="camera-pic">
                 </div>
-                <div>
+                <!-- <div>
                   <button *ngIf="!imageContinue" class="btn" (click)="fileInput.click()">Upload a Photo</button>
+                </div> -->
+
+                <div>
+                  <button *ngIf="!imageContinue" class="btn" (click)="openCamera()">Upload a Photo</button>
                 </div>
               </div>
-              <input type="file" [(ngModel)]="picture" value="picture" name="picture"
-                (change)="handleFileSelect($event)">
+              <!-- <input type="file" [(ngModel)]="picture" value="picture" name="picture" #filechooser multiple
+                (change)="handleFileSelect($event)" #fileChooserElementRef> -->
+
             </div>
           </div>
 

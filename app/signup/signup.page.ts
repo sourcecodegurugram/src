@@ -9,8 +9,12 @@ import {
   FileTransferObject,
 } from "@ionic-native/file-transfer";
 import { File } from "@ionic-native/file/ngx";
-import { Camera } from "@ionic-native/camera";
-import { computeStackId } from '@ionic/angular/directives/navigation/stack-utils';
+import { computeStackId } from "@ionic/angular/directives/navigation/stack-utils";
+import { FileChooser } from "@ionic-native/file-chooser/ngx";
+import { Capacitor } from "@capacitor/core";
+import { Base64 } from "@ionic-native/base64/ngx";
+import { Device } from "@ionic-native/device/ngx";
+import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
 
 @Component({
   selector: "app-signup",
@@ -42,7 +46,7 @@ export class SignupPage implements OnInit {
   Picurl: any;
   pictureUrl: Array<any>;
   filename: any;
-//file:any
+  //file:any
   filepath: object = {};
   imageContinue: boolean = false;
   uploadData: { file: string; filename: string; filepath: string };
@@ -62,16 +66,21 @@ export class SignupPage implements OnInit {
   uid: any;
   picturesUrl;
   displayImage;
-  isLoading:boolean = false
+  isLoading: boolean = false;
   constructor(
     private http: HttpClient,
     private zone: NgZone,
     public alertController: AlertController,
     private sanitizer: DomSanitizer,
-    private filed: File
+    private filed: File,
+    private fileChooser: FileChooser,
+    private base64: Base64,
+    private device: Device,
+    private camera: Camera
   ) {}
 
   ngOnInit() {}
+
   public tabChanged(tabChangeEvent: MatTabChangeEvent): void {
     this.selectedIndex = tabChangeEvent.index;
   }
@@ -182,35 +191,34 @@ export class SignupPage implements OnInit {
     await alert.present();
   }
 
-  handleFileSelect(evt) {
+  // handleFileSelect(evt) {
+  // this.filed.checkDir(this.filed, 'mydir').then(_ => console.log('Directory exists')).catch(err =>
+  //   console.log('Directory doesnt exist'));
+  // var files = evt.target.files;
+  // var fil = files[0];
+  // console.log(files + " " + fil);
+  // if (files && fil) {
+  //   this.fileName = files[0].name;
+  //   var reader = new FileReader();
+  //   reader.onload = this._handleReaderLoaded.bind(this);
+  //   reader.readAsBinaryString(fil);
+  //   console.log(files)
+  // }
+  // }
 
-// this.filed.checkDir(this.filed, 'mydir').then(_ => console.log('Directory exists')).catch(err =>
-//   console.log('Directory doesnt exist'));
-    var files = evt.target.files;
-    var fil = files[0];
-    console.log(files + " " + fil)
-    // if (files && fil) {
-    //   this.fileName = files[0].name;
-    //   var reader = new FileReader();
-    //   reader.onload = this._handleReaderLoaded.bind(this);
-    //   reader.readAsBinaryString(fil);
-    //   console.log(files)
-    // }
-  }
-
-  _handleReaderLoaded(readerEvt) {
-    var binaryString = readerEvt.target.result;
-    this.base64textString = btoa(binaryString);
-console.log(this.base64textString)
-    //Automatically upload files
-    this.onUpload(this.picture);
-    this.displayImage = this.sanitizer.bypassSecurityTrustUrl(
-      "data:Image/*;base64," + this.base64textString
-    );
-  }
+  // _handleReaderLoaded(readerEvt) {
+  //   var binaryString = readerEvt.target.result;
+  //   this.base64textString = btoa(binaryString);
+  //   console.log(this.base64textString);
+  //Automatically upload files
+  // this.onUpload(this.picture);
+  // this.displayImage = this.sanitizer.bypassSecurityTrustUrl(
+  //   "data:Image/*;base64," + this.base64textString
+  // );
+  // }
 
   onUpload(picture) {
-    this.isLoading = true
+    this.isLoading = true;
     const headers = new HttpHeaders().set(
       "Content-Type",
       "application/x-www-form-urlencoded"
@@ -220,6 +228,7 @@ console.log(this.base64textString)
       filename: this.fileName,
       filepath: "public://" + this.fileName,
     };
+    console.log(this.uploadData);
     this.http
       .post("https://gowebtutorial.com/api/json/file/", this.uploadData)
       .subscribe((rest) => {
@@ -228,7 +237,7 @@ console.log(this.base64textString)
 
         // Show next button
         this.imageContinue = true;
-        this.isLoading = false
+        this.isLoading = false;
       });
     console.log(this.uploadData);
   }
@@ -250,7 +259,7 @@ console.log(this.base64textString)
     password,
     confirmpassword
   ) {
-    this.isLoading = true
+    this.isLoading = true;
     this.http
       .get("https://gowebtutorial.com/api/json/file/" + this.Picurl.fid)
       .subscribe((res) => {
@@ -323,15 +332,14 @@ console.log(this.base64textString)
           })
           .subscribe((data) => {
             this.post = data;
-          
+
             if (this.post.uid) {
-              this.isLoading = false
+              this.isLoading = false;
               this.nextStep();
-              
+
               this.correctAlert();
             } else {
               alert(this.post);
-
             }
           });
       });
@@ -375,4 +383,58 @@ console.log(this.base64textString)
     );
     console.log(this.DOB);
   }
+
+  openCamera() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+    };
+
+    this.camera.getPicture(options).then(
+      (imageData) => {
+        this.base64.encodeFile(imageData).then(
+          (base64File: string) => {
+            this.fileName = "test101.jpg";
+            this.base64textString = base64File;
+            this.imageContinue = true;
+            this.picture = this.fileName;
+
+            this.onUpload(this.picture);
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      },
+      (err) => {
+        // Handle error
+      }
+    );
+
+    // this.fileChooser
+    //   .open()
+    //   .then((uri) => {
+    //     console.log(Capacitor.convertFileSrc(uri));
+    //     this.imageContinue = true;
+    //     this.displayImage = this.sanitizer.bypassSecurityTrustUrl(
+    //       Capacitor.convertFileSrc(uri)
+    //     );
+
+    //     let filePath: string = this.displayImage;
+    //     this.base64.encodeFile(filePath).then(
+    //       (base64File: string) => {
+    //         console.log(base64File);
+    //         console.log(this.displayImage);
+    //       },
+    //       (err) => {
+    //         console.log(err);
+    //       }
+    //     );
+    //   })
+    //   .catch((e) => console.log(e));
+  }
 }
+
+//androidx.core.content.FileProvider

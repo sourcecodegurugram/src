@@ -14,15 +14,20 @@ import { Geolocation } from "@ionic-native/geolocation/ngx";
 import { RecaptchaModule } from "ng-recaptcha";
 import { EllipsisPipe } from "../ellipsis.pipe";
 import { SignupPageModule } from "./signup/signup.module";
-import { MaterialModule } from './material.module';
+import { MaterialModule } from "./material.module";
 import {
   NativeGeocoder,
   NativeGeocoderOptions,
 } from "@ionic-native/native-geocoder/ngx";
 import { File } from "@ionic-native/file/ngx";
-import {AlertProfileDialogComponent} from './Navigation/NavigationBar/alert-profile/alert-profile-dialog.component'
+import { FileChooser } from "@ionic-native/file-chooser/ngx";
+import { Base64 } from "@ionic-native/base64/ngx";
+import { Device } from "@ionic-native/device/ngx";
+import { AlertProfileDialogComponent } from "./Navigation/NavigationBar/alert-profile/alert-profile-dialog.component";
+import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
+
 @NgModule({
-  declarations: [AppComponent, EllipsisPipe,AlertProfileDialogComponent],
+  declarations: [AppComponent, EllipsisPipe, AlertProfileDialogComponent],
   entryComponents: [AlertProfileDialogComponent],
   imports: [
     BrowserModule,
@@ -31,7 +36,7 @@ import {AlertProfileDialogComponent} from './Navigation/NavigationBar/alert-prof
     IonicModule.forRoot(),
     AppRoutingModule,
     RecaptchaModule.forRoot(),
-    MaterialModule
+    MaterialModule,
   ],
   providers: [
     StatusBar,
@@ -39,6 +44,10 @@ import {AlertProfileDialogComponent} from './Navigation/NavigationBar/alert-prof
     Geolocation,
     NativeGeocoder,
     File,
+    FileChooser,
+    Base64,
+    Device,
+    Camera,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent],
