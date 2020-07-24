@@ -25,6 +25,7 @@ import { Base64 } from "@ionic-native/base64/ngx";
 import { Device } from "@ionic-native/device/ngx";
 import { AlertProfileDialogComponent } from "./Navigation/NavigationBar/alert-profile/alert-profile-dialog.component";
 import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
+import { FilePath } from '@ionic-native/file-path/ngx';
 
 @NgModule({
   declarations: [AppComponent, EllipsisPipe, AlertProfileDialogComponent],
@@ -48,6 +49,7 @@ import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
     Base64,
     Device,
     Camera,
+    FilePath,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent],

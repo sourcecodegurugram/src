@@ -13,8 +13,10 @@ import { computeStackId } from "@ionic/angular/directives/navigation/stack-utils
 import { FileChooser } from "@ionic-native/file-chooser/ngx";
 import { Capacitor } from "@capacitor/core";
 import { Base64 } from "@ionic-native/base64/ngx";
-import { Device } from "@ionic-native/device/ngx";
+ import { Device } from "@ionic-native/device/ngx";
 import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
+import { FilePath } from '@ionic-native/file-path/ngx';
+
 
 @Component({
   selector: "app-signup",
@@ -73,10 +75,11 @@ export class SignupPage implements OnInit {
     public alertController: AlertController,
     private sanitizer: DomSanitizer,
     private filed: File,
-    private fileChooser: FileChooser,
-    private base64: Base64,
-    private device: Device,
-    private camera: Camera
+    public fileChooser: FileChooser,
+    public Base64: Base64,
+    public  device: Device,
+    public camera: Camera,
+    public FilePath: FilePath
   ) {}
 
   ngOnInit() {}
@@ -225,8 +228,8 @@ export class SignupPage implements OnInit {
     );
     this.uploadData = {
       file: this.base64textString,
-      filename: this.fileName,
-      filepath: "public://" + this.fileName,
+      filename: picture,
+      filepath: "public://" + picture,
     };
     console.log(this.uploadData);
     this.http
@@ -394,13 +397,15 @@ export class SignupPage implements OnInit {
 
     this.camera.getPicture(options).then(
       (imageData) => {
-        this.base64.encodeFile(imageData).then(
+        alert(imageData)
+        this.Base64.encodeFile(imageData).then(
           (base64File: string) => {
             this.fileName = "test101.jpg";
             this.base64textString = base64File;
             this.imageContinue = true;
             this.picture = this.fileName;
-
+            alert(this.base64textString)
+         alert(this.picture)
             this.onUpload(this.picture);
           },
           (err) => {
@@ -434,6 +439,20 @@ export class SignupPage implements OnInit {
     //     );
     //   })
     //   .catch((e) => console.log(e));
+  }
+  filechooser()
+  {
+    this.fileChooser.open().then((fileuri)=>{
+      alert(fileuri)
+     this.FilePath.resolveNativePath(fileuri).then((nativepath)=>{
+       alert(nativepath)
+      this.Base64.encodeFile(nativepath).then((base64string)=>{
+        alert(base64string)
+      })
+
+     })
+
+    })
   }
 }
 

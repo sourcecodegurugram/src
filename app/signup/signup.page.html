@@ -237,7 +237,30 @@
                 </div> -->
 
                 <div>
-                  <button *ngIf="!imageContinue" class="btn" (click)="openCamera()">Upload a Photo</button>
+                
+                  <button *ngIf="!imageContinue" class="btn" (click)="openCamera()" >Take a Selfie</button>
+
+                
+                </div>
+              </div>
+              <!-- <input type="file" [(ngModel)]="picture" value="picture" name="picture" #filechooser multiple
+                (change)="handleFileSelect($event)" #fileChooserElementRef> -->
+
+            </div>
+   
+            <div class="or-text-image">OR</div>
+
+            <div class="upload-btn-wrapper">
+              <div class="upload-button">
+                <div *ngIf="!imageContinue" class="logo-camera">
+                  <img src="../../assets/Images/camera.png" class="camera-pic">
+                </div>
+                <!-- <div>
+                  <button *ngIf="!imageContinue" class="btn" (click)="fileInput.click()">Upload a Photo</button>
+                </div> -->
+
+                <div>
+                  <button *ngIf="!imageContinue" class="btn" (click)="filechooser()" >Upload from library</button>
                 </div>
               </div>
               <!-- <input type="file" [(ngModel)]="picture" value="picture" name="picture" #filechooser multiple
