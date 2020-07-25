@@ -49,7 +49,20 @@ export class OptionalDetailPage implements OnInit {
   //  });
 
   newFiles;
-
+  goodFriend;
+  pets;
+  spend;
+  speak;
+  smoke;
+  alcohol;
+  books;
+  movies;
+  shows;
+  music;
+  anything;
+  submit;
+  fileSource;
+  education;
   constructor(
     private http: HttpClient,
     private _location: Location,

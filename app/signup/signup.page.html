@@ -10,6 +10,7 @@
   <div class="main-sign-up">
     <mat-tab-group class="mat-background" [(selectedIndex)]="selectedIndex">
 
+      <!-- Basic information tab -->
       <mat-tab>
         <div class="progree-container">
           <div class="progress">
@@ -106,7 +107,7 @@
           </div>
         </div> -->
             <label for="usr">When is your birthday*?</label>
-            <input type="date" class="form-control" id="usr" name="DOB" [(ngModel)]="DOB" (click)="Check()">
+            <input type="date" class="form-control" id="usr" name="DOB" [(ngModel)]="DOB" (click)="CheckDOB()">
             <span class="under-text">(Only age is displayed publicly)</span>
 
           </div>
@@ -127,6 +128,7 @@
         </div>
       </mat-tab>
 
+      <!-- Additional information tab -->
       <mat-tab>
         <div class="progree-container">
           <div class="progress">
@@ -208,8 +210,7 @@
         </div>
       </mat-tab>
 
-
-
+      <!-- Image Tab -->
       <mat-tab>
         <div class="progree-container">
           <div class="progress">
@@ -218,55 +219,42 @@
         </div>
 
         <div class="forms-field">
-
           <div class="upload-photos">
             <!-- Before image chosen -->
             <span *ngIf="!imageContinue">Choose Your Profile Photo</span>
 
             <!-- After image chosen -->
-            <img *ngIf="imageContinue" [src]="displayImage" style="width: 50%; margin: auto; margin-bottom: 2em;" />
+            <img *ngIf="imageContinue" [src]="displayImage" style="width: 50%; margin: auto; margin-bottom: 2em;"
+              id="preview" />
+            <!-- <canvas id="myCanvas"></canvas> -->
+
             <span *ngIf="imageContinue">Image Uploaded</span>
 
-            <div class="upload-btn-wrapper">
+            <div *ngIf="!imageContinue" class="upload-btn-wrapper">
               <div class="upload-button">
-                <div *ngIf="!imageContinue" class="logo-camera">
+                <div class="logo-camera">
                   <img src="../../assets/Images/camera.png" class="camera-pic">
                 </div>
-                <!-- <div>
-                  <button *ngIf="!imageContinue" class="btn" (click)="fileInput.click()">Upload a Photo</button>
-                </div> -->
-
                 <div>
-                
-                  <button *ngIf="!imageContinue" class="btn" (click)="openCamera()" >Take a Selfie</button>
-
-                
+                  <button *ngIf="!imageContinue" class="btn" (click)="openCamera()">Take a Selfie</button>
                 </div>
               </div>
-              <!-- <input type="file" [(ngModel)]="picture" value="picture" name="picture" #filechooser multiple
-                (change)="handleFileSelect($event)" #fileChooserElementRef> -->
-
             </div>
-   
-            <div class="or-text-image">OR</div>
 
-            <div class="upload-btn-wrapper">
+            <div *ngIf="!imageContinue" class="or-text-image">OR</div>
+
+            <div *ngIf="!imageContinue" class="upload-btn-wrapper">
               <div class="upload-button">
-                <div *ngIf="!imageContinue" class="logo-camera">
+                <div class="logo-camera">
                   <img src="../../assets/Images/camera.png" class="camera-pic">
                 </div>
-                <!-- <div>
-                  <button *ngIf="!imageContinue" class="btn" (click)="fileInput.click()">Upload a Photo</button>
-                </div> -->
-
                 <div>
-                  <button *ngIf="!imageContinue" class="btn" (click)="filechooser()" >Upload from library</button>
+                  <button *ngIf="!imageContinue" class="btn" (click)="filechooser()">Upload from library</button>
                 </div>
               </div>
-              <!-- <input type="file" [(ngModel)]="picture" value="picture" name="picture" #filechooser multiple
-                (change)="handleFileSelect($event)" #fileChooserElementRef> -->
-
             </div>
+            <p id="data">{{test}}</p>
+
           </div>
 
           <div *ngIf="imageContinue" class="continue-button" (click)="selectTab(3, 2)">
@@ -279,9 +267,7 @@
         </div>
       </mat-tab>
 
-
-
-
+      <!-- Loctation and activities tab -->
       <mat-tab>
         <div class="progree-container">
           <div class="progress">
@@ -623,7 +609,6 @@
         </div>
       </mat-tab>
 
-
       <mat-tab>
         <div class="progree-container">
           <div class="progress">
@@ -676,7 +661,7 @@
           </div> -->
         </div>
         <div class="continue-button"
-          (click)="LoginForm(name,fname,lname,DOB,Gender,contract,meet,live,zip,activity,email,confirmemail,password,confirmpassword)">
+          (click)="submitForm(name,fname,lname,DOB,Gender,contract,meet,live,zip,activity,email,confirmemail,password,confirmpassword)">
           Continue
         </div>
 
@@ -725,33 +710,6 @@
 
       </mat-tab>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </mat-tab-group>
   </div>
-
 </ion-content>

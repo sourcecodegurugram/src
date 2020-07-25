@@ -55,7 +55,8 @@ export class DetailPage implements OnInit {
   friends: any;
   genders: any;
   userLogged: any;
-  isLoggedIn:Boolean=true
+  isLoggedIn: Boolean = true;
+  Musics;
   constructor(
     private _Activatedroute: ActivatedRoute,
     private ConfigService: ConfigService
@@ -64,21 +65,12 @@ export class DetailPage implements OnInit {
   ngOnInit() {
     this.userLogged = JSON.parse(localStorage.getItem("currentUser"));
 
-     if(this.userLogged==null)
-     {
-      this.isLoggedIn=false
-       console.log("Please Login")
-     }
-else
-{
-  this.isLoggedIn=true
-}
-
-
-
-
-
-
+    if (this.userLogged == null) {
+      this.isLoggedIn = false;
+      console.log("Please Login");
+    } else {
+      this.isLoggedIn = true;
+    }
 
     this.sub = this._Activatedroute.paramMap.subscribe((params) => {
       this.name = params.get("name");
@@ -88,7 +80,7 @@ else
 
     this.ConfigService.getUser(this.uid).subscribe((data) => {
       this.post = data;
-      console.log(this.post)
+      console.log(this.post);
       this.picture = this.post.picture.url;
       this.long = this.post.field_long_in_city.length;
       this.genders = this.post.field_gender.und;
@@ -104,14 +96,6 @@ else
       //this.show = this.post.field_favorite_tv_show.und;
       this.book = this.post.field_favorite_books.und;
       this.friend = this.post.field_talk_about.und;
-    
-    
-
-    
-      
-     
-     
     });
   }
-  
 }

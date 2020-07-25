@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from "@angular/core";
+import { Component, OnInit, NgZone, ChangeDetectorRef } from "@angular/core";
 import { MatTabChangeEvent } from "@angular/material/tabs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AlertController } from "@ionic/angular";
@@ -13,10 +13,9 @@ import { computeStackId } from "@ionic/angular/directives/navigation/stack-utils
 import { FileChooser } from "@ionic-native/file-chooser/ngx";
 import { Capacitor } from "@capacitor/core";
 import { Base64 } from "@ionic-native/base64/ngx";
- import { Device } from "@ionic-native/device/ngx";
+import { Device } from "@ionic-native/device/ngx";
 import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
-import { FilePath } from '@ionic-native/file-path/ngx';
-
+import { FilePath } from "@ionic-native/file-path/ngx";
 
 @Component({
   selector: "app-signup",
@@ -63,12 +62,12 @@ export class SignupPage implements OnInit {
   age: any;
   picture: any;
   fileName: any;
-  pictureDetail: any;
   userDetail: any;
   uid: any;
   picturesUrl;
   displayImage;
   isLoading: boolean = false;
+  private win: any = window;
   constructor(
     private http: HttpClient,
     private zone: NgZone,
@@ -76,10 +75,11 @@ export class SignupPage implements OnInit {
     private sanitizer: DomSanitizer,
     private filed: File,
     public fileChooser: FileChooser,
-    public Base64: Base64,
-    public  device: Device,
+    public base64: Base64,
+    public device: Device,
     public camera: Camera,
-    public FilePath: FilePath
+    public FilePath: FilePath,
+    public changeDetector: ChangeDetectorRef
   ) {}
 
   ngOnInit() {}
@@ -194,32 +194,6 @@ export class SignupPage implements OnInit {
     await alert.present();
   }
 
-  // handleFileSelect(evt) {
-  // this.filed.checkDir(this.filed, 'mydir').then(_ => console.log('Directory exists')).catch(err =>
-  //   console.log('Directory doesnt exist'));
-  // var files = evt.target.files;
-  // var fil = files[0];
-  // console.log(files + " " + fil);
-  // if (files && fil) {
-  //   this.fileName = files[0].name;
-  //   var reader = new FileReader();
-  //   reader.onload = this._handleReaderLoaded.bind(this);
-  //   reader.readAsBinaryString(fil);
-  //   console.log(files)
-  // }
-  // }
-
-  // _handleReaderLoaded(readerEvt) {
-  //   var binaryString = readerEvt.target.result;
-  //   this.base64textString = btoa(binaryString);
-  //   console.log(this.base64textString);
-  //Automatically upload files
-  // this.onUpload(this.picture);
-  // this.displayImage = this.sanitizer.bypassSecurityTrustUrl(
-  //   "data:Image/*;base64," + this.base64textString
-  // );
-  // }
-
   onUpload(picture) {
     this.isLoading = true;
     const headers = new HttpHeaders().set(
@@ -231,12 +205,19 @@ export class SignupPage implements OnInit {
       filename: picture,
       filepath: "public://" + picture,
     };
-    console.log(this.uploadData);
+
     this.http
       .post("https://gowebtutorial.com/api/json/file/", this.uploadData)
       .subscribe((rest) => {
         this.Picurl = rest;
-        console.log(this.Picurl.fid);
+        console.log(this.Picurl);
+
+        // Image URL
+        this.displayImage =
+          "https://gowebtutorial.com/sites/default/files/" +
+          this.uploadData.filename;
+
+        console.log(this.displayImage);
 
         // Show next button
         this.imageContinue = true;
@@ -246,7 +227,41 @@ export class SignupPage implements OnInit {
   }
 
   //Form
-  LoginForm(
+  submitForm(
+    name,
+    fname,
+    lname,
+    DOB,
+    Gender,
+    contract,
+    meet,
+    live,
+    zip,
+    activity,
+    email,
+    confirmemail,
+    password,
+    confirmpassword
+  ) {
+    this.getImageObject(
+      name,
+      fname,
+      lname,
+      DOB,
+      Gender,
+      contract,
+      meet,
+      live,
+      zip,
+      activity,
+      email,
+      confirmemail,
+      password,
+      confirmpassword
+    );
+  }
+
+  getImageObject(
     name,
     fname,
     lname,
@@ -267,84 +282,118 @@ export class SignupPage implements OnInit {
       .get("https://gowebtutorial.com/api/json/file/" + this.Picurl.fid)
       .subscribe((res) => {
         this.picturesUrl = res;
-        this.pictureDetail = this.picturesUrl.uri_full;
+        console.log(this.picturesUrl);
+        this.submitDetails(
+          name,
+          fname,
+          lname,
+          DOB,
+          Gender,
+          contract,
+          meet,
+          live,
+          zip,
+          activity,
+          email,
+          confirmemail,
+          password,
+          confirmpassword
+        );
+      });
+  }
 
-        var ts = Math.round(new Date().getTime() / 1000);
-        this.http
-          .post<any>("https://gowebtutorial.com/api/json/user/register", {
-            name: name,
-            mail: email,
-            conf_mail: confirmemail,
-            timezone: ts,
-            login: ts,
-            access: ts,
-            field_first_name: {
-              und: [
-                {
-                  value: fname,
-                },
-              ],
-            },
-            field_last_name: {
-              und: [
-                {
-                  value: lname,
-                },
-              ],
-            },
-            field_zip_code: {
-              und: [
-                {
-                  postal_code: zip,
-                  country: live,
-                },
-              ],
-            },
-            //   field_birth_date:
-            //   {und:[
-            //     {
-            //     value:DOB,
-            //   }
-            // ]
-            // },
-            field_birth_date: {
-              und: DOB,
-            },
+  submitDetails(
+    name,
+    fname,
+    lname,
+    DOB,
+    Gender,
+    contract,
+    meet,
+    live,
+    zip,
+    activity,
+    email,
+    confirmemail,
+    password,
+    confirmpassword
+  ) {
+    let ts = Math.round(new Date().getTime() / 1000);
+    let submitObject = {
+      name: name,
+      mail: email,
+      conf_mail: confirmemail,
+      timezone: ts,
+      login: ts,
+      access: ts,
+      field_first_name: {
+        und: [
+          {
+            value: fname,
+          },
+        ],
+      },
+      field_last_name: {
+        und: [
+          {
+            value: lname,
+          },
+        ],
+      },
+      field_zip_code: {
+        und: [
+          {
+            postal_code: zip,
+            country: live,
+          },
+        ],
+      },
+      field_birth_date: {
+        und: DOB,
+      },
 
-            field_gender: {
-              und: Gender,
-            },
+      field_gender: {
+        und: Gender,
+      },
 
-            field_activities_interests: {
-              und: activity,
-            },
-            field_look_meet: {
-              und: meet,
-            },
-            field_temp_pic_field: {
-              und: [
-                {
-                  value: this.pictureDetail,
-                },
-              ],
-            },
+      field_activities_interests: {
+        und: activity,
+      },
+      field_look_meet: {
+        und: meet,
+      },
+      picture_upload: this.picturesUrl,
 
-            field_want_contarct: {
-              und: contract,
-            },
-          })
-          .subscribe((data) => {
-            this.post = data;
+      picture: this.picturesUrl,
 
-            if (this.post.uid) {
-              this.isLoading = false;
-              this.nextStep();
+      field_user_avatar: {
+        und: [this.picturesUrl],
+      },
 
-              this.correctAlert();
-            } else {
-              alert(this.post);
-            }
-          });
+      field_want_contarct: {
+        und: contract,
+      },
+    };
+
+    console.log(submitObject);
+
+    this.http
+      .post<any>(
+        "https://gowebtutorial.com/api/json/user/register",
+        submitObject
+      )
+      .subscribe((data) => {
+        this.post = data;
+        console.log(data);
+
+        if (this.post.uid) {
+          this.isLoading = false;
+          this.nextStep();
+
+          this.correctAlert();
+        } else {
+          alert(this.post);
+        }
       });
   }
 
@@ -356,35 +405,21 @@ export class SignupPage implements OnInit {
 
     await correct.present();
   }
-  onSelectedFile(event) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.signup.get("image").setValue(file);
-      console.log("test");
-    }
-  }
-  onFileChanged(event) {
-    this.selectedFile = <File>event.target.files[0];
-    console.log(event);
-  }
 
   onCheckboxChange(e) {
     if (e.target.checked) {
       this.CheckBox = true;
-      console.log(this.CheckBox);
     } else {
       this.CheckBox = false;
-      console.log(this.CheckBox);
     }
   }
 
-  Check() {
+  CheckDOB() {
     this.age = Math.floor(
       Math.abs(Date.now() - new Date(this.DOB).getTime()) /
         (1000 * 3600 * 24) /
         365.25
     );
-    console.log(this.DOB);
   }
 
   openCamera() {
@@ -397,15 +432,18 @@ export class SignupPage implements OnInit {
 
     this.camera.getPicture(options).then(
       (imageData) => {
-        alert(imageData)
-        this.Base64.encodeFile(imageData).then(
+        this.base64.encodeFile(imageData).then(
           (base64File: string) => {
-            this.fileName = "test101.jpg";
-            this.base64textString = base64File;
+            //Filename
+            let timestamp = Math.floor(Date.now() / 1000);
+            this.fileName = this.name + "_profile_image_" + timestamp + ".jpg";
+
+            //Base 64 String
+            let removeString = "data:image/*;charset=utf-8;base64,";
+            this.base64textString = base64File.replace(removeString, "");
+
             this.imageContinue = true;
             this.picture = this.fileName;
-            alert(this.base64textString)
-         alert(this.picture)
             this.onUpload(this.picture);
           },
           (err) => {
@@ -417,43 +455,66 @@ export class SignupPage implements OnInit {
         // Handle error
       }
     );
-
-    // this.fileChooser
-    //   .open()
-    //   .then((uri) => {
-    //     console.log(Capacitor.convertFileSrc(uri));
-    //     this.imageContinue = true;
-    //     this.displayImage = this.sanitizer.bypassSecurityTrustUrl(
-    //       Capacitor.convertFileSrc(uri)
-    //     );
-
-    //     let filePath: string = this.displayImage;
-    //     this.base64.encodeFile(filePath).then(
-    //       (base64File: string) => {
-    //         console.log(base64File);
-    //         console.log(this.displayImage);
-    //       },
-    //       (err) => {
-    //         console.log(err);
-    //       }
-    //     );
-    //   })
-    //   .catch((e) => console.log(e));
   }
-  filechooser()
-  {
-    this.fileChooser.open().then((fileuri)=>{
-      alert(fileuri)
-     this.FilePath.resolveNativePath(fileuri).then((nativepath)=>{
-       alert(nativepath)
-      this.Base64.encodeFile(nativepath).then((base64string)=>{
-        alert(base64string)
-      })
+  filechooser() {
+    this.fileChooser.open().then((fileuri) => {
+      console.log("File URI " + fileuri);
 
-     })
+      // Displaay image
+      let imagePath = this.win.Ionic.WebView.convertFileSrc(fileuri);
+      console.log("Webview path " + imagePath);
+      this.displayImage = imagePath;
 
-    })
+      this.FilePath.resolveNativePath(fileuri).then((filePath) => {
+        fetch(imagePath).then((res) => {
+          res.blob().then((blob) => {
+            function getFileReader(): FileReader {
+              const fileReader = new FileReader();
+              const zoneOriginalInstance = (fileReader as any)[
+                "__zone_symbol__originalInstance"
+              ];
+              return zoneOriginalInstance || fileReader;
+            }
+
+            let newInstance = getFileReader();
+            newInstance.onload = function () {
+              // Is it JPG or PNG
+              let base64data = newInstance.result.toString();
+              if (base64data.includes("data:image/jpeg;base64,")) {
+                // File Name
+                let timestamp = Math.floor(Date.now() / 1000);
+                this.fileName =
+                  this.name + "_profile_image_" + timestamp + ".jpg";
+                //Base 64 string
+                let removeString = "data:image/jpeg;base64,";
+                this.base64textString = base64data.replace(removeString, "");
+                console.log(this.base64textString);
+
+                this.picture = this.fileName;
+                this.imageContinue = true;
+                this.changeDetector.detectChanges();
+              } else if (base64data.includes("data:image/png;base64,")) {
+                let timestamp = Math.floor(Date.now() / 1000);
+                this.fileName =
+                  this.name + "_profile_image_" + timestamp + ".png";
+
+                //Base 64 string
+                let removeString = "data:image/png;base64,";
+                this.base64textString = base64data.replace(removeString, "");
+                console.log(this.base64textString);
+
+                this.picture = this.fileName;
+                this.imageContinue = true;
+                this.changeDetector.detectChanges();
+              }
+
+              this.onUpload(this.picture);
+            }.bind(this);
+
+            newInstance.readAsDataURL(blob);
+          });
+        });
+      });
+    });
   }
 }
-
-//androidx.core.content.FileProvider

@@ -1,5 +1,5 @@
-import { Component, OnInit , NgZone} from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit, NgZone } from "@angular/core";
+import { FormControl } from "@angular/forms";
 import { ConfigService } from "../../config.service";
 import { Geolocation } from "@ionic-native/geolocation/ngx";
 import { Platform } from "@ionic/angular";
@@ -9,19 +9,20 @@ import {
   NativeGeocoderResult,
 } from "@ionic-native/native-geocoder/ngx";
 @Component({
-  selector: 'app-searchUser',
-  templateUrl: './searchUser.page.html',
-  styleUrls: ['./searchUser.page.scss'],
+  selector: "app-searchUser",
+  templateUrl: "./searchUser.page.html",
+  styleUrls: ["./searchUser.page.scss"],
 })
 export class SearchUserPage implements OnInit {
-  activity :any ="0";
-  activityList: string[] = ['Yoga', 'Cooking', 'Watching Movies'];
+  name;
+  activity: any = "0";
+  activityList: string[] = ["Yoga", "Cooking", "Watching Movies"];
   search: boolean = true;
   searchitem: boolean = false;
   chatpage: boolean = false;
   searchResults: any;
-  gender: any ="0";
-  meet: any ="0";
+  gender: any = "0";
+  meet: any = "0";
   cancel: any;
   address: any;
   userDetailss: any;
@@ -37,7 +38,7 @@ export class SearchUserPage implements OnInit {
   Localactivity: any;
   Localpostcode: any;
   Locallive: any;
-  isLoading:boolean = false
+  isLoading: boolean = false;
   postcode: any;
   lat: any;
   lng: any;
@@ -46,9 +47,13 @@ export class SearchUserPage implements OnInit {
   country: any;
   getpostcode: any;
   getcountry: any;
-  constructor(private ConfigService: ConfigService, public geolocation: Geolocation,
+  constructor(
+    private ConfigService: ConfigService,
+    public geolocation: Geolocation,
     private platform: Platform,
-    private nativeGeocoder: NativeGeocoder,  public zone: NgZone,) { }
+    private nativeGeocoder: NativeGeocoder,
+    public zone: NgZone
+  ) {}
   ngOnInit() {
     this.itrs = JSON.parse(localStorage.getItem("currentUser"));
     this.Localgender = JSON.parse(localStorage.getItem("gender"));
@@ -91,23 +96,25 @@ export class SearchUserPage implements OnInit {
     this.searchitem = true;
     this.chatpage = false;
   }
-  getResult(Postcode,gender, meet, activity) {
-    this.isLoading= true
-    this.ConfigService.getSearchUrl( Postcode,gender, meet, activity).subscribe((elements) => {
-      this.searchResults = elements;
-      console.log(this.searchResults.length);
-      localStorage.setItem("gender", JSON.stringify(gender));
-      localStorage.setItem("meet", JSON.stringify(meet));
-      localStorage.setItem("activity", JSON.stringify(activity));
-      localStorage.setItem("Postcode", JSON.stringify(Postcode));
-      localStorage.setItem("Live", JSON.stringify(this.live));
-      this.isLoading= false
-      if (this.searchResults.length == 0) {
-        this.notfound = true;
-        console.log("oops no result Found");
+  getResult(Postcode, gender, meet, activity) {
+    this.isLoading = true;
+    this.ConfigService.getSearchUrl(Postcode, gender, meet, activity).subscribe(
+      (elements) => {
+        this.searchResults = elements;
+        console.log(this.searchResults.length);
+        localStorage.setItem("gender", JSON.stringify(gender));
+        localStorage.setItem("meet", JSON.stringify(meet));
+        localStorage.setItem("activity", JSON.stringify(activity));
+        localStorage.setItem("Postcode", JSON.stringify(Postcode));
+        localStorage.setItem("Live", JSON.stringify(this.live));
+        this.isLoading = false;
+        if (this.searchResults.length == 0) {
+          this.notfound = true;
+          console.log("oops no result Found");
+        }
+        console.log(elements);
       }
-      console.log(elements);
-    });
+    );
   }
   userDetails() {
     this.uid = this.searchResults[0].Uid;
@@ -120,8 +127,6 @@ export class SearchUserPage implements OnInit {
     this.searchitem = false;
   }
 
-
-
   determineCurrent() {
     this.isLoading = true;
     this.geolocation
@@ -133,8 +138,8 @@ export class SearchUserPage implements OnInit {
         console.log(this.lng);
         // If we get lat long then we will pull Address details from reverse geo lookup
         if (this.lat && this.lng) {
-           this.reverseGeoLookup();
-        } 
+          this.reverseGeoLookup();
+        }
       }) // If we do not get lat long, we will present page with form for address and post code
       .catch((error) => {
         this.isLoading = false;
@@ -148,31 +153,26 @@ export class SearchUserPage implements OnInit {
       for (var i = 0; i < this.address.length; i++) {
         if (this.address[i].types.includes("postal_code")) {
           this.getpostcode = this.address[i].long_name;
-          this.postcode=this.getpostcode;
+          this.postcode = this.getpostcode;
           this.isLoading = false;
         }
-        if(this.address[i].types.includes("country", "political"))
-        {
+        if (this.address[i].types.includes("country", "political")) {
           this.getcountry = this.address[i].short_name;
-          
         }
-
       }
-    this.getItems(this.Postcode,this.live)
+      this.getItems(this.Postcode, this.live);
     });
   }
- getItems(Postcode,live)
- {
-   this.Postcode = this.getpostcode
-   this.live= this.getcountry
- console.log(this.live)
- }
-reset()
-{
-  this.Postcode=""
-  this.live=""
-  this.gender=""
-  this.meet="0"
-  this.activity="0"
-}
+  getItems(Postcode, live) {
+    this.Postcode = this.getpostcode;
+    this.live = this.getcountry;
+    console.log(this.live);
+  }
+  reset() {
+    this.Postcode = "";
+    this.live = "";
+    this.gender = "";
+    this.meet = "0";
+    this.activity = "0";
+  }
 }
