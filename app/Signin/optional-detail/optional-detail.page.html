@@ -2,6 +2,9 @@
   <app-navigationbar></app-navigationbar>
 </ion-header>
 
+<div *ngIf="isLoading" class="loading-container">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
 
 <ion-content>
   <div class="main-sign-up">
@@ -40,35 +43,37 @@
           <div class="form-group">
             <label for="usr">How long have you lived here?</label>
             <select class="form-control" id="sel1" name="long" [(ngModel)]="live">
-              <option value="0"> < 2 years</option> 
-              <option value="1">2-5 years </option>
+              <option value="0">
+                < 2 years</option> <option value="1">2-5 years
+              </option>
               <option value="2">>5 years</option>
             </select>
           </div>
 
 
-         <div class="ionic-dropdowns">
-     
-          <label class="label-ionic-dropdown">My friends and I usually talk about</label>
-          <ion-item class="usually-dropdown">
-            <ion-label></ion-label>
-            <ion-select multiple="true" cancelText="Close" okText="Okay" name="talkabout" [(ngModel)]="talkabout" class="ion-select-option-setting">
+          <div class="ionic-dropdowns">
 
-              <ion-select-option value="Work" #Work>Work
-              </ion-select-option>
-              <ion-select-option value="Family" #Family>Family</ion-select-option>
-              <ion-select-option value="Relationships" #Relationships>Relationships
-              </ion-select-option>
-              <ion-select-option value="Gossip" #Gossip>Gossip</ion-select-option>
-              <ion-select-option value="Fashion" #Fashion>Fashion</ion-select-option>
-              <ion-select-option value="Sports" #Sports>Sports</ion-select-option>
-              <ion-select-option value="Other" #Other>Other</ion-select-option>
-            </ion-select>
-          </ion-item>
-        </div>
+            <label class="label-ionic-dropdown">My friends and I usually talk about</label>
+            <ion-item class="usually-dropdown">
+              <ion-label></ion-label>
+              <ion-select multiple="true" cancelText="Close" okText="Okay" name="talkabout" [(ngModel)]="talkabout"
+                class="ion-select-option-setting">
+
+                <ion-select-option value="Work" #Work>Work
+                </ion-select-option>
+                <ion-select-option value="Family" #Family>Family</ion-select-option>
+                <ion-select-option value="Relationships" #Relationships>Relationships
+                </ion-select-option>
+                <ion-select-option value="Gossip" #Gossip>Gossip</ion-select-option>
+                <ion-select-option value="Fashion" #Fashion>Fashion</ion-select-option>
+                <ion-select-option value="Sports" #Sports>Sports</ion-select-option>
+                <ion-select-option value="Other" #Other>Other</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </div>
 
 
-        <label class="label-ionic-dropdown mt-4">A Good Friend Is Someone Who...</label>
+          <label class="label-ionic-dropdown mt-4">A Good Friend Is Someone Who...</label>
           <ion-item class="usually-dropdown mb-4">
 
             <ion-label></ion-label>
@@ -103,7 +108,7 @@
             </select>
           </div>
 
-          <div class="continue-button" (click)="nextStep()" >
+          <div class="continue-button" (click)="nextStep()">
             Continue
           </div>
 
@@ -179,7 +184,7 @@
             <label for="sel1">I also speak</label>
             <input type="text" class="form-control" id="usr" name="speak" [(ngModel)]="speak">
           </div>
-          <div class="continue-button"  (click)="nextStep()">
+          <div class="continue-button" (click)="nextStep()">
             Continue
           </div>
           <div class="previous-button" (click)="previousStep()">
@@ -261,11 +266,11 @@
             <textarea class="form-control" rows="5" id="usr" name="music" [(ngModel)]="music"></textarea>
           </div>
 
-       
+
 
 
         </div>
-        <div class="continue-button"  (click)="nextStep()">
+        <div class="continue-button" (click)="nextStep()">
           Continue
         </div>
         <div class="previous-button" (click)="previousStep()">
@@ -283,39 +288,33 @@
             <div class="progress-bar" style="width:100%"></div>
           </div>
         </div>
-        <div class="forms-field">
-          <form  (ngSubmit)="submit(fileSource)" >
-            <div class="form-group">
-              <label for="file">File</label>
-              <input 
-          
-                  id="file" 
-                  type="file" 
-                  class="form-control"
-                  multiple="" 
-                  (change)="onFileChange($event)">
-            
-          </div>
-       <div class="image-conatiner">
-         <div class="sub-image-container" *ngFor='let url of images' >
-          <img  [src]="url.uri" height="150" width="200px" style="margin: 3px;" class="images-uploaded" ><br/> 
-        <p style="text-align:center">{{url.name}}</p>
 
-         </div>
-        
-            
-           
-        </div>
-          <button class="btn btn-primary" type="submit">Submit</button>
-      </form>
-  
-          
+        <div class="forms-field">
+          <h3>Your photos</h3>
+          <div class="additionalUserImages">
+            <div class="imageContainer" *ngFor="let image of userImages">
+              <img class="userImage" src="http://gowebtutorial.com/sites/default/files/{{image.filename}}" />
+            </div>
+          </div>
+
+          <h3>Upload another</h3>
+          <div *ngIf="!imageContinue" class="upload-btn-wrapper">
+            <div class="upload-button">
+              <div class="logo-camera">
+                <img src="../../assets/Images/camera.png" class="camera-pic">
+              </div>
+              <div>
+                <button *ngIf="!imageContinue" class="btn" (click)="filechooser()">Upload from library</button>
+              </div>
+            </div>
+          </div>
 
           <div class="form-group">
             <label for="comment">Anything else you want to share?</label>
             <textarea class="form-control" rows="5" id="comment" name="anything" [(ngModel)]="anything"></textarea>
           </div>
-          <div class="continue-button"  (click)="optionDetail(live,talkabout,goodFriend,cancels,status,pets,spend,speak,smoke,alcohol,education,books,movies,shows,music,anything)">
+          <div class="continue-button"
+            (click)="optionDetail(live,talkabout,goodFriend,cancels,status,pets,spend,speak,smoke,alcohol,education,books,movies,shows,music,anything)">
             Complete
           </div>
           <div class="previous-button" (click)="previousStep()">

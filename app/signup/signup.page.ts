@@ -140,7 +140,9 @@ export class SignupPage implements OnInit {
         if (this.picture == null) {
           this.presentAlert();
         } else {
+          console.log("next select");
           this.selectedIndex = nextIndex;
+          this.changeDetector.detectChanges();
         }
       }
     } else if (presentIndex == 3) {
@@ -222,6 +224,7 @@ export class SignupPage implements OnInit {
         // Show next button
         this.imageContinue = true;
         this.isLoading = false;
+        this.changeDetector.detectChanges();
       });
     console.log(this.uploadData);
   }
@@ -432,6 +435,8 @@ export class SignupPage implements OnInit {
 
     this.camera.getPicture(options).then(
       (imageData) => {
+        // Start loader
+        this.isLoading = true;
         this.base64.encodeFile(imageData).then(
           (base64File: string) => {
             //Filename
@@ -442,7 +447,6 @@ export class SignupPage implements OnInit {
             let removeString = "data:image/*;charset=utf-8;base64,";
             this.base64textString = base64File.replace(removeString, "");
 
-            this.imageContinue = true;
             this.picture = this.fileName;
             this.onUpload(this.picture);
           },
@@ -458,11 +462,10 @@ export class SignupPage implements OnInit {
   }
   filechooser() {
     this.fileChooser.open().then((fileuri) => {
-      console.log("File URI " + fileuri);
+      // Start loader
+      this.isLoading = true;
 
-      // Displaay image
       let imagePath = this.win.Ionic.WebView.convertFileSrc(fileuri);
-      console.log("Webview path " + imagePath);
       this.displayImage = imagePath;
 
       this.FilePath.resolveNativePath(fileuri).then((filePath) => {
@@ -489,10 +492,6 @@ export class SignupPage implements OnInit {
                 let removeString = "data:image/jpeg;base64,";
                 this.base64textString = base64data.replace(removeString, "");
                 console.log(this.base64textString);
-
-                this.picture = this.fileName;
-                this.imageContinue = true;
-                this.changeDetector.detectChanges();
               } else if (base64data.includes("data:image/png;base64,")) {
                 let timestamp = Math.floor(Date.now() / 1000);
                 this.fileName =
@@ -502,12 +501,10 @@ export class SignupPage implements OnInit {
                 let removeString = "data:image/png;base64,";
                 this.base64textString = base64data.replace(removeString, "");
                 console.log(this.base64textString);
-
-                this.picture = this.fileName;
-                this.imageContinue = true;
-                this.changeDetector.detectChanges();
               }
 
+              this.picture = this.fileName;
+              this.changeDetector.detectChanges();
               this.onUpload(this.picture);
             }.bind(this);
 
