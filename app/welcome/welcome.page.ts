@@ -55,7 +55,7 @@ export class WelcomePage implements OnInit {
     "sightseeing",
   ];
   Result: boolean = false;
-  searchResponse = [];
+  searchResponse;
   pageIndex = 0;
   currPage ;
   searchresult: boolean = false;
@@ -216,22 +216,19 @@ export class WelcomePage implements OnInit {
    
     this.ConfigService.getPostal(this.postcode, this.pageIndex).subscribe(
       (elements) => {
-
         this.currPage = Object.keys(elements).map((i) => elements[i]);
-        this.searchResponse = this.searchResponse.concat(this.currPage);
         if(this.currPage.length > 0)
         {
           this.searchResponse = this.searchResponse.concat(this.currPage);
-        this.searchresult = true;
-      
+          this.searchresult = true;
         }
         else{
           this.searchresult = false;
           this.hide = false
           this.noResult = true
         }
-
       });
+      
       this.pageIndex++;
   }
   closesearchpop() {
