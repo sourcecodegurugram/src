@@ -67,7 +67,7 @@ export class DetailPage implements OnInit {
 
     if (this.userLogged == null) {
       this.isLoggedIn = false;
-      console.log("Please Login");
+
     } else {
       this.isLoggedIn = true;
     }
@@ -80,7 +80,7 @@ export class DetailPage implements OnInit {
 
     this.ConfigService.getUser(this.uid).subscribe((data) => {
       this.post = data;
-      console.log(this.post);
+    
       this.picture = this.post.picture.url;
       this.long = this.post.field_long_in_city.length;
       this.genders = this.post.field_gender.und;

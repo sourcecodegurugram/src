@@ -16,7 +16,7 @@ export class NewMessagePage implements OnInit {
   name: string;
   isLoading:boolean=false
 
-  constructor( private _Activatedroute: ActivatedRoute,private http: HttpClient,private router: Router,private _location:Location) { }
+  constructor(private _Activatedroute: ActivatedRoute,private http: HttpClient,private router: Router,private _location:Location) { }
 
   ngOnInit() {
     this.itr = JSON.parse(localStorage.getItem("currentUser"));
@@ -50,8 +50,9 @@ export class NewMessagePage implements OnInit {
     }
     , requestOptions)
     .subscribe((getMessagesSend) => {
+
       this.isLoading =false
-      this.router.navigate(["/chat/ChatsThreadListing"]);
+   this.router.navigate(["/chat/ChatsThreadListing"]);
     });
   }
   backClicked() {

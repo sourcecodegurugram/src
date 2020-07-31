@@ -40,6 +40,12 @@ export class ConfigService {
   getPostal(post, pageIndex) {
     return this.http.get(this.postalUrl + post + "&page=" + pageIndex);
   }
+  getPostals(post) {
+    return this.http.get(this.postalUrl + post );
+  }
+  // getPostal(post) {
+  //   return this.http.get(this.postalUrl + post );
+  // }
   getLocation(lat, lng) {
     return this.http.get(
       this.locationUrl +

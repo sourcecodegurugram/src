@@ -102,7 +102,7 @@
  
 
 
-    <div class="continue-button" routerLink="/searchuserresult/{{gender}}/{{meet}}/{{activity}}/{{Postcode}}" >
+    <div class="continue-button" (click)="getSerchResult()" >
       Find Friends
     </div>
 
@@ -275,23 +275,44 @@
 <p class="detail-data">Languages:<br><span class="output-text">Hindi,English</span></p>
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-        </div>
-        
-      
-        
+        </div>  
       </div>
     </div>
   </div>
 
+
+
+
+<div class="new-result" *ngIf="resultfound">
+  <div class="background">
+    
+    <span *ngFor="let result of searchResults">
+      
+    <div class="members-grid"  *ngIf="result.avatar == 0" routerLink="/popup/{{result.Uid}}">
+
+      <div class="photo-member-grid"  >
+    <img src="{{result.Picture}}" alt="" srcset="" class="user-image">
+      </div>
+
+      <div class="data-member-grid" > 
+        <div class="grid-name">
+          {{result.name}}
+        </div>
+        
+        <div class="left-heading">Activities:&nbsp;{{result.Activities}}</div>
+       
+        <div class="distance-container">
+          <div class="distance card-item">Distance:</div>
+          <div class="distance-ouput">1 miles away</div>
+            </div>
+      </div>
+   
+    </div>
+  </span>
+    <div class="continue-button" (click)="backButton()" >
+      Back
+    </div>
+  </div>
+</div>
+ 
 </ion-content>

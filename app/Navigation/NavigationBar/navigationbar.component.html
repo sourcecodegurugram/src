@@ -2,7 +2,7 @@
   
   <div class="navigation">
     <div class="back" >
-      <ion-buttons slot="start">
+      <ion-buttons slot="start" *ngIf="back"> 
         <ion-back-button defaultHref="welcome"></ion-back-button>
       </ion-buttons>
     </div>
@@ -17,7 +17,7 @@
 
     <div class="humburger-menu">
       <!-- <img src="../../assets/Images/cross.png" class="hum-burger-menu-cross" *ngIf="crossSign" (click)="humBurgerCross()"> -->
-      <img src="../../assets/Images/newmenu.png" class="hum-burger-menu" (click)="humburgereffect()" *ngIf="humBurger">
+      <img src="../../../assets/Images/question.png" class="hum-burger-menu" (click)="humburgereffect()" *ngIf="humBurger">
     </div>
 
 <div class="newpopup"></div>

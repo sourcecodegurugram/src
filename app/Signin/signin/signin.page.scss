@@ -2,7 +2,7 @@
     
     display: flex;
     justify-content: center;
-    height: 100vh;
+    height: 100%;
     flex-direction: column;
 
 
@@ -97,6 +97,10 @@
 }
 .login-buton {
     width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 p.heading-login {
     text-align: center;
@@ -118,3 +122,32 @@ p.heading-login {
     background: black;
     opacity: 0.5;
   }
+  .forgot-container {
+    float: right;
+    padding-top: 5px;
+}
+
+
+.Login-page-button {
+
+    padding: 1em 5em;
+    border-radius: 12px;
+    color: white;
+    font-size: 1.1em;
+    margin: 0.5em 0em;
+}
+.google-Login-buttom.Login-page-button {
+    background-color: #FF0000;
+    padding: 1em 5.5em;
+    border-radius: 12px;
+    color: white;
+    font-size: 1.1em;
+}
+.facebook-Login-buttom {
+    background-color: #4472C4;
+}
+.login-username {
+    text-align: center;
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+}

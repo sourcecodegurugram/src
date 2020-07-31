@@ -1,0 +1,137 @@
+.header-persona-chat {
+    display: grid;
+    align-items: center;
+
+    grid-template-columns: 2fr 4fr 16fr 2fr;
+    background-color: #FAFAFA;
+    padding: 0.5em;
+    position: fixed;
+    margin-top: 0.7em;
+
+}
+
+img.image-chat {
+    height: 7vh;
+}
+img.refesh-button-image {
+    width: 75%;
+}
+p.chat-name {
+    margin-bottom: 0px;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+}
+
+.text-message-writer {
+    background-color: #FAFAFA;
+    padding: 0.5em;
+    position: fixed;
+    bottom: 0px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+input#chat {
+    width: 80%;
+    border-radius: 13px;
+    border: 1px solid;
+    margin: 11px;
+    padding-left: 15px;
+    font-size: 15px;
+}
+
+img.img-send {
+    height: 3vh;
+}
+
+.chat-time {
+    height: 110vh;
+    overflow: scroll;
+    margin-bottom: 10vh;
+}
+
+.extra {
+    /* padding-bottom: 2em; */
+    padding-top: 6em;
+}
+
+.left-chat {
+    background-color: #0182FF;
+    width: 49%;
+    border-radius: 8px;
+    height: fit-content;
+    color: white;
+    text-align: center;
+    margin-left: 6px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    margin: 0.5em 0em;
+}
+
+.right-chat {
+    float: right;
+    background-color: #E7E7EB;
+    border-radius: 8px;
+    margin: 0.5em 0em;
+    text-align: center;
+    height: fit-content;
+    margin-top: 1em;
+    font-size: 13px;
+}
+
+p.chat-content {
+    margin-bottom: 0px;
+    padding: 7px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+
+}
+
+.background-card {
+    background-color: white !important;
+}
+
+
+
+.right-chat-align {
+    display: flex;
+    flex-direction: column;
+    float: right;
+    align-items: flex-end;
+    width: 100%;
+
+  
+}
+.left-chat-align {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+ 
+}
+
+.chat-align {
+    margin: 0em 1em;
+}
+
+.image-chat {
+    min-width: 65px !important;
+    height: 65px !important;
+}
+
+.name {
+    margin: 0px 15px;
+}
+
+.image {
+    width: 65px;
+    height: 65px;
+    overflow: hidden !important;
+    border-radius: 50%;
+}
+img.img-send-rolling {
+    width: 5vw;
+}

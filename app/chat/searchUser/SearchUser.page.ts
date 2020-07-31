@@ -20,7 +20,7 @@ export class SearchUserPage implements OnInit {
   search: boolean = true;
   searchitem: boolean = false;
   chatpage: boolean = false;
-  searchResults: any;
+  searchResults:any;
   gender: any = "0";
   meet: any = "0";
   cancel: any;
@@ -42,11 +42,13 @@ export class SearchUserPage implements OnInit {
   postcode: any;
   lat: any;
   lng: any;
-
+  resultfound:boolean = false
   addressData;
   country: any;
   getpostcode: any;
   getcountry: any;
+  newArr = []
+  formulalist = []
   constructor(
     private ConfigService: ConfigService,
     public geolocation: Geolocation,
@@ -91,30 +93,28 @@ export class SearchUserPage implements OnInit {
     this.search = true;
     this.searchitem = false;
     this.notfound = false;
+    this.resultfound = false
   }
   sendMsg() {
     this.searchitem = true;
     this.chatpage = false;
-  }
+   }
   getResult(Postcode, gender, meet, activity) {
     this.isLoading = true;
-    this.ConfigService.getSearchUrl(Postcode, gender, meet, activity).subscribe(
-      (elements) => {
-        this.searchResults = elements;
-        console.log(this.searchResults.length);
-        localStorage.setItem("gender", JSON.stringify(gender));
-        localStorage.setItem("meet", JSON.stringify(meet));
-        localStorage.setItem("activity", JSON.stringify(activity));
-        localStorage.setItem("Postcode", JSON.stringify(Postcode));
-        localStorage.setItem("Live", JSON.stringify(this.live));
-        this.isLoading = false;
-        if (this.searchResults.length == 0) {
-          this.notfound = true;
-          console.log("oops no result Found");
-        }
-        console.log(elements);
-      }
-    );
+    this.ConfigService.getSearchUrl(Postcode, gender, meet, activity).subscribe((elements) => {
+          this.searchResults = elements;
+          localStorage.setItem("gender", JSON.stringify(gender));
+          localStorage.setItem("meet", JSON.stringify(meet));
+          localStorage.setItem("activity", JSON.stringify(activity));
+          localStorage.setItem("Postcode", JSON.stringify(Postcode));
+          localStorage.setItem("Live", JSON.stringify(this.live));
+          this.isLoading = false;
+          if (this.searchResults.length == 0) {
+            this.notfound = true;
+            console.log("oops no result Found");
+          }
+          console.log(elements);
+      });
   }
   userDetails() {
     this.uid = this.searchResults[0].Uid;
@@ -174,5 +174,24 @@ export class SearchUserPage implements OnInit {
     this.gender = "";
     this.meet = "0";
     this.activity = "0";
+  }
+  getSerchResult()
+  {
+    this.ConfigService.getSearchUrl(this.Postcode,this.gender, this.meet, this.activity).subscribe((elements) => {
+      this.searchResults = elements;   
+      this.isLoading=false
+      this.search = false
+      this.resultfound = true
+      if (this.searchResults.length == 0) {
+        this.notfound = true;
+        console.log("oops no result Found");
+      }
+      console.log(elements);
+    });
+  }
+  backButton()
+  {
+    this.search = true
+      this.resultfound = false
   }
 }

@@ -49,13 +49,7 @@ export class MyProfilePage implements OnInit {
       //this.DOB = this.itrs.user.field_birth_date.und[0].value;
       this.fname = this.itrs.user.field_first_name.und[0].value;
       this.lname = this.itrs.user.field_last_name.und[0].value;
-      if (this.itrs.user.picture == null) {
-        this.picture = this.itrs.user.field_temp_pic_field.und[0].value
-      }
-      else {
-        this.picture = this.itrs.user.picture.url;
-      }
-
+      this.picture = this.itrs.user.picture.url;
       this.newPicture = this.itrs.user.field_temp_pic_field
       this.userlogged = JSON.parse(localStorage.getItem("Signinuser"));
   

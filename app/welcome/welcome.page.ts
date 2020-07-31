@@ -15,6 +15,9 @@ import { FormControl } from "@angular/forms";
 import { Location } from "@angular/common";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { Diagnostic } from '@ionic-native/diagnostic/ngx';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
+
 @Component({
   selector: "app-welcome",
   templateUrl: "./welcome.page.html",
@@ -54,14 +57,17 @@ export class WelcomePage implements OnInit {
   Result: boolean = false;
   searchResponse = [];
   pageIndex = 0;
-  currPage = [];
+  currPage ;
   searchresult: boolean = false;
   userLogged: any;
   scope: any;
   siginUser: any;
   isLoggedIn: boolean = false;
   notEntered : boolean = false
+  callFalse: any;
+  noResult: boolean = false
 
+  
   constructor(
     private ConfigService: ConfigService,
     public geolocation: Geolocation,
@@ -72,7 +78,9 @@ export class WelcomePage implements OnInit {
     private routes: Router,
     private locate: Location,
     private http: HttpClient,
-    private splashScreen: SplashScreen  
+    private splashScreen: SplashScreen ,
+    public Diagnostic:Diagnostic,
+    private emailComposer:EmailComposer,
   ) { }
 
   ngOnInit() {
@@ -105,11 +113,7 @@ export class WelcomePage implements OnInit {
     this.routes.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
-    
   
-    
-
-
   }
 
   reverseGeoLookup() {
@@ -123,45 +127,68 @@ export class WelcomePage implements OnInit {
         }
         this.isLoading = false;
       }
-      this.searchresult = true;
+      
       this.getSearchData();
-      // this.routes.navigate(["search-result/", this.postcode]);
+      
     });
   }
 
-  postcodeManuallyEnter() {
-    this.postcode = this.post;
-    this.searchresult = true;
+  postcodeManuallyEnter(post) {
+    this.postcode = post;
+    console.log(this.postcode)
     this.getSearchData();
   }
 
   showFormPage() {
+
     // We will hide this page at starting. If lat long fails, we will unhide it so that people can fill information
+    let successCallback = (isAvailable) => { 
+      console.log(isAvailable)
+      if(isAvailable == 'false')
+      {
+        this.hide = true;
+      }
+       }
+    let errorCallback = (e) => console.error(e);
+    this.Diagnostic.isGpsLocationEnabled().then(successCallback).catch(errorCallback);
+
+      
+
+    
     this.hide = true;
-    console.log("getting-true")
+
+
+
   }
 
   popOpen() {
+    let successCallback = (isAvailable) => { 
+      console.log(isAvailable)
+      if(isAvailable == false)
+      {
+        this.hide = true;
+        this.isLoading = false
+      }
+       }
+    let errorCallback = (e) => console.error(e);
+    this.Diagnostic.isGpsLocationEnabled().then(successCallback).catch(errorCallback);
     this.isLoading = true;
     this.geolocation
       .getCurrentPosition()
       .then((resp) => {
         this.lat = resp.coords.latitude;
         this.lng = resp.coords.longitude;
-        console.log(this.lat);
-        console.log(this.lng);
         // If we get lat long then we will pull Address details from reverse geo lookup
         if (this.lat && this.lng) {
           this.reverseGeoLookup()
-
         }
         else {
-        
           this.showFormPage();
         }
       }) // If we do not get lat long, we will present page with form for address and post code
       .catch((error) => {
         this.isLoading = false;
+
         this.showFormPage();
       });
   }
@@ -181,19 +208,40 @@ export class WelcomePage implements OnInit {
   public previousStep() {
     this.selectedIndex -= 1;
   }
+
+
   getSearchData() {
+    this.currPage = []
+    this.searchResponse  = []
+   
     this.ConfigService.getPostal(this.postcode, this.pageIndex).subscribe(
       (elements) => {
+
         this.currPage = Object.keys(elements).map((i) => elements[i]);
-        console.log(this.currPage);
         this.searchResponse = this.searchResponse.concat(this.currPage);
-        console.log(this.searchResponse);
-      }
-    );
-    this.pageIndex++;
+        if(this.currPage.length > 0)
+        {
+          this.searchResponse = this.searchResponse.concat(this.currPage);
+        this.searchresult = true;
+      
+        }
+        else{
+          this.searchresult = false;
+          this.hide = false
+          this.noResult = true
+        }
+
+      });
+      this.pageIndex++;
   }
   closesearchpop() {
+    this.pageIndex = 0
+    this.currPage = null
+    this.searchResponse = null
     this.searchresult = false;
+    this.hide = false
+    this.noResult = false
+    this.routes.navigate(["/"]);
   }
 
   loggedIncheck()
@@ -209,4 +257,27 @@ export class WelcomePage implements OnInit {
       this.isLoading = false
     }
   }
+ 
+chcekLoggedIn()
+{
+  this.siginUser = JSON.parse(localStorage.getItem("currentUser"));
+   
+  if(this.siginUser == null)
+  {
+     this.routes.navigate(["/notLoggedIn"]);
+  }
+ else
+ {
+  this.routes.navigate(["/"]);
+ }
 }
+openEmailcomposer()
+{
+   this.emailComposer.open({
+     to:'ritin.nijhawan@gmail.com'
+   })
+}
+
+
+}
+

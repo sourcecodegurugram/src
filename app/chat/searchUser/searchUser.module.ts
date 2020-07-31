@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { SearchUserPageRoutingModule } from './searchUser-routing.module';
 import { MaterialModule } from '../../material.module';
 import { SearchUserPage } from './SearchUser.page';
+import {SearchUserResultPageModule} from './searchUserResult/search-user-result.module'
 import { NavigationbarModule } from "../../Navigati../../Navigation/NavigationBar/navigationbar.module";
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { NavigationbarModule } from "../../Navigati../../Navigation/NavigationBa
     IonicModule,
     MaterialModule,
     SearchUserPageRoutingModule,
+    SearchUserResultPageModule,
     NavigationbarModule
   ],
   declarations: [SearchUserPage]

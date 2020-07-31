@@ -98,7 +98,7 @@ export class SigninPage implements OnInit {
           localStorage.setItem("Signinuser", JSON.stringify(UserLoggedIn));
           this.UserDetails = UserLoggedIn;
           if (this.UserDetails != null) {
-            this.router.navigate(["/find-friends"]);
+            this.router.navigate(["/becomevrified"]);
           }
           console.log(UserLoggedIn);
         });

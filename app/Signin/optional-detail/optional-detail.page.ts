@@ -104,6 +104,7 @@ export class OptionalDetailPage implements OnInit {
   }
 
   optionDetail(
+    fun,
     live,
     talkabout,
     goodFriend,
@@ -121,6 +122,8 @@ export class OptionalDetailPage implements OnInit {
     music,
     anything
   ) {
+
+    console.log("test upload")
     const headers = new HttpHeaders()
       .set("X-CSRF-Token", this.userDetail.token)
       .set("Content-Type", "application/json")
@@ -133,6 +136,58 @@ export class OptionalDetailPage implements OnInit {
       headers: headers,
       withCredentials: true,
     };
+    this.http
+    .put(
+      "https://gowebtutorial.com/api/json/user/" + this.uid,{
+ 
+          field_long_in_city: {
+            und: live,
+          },
+    
+          field_talk_about: {
+            und: talkabout,
+          },
+          field_do_for_fun:{
+            und:fun
+          },
+
+        
+          //  field_good_friend:
+          //  {
+          //     und:goodFriend
+          //   },
+          field_plans_get_cancelled: {
+            und: cancels,
+          },
+          field_relationship_status: {
+            und: status,
+          },
+          field_any_pets: {
+            und: pets,
+          },
+          field_spend_your_days: {
+            und: [
+              {
+                value: spend,
+              },
+            ],
+          },
+          field_languages: {
+            und: {
+              value: speak,
+            },
+          },
+          field_smoke: { und: smoke },
+          field_alcohol: { und: alcohol },
+          field_favorite_books: { und: [ { value: books } ]},
+          field_favorite_movies: { und: [ { value: movies } ]},
+          field_favorite_tv_shows: { und: [ { value: shows }] },
+          field_favorite_music: { und:  [ { value: music } ]},
+          field_you_say: { und: [ { value: anything }] },
+      },requestOptions
+    ).subscribe((result) => {
+      this.router.navigate(["/"])
+    });
     this.additionalTotalObject = {
       field_long_in_city: {
         und: live,

@@ -14,6 +14,16 @@ const routes: Routes = [
     redirectTo: '/signin',
     pathMatch: 'full'
   },
+  {
+    path: 'no-result-found',
+    loadChildren: () => import('./no-result-found/no-result-found.module').then( m => m.NoResultFoundPageModule)
+  },
+  {
+    path: 'not-logged-popup',
+    loadChildren: () => import('./not-logged-popup/not-logged-popup.module').then( m => m.NotLoggedPopupPageModule)
+  },
+ 
+
 ];
 
 @NgModule({

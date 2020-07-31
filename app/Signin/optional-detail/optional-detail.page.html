@@ -13,37 +13,108 @@
       <mat-tab>
         <div class="progree-container">
           <div class="progress">
-            <div class="progress-bar" style="width:20%"></div>
+            <div class="progress-bar" style="width:25%"></div>
           </div>
         </div>
         <div class="forms-field">
 
 
-          <div class="form-group">
-            <label for="usr">What do you like to do for fun?</label>
-            <div class="form-check">
-              <label class="form-check-label" for="check1">
-                <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something"
-                  checked>Option 1
-              </label>
-            </div>
-            <div class="form-check">
-              <label class="form-check-label" for="check2">
-                <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">Option 2
-              </label>
-            </div>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input type="checkbox" class="form-check-input">Option 3
-              </label>
-            </div>
+    
+          <div class="ionic-dropdowns">
+
+            <label class="label-ionic-dropdown">What do you like to do for fun?</label>
+            <ion-item class="usually-dropdown">
+              <ion-label></ion-label>
+              <ion-select multiple="true" cancelText="Close" okText="Okay" name="fun" [(ngModel)]="fun"
+                class="ion-select-option-setting">
+
+                <ion-select-option value="yoga" #yogas>yoga</ion-select-option>
+                <ion-select-option value="playdates (parents and children)" #playdatess>playdates (parents and children)
+                 </ion-select-option>
+                    <ion-select-option value="happy hour/cocktails/beers" #beers>happy hour/cocktails/beers
+                 </ion-select-option>
+                 <ion-select-option value="sightseeing" #sightseeings>sightseeing</ion-select-option>
+                 <ion-select-option value="artsy stuff (making or looking at)" #artsy>artsy stuff (making or looking at)
+                 </ion-select-option>
+                 <ion-select-option value="cooking" #cook>cooking</ion-select-option>
+                 <ion-select-option value="dancing" #dancing>dancing</ion-select-option>
+                 <ion-select-option value="people watching" #watching>people watching</ion-select-option>
+              <ion-select-option value="traveling/vacations" #traveling>traveling/vacations</ion-select-option>
+   
+                 <ion-select-option value="history buff" #history>history buff</ion-select-option>
+                 <ion-select-option value="board games" #board>board games</ion-select-option>
+                 <ion-select-option value="sports (playing)" #sports>sports (playing)</ion-select-option>
+                 <ion-select-option value="mom's/dad's night out w/o kids" #mom>mom's/dad's night out w/o kids
+                 </ion-select-option>
+                 <ion-select-option value="outdoor activities" #outdoor>outdoor activities</ion-select-option>
+                 <ion-select-option value="dining out" #dining>dining out</ion-select-option>
+                 <ion-select-option value="concerts/shows" #concerts>concerts/shows</ion-select-option>
+                 <ion-select-option value="sports (watching)" #sportwatching>sports (watching)</ion-select-option>
+                 <ion-select-option value="shopping" #shoppings>shopping</ion-select-option>
+                 <ion-select-option value="video games" #games>video games</ion-select-option>
+                  <ion-select-option value="crafty things (things you make)" #crafty>crafty things (things you make)
+                 </ion-select-option>
+                 <ion-select-option value="photography" #photographs>photography</ion-select-option>
+                 <ion-select-option value="animal lover/pet owner" #animal>animal lover/pet owner</ion-select-option>
+                 <ion-select-option value="crime/mystery reader" #crime> crime/mystery reader</ion-select-option>
+                 <ion-select-option value="chess" #chess>chess</ion-select-option>
+   
+   
+    <ion-select-option value="movies">movies</ion-select-option>
+        
+                 <ion-select-option value="fitness/exercise" >fitness/exercise</ion-select-option>
+                 <ion-select-option value="playing music">playing music</ion-select-option>
+               <ion-select-option value="trekking/backpacking/camping" >trekking/backpacking/camping
+                 </ion-select-option> 
+                     <ion-select-option value="cars/motorcycles" #cars>cars/motorcycles</ion-select-option>
+                 <ion-select-option value="antiques" #antiques>antiques</ion-select-option>
+                 <ion-select-option value="horses/riding" #horses>horses/riding</ion-select-option>
+                 <ion-select-option value="anime/manga" #anime>anime/manga</ion-select-option>
+                 <ion-select-option value="scifi/fantasy" #scifi>scifi/fantasy</ion-select-option>
+                 <ion-select-option value="scuba" #scuba> scuba</ion-select-option>
+                 <ion-select-option value="gardeningr" #gardening>gardening</ion-select-option>
+                 <ion-select-option value="rock climbing" #rock>rock climbing</ion-select-option>
+                 <ion-select-option value="cycling/mountain biking" #cycling>cycling/mountain biking</ion-select-option>
+   
+                 <ion-select-option value="mindfulness and meditation" #mindfulness>mindfulness and meditation
+                 </ion-select-option>
+                 <ion-select-option value="makeup/hair/beauty" #makeup>makeup/hair/beauty</ion-select-option>
+                 <ion-select-option value=" gambling" #gambling>gambling</ion-select-option>
+   
+                 <ion-select-option value="billiards/snooker" #billiards>billiards/snooker</ion-select-option>
+                 <ion-select-option value="astrology/tarot" #astrology>astrology/tarot</ion-select-option>
+                 <ion-select-option value="golf" #astrology> golf</ion-select-option>
+                 <ion-select-option value="day hikes/bushwalking" #hikes>day hikes/bushwalking</ion-select-option>
+                 <ion-select-option value="tabletop RPG (D&D)" #tabletop>tabletop RPG (D&D)</ion-select-option>
+                 <ion-select-option value="reading" #reading>reading</ion-select-option>
+                 <ion-select-option value="creative writing" #creative>creative writing</ion-select-option>
+                 <ion-select-option value="cosplay" #cosplay>cosplay</ion-select-option>
+                 <ion-select-option value="home decorating" #home>home decorating</ion-select-option>
+   
+                 <ion-select-option value=" knitting, crochet, or sewing" #knitting>knitting, crochet, or sewing
+                 </ion-select-option>
+   
+   
+                 <ion-select-option value="card games" #card>card games</ion-select-option>
+                 <ion-select-option value="religious activities" #religious>religious activities</ion-select-option>
+                 <ion-select-option value="board sports (surf, paddle, kite)" #board>board sports (surf, paddle, kite)
+                 </ion-select-option>
+   
+                 <ion-select-option value="religious activities" #religious>religious activities</ion-select-option>
+                 <ion-select-option value="volunteering, charity work" #volunteering>volunteering, charity work
+                 </ion-select-option>
+                 <ion-select-option value="tennis" #tennis>tennis</ion-select-option>
+              </ion-select>
+            </ion-item>
           </div>
+
+           
 
 
           <div class="form-group">
             <label for="usr">How long have you lived here?</label>
-            <select class="form-control" id="sel1" name="long" [(ngModel)]="live">
-              <option value="0">
+            <select class="form-control selectpicker" id="sel1" name="long" [(ngModel)]="live">
+              <option value="0" style="background-color: azure;">
                 < 2 years</option> <option value="1">2-5 years
               </option>
               <option value="2">>5 years</option>
@@ -81,7 +152,6 @@
 
               <ion-select-option value="is always there for me." #always>is always there for me.
               </ion-select-option>
-              <ion-select-option value="Family" #Family>Family</ion-select-option>
               <ion-select-option value="always sides with me no matter what." #sides>always sides with me no matter
                 what.
               </ion-select-option>
@@ -92,10 +162,12 @@
               <ion-select-option value="is an activity partner." #partner>is an activity partner.</ion-select-option>
             </ion-select>
           </ion-item>
-
+        
 
           <div class="form-group">
             <label for="usr">When someone cancels plans we made </label>
+
+            
             <select class="form-control" id="sel1" name="cancels" [(ngModel)]="cancels">
               <option value="My reaction depends on the reason why.">My reaction depends on the reason why.</option>
               <option value="I think no big deal">I think no big deal</option>
@@ -118,7 +190,7 @@
       <mat-tab>
         <div class="progree-container">
           <div class="progress">
-            <div class="progress-bar" style="width:80%"></div>
+            <div class="progress-bar" style="width:50%"></div>
           </div>
         </div>
 
@@ -126,16 +198,9 @@
           <div class="form-group">
             <label for="sel1">Are you in a relationship? </label>
             <select class="form-control" id="sel1" name="status" [(ngModel)]="status">
-              <option>Yes</option>
-              <option>No</option>
-              <!-- <option>Single</option>
-              <option>Married</option>
-              <option>Co-Habitating</option>
-              <option value="Significant Other But Not Living Together">Significant Other But Not Living Together
-              </option>
-              <option value="Divorced">Divorced</option>
-              <option value="Widowed">Widowed</option>
-              <option value="Engaged">Engaged</option> -->
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+           
 
             </select>
           </div>
@@ -201,7 +266,7 @@
       <mat-tab>
         <div class="progree-container">
           <div class="progress">
-            <div class="progress-bar" style="width:85%"></div>
+            <div class="progress-bar" style="width:75%"></div>
           </div>
         </div>
         <div class="forms-field">
@@ -230,20 +295,7 @@
           </div>
 
 
-          <!-- <div class="form-group">
-            <label for="sel1">Education Level</label>
-            <select class="form-control" id="sel1" name="education" [(ngModel)]="education">
-
-              <option value="_none">- None -</option>
-              <option value="Less Than High School Diploma">Less Than High School Diploma</option>
-              <option value="High School Diploma">High School Diploma</option>
-              <option value="Some College/Technical School">Some College/Technical School</option>
-              <option value="Associates Degree">Associates Degree</option>
-              <option value="Technical School Degree">Technical School Degree</option>
-              <option value="College Degree">College Degree</option>
-              <option value="Graduate Degree">Graduate Degree</option>
-            </select>
-          </div> -->
+    
 
 
           <div class="form-group">
@@ -293,7 +345,7 @@
           <h3>Your photos</h3>
           <div class="additionalUserImages">
             <div class="imageContainer" *ngFor="let image of userImages">
-              <img class="userImage" src="http://gowebtutorial.com/sites/default/files/{{image.filename}}" />
+              <img class="userImage" src="https://gowebtutorial.com/sites/default/files/{{image.filename}}" />
             </div>
           </div>
 
@@ -314,7 +366,7 @@
             <textarea class="form-control" rows="5" id="comment" name="anything" [(ngModel)]="anything"></textarea>
           </div>
           <div class="continue-button"
-            (click)="optionDetail(live,talkabout,goodFriend,cancels,status,pets,spend,speak,smoke,alcohol,education,books,movies,shows,music,anything)">
+            (click)="optionDetail(fun,live,talkabout,goodFriend,cancels,status,pets,spend,speak,smoke,alcohol,education,books,movies,shows,music,anything)">
             Complete
           </div>
           <div class="previous-button" (click)="previousStep()">

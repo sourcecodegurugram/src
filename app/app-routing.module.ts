@@ -97,8 +97,27 @@ const routes: Routes = [
      path: 'topHobbies',
      loadChildren: () => import('./Signin/tophobbies/tophobbies.module').then( m => m.TophobbiesPageModule),
   },
+  {
+    path: 'chatsupport/:pmtId',
+    loadChildren: () => import('./Navigation/chatsupport/chatsupport.module').then( m => m.ChatsupportPageModule)
+  },
+  {
+    path: 'newchatsupport',
+    loadChildren: () => import('./Navigation/newchatsupport/newchatsupport.module').then( m => m.NewchatsupportPageModule)
+  },
+  {
+    path: 'noresult',
+    loadChildren: () => import('./welcome/no-result-found/no-result-found.module').then( m => m.NoResultFoundPageModule)
+  },
 
-
+  {
+    path: 'notLoggedIn',
+    loadChildren: () => import('./welcome/not-logged-popup/not-logged-popup.module').then( m => m.NotLoggedPopupPageModule)
+  },
+  {
+    path: 'becomevrified',
+    loadChildren: () => import('./Signin/becomeverified/becomeverified.module').then( m => m.BecomeverifiedPageModule)
+  },
 
 ];
 

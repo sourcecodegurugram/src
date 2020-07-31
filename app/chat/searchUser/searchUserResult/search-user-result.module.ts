@@ -17,6 +17,7 @@ import { SearchUserResultPage } from './search-user-result.page';
     MaterialModule ,
     SearchUserResultPageRoutingModule
   ],
+  exports:[SearchUserResultPage],
   declarations: [SearchUserResultPage]
 })
 export class SearchUserResultPageModule {}

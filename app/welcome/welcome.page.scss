@@ -503,3 +503,48 @@ justify-content: center;
 align-items: center;
 height: 100%;
 }
+
+
+.no-result-found {
+  background-color: #00000078;
+  /* position: absolute; */
+  height: 100vh;
+  z-index: 1000;
+}
+.popup-no-result {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0em 3em;
+  text-align: center;
+}
+.no-result-background {
+  background-color: white;
+  border-radius: 12px;
+}
+
+.no-result-popup-content {
+  padding: 1em 2em;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 200;
+}
+
+.green-button{
+  background-color: green;
+  padding: 0.5em;
+  border-radius: 7px;
+  text-align: center;
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 200;
+  margin: 1em 0px;
+  }
+  img.cross-image {
+    height: 3vh;
+}
+.crosss-sign {
+  float: right;
+  margin: 1em;
+}

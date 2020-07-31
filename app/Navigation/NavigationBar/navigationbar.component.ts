@@ -49,7 +49,8 @@ export class NavigationbarComponent implements OnInit {
   fname: any;
   lname: any;
   isLoogedIn: boolean = false;
-  back: boolean = false;
+  back: boolean = true;
+
   token = "https://gowebtutorial.com/api/json/user/token";
   constructor(
     private Configservice: ConfigService,
@@ -66,10 +67,15 @@ export class NavigationbarComponent implements OnInit {
 
   ngOnInit() {
     this.loginCheck();
+if(this.route.routeConfig.component.name == 'WelcomePage')
+{
+  this.back = false
+}
+    
   }
 
   humburgereffect() {
-    this.correctAlert();
+   this.router.navigate(["/newchatsupport"])
   }
   humBurgerCross() {
     this.crossSign = false;
@@ -88,6 +94,7 @@ export class NavigationbarComponent implements OnInit {
     } else if (this.logggenIn == true) {
       this.logggenIn = false;
     }
+
   }
 
   LoginForm(user, pass) {

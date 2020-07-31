@@ -1,0 +1,117 @@
+.main-New-message-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0em 2em;
+    align-items: center;
+    /* width: 100%; */
+    overflow: hidden;
+}
+.form-group {
+    margin-bottom: 1rem;
+    width: 100%;
+}
+.loading-container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    z-index: 9;
+    background: black;
+    opacity: 0.5;
+  }
+  .back-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.custom-back-button {
+    width: 100vw;
+    margin-bottom: 1em;
+}
+.send-button {
+    width: 100vw;
+}
+.button-align {
+    /* display: flow-root; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 17vh;
+}
+.heading-mew-message {
+    font-size: 20px;
+    margin: 1em;
+}
+
+.main-pop-background {
+    background-color: #000000a3;
+    background-position: center;
+ height: 100vh;
+ overflow: auto;
+}
+.main-pop {
+    display: block;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}
+.pop-grids {
+    display: flex;
+    flex-direction: column;
+ 
+    justify-content: center;
+    margin-top: 0em;
+    background-color: white;
+    margin: 0em 2em;
+    margin-bottom: 0px;
+}
+h5.whos-on-site {
+    font-size: 1.5em;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+  }
+  .checkbox-popup {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+  img.check-box {
+    margin-right: 10px;
+    text-align: center;
+  
+  }
+  .button-flex {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .register-button {
+    background-color: #5ADB00;
+    height: 40px;
+  }
+  button.btn.btn-primary.login-button {
+    height: 40px;
+  }
+  p.check-box-text {
+    margin-bottom: 0px;
+  }
+  .pop-content {
+    margin: 1em;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

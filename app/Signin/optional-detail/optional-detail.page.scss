@@ -350,7 +350,7 @@ img.image-icon {
 }
 
 .previous-button {
-    background-color: #E62E2D;
+    background-color: #4472C4;
     height: 3em;
     color: white;
     display: flex;
@@ -421,20 +421,30 @@ img.images-uploaded {
 }
 
 .imageContainer {
-    width: 35vw;
-    height: 35vw;
-    border: 2px solid;
+    width: 20vw;
+    height: 20vw;
+
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .imageContainer img {
-    width: 35vw;
-    height: 35vw;
-    border: 2px solid;
+    width: 20vw;
+    height: 20vw;
+  
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px;
 }
+.additionalUserImages{
+  
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    grid-gap: 1em;
+}
+
+option {
+    background-color: white !important;
+  }

@@ -26,7 +26,10 @@ import { Device } from "@ionic-native/device/ngx";
 import { AlertProfileDialogComponent } from "./Navigation/NavigationBar/alert-profile/alert-profile-dialog.component";
 import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
 import { FilePath } from "@ionic-native/file-path/ngx";
-import { ImagePicker } from "@ionic-native/image-picker/ngx";
+// import { ImagePicker } from "@ionic-native/image-picker/ngx";
+import { Diagnostic } from '@ionic-native/diagnostic/ngx';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
+  
 
 @NgModule({
   declarations: [AppComponent, EllipsisPipe, AlertProfileDialogComponent],
@@ -51,7 +54,10 @@ import { ImagePicker } from "@ionic-native/image-picker/ngx";
     Device,
     Camera,
     FilePath,
-    ImagePicker,
+    // ImagePicker,
+    Diagnostic ,
+    EmailComposer,
+  
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent],

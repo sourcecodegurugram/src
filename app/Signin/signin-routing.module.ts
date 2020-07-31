@@ -12,6 +12,10 @@ const routes: Routes = [
     path: 'tophobbies',
     loadChildren: () => import('../Signin/tophobbies/tophobbies.module').then( m => m.TophobbiesPageModule)
   },
+  {
+    path: 'becomeverified',
+    loadChildren: () => import('../Signin/becomeverified/becomeverified.module').then( m => m.BecomeverifiedPageModule)
+  },
 
  
 ];

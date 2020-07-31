@@ -9,9 +9,18 @@
 
 <div class="main-singin">
   <div class="login-buton">
-    <p class="heading-login">Log in to Not 4 Dating below</p>
+
+<div class="facebook-Login-buttom Login-page-button">
+  Login with Facebook
+</div>
+
+<div class="google-Login-buttom Login-page-button">
+  Login with Google
+</div>
+
   </div>
-  <div class="or"></div>
+  <div class="or">OR</div>
+  <div class="login-username">Login with Email or Username</div>
   <div class="forms-field">
     <div class="form-group">
       <input type="text" class="form-control" id="usr" placeholder="User Name" name="user" [(ngModel)]="user">
@@ -21,8 +30,9 @@
 
       <input type="password" class="form-control" id="usr" placeholder="Password" name="password"
         [(ngModel)]="password">
-
+        <div class="forgot-container"><a href="https://gowebtutorial.com/user/password">Forgot Password?</a></div> 
     </div>
+   
     <div class="continue-button" (click)="nextSteps()">
       Continue
     </div>

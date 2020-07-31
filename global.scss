@@ -331,4 +331,42 @@ ion-select.ng-untouched.ng-pristine.ng-valid.ion-untouched.ion-pristine.ion-vali
   max-width: 100%;
   width: 100vw;
 }
+.alert-checkbox-label.sc-ion-alert-md {
+  padding-left: unset;
+  padding-right: unset;
+  -webkit-padding-start: 53px;
+  padding-inline-start: 53px;
+  -webkit-padding-end: 26px;
+  padding-inline-end: 26px;
+  color: black;
+}
 
+.alert-radio-label.sc-ion-alert-md {
+  padding-left: unset;
+  padding-right: unset;
+  -webkit-padding-start: 52px;
+  padding-inline-start: 52px;
+  -webkit-padding-end: 26px;
+  padding-inline-end: 26px;
+  color: black;
+}
+.alert-radio-group, .alert-checkbox-group {
+  -ms-scroll-chaining: none;
+  overscroll-behavior: contain;
+  /* max-height: 240px; */
+  border-top: 0.55px solid rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.2);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  max-height: 46vh !important;
+}
+.bootstrap-select.btn-group .dropdown-menu li a:hover {
+  color: whitesmoke !important;
+  background: #bf5279 !important;
+}
+option {
+  background-color: white !important;
+}
+.bootstrap-select {
+  color: whitesmoke !important;
+  background: #bf5279 !important;
+}

@@ -1,0 +1,78 @@
+.main-pop-background {
+    background-color: #000000a3;
+    background-position: center;
+ height: 100vh;
+ overflow: auto;
+}
+.main-pop {
+    display: block;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}
+.pop-grids {
+    display: flex;
+    flex-direction: column;
+ 
+    justify-content: center;
+    margin-top: 0em;
+    background-color: white;
+    margin: 0em 2em;
+    margin-bottom: 0px;
+}
+h5.whos-on-site {
+    font-size: 1.5em;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+  }
+  .checkbox-popup {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+  img.check-box {
+    margin-right: 10px;
+    text-align: center;
+  
+  }
+  .button-flex {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+  }
+  .register-button {
+    background-color: #5ADB00;
+    height: 40px;
+    margin-bottom: 1em;
+  }
+  button.btn.btn-primary.login-button {
+    height: 40px;
+    margin-bottom: 1em;
+  }
+  p.check-box-text {
+    margin-bottom: 0px;
+  }
+  .pop-content {
+    margin: 1em;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+button.btn.btn-primary.register-button.close-button {
+    width: 60%;
+}
+img.cross-image {
+    height: 3vh;
+}
+.cross-sign {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0.8em 1em 0em 0em;
+    /* margin: 1em; */
+}
