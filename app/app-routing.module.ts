@@ -118,6 +118,10 @@ const routes: Routes = [
     path: 'becomevrified',
     loadChildren: () => import('./Signin/becomeverified/becomeverified.module').then( m => m.BecomeverifiedPageModule)
   },
+  {
+    path: 'forgot',
+    loadChildren: () => import('./Signin/forgotpassword/forgotpassword.module').then( m => m.ForgotpasswordPageModule)
+  },
 
 ];
 

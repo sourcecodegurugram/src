@@ -8,7 +8,7 @@
 <ion-content>
 
 <div class="main-singin">
-  <div class="login-buton">
+  <!-- <div class="login-buton">
 
 <div class="facebook-Login-buttom Login-page-button">
   Login with Facebook
@@ -18,8 +18,8 @@
   Login with Google
 </div>
 
-  </div>
-  <div class="or">OR</div>
+  </div> -->
+  <!-- <div class="or">OR</div> -->
   <div class="login-username">Login with Email or Username</div>
   <div class="forms-field">
     <div class="form-group">
@@ -30,7 +30,7 @@
 
       <input type="password" class="form-control" id="usr" placeholder="Password" name="password"
         [(ngModel)]="password">
-        <div class="forgot-container"><a href="https://gowebtutorial.com/user/password">Forgot Password?</a></div> 
+        <div class="forgot-container" routerLink="/forgot">Forgot Password?</div> 
     </div>
    
     <div class="continue-button" (click)="nextSteps()">

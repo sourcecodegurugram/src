@@ -19,6 +19,7 @@ export class ConfigService {
   locationUrl = "https://maps.googleapis.com/maps/api/geocode/json?latlng=";
   createUrl = "https://gowebtutorial.com/api/json/user/register";
   searchUrl = this.serverUrl + "search-view?gender=";
+  resetPassword = this.serverUrl + "user/request_new_password"
   gender;
   meet;
   activity;

@@ -50,4 +50,10 @@ export class AuthService {
       withCredentials: true,
     };
   }
+  forgotUser(user): Observable<any> {
+    return this.http.post<any>(
+      "https://gowebtutorial.com/api/json/user/request_new_password",
+      {name: user}
+    );
+  }
 }
