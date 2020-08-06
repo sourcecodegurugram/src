@@ -8,45 +8,45 @@
 <ion-content>
 
   <div class="not-loggeg-in-user" *ngIf="!isLoggedIn">
-  <div class="welcome">
-    <div class="welcome-content">
-      <p class="welcome-content-Para">
-        Welcome!
-      </p>
+    <div class="welcome">
+      <div class="welcome-content">
+        <p class="welcome-content-Para">
+          Welcome!
+        </p>
 
-      <p class="welcome-content-Para">
-        We can help you make <u>platonic</u>
-        connections in your local area.
-      </p>
-
-
-      <P class="welcome-content-Para">
-        First, ONE BIG RULE:<br>
-
-        Platonic = we will not help you
-        find a date or sexual partners. No
-        judgment if that is your goal, but
-        kindly save your energy and use another app.
-
-      </P>
+        <p class="welcome-content-Para">
+          We can help you make <u>platonic</u>
+          connections in your local area.
+        </p>
 
 
+        <P class="welcome-content-Para">
+          First, ONE BIG RULE:<br>
 
-      <div class="blue-button" (click)="popOpen()">
-        Sounds Cool! Who can I meet?
-      </div>
+          Platonic = we will not help you
+          find a date or sexual partners. No
+          judgment if that is your goal, but
+          kindly save your energy and use another app.
 
-      <div class="green-button" routerLink="/signup">
-        Awesome! Sign me up!
+        </P>
 
-      </div>
 
-      <div class="alreday-member" routerLink="/signin">
-        I am already a member
+
+        <div class="blue-button" (click)="popOpen()">
+          Sounds Cool! Who can I meet?
+        </div>
+
+        <div class="green-button" routerLink="/signup">
+          Awesome! Sign me up!
+
+        </div>
+
+        <div class="alreday-member" routerLink="/signin">
+          I am already a member
+        </div>
       </div>
     </div>
   </div>
-</div>
 </ion-content>
 
 <div class="background-oops" *ngIf="hide">
@@ -76,14 +76,14 @@
         </div>
         <div class="form-group">
           <label for="country">Country</label>
-          <select class="form-control" id="country" name="live">
-            <option value="au">Australia</option>
-            <option value="ca">Canada</option>
-            <option value="in">India</option>
-            <option value="nz">New Zealand</option>
-            <option value="sg">Singapore</option>
-            <option value="gb">United Kingdom</option>
-            <option value="us" selected="selected">United States</option>
+          <select class="form-control" id="country" name="live" [(ngModel)]="countryCode">
+            <option value="Australia">Australia</option>
+            <option value="Canada">Canada</option>
+            <option value="India">India</option>
+            <option value="New Zealand">New Zealand</option>
+            <option value="Singapore">Singapore</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="United States" selected="selected">United States</option>
 
           </select>
           <span class="under-text"></span>
@@ -92,7 +92,7 @@
 
         <br>
         <div class="button-container">
-          <button type="button" class="button-common" (click)="postcodeManuallyEnter(post)">Search</button>
+          <button type="button" class="button-common" (click)="postcodeManuallyEnter(post, countryCode)">Search</button>
         </div>
       </form>
 
@@ -113,12 +113,8 @@
     </div>
 
 
-    <div class="member-cards" *ngFor="let posts of  searchResponse"
-      (click)="chcekLoggedIn()">
-
-
+    <div class="member-cards" *ngFor="let posts of  searchResponse" (click)="chcekLoggedIn()">
       <div class="member-card-image">
-
         <img src="{{posts.Picture}}" alt="" srcset="" class="user-image">
 
       </div>
@@ -144,32 +140,28 @@
         <div class="distance-container">
           <div class="distance card-item">Distance:</div>
           <div class="distance-ouput">1 miles away</div>
-
         </div>
-
-
       </div>
-      
     </div>
-    <button *ngIf="currPage.length == 10" class="showMore" (click)="getSearchData()">Show More</button>
-  </div>
 
+    <button #getMoreUsers *ngIf="matchLevel <= 3" class="showMore" (click)="getSearchData()">Show More</button>
+  </div>
 </div>
 
 
 
 <div class="no-result-found" *ngIf="noResult">
 
-  <div class= "popup-no-result">
+  <div class="popup-no-result">
     <div class="no-result-background">
       <div class="crosss-sign" (click)="closesearchpop()">
         <img src="../../assets/Images/cross.png" class="cross-image">
       </div>
-    <div class="no-result-popup-content">
-      Looks like we have not yet expanded to your area. Click here to suggest that we come to you next!<br>
-      <span (click)="openEmailcomposer()">Click here </span>to suggest that we come to you next
+      <div class="no-result-popup-content">
+        Looks like we have not yet expanded to your area. Click here to suggest that we come to you next!<br>
+        <span (click)="openEmailcomposer()">Click here </span>to suggest that we come to you next
+      </div>
+
     </div>
-  
   </div>
 </div>
-  </div>

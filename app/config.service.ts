@@ -19,7 +19,7 @@ export class ConfigService {
   locationUrl = "https://maps.googleapis.com/maps/api/geocode/json?latlng=";
   createUrl = "https://gowebtutorial.com/api/json/user/register";
   searchUrl = this.serverUrl + "search-view?gender=";
-  resetPassword = this.serverUrl + "user/request_new_password"
+  resetPassword = this.serverUrl + "user/request_new_password";
   gender;
   meet;
   activity;
@@ -38,16 +38,59 @@ export class ConfigService {
   getHobbies() {
     return this.http.get(this.hobbieUrl);
   }
-  getPostal(post, pageIndex) {
-    return this.http.get(this.postalUrl + post + "&page=" + pageIndex);
+  getPostal(post, country, pageIndex) {
+    // Get correct country
+    let countryCode;
+    switch (country) {
+      case "United States":
+        countryCode = "us";
+        break;
+      case "Canada":
+        countryCode = "ca";
+        break;
+      case "India":
+        countryCode = "in";
+        break;
+      case "United Kingdom":
+        countryCode = "uk";
+        break;
+      case "Australia":
+        countryCode = "au";
+        break;
+      case "New Zealand":
+        countryCode = "nz";
+        break;
+      case "Singapre":
+        countryCode = "sg";
+        break;
+      default:
+      // code block
+    }
+
+    console.log(
+      this.postalUrl + post + "&country=" + countryCode + "&page=" + pageIndex
+    );
+
+    return this.http.get(
+      this.postalUrl + post + "&country=" + countryCode + "&page=" + pageIndex
+    );
   }
   getPostals(post) {
-    return this.http.get(this.postalUrl + post );
+    return this.http.get(this.postalUrl + post);
   }
   // getPostal(post) {
   //   return this.http.get(this.postalUrl + post );
   // }
   getLocation(lat, lng) {
+    console.log(
+      this.locationUrl +
+        lat +
+        "," +
+        lng +
+        "&types;=postal_code" +
+        "&key=AIzaSyBru6wNx3CwcvRbACg2G4-Cq7o6Lt4wOvI"
+    );
+
     return this.http.get(
       this.locationUrl +
         lat +

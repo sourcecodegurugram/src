@@ -5,11 +5,13 @@
   margin: 0px 2em;
 
 }
+
 p.welcome-content-Para {
   font-size: 19px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 200;
 }
+
 .blue-button {
   background-color: #4472C4;
   padding: 0.6em;
@@ -17,10 +19,11 @@ p.welcome-content-Para {
   text-align: center;
   color: white;
   font-family: 'Open Sans', sans-serif;
-font-size: 19px;
+  font-size: 19px;
   margin: 1em 0px;
   font-weight: 200;
 }
+
 .green-button {
   background-color: green;
   padding: 0.6em;
@@ -32,6 +35,7 @@ font-size: 19px;
   font-weight: 200;
   margin: 1em 0px;
 }
+
 .alreday-member {
   text-align: center;
   font-size: 20px;
@@ -41,37 +45,37 @@ font-size: 19px;
   font-weight: 200;
 }
 
-.background-oops
-{
+.background-oops {
   background-color: #08080885;
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100vh;
- 
- 
+
+
   overflow-x: auto;
 }
-.card-content-font
-{
+
+.card-content-font {
   font-family: 'Open Sans', sans-serif;
   font-style: normal;
   font-size: 20px;
   text-align: center;
-color: #707070;
-margin-right: 1em;
-margin-left: 1em;
+  color: #707070;
+  margin-right: 1em;
+  margin-left: 1em;
 
 }
-.card-one{
+
+.card-one {
   border: 1px solid #707070;
   margin: 0em 1.5em;
 
   overflow: overlay;
 
 }
-.tittle-card
-{
+
+.tittle-card {
   font-family: 'Open Sans', sans-serif;
   font-style: normal;
   font-size: 20px;
@@ -79,9 +83,11 @@ margin-left: 1em;
   color: #707070;
   padding: 1em;
 }
-form.form-fields{
+
+form.form-fields {
   margin: 2em;
 }
+
 input#fname {
   /* height: 6vh; */
   border-radius: 7px;
@@ -91,6 +97,7 @@ input#fname {
   margin-bottom: 20px;
 
 }
+
 select#country {
   border-radius: 7px;
 
@@ -99,44 +106,49 @@ select#country {
 
   font-size: 1em;
 }
+
 .form-label {
   font-size: 15px;
   font-family: 'Open Sans', sans-serif;
   font-weight: bold;
 
 }
-.form-label-country
-{
+
+.form-label-country {
   font-size: 19px;
   font-family: 'Open Sans', sans-serif;
   font-weight: bold;
 
 }
+
 .button-container {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 18px;
 }
+
 button.button-common {
   height: 40px;
   padding: 0px 40px;
   border: 1px solid #707070;
-  background-color:  #449D44;
+  background-color: #449D44;
   color: white;
   border-radius: 7px;
   font-size: 20px;
   font-family: 'Open Sans', sans-serif;
   font-style: bold;
 }
-.search-country
-{
+
+.search-country {
   width: 100% !important;
   background-color: #F2F2F2;
 }
+
 .card-one {
   background-color: white !important;
 }
+
 .loading-container {
   width: 100%;
   height: 100%;
@@ -153,6 +165,7 @@ button.button-common {
   background: black;
   opacity: 0.5;
 }
+
 img.cross-image {
   width: 9%;
   margin: 5px;
@@ -163,10 +176,11 @@ img.cross-image {
 
 
 .welcome {
-height: 100%;
-display: flex;
-background: white;
+  height: 100%;
+  display: flex;
+  background: white;
 }
+
 .serach-result {
   position: absolute;
   height: 100vh;
@@ -218,7 +232,7 @@ ion-content ion-toolbar {
   background-image: url('../../assets/Images/BackgroundTile.png');
   background-size: cover;
   background-position: center;
-  height:80vh;
+  height: 80vh;
   overflow-x: auto;
   width: 89vw;
   margin-top: 5em;
@@ -260,7 +274,7 @@ p.card-item {
   margin-bottom: 0px;
   margin-top: -2px;
   font-size: 14px;
-    padding-bottom: 0.5em;
+  padding-bottom: 0.5em;
   color: #707070;
 }
 
@@ -385,11 +399,13 @@ p.check-box-text {
   width: 100%;
   padding: 20px 0px;
 }
+
 input#usr {
   height: 5vh;
   padding: 1em;
   width: 100%;
 }
+
 .badage-name {
   display: flex;
   flex-direction: row;
@@ -397,111 +413,123 @@ input#usr {
   align-items: center;
   padding-top: 0.5em;
 }
+
 .badge-font {
   font-size: 9px;
 }
+
 .right-heading {
- display: block;
-display: -webkit-box;
-max-width: 100%;
-height: 43px;
-margin: 0 auto;
-font-size: 14px;
-line-height: 1;
--webkit-line-clamp: 3;
--webkit-box-orient: vertical;
-overflow: hidden;
-text-overflow: ellipsis;
+  display: block;
+  display: -webkit-box;
+  max-width: 100%;
+  height: 43px;
+  margin: 0 auto;
+  font-size: 14px;
+  line-height: 1;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
 .activity-container {
   display: flex;
   align-items: center;
 }
+
 .parent-badge {
   margin-left: 10px;
 }
+
 .distance-container {
   display: flex;
 }
 
 
-@media screen and (max-width:320px)
-{
-.welcome-content-Para {
-  font-size: 15px !important;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 200;
+@media screen and (max-width:320px) {
+  .welcome-content-Para {
+    font-size: 15px !important;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 200;
+  }
+
+  .blue-button {
+    background-color: #4472C4;
+    padding: 0.6em;
+    border-radius: 7px;
+    text-align: center;
+    color: white;
+    font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+    margin: 1em 0px;
+    font-weight: 200;
+  }
+
+  .green-button {
+    background-color: green;
+    padding: 0.5em;
+    border-radius: 7px;
+    text-align: center;
+    color: white;
+    font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 200;
+    margin: 1em 0px;
+  }
+
+  .alreday-member {
+    text-align: center;
+    font-size: 17px;
+    color: red;
+    font-family: "Open Sans", sans-serif;
+    margin-top: 0.7em;
+    font-weight: 200;
+  }
+
+  .card-content-font {
+    font-family: "Open Sans", sans-serif;
+    font-style: normal;
+    font-size: 15px;
+    text-align: center;
+    color: #707070;
+    margin-right: 1em;
+    margin-left: 1em;
+  }
+
+  .tittle-card {
+    font-family: "Open Sans", sans-serif;
+    font-style: normal;
+    font-size: 16px;
+    text-align: center;
+    color: #707070;
+    padding: 1em;
+  }
+
+  button.button-common {
+    height: 40px;
+    padding: 0px 40px;
+    border: 1px solid #707070;
+    background-color: #449D44;
+    color: white;
+    border-radius: 7px;
+    font-size: 15px;
+    font-family: "Open Sans", sans-serif;
+    font-style: bold;
+  }
+
+  .card-one {
+    border: 1px solid #707070;
+    margin: 0em 1.5em;
+    overflow: overlay;
+    height: 94%;
+  }
 }
-.blue-button {
-background-color: #4472C4;
-padding: 0.6em;
-border-radius: 7px;
-text-align: center;
-color: white;
-font-family: "Open Sans", sans-serif;
-font-size: 15px;
-margin: 1em 0px;
-font-weight: 200;
-}
-.green-button{
-background-color: green;
-padding: 0.5em;
-border-radius: 7px;
-text-align: center;
-color: white;
-font-family: "Open Sans", sans-serif;
-font-size: 15px;
-font-weight: 200;
-margin: 1em 0px;
-}
-.alreday-member {
-text-align: center;
-font-size: 17px;
-color: red;
-font-family: "Open Sans", sans-serif;
-margin-top: 0.7em;
-font-weight: 200;
-}
-.card-content-font {
-font-family: "Open Sans", sans-serif;
-font-style: normal;
-font-size: 15px;
-text-align: center;
-color: #707070;
-margin-right: 1em;
-margin-left: 1em;
-}
-.tittle-card {
-font-family: "Open Sans", sans-serif;
-font-style: normal;
-font-size: 16px;
-text-align: center;
-color: #707070;
-padding: 1em;
-}
-button.button-common {
-height: 40px;
-padding: 0px 40px;
-border: 1px solid #707070;
-background-color: #449D44;
-color: white;
-border-radius: 7px;
-font-size: 15px;
-font-family: "Open Sans", sans-serif;
-font-style: bold;
-}
-.card-one {
-border: 1px solid #707070;
-margin: 0em 1.5em;
-overflow: overlay;
-height: 94%;
-}
-}
+
 .not-loggeg-in-user {
-display: flex;
-justify-content: center;
-align-items: center;
-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 
@@ -511,6 +539,7 @@ height: 100%;
   height: 100vh;
   z-index: 1000;
 }
+
 .popup-no-result {
   height: 100%;
   display: flex;
@@ -519,6 +548,7 @@ height: 100%;
   margin: 0em 3em;
   text-align: center;
 }
+
 .no-result-background {
   background-color: white;
   border-radius: 12px;
@@ -530,7 +560,7 @@ height: 100%;
   font-weight: 200;
 }
 
-.green-button{
+.green-button {
   background-color: green;
   padding: 0.5em;
   border-radius: 7px;
@@ -540,10 +570,12 @@ height: 100%;
   font-size: 15px;
   font-weight: 200;
   margin: 1em 0px;
-  }
-  img.cross-image {
-    height: 3vh;
 }
+
+img.cross-image {
+  height: 3vh;
+}
+
 .crosss-sign {
   float: right;
   margin: 1em;
