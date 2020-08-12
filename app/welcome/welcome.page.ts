@@ -78,6 +78,9 @@ export class WelcomePage implements OnInit {
   matchLevel = 0;
   tempCurrPage;
   item;
+  distance = [];
+  distanceInKm: number;
+  miles: number;
   constructor(
     private ConfigService: ConfigService,
     public geolocation: Geolocation,
@@ -232,8 +235,9 @@ export class WelcomePage implements OnInit {
       this.tempCurrPage = Object.keys(elements).map((i) => elements[i]);
 
       for (let i = 0; i < this.tempCurrPage.length; i++) {
-        console.log(this.tempCurrPage[i]);
+
         if (
+
           this.tempCurrPage[i].Postal.substring(
             0,
             this.postcode.length - this.matchLevel
@@ -241,22 +245,35 @@ export class WelcomePage implements OnInit {
           this.postcode.substring(0, this.postcode.length - this.matchLevel)
         )
           this.currPage.push(this.tempCurrPage[i]);
-      }
+     
+          this.distance.push({Latitude:elements[i].Latitude,longitude:elements[i].Longitude})
+          this.distanceInKm = this.getDistanceFromLatLonInKm(
+            elements[0].Latitude,
+            elements[0].Longitude,
+            elements[i].Latitude,
+            elements[i].Longitude
+           );
 
-      console.log(this.currPage);
+
+        }
+
+      
       if (this.currPage.length > 0) {
         this.searchresult = true;
-        this.searchResponse = this.searchResponse.concat(this.currPage);
 
+        this.searchResponse = this.searchResponse.concat(this.currPage);
         this.searchResponse = this.searchResponse.filter(
           (thing, index, self) =>
             index === self.findIndex((t) => t.name === thing.name)
         );
+        this.miles = this.distanceInKm* 1 / 1.609344
+        console.log(this.miles)
       }
 
       if (this.currPage.length < 10) {
         this.matchLevel++;
         this.pageIndex = -1;
+
       }
 
       if (this.searchResponse.length == 0) {
@@ -264,7 +281,7 @@ export class WelcomePage implements OnInit {
         this.getSearchData();
         return;
       }
-
+   
       this.pageIndex++;
     });
   }
@@ -304,5 +321,24 @@ export class WelcomePage implements OnInit {
     this.emailComposer.open({
       to: "ritin.nijhawan@gmail.com",
     });
+  }
+
+  
+  getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+    var R = 6371; // Radius of the earth in km
+    var dLat = this.deg2rad(lat2 - lat1); // deg2rad below
+    var dLon = this.deg2rad(lon2 - lon1);
+    var a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(this.deg2rad(lat1)) *
+      Math.cos(this.deg2rad(lat2)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c; // Distance in km
+    return d;
+  }
+  deg2rad(deg) {
+    return deg * (Math.PI / 180);
   }
 }

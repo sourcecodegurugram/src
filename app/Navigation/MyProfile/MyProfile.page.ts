@@ -42,6 +42,7 @@ export class MyProfilePage implements OnInit {
     if (this.itrs == null) {
       this.isLoogedIn = false;
     } else if (this.itrs.user != null) {
+     this.uid = this.itrs.user.uid
       this.isLoogedIn = true;
       this.name = this.itrs.user.name;
       this.activity = this.itrs.user.field_activities_interests.und;

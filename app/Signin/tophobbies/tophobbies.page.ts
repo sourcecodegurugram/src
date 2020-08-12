@@ -8,6 +8,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
 import { ConfigService } from "../../config.service";
 import { FormControl } from "@angular/forms";
+import { AlertController } from "@ionic/angular";
+
 @Component({
   selector: "app-tophobbies",
   templateUrl: "./tophobbies.page.html",
@@ -48,7 +50,8 @@ export class TophobbiesPage implements OnInit {
     private _location: Location,
     private _Activatedroute: ActivatedRoute,
     private ConfigService: ConfigService,
-    private router: Router
+    private router: Router,
+    public alertController: AlertController
   ) {}
 
   ngOnInit() {
@@ -70,7 +73,13 @@ export class TophobbiesPage implements OnInit {
       withCredentials: true,
     };
     // Add entry into favorites
-
+if(topactivity.length > 3)
+{
+this.wrongUser()
+this.isLoading = false;
+}
+else
+{
     this.http
       .put(
         "https://gowebtutorial.com/api/json/user/" + this.userDetail.user.uid,
@@ -97,5 +106,17 @@ export class TophobbiesPage implements OnInit {
         this.isLoading = false;
         this.router.navigate(["/chat/searchUser"]);
       });
+
+    }
+  }
+
+
+  async wrongUser() {
+    const alert = await this.alertController.create({
+      message: "Top activities must be equal to 3",
+      buttons: ["OK"],
+    });
+
+    await alert.present();
   }
 }

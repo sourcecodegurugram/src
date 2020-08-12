@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AlertController } from "@ionic/angular";
 import { Location } from "@angular/common";
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
+
 @Component({
   selector: "app-userDetail",
   templateUrl: "./userDetail.page.html",
@@ -83,16 +85,19 @@ export class userDetailPage implements OnInit {
   blockInfo: { name: any; picture: any; activities: any; uid: string; }[];
   blockscope: any[];
   Block_status = 1;
+  Report_status = 1;
   parsedBlock: any;
   blockusers:boolean =false
   blocked: { name: any; picture: any; activities: any; uid: string; }[];
-  unblockusers:boolean=false
+  unblockusers:boolean=false;
+  report;
   constructor(
     private ConfigService: ConfigService,
     private _Activatedroute: ActivatedRoute,
     private _location: Location,
     private http: HttpClient,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private emailComposer: EmailComposer
   ) {}
   ngOnInit() {
     // Get uid for logged in user
@@ -149,8 +154,16 @@ export class userDetailPage implements OnInit {
           },
          
         ],
+        this.report = [
+          {
+            name: this.post.name,
+            picture: this.post.picture.url,
+            activities: this.post.field_activities_interests.und,
+            uid: this.uid,
+          },
+        ]
         this.getLoggedInUser();
-     
+     this.getBlockedLoggedInUser()
       });
   }
 
@@ -341,6 +354,94 @@ block()
 
 
 
+getReportLoggedInUser() {
+  // Get Block fields for logged in user
+  this.ConfigService.getUser(this.itrs.user.uid).subscribe((data) => {
+    this.loggedUser = data;
+    this.Report_status = this.checReportUser();
+  });
+}
+
+checReportUser() {
+  if (this.loggedUser.field_report_to_admin.und) {
+    this.parsedBlock = JSON.parse(
+      this.loggedUser.field_report_to_admin.und[0].value
+    );
+    // Check if user is already a Block
+    if (this.parsedBlock.some((persons) => persons[0].uid === this.uid)) {
+      console.log("This person is already Reported");
+      return 3;
+    } else {
+      console.log("This person is not yet reported");
+      return 2;
+    }
+  }
+}
+
+//Block User
+reportUser()
+{
+  this.scope = [];
+  this.http
+    .get("https://gowebtutorial.com/api/json/user/" + this.itrs.user.uid)
+    .subscribe((Reportusers) => {
+       this.respnoseJSON = Reportusers;
+       if (this.respnoseJSON.field_report_to_admin.length != 0) {
+       console.log("value exists");
+       this.scope = JSON.parse(
+        this.respnoseJSON.field_report_to_admin["und"][0]["value"]
+       );
+         this.scope.push(this.report);
+       } else {
+         console.log("value doesnt exist");
+       this.scope.push(this.report);
+     }
+      //Make scope unique
+      this.uniqueScope = this.removeDuplicatesBy(
+        (x) => x[0].name,
+        this.scope
+      );
+      this.reportUsers();
+    });
+}
+
+
+
+reportUsers()
+{
+const headers = new HttpHeaders()
+    .set("X-CSRF-Token", this.itrs.token)
+    .set("Content-Type", "application/json")
+    .set("X-Cookie", this.itrs.session_name + "=" + this.itrs.sessid);
+  const requestOptions = {
+    headers: headers,
+    withCredentials: true,
+  };
+  // Add entry into favorites
+  this.responseBlockString = JSON.stringify(this.uniqueScope);
+  console.log(this.uniqueScope);
+  this.http
+    .put(
+      "https://gowebtutorial.com/api/json/user/" + this.itrs.user.uid,
+      {
+        field_report_to_admin: {
+          und: [
+            {
+              value:this.responseBlockString,
+            },
+          ],
+        },
+      },
+      requestOptions
+    )
+    .subscribe((Block) => {
+      this.isLoading = false;
+      // this.blockusers=false
+      this.getReportLoggedInUser() ;
+    });
+}
+
+
 
 
 
@@ -391,6 +492,7 @@ block()
       return isNew;
     });
   }
+
   removeFavorite() {
     this.parsedFavorites = this.parsedFavorites.filter((obj) => {
       return obj[0].uid !== this.uid;
@@ -511,4 +613,17 @@ block()
  {
    this.unblockusers = true
  }
+
+ openEmailcomposer() {
+  this.emailComposer.open({
+ 
+      to: 'max@mustermann.de',
+     
+    
+      subject: 'Report Admin',
+      body:"Name" + " " + ":" + this.post.name + " " + "uid" + " " + ":" + this.uid,  
+      isHtml: true
+   
+  });
+}
 }

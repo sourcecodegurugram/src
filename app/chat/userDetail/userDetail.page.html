@@ -23,33 +23,38 @@
           <div class="group-text-image">
             <ion-icon name="chatbubble-ellipses" routerLink="/new-message/{{uid}}/{{name}}" class="favorate_star">
             </ion-icon>
-            <!-- <span class="name-icon">Chat</span> -->
+  <span class="name-icon">Chat</span> 
           </div>
           <div *ngIf="favorites_status == 1" class="group-text-image" style="opacity: .4;">
             <ion-icon name="star" class="favorate_star disable_fav"></ion-icon>
 
-            <!-- <span class="name-icon">Favorite</span> -->
+          <span class="name-icon">Favorite</span> 
           </div>
           <div *ngIf="favorites_status == 2" class="group-text-image" (click)="addFavorate()">
             <ion-icon name="star" class="favorate_star"></ion-icon>
-            <!-- <span class="name-icon">ADD Favorite</span> -->
+            <span class="name-icon">Favorite</span> 
           </div>
           <div *ngIf="favorites_status == 3" class="group-text-image" (click)="removingFavorate()">
             <ion-icon name="star" class="favorate_star remove_fav"></ion-icon>
+            <span class="name-icon">Favorite</span> 
           </div>
           <div class="group-text-image" *ngIf="Block_status == 1">
             <ion-icon name="close-outline" (click)="blockuserpop()" class="favorate_close"></ion-icon>
+           
+            <!-- <span class="name-icon">Never see again</span>  -->
+            
           </div>
 
           <div class="group-text-image" *ngIf="Block_status == 3">
             <ion-icon name="close-outline"  class="favorate_star remove_fav favorate_close" (click)="unblock()"></ion-icon>
           </div>
          
-          <div class="group-text-image">
-            <ion-icon name="sad" class="favorate_star "></ion-icon>
+          <div class="group-text-image" (click)="openEmailcomposer()">
+            <img src="../../../assets/Images/more.png" class="favorate_star new-said-image">
+            <!-- <ion-icon name="sad" class="favorate_star "></ion-icon> -->
           </div>
-          <div class="group-text-image">
-            <!-- <span class="name-icon">Report to admin</span> -->
+          <div class="group-text-image" (click)="openEmailcomposer()">
+            <span class="name-icon">Report to admin</span> 
           </div>
         </div>
         <div class="sidebar-content">

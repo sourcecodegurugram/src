@@ -122,6 +122,11 @@ const routes: Routes = [
     path: 'forgot',
     loadChildren: () => import('./Signin/forgotpassword/forgotpassword.module').then( m => m.ForgotpasswordPageModule)
   },
+  {
+    path: 'moreinfo/:uid',
+    loadChildren: () => import('./Navigation/moreinfo/moreinfo.module').then( m => m.MoreinfoPageModule)
+  },
+
 
 ];
 
