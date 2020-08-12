@@ -616,10 +616,7 @@ const headers = new HttpHeaders()
 
  openEmailcomposer() {
   this.emailComposer.open({
- 
       to: 'max@mustermann.de',
-     
-    
       subject: 'Report Admin',
       body:"Name" + " " + ":" + this.post.name + " " + "uid" + " " + ":" + this.uid,  
       isHtml: true

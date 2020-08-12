@@ -106,8 +106,9 @@
             </select>
           </div>
         </div> -->
-            <label for="usr">When is your birthday*?</label>
-            <input type="date" class="form-control" id="usr" name="DOB" [(ngModel)]="DOB" (click)="CheckDOB()">
+            <label for="usr">When is your birthday*?</label><br>
+            <input type="text" name="input" placeholder=" YYYY-MM-DD" required pattern="(?:19|20)\[0-9\]{2}-(?:(?:0\[1-9\]|1\[0-2\])/(?:0\[1-9\]|1\[0-9\]|2\[0-9\])|(?:(?!02)(?:0\[1-9\]|1\[0-2\])/(?:30))|(?:(?:0\[13578\]|1\[02\])-31))" title="Enter a date in this format YYYY/MM/DD" [(ngModel)]="DOB" (click)="CheckDOB()" class="dateofbirth"/><br>
+            <!-- <input type="date" class="form-control" id="usr" name="DOB" [(ngModel)]="DOB" (click)="CheckDOB()"> -->
             <span class="under-text">(Only age is displayed publicly)</span>
 
           </div>
