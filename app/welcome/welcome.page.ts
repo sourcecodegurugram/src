@@ -254,11 +254,10 @@ export class WelcomePage implements OnInit {
       
       if (this.currPage.length > 0) {
         this.searchresult = true;
-        this.searchResponse =(this.currPage );
-        this.searchResponse = this.searchResponse.filter(
-          (thing, index, self) =>
-            index === self.findIndex((t) => t.name === thing.name)
-        );
+
+        this.searchResponse.push({main:this.currPage , distance:this.distanceInKm * 1 / 1.609344});
+        console.log(this.searchResponse)
+        this.searchResponse = this.searchResponse.filter((thing, index, self) => index === self.findIndex((t) => t.name === thing.name));
 
 
        
@@ -276,7 +275,7 @@ export class WelcomePage implements OnInit {
         return;
       }
       this.pageIndex++;
-      this.miles = this.distanceInKm* 1 / 1.609344                      
+                     
     });
 
 
