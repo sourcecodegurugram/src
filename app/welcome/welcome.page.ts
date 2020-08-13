@@ -233,41 +233,35 @@ export class WelcomePage implements OnInit {
     ).subscribe((elements) => {
       this.isLoading = false;
       this.tempCurrPage = Object.keys(elements).map((i) => elements[i]);
-
+      
       for (let i = 0; i < this.tempCurrPage.length; i++) {
-
         if (
 
-          this.tempCurrPage[i].Postal.substring(
-            0,
-            this.postcode.length - this.matchLevel
-          ) ==
-          this.postcode.substring(0, this.postcode.length - this.matchLevel)
-        )
+          this.tempCurrPage[i].Postal.substring(0,this.postcode.length - this.matchLevel) == this.postcode.substring(0, this.postcode.length - this.matchLevel)
+         
+          )
           this.currPage.push(this.tempCurrPage[i]);
-     
-          this.distance.push({Latitude:elements[i].Latitude,longitude:elements[i].Longitude})
-          this.distanceInKm = this.getDistanceFromLatLonInKm(
-            elements[0].Latitude,
-            elements[0].Longitude,
-            elements[i].Latitude,
-            elements[i].Longitude
-           );
-
-
+            this.distanceInKm = this.getDistanceFromLatLonInKm(
+              elements[0].Latitude,
+              elements[0].Longitude,
+              elements[i].Latitude,
+              elements[i].Longitude
+             );
+          // this.distance.push({Latitude:elements[i].Latitude,longitude:elements[i].Longitude})
+        
         }
 
       
       if (this.currPage.length > 0) {
         this.searchresult = true;
-
-        this.searchResponse = this.searchResponse.concat(this.currPage);
+        this.searchResponse =(this.currPage );
         this.searchResponse = this.searchResponse.filter(
           (thing, index, self) =>
             index === self.findIndex((t) => t.name === thing.name)
         );
-        this.miles = this.distanceInKm* 1 / 1.609344
-        console.log(this.miles)
+
+
+       
       }
 
       if (this.currPage.length < 10) {
@@ -278,12 +272,14 @@ export class WelcomePage implements OnInit {
 
       if (this.searchResponse.length == 0) {
         this.pageIndex++;
-        this.getSearchData();
+         //this.getSearchData();
         return;
       }
-   
       this.pageIndex++;
+      this.miles = this.distanceInKm* 1 / 1.609344                      
     });
+
+
   }
 
   closesearchpop() {
