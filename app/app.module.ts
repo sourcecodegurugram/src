@@ -29,7 +29,8 @@ import { FilePath } from "@ionic-native/file-path/ngx";
 // import { ImagePicker } from "@ionic-native/image-picker/ngx";
 import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
-  
+import { DatePipe } from '@angular/common'
+
 
 @NgModule({
   declarations: [AppComponent, EllipsisPipe, AlertProfileDialogComponent],
@@ -57,7 +58,7 @@ import { EmailComposer } from '@ionic-native/email-composer/ngx';
     // ImagePicker,
     Diagnostic ,
     EmailComposer,
-  
+    DatePipe,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent],

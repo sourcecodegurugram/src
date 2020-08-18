@@ -20,6 +20,10 @@ const routes: Routes = [
     path: 'forgotpassword',
     loadChildren: () => import('../Signin/forgotpassword/forgotpassword.module').then( m => m.ForgotpasswordPageModule)
   },
+  {
+    path: 'trial-over',
+    loadChildren: () => import('../Signin/trial-over/trial-over.module').then( m => m.TrialOverPageModule)
+  },
 
  
 ];

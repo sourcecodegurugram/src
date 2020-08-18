@@ -78,7 +78,7 @@ export class WelcomePage implements OnInit {
   matchLevel = 0;
   tempCurrPage;
   item;
-  distance = [];
+  distance;
   distanceInKm: number;
   miles: number;
   constructor(
@@ -102,7 +102,6 @@ export class WelcomePage implements OnInit {
     this.splashScreen.show();
     this.isLoading = true;
     if (this.siginUser != null) {
-      console.log(this.siginUser.user.field_already_declared.und);
       if (this.siginUser.user.field_already_declared.length == 0) {
         this.notEntered = true;
         this.isLoggedIn = true;
@@ -233,7 +232,13 @@ export class WelcomePage implements OnInit {
     ).subscribe((elements) => {
       this.isLoading = false;
       this.tempCurrPage = Object.keys(elements).map((i) => elements[i]);
-      
+
+      if(this.tempCurrPage.length == 0)
+      {
+        this.noResult = true
+      }
+      else
+      {
       for (let i = 0; i < this.tempCurrPage.length; i++) {
         if (
 
@@ -247,20 +252,20 @@ export class WelcomePage implements OnInit {
               elements[i].Latitude,
               elements[i].Longitude
              );
-          // this.distance.push({Latitude:elements[i].Latitude,longitude:elements[i].Longitude})
         
         }
 
-      
+      }
       if (this.currPage.length > 0) {
         this.searchresult = true;
-
-        this.searchResponse.push({main:this.currPage , distance:this.distanceInKm * 1 / 1.609344});
-        console.log(this.searchResponse)
+        this.searchResponse = this.searchResponse.concat(this.currPage)
         this.searchResponse = this.searchResponse.filter((thing, index, self) => index === self.findIndex((t) => t.name === thing.name));
 
+         this.distance = this.distanceInKm * 1 / 1.609344
+         console.log(this.distance)
 
-       
+               // this.searchResponse.push({main:this.currPage , distance:this.distanceInKm * 1 / 1.609344});
+
       }
 
       if (this.currPage.length < 10) {
@@ -271,7 +276,7 @@ export class WelcomePage implements OnInit {
 
       if (this.searchResponse.length == 0) {
         this.pageIndex++;
-         //this.getSearchData();
+         this.getSearchData();
         return;
       }
       this.pageIndex++;

@@ -379,3 +379,8 @@ option {
   border-radius: 4px 4px 0 0;
  padding: 0em 0em 0em 0em !important;
 }
+.alert-wrapper.sc-ion-alert-md {
+  /* width: 27%; */
+  min-width: 90vw;
+  max-height: 50vh;
+}

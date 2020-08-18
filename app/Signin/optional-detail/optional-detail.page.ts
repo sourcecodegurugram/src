@@ -140,9 +140,9 @@ export class OptionalDetailPage implements OnInit {
     .put(
       "https://gowebtutorial.com/api/json/user/" + this.uid,{
  
-          field_long_in_city: {
-            und: live,
-          },
+          // field_long_in_city: {
+          //   und: live,
+          // },
     
           field_talk_about: {
             und: talkabout,
@@ -186,7 +186,7 @@ export class OptionalDetailPage implements OnInit {
           field_you_say: { und: [ { value: anything }] },
       },requestOptions
     ).subscribe((result) => {
-      this.router.navigate(["/"])
+      this.router.navigate(["/chat/searchUser"]);
     });
     this.additionalTotalObject = {
       field_long_in_city: {

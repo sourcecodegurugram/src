@@ -127,6 +127,10 @@ const routes: Routes = [
     loadChildren: () => import('./Navigation/moreinfo/moreinfo.module').then( m => m.MoreinfoPageModule)
   },
 
+  {
+    path: 'trialover',
+    loadChildren: () => import('./Signin/trial-over/trial-over.module').then( m => m.TrialOverPageModule)
+  },
 
 ];
 

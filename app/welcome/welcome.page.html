@@ -115,8 +115,10 @@
 
     <div class="member-cards" *ngFor="let posts of  searchResponse" (click)="chcekLoggedIn()">
 
-      <div class="member-card-image" *ngFor="let posts of  searchResponse.m">
-        <img src="{{posts.Picture}}" alt="" srcset="" class="user-image" >
+
+      <div class="member-card-image">
+
+        <img src="{{posts.Picture}}" alt="" srcset="" class="user-image">
 
       </div>
       <div class="member-card-text">
@@ -132,7 +134,7 @@
 
         <div class="activity-container">
           <div class="left-heading ">Activities: {{posts.Activity}}</div>
-          <div class="right-heading"></div>
+          <!-- <div class="right-heading"></div> -->
           <div class="badage-container">
             <ion-badge slot="end" color="medium">{{posts.Activity.length}}</ion-badge>
           </div>
@@ -140,16 +142,17 @@
 
         <div class="distance-container">
           <div class="distance card-item">Distance:</div>
-          <!-- <div class="distance-ouput">{{posts.distance| number:'1.1-1'}}Miles </div> -->
+          <div class="distance-ouput">{{distance| number:'1.1-1'}} Miles</div>
+
         </div>
-      
+
+
       </div>
- 
-
     </div>
-
     <button #getMoreUsers *ngIf="matchLevel <= 3" class="showMore" (click)="getSearchData()">Show More</button>
+
   </div>
+
 </div>
 
 
