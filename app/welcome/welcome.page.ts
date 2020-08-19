@@ -81,6 +81,9 @@ export class WelcomePage implements OnInit {
   distance;
   distanceInKm: number;
   miles: number;
+  userLatitude;
+  userLongitude;
+  originalUser = true;
   constructor(
     private ConfigService: ConfigService,
     public geolocation: Geolocation,
@@ -233,57 +236,58 @@ export class WelcomePage implements OnInit {
       this.isLoading = false;
       this.tempCurrPage = Object.keys(elements).map((i) => elements[i]);
 
-      if(this.tempCurrPage.length == 0)
-      {
-        this.noResult = true
-      }
-      else
-      {
-      for (let i = 0; i < this.tempCurrPage.length; i++) {
-        if (
-
-          this.tempCurrPage[i].Postal.substring(0,this.postcode.length - this.matchLevel) == this.postcode.substring(0, this.postcode.length - this.matchLevel)
-         
+      if (this.tempCurrPage.length == 0) {
+        this.noResult = true;
+      } else {
+        for (let i = 0; i < this.tempCurrPage.length; i++) {
+          if (
+            this.tempCurrPage[i].Postal.substring(
+              0,
+              this.postcode.length - this.matchLevel
+            ) ==
+            this.postcode.substring(0, this.postcode.length - this.matchLevel)
           )
-          this.currPage.push(this.tempCurrPage[i]);
-            this.distanceInKm = this.getDistanceFromLatLonInKm(
-              elements[0].Latitude,
-              elements[0].Longitude,
-              elements[i].Latitude,
-              elements[i].Longitude
-             );
-        
-        }
+            if (this.originalUser) {
+              this.userLatitude = elements[0].Latitude;
+              this.userLongitude = elements[0].Longitude;
+              this.originalUser = false;
+            }
 
+          this.distanceInKm = this.getDistanceFromLatLonInKm(
+            this.userLatitude,
+            this.userLongitude,
+            elements[i].Latitude,
+            elements[i].Longitude
+          );
+
+          this.distance = (this.distanceInKm * 1) / 1.609344;
+          this.tempCurrPage[i].distance = this.distance;
+
+          this.currPage.push(this.tempCurrPage[i]);
+          console.log(this.currPage);
+        }
       }
       if (this.currPage.length > 0) {
         this.searchresult = true;
-        this.searchResponse = this.searchResponse.concat(this.currPage)
-        this.searchResponse = this.searchResponse.filter((thing, index, self) => index === self.findIndex((t) => t.name === thing.name));
-
-         this.distance = this.distanceInKm * 1 / 1.609344
-         console.log(this.distance)
-
-               // this.searchResponse.push({main:this.currPage , distance:this.distanceInKm * 1 / 1.609344});
-
+        this.searchResponse = this.searchResponse.concat(this.currPage);
+        this.searchResponse = this.searchResponse.filter(
+          (thing, index, self) =>
+            index === self.findIndex((t) => t.name === thing.name)
+        );
       }
 
       if (this.currPage.length < 10) {
         this.matchLevel++;
         this.pageIndex = -1;
-
       }
 
       if (this.searchResponse.length == 0) {
         this.pageIndex++;
-         this.getSearchData();
+        this.getSearchData();
         return;
       }
       this.pageIndex++;
-                     
     });
-
-
   }
 
   closesearchpop() {
@@ -323,7 +327,6 @@ export class WelcomePage implements OnInit {
     });
   }
 
-  
   getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
     var R = 6371; // Radius of the earth in km
     var dLat = this.deg2rad(lat2 - lat1); // deg2rad below
@@ -331,9 +334,9 @@ export class WelcomePage implements OnInit {
     var a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.cos(this.deg2rad(lat1)) *
-      Math.cos(this.deg2rad(lat2)) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2);
+        Math.cos(this.deg2rad(lat2)) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c; // Distance in km
     return d;

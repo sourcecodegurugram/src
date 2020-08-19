@@ -142,17 +142,28 @@
 
         <div class="distance-container">
           <div class="distance card-item">Distance:</div>
-          <div class="distance-ouput">{{distance| number:'1.1-1'}} Miles</div>
-
+          <div class="distance-ouput">{{posts.distance | number:'1.1-1'}} Miles</div>
         </div>
 
+        <!-- <div>
+          Original Lat {{userLatitude}}</div>
+        <div>
+          Original Long {{userLongitude}}
+        </div>
+        <div>
+          User Lat {{posts.Latitude}}</div>
+        <div>
+          User Long {{posts.Longitude}}
+        </div>
+        <div>
+          postcode {{posts.Postal}}
+        </div> -->
 
       </div>
     </div>
     <button #getMoreUsers *ngIf="matchLevel <= 3" class="showMore" (click)="getSearchData()">Show More</button>
 
   </div>
-
 </div>
 
 
