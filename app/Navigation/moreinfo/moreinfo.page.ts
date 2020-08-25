@@ -1,4 +1,4 @@
-import { Component, OnInit ,ChangeDetectorRef} from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatTabChangeEvent } from "@angular/material/tabs";
 import {
   HttpClient,
@@ -25,7 +25,7 @@ export class MoreinfoPage implements OnInit {
   selectedIndex = 0;
   userDetail: any;
   uid: any;
-  live: any;
+  live;
   userFullDetails: any;
   talkabout: any;
   field_long_in_city: Array<any>;
@@ -70,7 +70,17 @@ export class MoreinfoPage implements OnInit {
   sub: any;
   userDetails;
   fun;
-  constructor( 
+  name: any;
+  fname: any;
+  lname: any;
+  Gender: any;
+  contract: any;
+  meet: any;
+  country: any;
+  siginUser: any;
+  myself: any;
+  zip: any;
+  constructor(
     private http: HttpClient,
     private _location: Location,
     private _Activatedroute: ActivatedRoute,
@@ -81,213 +91,200 @@ export class MoreinfoPage implements OnInit {
     private filePath: FilePath,
     private changeDetector: ChangeDetectorRef) { }
 
-    ngOnInit() {
+  ngOnInit() {
 
+    this.siginUser = JSON.parse(localStorage.getItem("currentUser"));
+    this.sub = this._Activatedroute.paramMap.subscribe((params) => {
+      this.uid = params.get("uid");
+      console.log( this.uid )
+    });
 
-      this.sub = this._Activatedroute.paramMap.subscribe((params) => {
-        this.uid = params.get("uid");
-        console.log(this.uid)
-      });
-
-this.ConfigService.getUser(this.uid).subscribe((data)=>{
-  this.userDetails = data
-console.log(this.userDetails)
-
-if(this.userDetails.field_do_for_fun.length == undefined)
-{
-  this.fun = this.userDetails.field_do_for_fun.und[0].value
+    this.ConfigService.getUser(this.uid).subscribe((data) => {
+      this.userDetails = data
+      this.name = this.userDetails.name
+      this.fname = this.userDetails.field_first_name.und[0].value
+      this.lname = this.userDetails.field_last_name.und[0].value
+      this.Gender = this.userDetails.field_gender.und[0].value
+      this.contract = this.userDetails.field_want_contarct.und[0].value
+      this.meet = this.userDetails.field_look_meet.und[0].value
+      this.country = this.userDetails.field_zip_code.und[0].country
+if(this.userDetails.field_consider_myself_.length != 0){
+      this.myself = this.userDetails.field_consider_myself_.und[0].value
 }
-if(this.userDetails.field_long_in_city.length == undefined)
-{
-
-  this.live = this.userDetails.field_long_in_city.und[0].value
-}
-if(this.userDetails.field_talk_about.length == undefined)
-{
-
-  this.talkabout = this.userDetails.field_talk_about.und[0].value
-}
-
-if(this.userDetails.field_good_friend.length == undefined)
-{
- this.goodFriend =  this.userDetails.field_good_friend.und[0].value
-}
-if(this.userDetails.field_plans_get_cancelled.length == undefined)
-{
- this.cancels =  this.userDetails.field_plans_get_cancelled.und[0].value
-}
-if(this.userDetails.field_relationship_status.length == undefined)
-{
-
- this.status =  this.userDetails.field_relationship_status.und[0].value
-}
-if(this.userDetails.field_any_pets.length == undefined)
-{
-
- this.pets =  this.userDetails.field_any_pets.und[0].value
-}
-if(this.userDetails.field_spend_your_days.length == undefined)
-{
- this.spend =  this.userDetails.field_spend_your_days.und[0].value
-}
-if(this.userDetails.field_languages.length == undefined)
-{
- this.speak =  this.userDetails.field_languages.und[0].value
-}
-if(this.userDetails.field_smoke.length == undefined)
-{
- 
- this.smoke =  this.userDetails.field_smoke.und[0].value
-}
-
-if(this.userDetails.field_alcohol.length == undefined)
-{
- this.alcohol =  this.userDetails.field_alcohol.und[0].value
-}
-if(this.userDetails.field_favorite_books.length == undefined)
-{
-  this.books =  this.userDetails.field_favorite_books.und[0].value
-}
-if(this.userDetails.field_favorite_movies.length == undefined)
-{
-  this.movies =  this.userDetails.field_favorite_movies.und[0].value
-}
-if(this.userDetails.field_favorite_tv_shows.length == undefined)
-{
-  this.shows =  this.userDetails.field_favorite_tv_shows.und[0].value
-}
-if(this.userDetails.field_favorite_music.length == undefined)
-{
-  this.music =  this.userDetails.field_favorite_music.und[0].value
-}
-if(this.userDetails.field_you_say.length == undefined)
-{
-  this.anything =  this.userDetails.field_you_say.und[0].value
-}
-
-
-});
-
-      this.userDetail = JSON.parse(localStorage.getItem("currentUser"));
-      this.uid = this.userDetail.user.uid;
-      this.ConfigService.getUser(this.uid).subscribe((userData) => {
-        this.userFullDetails = userData;
-      });
-    }
-    public tabChanged(tabChangeEvent: MatTabChangeEvent): void {
-      this.selectedIndex = tabChangeEvent.index;
-    }
-    public nextStep() {
-      this.selectedIndex += 1;
-  
-      // Loader at beginning of additonal image tab so that images and object are loaded
-      if (this.selectedIndex == 3) {
-        // Start image page routine
-        this.initImagePage();
-      }
-    }
-  
-    public previousStep() {
-      this.selectedIndex -= 1;
-    }
-  
-    optionDetail(
-      fun,
-      live,
-      talkabout,
-      goodFriend,
-      cancels,
-      status,
-      pets,
-      spend,
-      speak,
-      smoke,
-      alcohol,
-      education,
-      books,
-      movies,
-      shows,
-      music,
-      anything
-    ) {
-  
-      console.log(talkabout)
-      const headers = new HttpHeaders()
-        .set("X-CSRF-Token", this.userDetail.token)
-        .set("Content-Type", "application/json")
-        .set(
-          "X-Cookie",
-          this.userDetail.session_name + "=" + this.userDetail.sessid
-        );
-  
-      const requestOptions = {
-        headers: headers,
-        withCredentials: true,
-      };
-      this.http
-      .put(
-        "https://gowebtutorial.com/api/json/user/" + this.uid,{
+      this.zip = this.userDetails.field_zip_code.und[0].postal_code
    
-            field_long_in_city: {
-              und: live,
+      if (this.userDetails.field_do_for_fun.length == undefined) {
+        this.fun = this.userDetails.field_do_for_fun.und[0].value
+      }
+      if (this.userDetails.field_long_in_city.length == undefined) {
+
+        this.live = this.userDetails.field_long_in_city.und[0].value
+      }
+      if (this.userDetails.field_talk_about.length == undefined) {
+
+        this.talkabout = this.userDetails.field_talk_about.und[0].value
+      }
+
+      if (this.userDetails.field_good_friend.length == undefined) {
+        this.goodFriend = this.userDetails.field_good_friend.und[0].value
+      }
+      if (this.userDetails.field_plans_get_cancelled.length == undefined) {
+        this.cancels = this.userDetails.field_plans_get_cancelled.und[0].value
+      }
+      if (this.userDetails.field_relationship_status.length == undefined) {
+
+        this.status = this.userDetails.field_relationship_status.und[0].value
+      }
+      if (this.userDetails.field_any_pets.length == undefined) {
+
+        this.pets = this.userDetails.field_any_pets.und[0].value
+      }
+      if (this.userDetails.field_spend_your_days.length == undefined) {
+        this.spend = this.userDetails.field_spend_your_days.und[0].value
+      }
+      if (this.userDetails.field_languages.length == undefined) {
+        this.speak = this.userDetails.field_languages.und[0].value
+      }
+      if (this.userDetails.field_smoke.length == undefined) {
+
+        this.smoke = this.userDetails.field_smoke.und[0].value
+      }
+
+      if (this.userDetails.field_alcohol.length == undefined) {
+        this.alcohol = this.userDetails.field_alcohol.und[0].value
+      }
+      if (this.userDetails.field_favorite_books.length == undefined) {
+        this.books = this.userDetails.field_favorite_books.und[0].value
+      }
+      if (this.userDetails.field_favorite_movies.length == undefined) {
+        this.movies = this.userDetails.field_favorite_movies.und[0].value
+      }
+      if (this.userDetails.field_favorite_tv_shows.length == undefined) {
+        this.shows = this.userDetails.field_favorite_tv_shows.und[0].value
+      }
+      if (this.userDetails.field_favorite_music.length == undefined) {
+        this.music = this.userDetails.field_favorite_music.und[0].value
+      }
+      if (this.userDetails.field_you_say.length == undefined) {
+        this.anything = this.userDetails.field_you_say.und[0].value
+      }
+
+
+    });
+
+    this.userDetail = JSON.parse(localStorage.getItem("currentUser"));
+    this.uid = this.userDetail.user.uid;
+    this.ConfigService.getUser(this.uid).subscribe((userData) => {
+      this.userFullDetails = userData;
+    });
+  }
+  public tabChanged(tabChangeEvent: MatTabChangeEvent): void {
+    this.selectedIndex = tabChangeEvent.index;
+  }
+  public nextStep() {
+    this.selectedIndex += 1;
+
+    // Loader at beginning of additonal image tab so that images and object are loaded
+    if (this.selectedIndex == 3) {
+      // Start image page routine
+      this.initImagePage();
+    }
+  }
+
+  public previousStep() {
+    this.selectedIndex -= 1;
+  }
+
+  optionDetail(
+    name, fname, lname, Gender, contract, myself, meet, country, zip,
+    fun,
+    live,
+    talkabout,
+    goodFriend,
+    cancels,
+    status,
+    pets,
+    spend,
+    speak,
+    smoke,
+    alcohol,
+    education,
+    books,
+    movies,
+    shows,
+    music,
+    anything
+  ) {
+
+    console.log(speak)
+    const headers = new HttpHeaders()
+      .set("X-CSRF-Token", this.siginUser.token)
+      .set("Content-Type", "application/json")
+      .set(
+        "X-Cookie",
+        this.siginUser.session_name + "=" + this.siginUser.sessid
+      );
+
+    const requestOptions = {
+      headers: headers,
+      withCredentials: true,
+    };
+    this.http
+      .put(
+        "https://gowebtutorial.com/api/json/user/" + this.uid, {
+        name: name,
+        field_first_name: {
+          und: [
+            {
+              value: fname,
             },
-      
-            field_talk_about: {
-              und: talkabout,
+          ],
+        },
+        field_last_name: {
+          und: [
+            {
+              value: lname,
             },
-            field_do_for_fun:{
-              und: fun
-            },
-  
-          
-            //  field_good_friend:
-            //  {
-            //     und:goodFriend
-            //   },
-            field_plans_get_cancelled: {
-              und: cancels,
-            },
-            field_relationship_status: {
-              und: status,
-            },
-            field_any_pets: {
-              und: pets,
-            },
-            field_spend_your_days: {
-              und: [
-                {
-                  value: spend,
-                },
-              ],
-            },
-            field_languages: {
-              und: {
-                value: speak,
-              },
-            },
-            field_smoke: { und: smoke },
-            field_alcohol: { und: alcohol },
-            field_favorite_books: { und: [ { value: books } ]},
-            field_favorite_movies: { und: [ { value: movies } ]},
-            field_favorite_tv_shows: { und: [ { value: shows }] },
-            field_favorite_music: { und:  [ { value: music } ]},
-            field_you_say: { und: [ { value: anything }] },
-        },requestOptions
-      ).subscribe((result) => {
-        this.router.navigate(["/"])
-      });
-      this.additionalTotalObject = {
+          ],
+        },
+        field_gender: {
+          und: Gender,
+        },
+        field_want_contarct: {
+          und: contract,
+        },
+
+        field_consider_myself_: {
+          und: myself
+        },
+
+        field_look_meet: {
+          und: meet,
+        },
+
+        field_zip_code: {
+          und: [
+            {
+              postal_code: zip,
+              country: country,
+            }
+          ]
+        },
+
         field_long_in_city: {
           und: live,
         },
-  
+
         field_talk_about: {
           und: talkabout,
         },
-        //  field_good_friend:
-        //  {
-        //     und:[{goodFriend}]
-        //   },
+        field_do_for_fun: {
+          und: fun
+        },
+         field_good_friend:
+         {
+            und:goodFriend
+          },
         field_plans_get_cancelled: {
           und: cancels,
         },
@@ -305,210 +302,256 @@ if(this.userDetails.field_you_say.length == undefined)
           ],
         },
         field_languages: {
-          und: {
-            value: speak,
-          },
+          und: [
+           {
+             value:speak
+           } 
+            
+          ]
         },
         field_smoke: { und: smoke },
         field_alcohol: { und: alcohol },
-        field_education_level: { und: education },
-        field_favorite_books: { und: { value: books } },
-        field_favorite_movies: { und: { value: movies } },
-        field_favorite_tv_shows: { und: { value: shows } },
-        field_favorite_music: { und: { value: music } },
-        field_you_say: { und: { value: anything } },
-      };
-  
-      for (var k in this.additionalImageObject)
-        this.additionalTotalObject[k] = this.additionalImageObject[k];
-    }
-  
-    backClicked() {
-      this._location.back();
-    }
-  
-    pagechange() {
-      if (this.userFullDetails.field_already_declared.und != undefined) {
-        this.router.navigate(["/chat/searchUser"]);
-      }
-      if (this.userFullDetails.field_already_declared.und == undefined) {
-        this.router.navigate(["/topHobbies"]);
-      }
-    }
-  
-    newUpload() {
-      this.scope = [];
-      this.http
-        .get("https://gowebtutorial.com/api/json/file/" + this.Picurl.fid)
-        .subscribe((res) => {
-          this.pictureDetail = res;
-          this.pictureUrl = this.pictureDetail.uri_full;
-        });
-    }
-  
-    async Alert() {
-      const alert = await this.alertController.create({
-        message: "Information to be provided",
-        buttons: ["OK"],
+        field_favorite_books: { und: [{ value: books }] },
+        field_favorite_movies: { und: [{ value: movies }] },
+        field_favorite_tv_shows: { und: [{ value: shows }] },
+        field_favorite_music: { und: [{ value: music }] },
+        field_you_say: { und: [{ value: anything }] },
+      }, requestOptions
+      ).subscribe((result) => {
+        this.router.navigate(["/chat/searchUser"])
       });
-  
-      await alert.present();
+    this.additionalTotalObject = {
+      field_long_in_city: {
+        und: live,
+      },
+
+      field_talk_about: {
+        und: talkabout,
+      },
+      //  field_good_friend:
+      //  {
+      //     und:[{goodFriend}]
+      //   },
+      field_plans_get_cancelled: {
+        und: cancels,
+      },
+      field_relationship_status: {
+        und: status,
+      },
+      field_any_pets: {
+        und: pets,
+      },
+      field_spend_your_days: {
+        und: [
+          {
+            value: spend,
+          },
+        ],
+      },
+      field_languages: {
+        und: {
+          value: speak,
+        },
+      },
+      field_smoke: { und: smoke },
+      field_alcohol: { und: alcohol },
+      field_education_level: { und: education },
+      field_favorite_books: { und: { value: books } },
+      field_favorite_movies: { und: { value: movies } },
+      field_favorite_tv_shows: { und: { value: shows } },
+      field_favorite_music: { und: { value: music } },
+      field_you_say: { und: { value: anything } },
+    };
+
+    for (var k in this.additionalImageObject)
+      this.additionalTotalObject[k] = this.additionalImageObject[k];
+  }
+
+  backClicked() {
+    this._location.back();
+  }
+
+  pagechange() {
+    if (this.userFullDetails.field_already_declared.und != undefined) {
+      this.router.navigate(["/chat/searchUser"]);
     }
-  
-    onFileChange(event) {
-      if (event.target.files && event.target.files[0]) {
+    if (this.userFullDetails.field_already_declared.und == undefined) {
+      this.router.navigate(["/topHobbies"]);
+    }
+  }
+
+  newUpload() {
+    this.scope = [];
+    this.http
+      .get("https://gowebtutorial.com/api/json/file/" + this.Picurl.fid)
+      .subscribe((res) => {
+        this.pictureDetail = res;
+        this.pictureUrl = this.pictureDetail.uri_full;
+      });
+  }
+
+  async Alert() {
+    const alert = await this.alertController.create({
+      message: "Information to be provided",
+      buttons: ["OK"],
+    });
+
+    await alert.present();
+  }
+
+  onFileChange(event) {
+    if (event.target.files && event.target.files[0]) {
+      var filesAmount = event.target.files.length;
+
+      for (let i = 0; i < filesAmount; i++) {
         var filesAmount = event.target.files.length;
-  
-        for (let i = 0; i < filesAmount; i++) {
-          var filesAmount = event.target.files.length;
-  
-          this.imageName = event.target.files[i].name;
-  
-          var reader = new FileReader();
-  
-          reader.onload = (event: any) => {
-            this.images.push({ uri: event.target.result, name: this.imageName });
-            this.additionalImageObject["field_additional_image_" + i] = {
-              uri: event.target.result,
-              name: this.imageName,
-            };
+
+        this.imageName = event.target.files[i].name;
+
+        var reader = new FileReader();
+
+        reader.onload = (event: any) => {
+          this.images.push({ uri: event.target.result, name: this.imageName });
+          this.additionalImageObject["field_additional_image_" + i] = {
+            uri: event.target.result,
+            name: this.imageName,
           };
-  
-          reader.readAsDataURL(event.target.files[i]);
-        }
+        };
+
+        reader.readAsDataURL(event.target.files[i]);
       }
     }
-    _handleReaderLoaded(readerEvt) {
-      var binaryString = readerEvt.target.result;
-      this.base64textString = btoa(binaryString);
-    }
-  
-    initImagePage() {
+  }
+  _handleReaderLoaded(readerEvt) {
+    var binaryString = readerEvt.target.result;
+    this.base64textString = btoa(binaryString);
+  }
+
+  initImagePage() {
+    this.isLoading = true;
+
+    this.ConfigService.getUser(this.uid).subscribe((data) => {
+      this.userData = data;
+      this.userImages = this.userData.field_user_avatar["und"];
+      console.log(this.userImages);
+      this.isLoading = false;
+      this.changeDetector.detectChanges();
+    });
+  }
+
+  filechooser() {
+    this.fileChooser.open().then((fileuri) => {
       this.isLoading = true;
-  
-      this.ConfigService.getUser(this.uid).subscribe((data) => {
-        this.userData = data;
-        this.userImages = this.userData.field_user_avatar["und"];
-        console.log(this.userImages);
-        this.isLoading = false;
-        this.changeDetector.detectChanges();
-      });
-    }
-  
-    filechooser() {
-      this.fileChooser.open().then((fileuri) => {
-        this.isLoading = true;
-  
-        let imagePath = this.win.Ionic.WebView.convertFileSrc(fileuri);
-        this.displayImage = imagePath;
-  
-        this.filePath.resolveNativePath(fileuri).then((filePath) => {
-          fetch(imagePath).then((res) => {
-            res.blob().then((blob) => {
-              function getFileReader(): FileReader {
-                const fileReader = new FileReader();
-                const zoneOriginalInstance = (fileReader as any)[
-                  "__zone_symbol__originalInstance"
-                ];
-                return zoneOriginalInstance || fileReader;
+
+      let imagePath = this.win.Ionic.WebView.convertFileSrc(fileuri);
+      this.displayImage = imagePath;
+
+      this.filePath.resolveNativePath(fileuri).then((filePath) => {
+        fetch(imagePath).then((res) => {
+          res.blob().then((blob) => {
+            function getFileReader(): FileReader {
+              const fileReader = new FileReader();
+              const zoneOriginalInstance = (fileReader as any)[
+                "__zone_symbol__originalInstance"
+              ];
+              return zoneOriginalInstance || fileReader;
+            }
+
+            let newInstance = getFileReader();
+            newInstance.onload = function () {
+              // Is it JPG or PNG
+              let base64data = newInstance.result.toString();
+              if (base64data.includes("data:image/jpeg;base64,")) {
+                // File Name
+                let timestamp = Math.floor(Date.now() / 1000);
+                this.fileName =
+                  this.name + "_profile_image_" + timestamp + ".jpg";
+                //Base 64 string
+                let removeString = "data:image/jpeg;base64,";
+                this.base64textString = base64data.replace(removeString, "");
+              } else if (base64data.includes("data:image/png;base64,")) {
+                let timestamp = Math.floor(Date.now() / 1000);
+                this.fileName =
+                  this.name + "_profile_image_" + timestamp + ".png";
+
+                //Base 64 string
+                let removeString = "data:image/png;base64,";
+                this.base64textString = base64data.replace(removeString, "");
               }
-  
-              let newInstance = getFileReader();
-              newInstance.onload = function () {
-                // Is it JPG or PNG
-                let base64data = newInstance.result.toString();
-                if (base64data.includes("data:image/jpeg;base64,")) {
-                  // File Name
-                  let timestamp = Math.floor(Date.now() / 1000);
-                  this.fileName =
-                    this.name + "_profile_image_" + timestamp + ".jpg";
-                  //Base 64 string
-                  let removeString = "data:image/jpeg;base64,";
-                  this.base64textString = base64data.replace(removeString, "");
-                } else if (base64data.includes("data:image/png;base64,")) {
-                  let timestamp = Math.floor(Date.now() / 1000);
-                  this.fileName =
-                    this.name + "_profile_image_" + timestamp + ".png";
-  
-                  //Base 64 string
-                  let removeString = "data:image/png;base64,";
-                  this.base64textString = base64data.replace(removeString, "");
-                }
-  
-                this.picture = this.fileName;
-                this.changeDetector.detectChanges();
-                this.onUpload(this.picture);
-              }.bind(this);
-  
-              newInstance.readAsDataURL(blob);
-            });
+
+              this.picture = this.fileName;
+              this.changeDetector.detectChanges();
+              this.onUpload(this.picture);
+            }.bind(this);
+
+            newInstance.readAsDataURL(blob);
           });
         });
       });
-    }
-  
-    onUpload(picture) {
-      this.isLoading = true;
-      const headers = new HttpHeaders().set(
-        "Content-Type",
-        "application/x-www-form-urlencoded"
-      );
-      this.uploadData = {
-        file: this.base64textString,
-        filename: picture,
-        filepath: "public://" + picture,
-      };
-  
-      this.http
-        .post("https://gowebtutorial.com/api/json/file/", this.uploadData)
-        .subscribe((rest) => {
-          this.Picurl = rest;
-          this.postNewImage(this.Picurl);
-        });
-    }
-  
-    postNewImage(pictureObject) {
-      const headers = new HttpHeaders()
-        .set("X-CSRF-Token", this.userDetail.token)
-        .set("Content-Type", "application/json")
-        .set(
-          "X-Cookie",
-          this.userDetail.session_name + "=" + this.userDetail.sessid
-        );
-      const requestOptions = {
-        headers: headers,
-        withCredentials: true,
-      };
-  
-      let index;
-      if (this.userImages) {
-        index = this.userImages.length;
-      } else {
-        this.userImages = [];
-        index = 0;
-      }
-  
-      this.responseString = {
-        field_user_avatar: {
-          und: [],
-        },
-      };
-  
-      this.responseString["field_user_avatar"]["und"] = this.userImages;
-      this.responseString["field_user_avatar"]["und"][index] = pictureObject;
-  
-      console.log(this.responseString);
-      this.http
-        .put(
-          "https://gowebtutorial.com/api/json/user/" + this.uid,
-          this.responseString,
-          requestOptions
-        )
-        .subscribe((result) => {
-          console.log("posted image " + result);
-  
-          this.initImagePage();
-        });
-    }
+    });
   }
-  
+
+  onUpload(picture) {
+    this.isLoading = true;
+    const headers = new HttpHeaders().set(
+      "Content-Type",
+      "application/x-www-form-urlencoded"
+    );
+    this.uploadData = {
+      file: this.base64textString,
+      filename: picture,
+      filepath: "public://" + picture,
+    };
+
+    this.http
+      .post("https://gowebtutorial.com/api/json/file/", this.uploadData)
+      .subscribe((rest) => {
+        this.Picurl = rest;
+        this.postNewImage(this.Picurl);
+      });
+  }
+
+  postNewImage(pictureObject) {
+    const headers = new HttpHeaders()
+      .set("X-CSRF-Token", this.userDetail.token)
+      .set("Content-Type", "application/json")
+      .set(
+        "X-Cookie",
+        this.userDetail.session_name + "=" + this.userDetail.sessid
+      );
+    const requestOptions = {
+      headers: headers,
+      withCredentials: true,
+    };
+
+    let index;
+    if (this.userImages) {
+      index = this.userImages.length;
+    } else {
+      this.userImages = [];
+      index = 0;
+    }
+
+    this.responseString = {
+      field_user_avatar: {
+        und: [],
+      },
+    };
+
+    this.responseString["field_user_avatar"]["und"] = this.userImages;
+    this.responseString["field_user_avatar"]["und"][index] = pictureObject;
+
+    console.log(this.responseString);
+    this.http
+      .put(
+        "https://gowebtutorial.com/api/json/user/" + this.uid,
+        this.responseString,
+        requestOptions
+      )
+      .subscribe((result) => {
+        console.log("posted image " + result);
+
+        this.initImagePage();
+      });
+  }
+}

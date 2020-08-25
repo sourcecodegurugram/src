@@ -22,7 +22,7 @@
     
           <div class="ionic-dropdowns">
 
-            <label class="label-ionic-dropdown">What do you like to do for fun?</label>
+            <label class="label-ionic-dropdown dating-body-font">What do you like to do for fun?</label>
             <ion-item class="usually-dropdown">
               <ion-label></ion-label>
               <ion-select multiple="true" cancelText="Close" okText="Okay" name="fun" [(ngModel)]="fun"
@@ -111,8 +111,8 @@
            
 
 
-          <div class="form-group">
-            <label for="usr">How long have you lived here?</label>
+          <div class="form-group dating-body-font">
+            <label for="usr" >How long have you lived here?</label>
             <select class="form-control selectpicker" id="sel1" name="long" [(ngModel)]="live">
               <option value="0" style="background-color: azure;">
                 < 2 years</option> <option value="1">2-5 years
@@ -124,7 +124,7 @@
 
           <div class="ionic-dropdowns">
 
-            <label class="label-ionic-dropdown">My friends and I usually talk about</label>
+            <label class="label-ionic-dropdown dating-body-font">My friends and I usually talk about</label>
             <ion-item class="usually-dropdown">
               <ion-label></ion-label>
               <ion-select multiple="true" cancelText="Close" okText="Okay" name="talkabout" [(ngModel)]="talkabout"
@@ -144,27 +144,27 @@
           </div>
 
 
-          <label class="label-ionic-dropdown mt-4">A Good Friend Is Someone Who...</label>
+          <label class="label-ionic-dropdown mt-4 dating-body-font">A Good Friend Is Someone Who...</label>
           <ion-item class="usually-dropdown mb-4">
 
             <ion-label></ion-label>
             <ion-select multiple="true" cancelText="Close" okText="Okay" name="goodFriend" [(ngModel)]="goodFriend">
 
-              <ion-select-option value="is always there for me." #always>is always there for me.
+              <ion-select-option value="is always there for me" #always>is always there for me
               </ion-select-option>
-              <ion-select-option value="always sides with me no matter what." #sides>always sides with me no matter
+              <ion-select-option value="always sides with me no matter what" #sides>always sides with me no matter
                 what.
               </ion-select-option>
-              <ion-select-option value="will be honest with me even if it hurts." #hurts>will be honest with me even if
+              <ion-select-option value="will be honest with me even if it hurts" #hurts>will be honest with me even if
                 it hurts.</ion-select-option>
               <ion-select-option value="gives advice" #advice>gives advice</ion-select-option>
-              <ion-select-option value="takes my advice." #takes>takes my advice.</ion-select-option>
-              <ion-select-option value="is an activity partner." #partner>is an activity partner.</ion-select-option>
+              <ion-select-option value="takes my advice" #takes>takes my advice.</ion-select-option>
+              <ion-select-option value="is an activity partner" #partner>is an activity partner.</ion-select-option>
             </ion-select>
           </ion-item>
         
 
-          <div class="form-group">
+          <div class="form-group dating-body-font">
             <label for="usr">When someone cancels plans we made </label>
 
             
@@ -180,7 +180,7 @@
             </select>
           </div>
 
-          <div class="continue-button" (click)="nextStep()">
+          <div class="continue-button dating-body-heading" (click)="nextStep()">
             Continue
           </div>
 
@@ -206,7 +206,7 @@
           </div>
 
 
-          <div class="blue-button-second-tab" (click)="Alert()">
+          <div class="blue-button-second-tab dating-body-heading" (click)="Alert()">
             Why do we ask this if its
             not for dating or sex?
           </div>
@@ -220,7 +220,7 @@
             </select>
           </div>
 
-          <label class="label-ionic-dropdown mt-4">Do You Have Pets?</label>
+          <label class="label-ionic-dropdown mt-4 dating-body-font">Do You Have Pets?</label>
           <ion-item class="usually-dropdown mb-4" no-lines>
 
             <ion-label></ion-label>
@@ -249,10 +249,10 @@
             <label for="sel1">I also speak</label>
             <input type="text" class="form-control" id="usr" name="speak" [(ngModel)]="speak">
           </div>
-          <div class="continue-button" (click)="nextStep()">
+          <div class="continue-button dating-body-heading" (click)="nextStep()">
             Continue
           </div>
-          <div class="previous-button" (click)="previousStep()">
+          <div class="previous-button dating-body-heading" (click)="previousStep()">
             Previous
           </div>
 
@@ -322,10 +322,10 @@
 
 
         </div>
-        <div class="continue-button" (click)="nextStep()">
+        <div class="continue-button dating-body-heading" (click)="nextStep()">
           Continue
         </div>
-        <div class="previous-button" (click)="previousStep()">
+        <div class="previous-button dating-body-heading" (click)="previousStep()">
           Previous
         </div>
 
@@ -342,14 +342,14 @@
         </div>
 
         <div class="forms-field">
-          <h3>Your photos</h3>
+          <h3 class="dating-body-heading">Your photos</h3>
           <div class="additionalUserImages">
             <div class="imageContainer" *ngFor="let image of userImages">
               <img class="userImage" src="https://gowebtutorial.com/sites/default/files/{{image.filename}}" />
             </div>
           </div>
 
-          <h3>Upload another</h3>
+          <h3 class="dating-body-heading">Upload another</h3>
           <div *ngIf="!imageContinue" class="upload-btn-wrapper">
             <div class="upload-button">
               <div class="logo-camera">
@@ -365,11 +365,11 @@
             <label for="comment">Anything else you want to share?</label>
             <textarea class="form-control" rows="5" id="comment" name="anything" [(ngModel)]="anything"></textarea>
           </div>
-          <div class="continue-button"
+          <div class="continue-button dating-body-heading"
             (click)="optionDetail(fun,live,talkabout,goodFriend,cancels,status,pets,spend,speak,smoke,alcohol,education,books,movies,shows,music,anything)">
             Complete
           </div>
-          <div class="previous-button" (click)="previousStep()">
+          <div class="previous-button dating-body-heading" (click)="previousStep()">
             Previous
           </div>
         </div>

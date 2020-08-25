@@ -59,6 +59,8 @@ img.cross-image {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-family: 'Cairo', sans-serif !important;
+    font-weight: 700 !important;
 }
 
 .third-desktop {
@@ -84,4 +86,8 @@ img.cross-image {
     overflow: hidden;
     text-overflow: ellipsis;
 
+}
+.output-text
+{
+    font-family: 'Montserrat', sans-serif !important;
 }

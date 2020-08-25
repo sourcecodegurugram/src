@@ -12,7 +12,7 @@
         <div class="image">
           <img src="https://gowebtutorial.com/sites/default/files/{{image}}" class="image-chat">
         </div>
-        <div class="name">
+        <div class="name dating-body-heading">
           {{name}}
         </div>
         <div class="refesh-button" (click)="refreshChat()">
@@ -28,20 +28,20 @@
         <div class="chat-align" *ngFor="let new of message">
           <div class="left-chat-align">
             <div class="right-chat">
-              <p class="chat-content" *ngIf="new.author!=itr.user.uid">{{new.body}}</p>
+              <p class="chat-content dating-body-heading" *ngIf="new.author!=itr.user.uid">{{new.body}}</p>
             </div>
            
           </div>
           <div class="right-chat-align">
             <div class="left-chat">
-              <p class="chat-content" *ngIf="new.author==itr.user.uid">{{new.body}}</p>
+              <p class="chat-content dating-body-heading" *ngIf="new.author==itr.user.uid">{{new.body}}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="background-card">
-      <div class="text-message-writer">
+      <div class="text-message-writer dating-body-font">
         <input type="text" id="chat" name="chat" class="chat-field" placeholder="Type your message here"
           [(ngModel)]="chat">
        <img src="../../assets/Images/send.png" class="img-send" (click)="sendMsg(chat)" *ngIf="Send">

@@ -17,13 +17,13 @@
         </div>
 
         <div class="name">
-          <p class="chat-name">{{message.name}}</p>
-          <p class="last-chat">Subject:&nbsp;{{message.subject}}</p>
+          <p class="chat-name dating-body-heading">{{message.name}}</p>
+          <p class="last-chat dating-body-font">Subject:&nbsp;{{message.subject}}</p>
         </div>
-        <div class="time" *ngIf="(now | date:'yyyy')==(message.time  * 1000 | date:'yyyy')">
+        <div class="time dating-body-heading" *ngIf="(now | date:'yyyy')==(message.time  * 1000 | date:'yyyy')">
           <div class="time-text">{{message.time  * 1000 | customDate}}</div>
         </div>
-        <div class="time" *ngIf="(now | date:'yyyy')!=(message.time  * 1000 |date:'yyyy')">
+        <div class="time dating-body-heading"  *ngIf="(now | date:'yyyy')!=(message.time  * 1000 |date:'yyyy')">
           <div class="time-text">{{message.time  * 1000 | year}}</div>
         </div>
       </div>

@@ -10,17 +10,17 @@
   <div class="not-loggeg-in-user" *ngIf="!isLoggedIn">
     <div class="welcome">
       <div class="welcome-content">
-        <p class="welcome-content-Para">
+        <p class="welcome-content-Para dating-body-font">
           Welcome!
         </p>
 
-        <p class="welcome-content-Para">
+        <p class="welcome-content-Para dating-body-font">
           We can help you make <u>platonic</u>
           connections in your local area.
         </p>
 
 
-        <P class="welcome-content-Para">
+        <P class="welcome-content-Para dating-body-font">
           First, ONE BIG RULE:<br>
 
           Platonic = we will not help you
@@ -32,16 +32,16 @@
 
 
 
-        <div class="blue-button" (click)="popOpen()">
+        <div class="blue-button dating-body-heading" (click)="popOpen()">
           Sounds Cool! Who can I meet?
         </div>
 
-        <div class="green-button" routerLink="/signup">
+        <div class="green-button dating-body-heading" routerLink="/signup">
           Awesome! Sign me up!
 
         </div>
 
-        <div class="alreday-member" routerLink="/signin">
+        <div class="alreday-member dating-body-heading" routerLink="/signin">
           I am already a member
         </div>
       </div>
@@ -57,25 +57,25 @@
     </div><br>
 
     <div class="search-container">
-      <ion-card-content class="card-content-font">
+      <ion-card-content class="card-content-font dating-body-heading">
         Oops! Looks like location targeting is
         turned off on your device. Either turn it on or
         input your postal code and country to see
         members in your area.
       </ion-card-content>
 
-      <p class="tittle-card">Find Friends</p>
+      <p class="tittle-card dating-body-heading">Find Friends</p>
       <form class="form-fields">
 
 
         <div class="form-group">
-          <label for="fname" class="form-label">ZIP/Postal Code</label><br>
+          <label for="fname" class="form-label dating-body-heading">ZIP/Postal Code</label><br>
           <input type="text" class="form-control" id="usr" placeholder="Postcode" name="post"
             class="form-field-zip-code" [(ngModel)]="post">
 
         </div>
-        <div class="form-group">
-          <label for="country">Country</label>
+        <div class="form-group dating-body-font">
+          <label for="country" class="dating-body-heading">Country</label>
           <select class="form-control" id="country" name="live" [(ngModel)]="countryCode">
             <option value="Australia">Australia</option>
             <option value="Canada">Canada</option>
@@ -92,7 +92,7 @@
 
         <br>
         <div class="button-container">
-          <button type="button" class="button-common" (click)="postcodeManuallyEnter(post, countryCode)">Search</button>
+          <button type="button" class="button-common dating-body-heading" (click)="postcodeManuallyEnter(post, countryCode)">Search</button>
         </div>
       </form>
 
@@ -108,7 +108,7 @@
 <div class="serach-result" *ngIf="searchresult">
   <div class="background">
     <div class="tittle-home-page">
-      <ion-card-subtitle class="tittle-home">Members near you</ion-card-subtitle>
+      <ion-card-subtitle class="tittle-home dating-body-heading">Members near you</ion-card-subtitle>
       <img src="../../assets/Images/crosspop.png" class="cross-pop-button" (click)="closesearchpop()">
     </div>
 
@@ -123,7 +123,7 @@
       </div>
       <div class="member-card-text">
         <div class="badage-name">
-          <div class="name card-item">{{posts.name}} </div>
+          <div class="name card-item dating-body-heading">{{posts.name}} </div>
           <div class="parent-badge">
 
             <ion-badge slot="end" color="medium" *ngIf="posts.Pets.length==0" class="badge-font">Parent
@@ -133,7 +133,7 @@
         </div>
 
         <div class="activity-container">
-          <div class="left-heading ">Activities: {{posts.Activity}}</div>
+          <div class="left-heading dating-body-heading">Activities:<span class="dating-body-font"> {{posts.Activity}}</span></div>
           <!-- <div class="right-heading"></div> -->
           <div class="badage-container">
             <ion-badge slot="end" color="medium">{{posts.Activity.length}}</ion-badge>
@@ -141,8 +141,8 @@
         </div>
 
         <div class="distance-container">
-          <div class="distance card-item">Distance:</div>
-          <div class="distance-ouput">{{posts.distance | number:'1.1-1'}} Miles</div>
+          <div class="distance card-item dating-body-heading">Distance:</div>
+          <div class="distance-ouput dating-body-font">&nbsp;{{posts.distance | number:'1.1-1'}} Miles</div>
         </div>
 
         <!-- <div>
@@ -161,7 +161,7 @@
 
       </div>
     </div>
-    <button #getMoreUsers *ngIf="matchLevel <= 3" class="showMore" (click)="getSearchData()">Show More</button>
+    <button #getMoreUsers *ngIf="matchLevel <= 3" class="showMore dating-body-heading" (click)="getSearchData()" >Show More</button>
 
   </div>
 </div>

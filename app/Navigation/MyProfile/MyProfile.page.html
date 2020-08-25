@@ -10,7 +10,7 @@
         </div>
 
         <div class="profile-name-modal">
-          <span class="name">{{name}}</span>
+          <span class="name output-text">{{name}}</span>
 
         </div>
         <img src="../../assets/Images/cross.png" class="cross-image" (click)="backClicked()">
@@ -28,14 +28,14 @@
             Activities:
 
           </div>
-          <div class="activity-content">
+          <div class="activity-content detail-data">
 
-            <div *ngFor="let actvities of activity">{{actvities.value}}...</div>
+            <div *ngFor="let actvities of activity" class="output-text">{{actvities.value}}...</div>
           </div>
 
         </div>
       </div>
-      <div class="continue-button" routerLink="/moreinfo/{{uid}}">
+      <div class="continue-button dating-body-heading" routerLink="/moreinfo/{{uid}}">
         Add More Info
       </div>
     </div>

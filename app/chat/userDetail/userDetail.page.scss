@@ -1,6 +1,6 @@
 .modal-grid {
     display: grid;
-    grid-template-columns: 2fr 2fr 1fr;
+    grid-template-columns: 1fr 1fr ;
    
     grid-gap: 1em;
     margin: 1em;
@@ -83,21 +83,26 @@ p.detail-data {
     margin-bottom: 0px;
 }
 img.image-profile {
-    height: 17vh;
-    width: 100%;
+  
+    height: 10vh;
+    float: right;
+
 }
 .fields-data {
     margin-bottom: 1em;
 }
 .output-text {
     width: 50vw;
+    font-family: 'Montserrat', sans-serif !important;
 }
 .field-name {
-    font-weight: bolder;
+    font-family: 'Cairo', sans-serif !important;
+    font-weight: 700 !important;
 }
 img.close-chat-bubble {
-    width: 22%;
+    width: 5%;
     float: right;
+    margin: 1em 1em 0em 0em;
 }
 .loading-container {
     width: 100vw;
@@ -174,4 +179,27 @@ img.close-chat-bubble {
 img.favorate_star.new-said-image {
     width: 39%;
     margin-left: 0.2em;
+}
+.images-show {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1em;
+}
+.sentence-making-fomr-field {
+    width: 60vw;
+}
+span.Lastlogin {
+    display: flex;
+    justify-content: flex-end;
+    margin: 1em;
+    margin-bottom: 0em;
+}
+.name-icon
+{
+    font-family: 'Montserrat', sans-serif !important;
+}
+.sentence-making-fomr-field
+{
+    font-family: 'Montserrat', sans-serif !important;
+
 }

@@ -1,0 +1,25 @@
+<ion-header>
+  <app-navigationbar></app-navigationbar>
+
+</ion-header>
+
+  <ion-content>
+  <div class="main-background-paypal">
+
+    <table>
+    <tr><td><input type="hidden" name="on0" value="Choose Verified Membership Type " class="dating-body-heading"><span class="dating-body-heading">Choose Verified Membership Type</span></td></tr><tr><td>
+      <select name="finalAmount" value="finalAmount" [(ngModel)]="finalAmount" >
+    <option value="19.99" class="dating-body-font" >Annual : $19.99 USD - yearly</option>
+    <option value="4.99" class="dating-body-font">Month to Month : $4.99 USD - monthly</option>
+
+  </select> </td></tr>
+    </table><br>
+  
+    <div id="paypal-checkout-btn" ></div>
+
+  
+</div>
+</ion-content>
+
+
+

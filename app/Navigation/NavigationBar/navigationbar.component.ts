@@ -50,11 +50,11 @@ export class NavigationbarComponent implements OnInit {
   lname: any;
   isLoogedIn: boolean = false;
   back: boolean = true;
-
+  backLogged:boolean = false
   token = "https://gowebtutorial.com/api/json/user/token";
+  userCheck: any;
   constructor(
     private Configservice: ConfigService,
-
     private route: ActivatedRoute,
     private router: Router,
     private http: HttpClient,
@@ -63,19 +63,15 @@ export class NavigationbarComponent implements OnInit {
     private AuthService: AuthService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.loginCheck();
-if(this.route.routeConfig.component.name == 'WelcomePage')
-{
-  this.back = false
-}
     
   }
 
   humburgereffect() {
-   this.router.navigate(["/newchatsupport"])
+    this.router.navigate(["/newchatsupport"])
   }
   humBurgerCross() {
     this.crossSign = false;
@@ -118,11 +114,33 @@ if(this.route.routeConfig.component.name == 'WelcomePage')
   }
   refresh() {
     this.loginCheck();
-    // localStorage.clear();
-    this.router.navigateByUrl('/welcome', { skipLocationChange: true }).then(() => {
-      this.router.navigate(["/welcome"]);
-  }); 
-    this.ngOnInit();
+    this.itrs = JSON.parse(localStorage.getItem("currentUser"));
+    this.userCheck = JSON.parse(localStorage.getItem("UpdateData"));
+
+
+
+    if (
+      this.userCheck != null) {
+      if (this.userCheck.field_already_declared.und == undefined) {
+
+        this.router.navigate(["/topHobbies"]);
+      }
+      if (this.userCheck.field_already_declared.und.length == 1) {
+        this.router.navigateByUrl('/find-friends', { skipLocationChange: false }).then(() => {
+          location.reload()
+          this.router.navigate(["/find-friends"])
+        });
+        
+   
+ 
+      }
+    }
+    else {
+      this.router.navigateByUrl('/welcome', { skipLocationChange: false }).then(() => {
+        this.router.navigate(["/welcome"]);
+      });
+    }
+
   }
   async correctAlert() {
     const correct = await this.alertController.create({
@@ -150,8 +168,8 @@ if(this.route.routeConfig.component.name == 'WelcomePage')
         console.log(head);
         localStorage.clear();
         this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
-         
-      }); 
+
+        });
         // this.router.navigate(["/welcome"]);
       });
   }
@@ -168,17 +186,31 @@ if(this.route.routeConfig.component.name == 'WelcomePage')
 
   loginCheck() {
     this.itrs = JSON.parse(localStorage.getItem("currentUser"));
+
     if (this.itrs == null) {
       this.isLoogedIn = false;
+      this.backLogged = false
+    if (this.route.routeConfig.component.name == 'WelcomePage') {
+      this.back = false
+      this.backLogged = false
+    }
     } else if (this.itrs.user != null) {
       this.isLoogedIn = true;
       this.name = this.itrs.user.name;
       this.activity = this.itrs.user.field_activities_interests.und;
       this.Email = this.itrs.user.mail;
+       this.backLogged = true   
+       this.back = false
+    if (this.route.routeConfig.component.name == 'WelcomePage') {
+      this.back = false
+      this.backLogged = false
+    
+    }
       //this.DOB = this.itrs.user.field_birth_date.und[0].value;
       this.fname = this.itrs.user.field_first_name.und[0].value;
       this.lname = this.itrs.user.field_last_name.und[0].value;
       this.userlogged = JSON.parse(localStorage.getItem("Signinuser"));
     }
+
   }
 }

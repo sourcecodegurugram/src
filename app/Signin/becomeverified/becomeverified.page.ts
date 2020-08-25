@@ -18,10 +18,11 @@ export class BecomeverifiedPage implements OnInit {
   uid: any;
   userFullDetails;
   now: Date = new Date();
-oldDate:any
-newDate:any
-  dateone:any;
+  oldDate: any
+  newDate: any
+  dateone: any;
   datetwo: any;
+  verifiedCust: any;
   constructor(private http: HttpClient,
     private ConfigService: ConfigService,
     private router: Router,
@@ -32,21 +33,15 @@ newDate:any
     this.uid = this.userDetail.user.uid;
     this.ConfigService.getUser(this.uid).subscribe((userData) => {
       this.userFullDetails = userData;
-
-if(this.userFullDetails.field_trial_period_start_date.length == undefined)
-{
-  this.oldDate  = this.datepipe.transform(this.now, 'MM-dd-yyyy');
-  this.newDate  = this.datepipe.transform(this.userFullDetails.field_trial_period_start_date.und[0].value, 'MM-dd-yyyy');
-  this.dateone = new Date(this.userFullDetails.field_trial_period_start_date.und[0].value); 
-  this.datetwo = new Date(this.now);
-  this.test()
-}
-    
-  
-
-
-
-});
+      this.verifiedCust = this.userFullDetails.field_verfied.length
+      if (this.userFullDetails.field_trial_period_start_date.length == undefined) {
+        this.oldDate = this.datepipe.transform(this.now, 'MM-dd-yyyy');
+        this.newDate = this.datepipe.transform(this.userFullDetails.field_trial_period_start_date.und[0].value, 'MM-dd-yyyy');
+        this.dateone = new Date(this.userFullDetails.field_trial_period_start_date.und[0].value);
+        this.datetwo = new Date(this.now);
+        this.date()
+      }
+    });
 
   }
   // .getTime()
@@ -68,7 +63,6 @@ if(this.userFullDetails.field_trial_period_start_date.length == undefined)
     this.http
       .put(
         "https://gowebtutorial.com/api/json/user/" + this.uid, {
-       
         field_trial_period_start_date: {
           und: [
             {
@@ -76,40 +70,37 @@ if(this.userFullDetails.field_trial_period_start_date.length == undefined)
             }
           ]
         }
-    
+
       }, requestOptions
       ).subscribe((result) => {
         this.router.navigate(["/chat/searchUser"]);
       });
 
-    }
-    calculateDiff(data){
-      let date = new Date(data.sent);
-      let currentDate = new Date();
-  
-      let days = Math.floor((currentDate.getTime() - date.getTime()) / 1000 / 60 / 60 / 24);
-      return days;
-    }
-    test()
-    {
-  
-    var date1 = new Date(this.oldDate); 
+  }
+  calculateDiff(data) {
+    let date = new Date(data.sent);
+    let currentDate = new Date();
+    let days = Math.floor((currentDate.getTime() - date.getTime()) / 1000 / 60 / 60 / 24);
+    return days;
+  }
+date() {
+
+    var date1 = new Date(this.oldDate);
     var date2 = new Date(this.newDate);
 
-    var Difference_In_Time = date2.getTime() - date1.getTime(); 
-  
-// To calculate the no. of days between two dates 
-var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+    var Difference_In_Time = date2.getTime() - date1.getTime();
 
-  if(Difference_In_Days <= 8)
-  {
-    this.router.navigate(["/chat/searchUser"]);
+    // To calculate the no. of days between two dates 
+    var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
 
-  }
-  else
-  {
-    this.router.navigate(["/trial-over"]);
-  }
+    if (Difference_In_Days <= 8 || this.verifiedCust  ) {
+
+      this.router.navigate(["/chat/searchUser"]);
+
     }
-
+    else {
+      this.router.navigate(["/trial-over"]);
+    }
   }
+
+}

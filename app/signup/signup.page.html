@@ -59,12 +59,12 @@
 
           </div>
 
-          <span class="age-limit">*Must be over 18 years old to
+          <span class="age-limit dating-body-heading">*Must be over 18 years old to
             be a member and use the app By continuing below</span>
           <div class="form-check">
             <label class="form-check-label">
-              <input type="checkbox" class="form-check-input" value="CheckBox" [(ngModel)]="CheckBox"
-                (change)="onCheckboxChange($event)">I confirm I am over 18.
+              <input type="checkbox" class="form-check-input dating-body-font" value="CheckBox" [(ngModel)]="CheckBox"
+                (change)="onCheckboxChange($event)"><span class="dating-body-font">I confirm I am over 18.</span>
             </label>
           </div>
 
@@ -88,7 +88,6 @@
             <div class="form-group">
               <label for="sel1">I am</label>
               <select class="form-control" id="sel1" name="Gender" [(ngModel)]="Gender">
-
                 <option value="Male"> male</option>
                 <option value="Female">female</option>
                 <option value="Gender Diverse">gender diverse</option>
@@ -112,7 +111,7 @@
 
 
 
-          <div class="blue-button-second-tab">
+          <div class="blue-button-second-tab dating-body-heading">
             Why do we ask this if its
             not for dating or sex?
           </div>
@@ -124,12 +123,11 @@
               <option value="Outgoing">Outgoing</option>
               <option value="On the Quieter Side">On the Quieter Side</option>
               <option value="A Mix of Both">A Mix of Both</option>
-
             </select>
             <span class="under-text"></span>
           </div>
 
-          <label for="sel1">And</label><br>
+          <label for="sel1" class="dating-body-font">And</label><br>
 
 
           <div class="form-group">
@@ -138,8 +136,6 @@
               <option value="1">a few goods friends</option>
               <option value="2">a lot of accquaintances</option>
               <option value="3">no preference</option>
-
-
             </select>
             <span class="under-text"></span>
           </div>
@@ -166,7 +162,7 @@
         </div>
 
         <div class="forms-field">
-          <div class="upload-photos">
+          <div class="upload-photos dating-body-font" >
             <!-- Before image chosen -->
             <span *ngIf="!imageContinue">Choose Your Profile Photo</span>
 
@@ -231,9 +227,6 @@
               <option value="au">Australia</option>
               <option value="nz">New Zealand</option>
               <option value="sg">Singapore</option>
-
-
-
             </select>
             <span class="under-text"></span>
           </div>
@@ -252,7 +245,7 @@
 
           <div class="blue-other-button">
 
-            <div class="button-blue-text">Why can I only meet
+            <div class="button-blue-text dating-body-heading">Why can I only meet
               people who live near me?</div>
 
           </div>
@@ -345,8 +338,8 @@
           </ion-item>
 
           <div class="terms">
-            <label for="usr">Terms and Conditions</label>
-            <div id="usr" class="terms-text">This Terms of Use (“Agreement”) is a legally binding agreement made by and
+            <label for="usr" class="dating-body-heading">Terms and Conditions</label>
+            <div id="usr" class="terms-text dating-body-font">This Terms of Use (“Agreement”) is a legally binding agreement made by and
               between Not 4 Dating, LLC
               (“N4D”) and you, personally and, if applicable, on behalf of the entity for whom you are using this web
               site (collectively, “you”). This Agreement governs your use of the not4dating.com web site (the “Site”)
@@ -607,7 +600,7 @@
           </div> -->
         </div>
         <div class="continue-button"
-          (click)="submitForm(name,fname,lname,DOB,Gender,contract,meet,live,zip,activity,email,confirmemail,password,confirmpassword)">
+          (click)="submitForm(name,fname,lname,DOB,Gender,contract,myself,meet,live,zip,activity,email,confirmemail,password,confirmpassword)">
           Continue
         </div>
 

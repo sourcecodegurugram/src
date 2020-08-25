@@ -102,11 +102,11 @@
  
 
 
-    <div class="continue-button" (click)="getSerchResult()" >
+    <div class="continue-button dating-body-heading" (click)="getSerchResult()" >
       Find Friends
     </div>
 
-    <div class="alreday-member" (click)="reset()">
+    <div class="alreday-member dating-body-heading" (click)="reset()">
       Reset Filter
     </div>
   </div>
@@ -126,17 +126,17 @@
       </div>
 
       <div class="data-member-grid">
-        <div class="grid-name">
+        <div class="grid-name dating-body-heading">
           {{result.name}}
         </div>
         
-        <div class="left-heading">Activities:&nbsp;{{result.Activities}}</div>
+        <div class="left-heading dating-body-font"><span class="dating-body-heading">Activities:</span>&nbsp;{{result.Activities}}</div>
        
-        <div class="distance-container">
+        <!-- <div class="distance-container">
           <div class="distance card-item">Distance:</div>
           <div class="distance-ouput">1 miles away</div>
           
-            </div>
+            </div> -->
 
        
 
@@ -174,8 +174,8 @@
  
   <div class="content-not-found">
  
-   <div class="mot-found-text">Oops Not found Matches</div>
-   <button type="submit" class="btn btn-primary" (click)="notFoundResult()">Goback</button>
+   <div class="mot-found-text dating-body-font">Oops Not found Matches</div>
+   <button type="submit" class="btn btn-primary dating-body-heading" (click)="notFoundResult()">Goback</button>
 
 
   </div>
@@ -295,21 +295,21 @@
       </div>
 
       <div class="data-member-grid" > 
-        <div class="grid-name">
+        <div class="grid-name dating-body-heading">
           {{result.name}}
         </div>
         
-        <div class="left-heading">Activities:&nbsp;{{result.Activities}}</div>
+        <div class="left-heading dating-body-font"><span class="dating-body-heading">Activities:</span>&nbsp;{{result.Activities}}</div>
        
-        <div class="distance-container">
+        <!-- <div class="distance-container">
           <div class="distance card-item">Distance:</div>
           <div class="distance-ouput">1 miles away</div>
-            </div>
+            </div> -->
       </div>
    
     </div>
   </span>
-    <div class="continue-button" (click)="backButton()" >
+    <div class="continue-button dating-body-heading" (click)="backButton()" >
       Back
     </div>
   </div>

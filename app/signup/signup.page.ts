@@ -286,22 +286,7 @@ export class SignupPage implements OnInit {
       .subscribe((res) => {
         this.picturesUrl = res;
         console.log(this.picturesUrl);
-        this.submitDetails(
-          name,
-          fname,
-          lname,
-          DOB,
-          Gender,
-          contract,
-          meet,
-          live,
-          zip,
-          activity,
-          email,
-          confirmemail,
-          password,
-          confirmpassword
-        );
+
       });
   }
 
@@ -312,6 +297,7 @@ export class SignupPage implements OnInit {
     DOB,
     Gender,
     contract,
+    myself,
     meet,
     live,
     zip,
@@ -329,6 +315,10 @@ export class SignupPage implements OnInit {
       timezone: ts,
       login: ts,
       access: ts,
+
+      field_consider_myself_:{
+        und:myself
+      },
       field_first_name: {
         und: [
           {

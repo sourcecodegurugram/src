@@ -44,6 +44,7 @@ export class TophobbiesPage implements OnInit {
     "Tomato",
   ];
   otheractivity;
+  FavorateUpdate;
 
   constructor(
     private http: HttpClient,
@@ -78,6 +79,7 @@ if(topactivity.length > 3)
 this.wrongUser()
 this.isLoading = false;
 }
+
 else
 {
     this.http
@@ -102,7 +104,10 @@ else
         requestOptions
       )
       .subscribe((favorate) => {
-        console.log(favorate);
+        this.FavorateUpdate = favorate
+        this.http.get("https://gowebtutorial.com/api/json/user/" + this.FavorateUpdate.uid).subscribe((UpdateData)=>{
+          localStorage.setItem("UpdateData", JSON.stringify(UpdateData));
+        })
         this.isLoading = false;
         this.router.navigate(["/chat/searchUser"]);
       });
@@ -118,5 +123,45 @@ else
     });
 
     await alert.present();
+  }
+  donotask()
+  {
+    const headers = new HttpHeaders()
+    .set("X-CSRF-Token", this.userDetail.token)
+    .set("Content-Type", "application/json")
+    .set(
+      "X-Cookie",
+      this.userDetail.session_name + "=" + this.userDetail.sessid
+    );
+  const requestOptions = {
+    headers: headers,
+    withCredentials: true,
+  };
+    this.http
+    .put(
+      "https://gowebtutorial.com/api/json/user/" + this.userDetail.user.uid,
+      {
+        field_already_declared: {
+          und: [
+            {
+              value: "true",
+            },
+          ],
+        },
+     
+      },
+
+      requestOptions
+    )
+    .subscribe((favorate) => {
+
+      this.FavorateUpdate = favorate
+      this.http.get("https://gowebtutorial.com/api/json/user/" + this.FavorateUpdate.uid).subscribe((UpdateData)=>{
+        localStorage.setItem("UpdateData", JSON.stringify(UpdateData));
+      })
+
+      this.isLoading = false;
+      // this.router.navigate(["/chat/searchUser"]);
+    });
   }
 }

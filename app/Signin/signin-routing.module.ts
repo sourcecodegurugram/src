@@ -24,6 +24,10 @@ const routes: Routes = [
     path: 'trial-over',
     loadChildren: () => import('../Signin/trial-over/trial-over.module').then( m => m.TrialOverPageModule)
   },
+  {
+    path: 'pay-pal',
+    loadChildren: () => import('../Signin/pay-pal/pay-pal.module').then( m => m.PayPalPageModule)
+  },
 
  
 ];

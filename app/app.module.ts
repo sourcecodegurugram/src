@@ -30,7 +30,7 @@ import { FilePath } from "@ionic-native/file-path/ngx";
 import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
 import { DatePipe } from '@angular/common'
-
+import {FormsModule} from '@angular/forms'
 
 @NgModule({
   declarations: [AppComponent, EllipsisPipe, AlertProfileDialogComponent],
@@ -43,6 +43,7 @@ import { DatePipe } from '@angular/common'
     AppRoutingModule,
     RecaptchaModule.forRoot(),
     MaterialModule,
+    FormsModule
   ],
   providers: [
     StatusBar,

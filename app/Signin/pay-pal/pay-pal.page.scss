@@ -1,0 +1,31 @@
+.main-background-paypal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.lower-icon {
+    display: flex;
+    justify-content: center;
+}
+.continue-button-last{
+    background-color: #54B151;
+    height: 3em;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 9px;
+    margin: 2em;
+    margin-top: 0em;
+}
+select {
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding-left: 0.5em;
+    background-position: calc(100% - 21px) 10px, calc(100% - 15px) 10px, 58% -1px;
+}

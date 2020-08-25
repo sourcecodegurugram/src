@@ -384,3 +384,28 @@ option {
   min-width: 90vw;
   max-height: 50vh;
 }
+
+.dating-body-font
+{
+  font-family: 'Montserrat', sans-serif !important;
+}
+.dating-body-heading
+{
+  font-family: 'Cairo', sans-serif !important;
+  font-weight: 700 !important;
+}
+.alert-checkbox-label.sc-ion-alert-md
+{
+  font-family: 'Montserrat', sans-serif !important;
+}
+.ng-valid.md.in-item.hydrated.ng-touched.ng-dirty.ion-valid.ion-touched.ion-dirty {
+  width: 100vw;
+  max-width: 100%;
+  font-family: 'Montserrat', sans-serif !important;
+}
+.ng-untouched.ng-pristine.ng-valid.ion-untouched.ion-pristine.ion-valid.md.in-item.hydrated {
+  max-width: 100%;
+  width: 100vw;
+  font-family: 'Montserrat', sans-serif !important;
+
+}

@@ -27,7 +27,7 @@ export class OptionalDetailPage implements OnInit {
   uid: any;
   live: any;
   userFullDetails: any;
-  talkabout: any;
+  talkabout;
   field_long_in_city: Array<any>;
   field_talk_about: Array<any>;
   cancels: any;
@@ -67,6 +67,8 @@ export class OptionalDetailPage implements OnInit {
   fileSource;
   education;
   responseString: Object;
+  userDetails;
+  fun;
   constructor(
     private http: HttpClient,
     private _location: Location,
@@ -77,14 +79,17 @@ export class OptionalDetailPage implements OnInit {
     private fileChooser: FileChooser,
     private filePath: FilePath,
     private changeDetector: ChangeDetectorRef
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.userDetail = JSON.parse(localStorage.getItem("currentUser"));
     this.uid = this.userDetail.user.uid;
+    console.log(this.uid)
     this.ConfigService.getUser(this.uid).subscribe((userData) => {
       this.userFullDetails = userData;
     });
+    this.preFilled()
+
   }
   public tabChanged(tabChangeEvent: MatTabChangeEvent): void {
     this.selectedIndex = tabChangeEvent.index;
@@ -123,7 +128,8 @@ export class OptionalDetailPage implements OnInit {
     anything
   ) {
 
-    console.log("test upload")
+    console.log(goodFriend)
+    console.log(talkabout)
     const headers = new HttpHeaders()
       .set("X-CSRF-Token", this.userDetail.token)
       .set("Content-Type", "application/json")
@@ -137,69 +143,64 @@ export class OptionalDetailPage implements OnInit {
       withCredentials: true,
     };
     this.http
-    .put(
-      "https://gowebtutorial.com/api/json/user/" + this.uid,{
- 
-          // field_long_in_city: {
-          //   und: live,
-          // },
-    
-          field_talk_about: {
-            und: talkabout,
-          },
-          field_do_for_fun:{
-            und:fun
-          },
-
-        
-          //  field_good_friend:
-          //  {
-          //     und:goodFriend
-          //   },
-          field_plans_get_cancelled: {
-            und: cancels,
-          },
-          field_relationship_status: {
-            und: status,
-          },
-          field_any_pets: {
-            und: pets,
-          },
-          field_spend_your_days: {
-            und: [
-              {
-                value: spend,
-              },
-            ],
-          },
-          field_languages: {
-            und: {
-              value: speak,
+      .put(
+        "https://gowebtutorial.com/api/json/user/" + this.uid, {
+        field_long_in_city: {
+          und: live,
+        },
+        field_talk_about: {
+          und: talkabout,
+        },
+        field_do_for_fun: {
+          und: fun
+        },
+        field_good_friend:
+        {
+          und: goodFriend
+        },
+        field_plans_get_cancelled: {
+          und: cancels,
+        },
+        field_relationship_status: {
+          und: status,
+        },
+        field_any_pets: {
+          und: pets,
+        },
+        field_spend_your_days: {
+          und: [
+            {
+              value: spend,
             },
+          ],
+        },
+        field_languages: {
+          und: {
+            value: speak,
           },
-          field_smoke: { und: smoke },
-          field_alcohol: { und: alcohol },
-          field_favorite_books: { und: [ { value: books } ]},
-          field_favorite_movies: { und: [ { value: movies } ]},
-          field_favorite_tv_shows: { und: [ { value: shows }] },
-          field_favorite_music: { und:  [ { value: music } ]},
-          field_you_say: { und: [ { value: anything }] },
-      },requestOptions
-    ).subscribe((result) => {
-      this.router.navigate(["/chat/searchUser"]);
-    });
+        },
+        field_smoke: { und: smoke },
+        field_alcohol: { und: alcohol },
+        field_favorite_books: { und: [{ value: books }] },
+        field_favorite_movies: { und: [{ value: movies }] },
+        field_favorite_tv_shows: { und: [{ value: shows }] },
+        field_favorite_music: { und: [{ value: music }] },
+        field_you_say: { und: [{ value: anything }] },
+      }, requestOptions
+      ).subscribe((result) => {
+        this.router.navigate(["/chat/searchUser"]);
+      });
     this.additionalTotalObject = {
       field_long_in_city: {
         und: live,
       },
-
       field_talk_about: {
         und: talkabout,
       },
-      //  field_good_friend:
-      //  {
-      //     und:[{goodFriend}]
-      //   },
+      field_good_friend:
+      {
+        und: goodFriend,
+      },
       field_plans_get_cancelled: {
         und: cancels,
       },
@@ -421,5 +422,70 @@ export class OptionalDetailPage implements OnInit {
 
         this.initImagePage();
       });
+  }
+
+  preFilled() {
+    this.ConfigService.getUser(this.uid).subscribe((data) => {
+      this.userDetails = data
+
+      if (this.userDetails.field_do_for_fun.length == undefined) {
+        this.fun = this.userDetails.field_do_for_fun.und[0].value
+        console.log(this.fun)
+      }
+      if (this.userDetails.field_long_in_city.length == undefined) {
+
+        this.live = this.userDetails.field_long_in_city.und[0].value
+      }
+      if (this.userDetails.field_talk_about.length == undefined) {
+
+        this.talkabout = this.userDetails.field_talk_about.und[0].value
+      }
+
+      if (this.userDetails.field_good_friend.length == undefined) {
+        this.goodFriend = this.userDetails.field_good_friend.und[0].value
+      }
+      if (this.userDetails.field_plans_get_cancelled.length == undefined) {
+        this.cancels = this.userDetails.field_plans_get_cancelled.und[0].value
+      }
+      if (this.userDetails.field_relationship_status.length == undefined) {
+
+        this.status = this.userDetails.field_relationship_status.und[0].value
+      }
+      if (this.userDetails.field_any_pets.length == undefined) {
+
+        this.pets = this.userDetails.field_any_pets.und[0].value
+      }
+      if (this.userDetails.field_spend_your_days.length == undefined) {
+        this.spend = this.userDetails.field_spend_your_days.und[0].value
+      }
+      if (this.userDetails.field_languages.length == undefined) {
+        this.speak = this.userDetails.field_languages.und[0].value
+      }
+      if (this.userDetails.field_smoke.length == undefined) {
+
+        this.smoke = this.userDetails.field_smoke.und[0].value
+      }
+
+      if (this.userDetails.field_alcohol.length == undefined) {
+        this.alcohol = this.userDetails.field_alcohol.und[0].value
+      }
+      if (this.userDetails.field_favorite_books.length == undefined) {
+        this.books = this.userDetails.field_favorite_books.und[0].value
+      }
+      if (this.userDetails.field_favorite_movies.length == undefined) {
+        this.movies = this.userDetails.field_favorite_movies.und[0].value
+      }
+      if (this.userDetails.field_favorite_tv_shows.length == undefined) {
+        this.shows = this.userDetails.field_favorite_tv_shows.und[0].value
+      }
+      if (this.userDetails.field_favorite_music.length == undefined) {
+        this.music = this.userDetails.field_favorite_music.und[0].value
+      }
+      if (this.userDetails.field_you_say.length == undefined) {
+        this.anything = this.userDetails.field_you_say.und[0].value
+      }
+
+
+    });
   }
 }

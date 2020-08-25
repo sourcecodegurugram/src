@@ -31,7 +31,7 @@ import { EmailComposer } from "@ionic-native/email-composer/ngx";
   styleUrls: ["./welcome.page.scss"],
 })
 export class WelcomePage implements OnInit {
-  @ViewChild("getMoreUsers", { static: false }) el: ElementRef;
+  @ViewChild("getMoreUsers") el: ElementRef;
 
   isLoading: boolean = false;
   hide: boolean = false;
@@ -105,7 +105,7 @@ export class WelcomePage implements OnInit {
     this.splashScreen.show();
     this.isLoading = true;
     if (this.siginUser != null) {
-      if (this.siginUser.user.field_already_declared.length == 0) {
+      if (this.siginUser.user.field_already_declared.und == undefined) {
         this.notEntered = true;
         this.isLoggedIn = true;
         this.isLoading = false;
@@ -115,6 +115,7 @@ export class WelcomePage implements OnInit {
         this.notEntered = false;
         this.isLoggedIn = false;
         this.isLoading = false;
+        // this.routes.navigate(["/chat/searchUser"]);
       }
     } else {
       this.isLoggedIn = false;
@@ -264,7 +265,7 @@ export class WelcomePage implements OnInit {
           this.tempCurrPage[i].distance = this.distance;
 
           this.currPage.push(this.tempCurrPage[i]);
-          console.log(this.currPage);
+  
         }
       }
       if (this.currPage.length > 0) {
@@ -318,7 +319,7 @@ export class WelcomePage implements OnInit {
     if (this.siginUser == null) {
       this.routes.navigate(["/notLoggedIn"]);
     } else {
-      this.routes.navigate(["/"]);
+      this.routes.navigate(["/chat/searchUser"]);
     }
   }
   openEmailcomposer() {
