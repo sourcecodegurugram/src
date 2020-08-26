@@ -346,6 +346,7 @@
           <div class="additionalUserImages">
             <div class="imageContainer" *ngFor="let image of userImages">
               <img class="userImage" src="https://gowebtutorial.com/sites/default/files/{{image.filename}}" />
+              <div class="images-delte" (click)="delete(image)">Delete</div>
             </div>
           </div>
 

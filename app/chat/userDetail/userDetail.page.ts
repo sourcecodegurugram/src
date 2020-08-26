@@ -126,10 +126,8 @@ export class userDetailPage implements OnInit {
       .get("https://gowebtutorial.com/api/json/user/" + this.uid)
       .subscribe((data) => {
         this.post = data;
-        console.log(this.post)
         this.name = this.post.name; //
         this.picture = this.post.picture.url; //
-  
         this.long = this.post.field_long_in_city.length;
         this.genders = this.post.field_gender.und; //
         this.statu = this.post.field_relationship_status.und; //
@@ -204,7 +202,6 @@ export class userDetailPage implements OnInit {
     // Get favorite fields for logged in user
     this.ConfigService.getUser(this.itrs.user.uid).subscribe((data) => {
       this.loggedUser = data;
-
       this.favorites_status = this.checUserFavorites();
     });
   }
@@ -303,6 +300,7 @@ export class userDetailPage implements OnInit {
     this.ConfigService.getUser(this.itrs.user.uid).subscribe((data) => {
       this.loggedUser = data;
       this.Block_status = this.checBlockUser();
+      console.log(this.Block_status)
     });
   }
 
@@ -319,9 +317,13 @@ export class userDetailPage implements OnInit {
         console.log("This person is not yet blocked");
         return 2;
       }
+     
     }
-  
-    
+    else
+    {
+       return 1
+    }
+ 
   }
 
   //Block User
@@ -363,7 +365,6 @@ export class userDetailPage implements OnInit {
     };
     // Add entry into favorites
     this.responseBlockString = JSON.stringify(this.uniqueScope);
-    console.log(this.uniqueScope);
     this.http
       .put(
         "https://gowebtutorial.com/api/json/user/" + this.itrs.user.uid,
@@ -443,10 +444,7 @@ export class userDetailPage implements OnInit {
   }
 
   removeFavorite() {
-    this.parsedFavorites = this.parsedFavorites.filter((obj) => {
-      return obj[0].uid !== this.uid;
-    });
-console.log(  this.parsedFavorites )
+    this.parsedFavorites = this.parsedFavorites.filter((obj) => {return obj[0].uid !== this.uid;});
     const headers = new HttpHeaders()
       .set("X-CSRF-Token", this.itrs.token)
       .set("Content-Type", "application/json")
@@ -457,13 +455,12 @@ console.log(  this.parsedFavorites )
     };
     // Add entry into favorites
     this.responseString = JSON.stringify(this.parsedFavorites);
-
     this.isLoading = true;
     this.http
       .put(
         "https://gowebtutorial.com/api/json/user/" + this.itrs.user.uid,
         {
-          field_block_users: {
+          field_favorite_users: {
             und: [
               {
                 value: this.responseString,
@@ -494,14 +491,13 @@ console.log(  this.parsedFavorites )
       headers: headers,
       withCredentials: true,
     };
-    // Add entry into favorites
     this.responseString = JSON.stringify(this.parsedBlock);
     this.isLoading = true;
     this.http
       .put(
         "https://gowebtutorial.com/api/json/user/" + this.itrs.user.uid,
         {
-          field_favorite_users: {
+          field_block_users: {
             und: [
               {
                 value: this.responseString,
@@ -515,7 +511,6 @@ console.log(  this.parsedFavorites )
         this.isLoading = false;
         this.unblockusers = false
         this.getBlockedLoggedInUser();
-
       });
   }
 

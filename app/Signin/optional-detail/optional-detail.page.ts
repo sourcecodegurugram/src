@@ -50,6 +50,7 @@ export class OptionalDetailPage implements OnInit {
   isLoading = false;
   userData;
   userImages;
+  userImage;
   private win: any = window;
   newFiles;
   goodFriend;
@@ -66,9 +67,10 @@ export class OptionalDetailPage implements OnInit {
   submit;
   fileSource;
   education;
-  responseString: Object;
+  responseString;
   userDetails;
   fun;
+  parsedBlock: any;
   constructor(
     private http: HttpClient,
     private _location: Location,
@@ -271,14 +273,10 @@ export class OptionalDetailPage implements OnInit {
   onFileChange(event) {
     if (event.target.files && event.target.files[0]) {
       var filesAmount = event.target.files.length;
-
       for (let i = 0; i < filesAmount; i++) {
         var filesAmount = event.target.files.length;
-
         this.imageName = event.target.files[i].name;
-
         var reader = new FileReader();
-
         reader.onload = (event: any) => {
           this.images.push({ uri: event.target.result, name: this.imageName });
           this.additionalImageObject["field_additional_image_" + i] = {
@@ -298,11 +296,9 @@ export class OptionalDetailPage implements OnInit {
 
   initImagePage() {
     this.isLoading = true;
-
     this.ConfigService.getUser(this.uid).subscribe((data) => {
       this.userData = data;
       this.userImages = this.userData.field_user_avatar["und"];
-      console.log(this.userImages);
       this.isLoading = false;
       this.changeDetector.detectChanges();
     });
@@ -311,10 +307,8 @@ export class OptionalDetailPage implements OnInit {
   filechooser() {
     this.fileChooser.open().then((fileuri) => {
       this.isLoading = true;
-
       let imagePath = this.win.Ionic.WebView.convertFileSrc(fileuri);
       this.displayImage = imagePath;
-
       this.filePath.resolveNativePath(fileuri).then((filePath) => {
         fetch(imagePath).then((res) => {
           res.blob().then((blob) => {
@@ -325,7 +319,6 @@ export class OptionalDetailPage implements OnInit {
               ];
               return zoneOriginalInstance || fileReader;
             }
-
             let newInstance = getFileReader();
             newInstance.onload = function () {
               // Is it JPG or PNG
@@ -342,12 +335,10 @@ export class OptionalDetailPage implements OnInit {
                 let timestamp = Math.floor(Date.now() / 1000);
                 this.fileName =
                   this.name + "_profile_image_" + timestamp + ".png";
-
                 //Base 64 string
                 let removeString = "data:image/png;base64,";
                 this.base64textString = base64data.replace(removeString, "");
               }
-
               this.picture = this.fileName;
               this.changeDetector.detectChanges();
               this.onUpload(this.picture);
@@ -371,7 +362,6 @@ export class OptionalDetailPage implements OnInit {
       filename: picture,
       filepath: "public://" + picture,
     };
-
     this.http
       .post("https://gowebtutorial.com/api/json/file/", this.uploadData)
       .subscribe((rest) => {
@@ -384,8 +374,7 @@ export class OptionalDetailPage implements OnInit {
     const headers = new HttpHeaders()
       .set("X-CSRF-Token", this.userDetail.token)
       .set("Content-Type", "application/json")
-      .set(
-        "X-Cookie",
+      .set("X-Cookie",
         this.userDetail.session_name + "=" + this.userDetail.sessid
       );
     const requestOptions = {
@@ -410,18 +399,8 @@ export class OptionalDetailPage implements OnInit {
     this.responseString["field_user_avatar"]["und"] = this.userImages;
     this.responseString["field_user_avatar"]["und"][index] = pictureObject;
 
-    console.log(this.responseString);
-    this.http
-      .put(
-        "https://gowebtutorial.com/api/json/user/" + this.uid,
-        this.responseString,
-        requestOptions
-      )
-      .subscribe((result) => {
-        console.log("posted image " + result);
 
-        this.initImagePage();
-      });
+    this.http.put("https://gowebtutorial.com/api/json/user/" + this.uid, this.responseString, requestOptions).subscribe((result) => { this.initImagePage(); });
   }
 
   preFilled() {
@@ -486,6 +465,56 @@ export class OptionalDetailPage implements OnInit {
       }
 
 
+    });
+  }
+  delete(fid) {
+    const headers = new HttpHeaders()
+      .set("X-CSRF-Token", this.userDetail.token)
+      .set("Content-Type", "application/json")
+      .set("X-Cookie",
+        this.userDetail.session_name + "=" + this.userDetail.sessid
+      );
+    const requestOptions = {
+      headers: headers,
+      withCredentials: true,
+    };
+    var array = this.userImages;
+    var indexes = 1;
+    array.splice(indexes, 1);
+    [fid]
+    array;
+    this.userImage
+    let index;
+    if (this.userImage) {
+      index = this.userImage.length;
+    } else {
+      this.userImage = [];
+      index = 0;
+    }
+
+    this.responseString = {
+      field_user_avatar: {
+        und: [],
+      },
+    };
+ 
+    this.userImages = this.userImages.filter((obj) => {
+      console.log(obj)
+      return obj.fid !== fid;
+    });
+
+   this.responseString["field_user_avatar"]["und"] =  this.userImages;
+   //this.responseString["field_user_avatar"]["und"][index] =  this.userImages;
+console.log( this.responseString)
+    this.http.put("https://gowebtutorial.com/api/json/user/" + this.uid, this.responseString, requestOptions).subscribe((result) => {
+      console.log("posted image " + result);
+      this.isLoading = true;
+      this.ConfigService.getUser(this.uid).subscribe((data) => {
+        this.userData = data;
+        this.userImage = this.userData.field_user_avatar["und"];
+        this.isLoading = false;
+        this.changeDetector.detectChanges()
+      })
     });
   }
 }

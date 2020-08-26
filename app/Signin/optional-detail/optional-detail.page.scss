@@ -424,7 +424,7 @@ img.images-uploaded {
 .imageContainer {
     width: 20vw;
     height: 20vw;
-
+    flex-direction: column;
     display: flex;
     justify-content: center;
     align-items: center;
