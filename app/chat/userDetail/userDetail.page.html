@@ -11,11 +11,14 @@
         <img src="../../assets/Images/sign.png" class="close-chat-bubble" (click)="backClicked()">
       </div>
       <div class="modal-grid">
-        <div class="profile-name-modal">
-          <span class="name dating-body-heading">{{name}}</span>
-          <span class="age dating-body-heading">{{age}},{{gender}}</span>
+        <div class="profile-name-modal" *ngIf="verifed">
+          <span class="name dating-body-heading" style="color: blue;">{{name}}</span>
+          <span class="age dating-body-heading">{{age}} , {{gender}}</span>
         </div>
-
+        <div class="profile-name-modal" *ngIf="!verifed">
+          <span class="name dating-body-heading">{{name}}</span>
+          <span class="age dating-body-heading">{{age}} , {{gender}}</span>
+        </div>
         <div class="profile-picture-modal">
           <img src={{picture}} class="image-profile"><br>
 
@@ -23,7 +26,13 @@
 
 
       </div>
-      <span class="Lastlogin dating-body-font">LastLogin:<br>{{lastLogin * 1000 | date}}</span>
+      <div class="status-main-container">
+
+        <span class="verifed dating-body-font" *ngIf="verifed">Verified</span>
+        <span class="verifed dating-body-font" *ngIf="!verifed"></span>
+        <span class="Lastlogin dating-body-font">LastLogin:<br>{{lastLogin * 1000 | date}}</span>
+      </div>
+
 
       <div class="siderbar-icon-data">
         <div class="side-bar-icon">
@@ -49,7 +58,7 @@
           <div class="group-text-image" *ngIf="Block_status == 2">
             <ion-icon name="close-outline" (click)="blockuserpop()" class="favorate_close"></ion-icon>
 
-   
+
 
           </div>
 
@@ -67,7 +76,7 @@
           </div>
         </div>
         <div class="sidebar-content">
-
+<div class="consider" *ngIf="consider">
           <div class="sentence-making-fomr-field" *ngIf="meet == '2'">
             I consider myself <b>{{consider}}</b> and I want to meet <b>A lot of acquaintances</b>
           </div>
@@ -78,38 +87,93 @@
           <div class="sentence-making-fomr-field" *ngIf="meet == '3'">
             I consider myself <b>{{consider}}</b> and I want to meet <b> Does not Matter</b>
           </div>
-          <br>
-          <div class="sentence-making-fomr-field">
-            My hobbies and interests are: <b *ngFor="let activity of activity">{{activity.value}}</b>
+        
+        </div>
+        <div class="consider" *ngIf="!consider">
+          <div class="sentence-making-fomr-field" *ngIf="meet == '2'">
+            I want to meet <b> A lot of acquaintances</b>
           </div>
+
+          <div class="sentence-making-fomr-field" *ngIf="meet == '1'">
+            I want to meet<b> A few good friends</b>
+          </div>
+          <div class="sentence-making-fomr-field" *ngIf="meet == '3'">
+          I want to meet <b> Does not Matter</b>
+          </div>
+          
+        </div>
+        <br>
+        <div class="sentence-making-fomr-field" *ngIf="activity">
+          My hobbies and interests are: <b *ngFor="let activity of activity" class="text">&nbsp;{{activity.value}}</b>
+        </div>
+
+      
           <br>
           <div class="sentence-making-fomr-field" *ngFor="let Longcity of Longcity">
             I have lived here for <b *ngIf="Longcity.value == 0">
-              < 2 years</b><b *ngIf="Longcity.value == 1">2-5 years</b><b *ngIf="Longcity.value == 2">>5 years</b>
+              < 2 years.</b><b *ngIf="Longcity.value == 1">2-5 years.</b><b *ngIf="Longcity.value == 2">>5 years.</b>
           </div>
+          <br *ngIf="talk">
           <div class="sentence-making-fomr-field" *ngIf="talk">
-            My friends and I talk about<b *ngFor="let talk of talk">{{talk.value}}</b>
+            My friends and I talk about <b *ngFor="let talk of talk" class="text">{{talk.value}}</b>
           </div>
+          <br *ngIf="good">
           <div class="sentence-making-fomr-field" *ngIf="good">
-            I think a good friend is someone who<b *ngFor="let good of good">{{good.value}}</b>
+            I think a good friend is someone who <b *ngFor="let good of good" class="text">{{good.value}}</b>
           </div>
+          <br *ngIf="cancels">
           <div class="sentence-making-fomr-field" *ngIf="cancels">
             When someone cancels plans <b *ngFor="let cancels of cancels">{{cancels.value}}</b>
           </div>
+          <br *ngIf="statu">
           <div class="sentence-making-fomr-field" *ngIf="statu">
-            I am <b *ngFor="let statu of statu">{{statu.value}}</b>
-          </div>
-          <!-- <div class="sentence-making-fomr-field" *ngIf="statu">
+            I am <b *ngFor="let statu of statu"> <b *ngIf="statu.value == 'Yes'"> in </b> <b
+                *ngIf="statu.value == 'No'">not in </b>
+              <b *ngIf="statu.value == 'Single'">in </b>
+              <b *ngIf="statu.value == 'Married'">in </b>
+              <b *ngIf="statu.value == 'Co-habitating'">in </b>
+              <b *ngIf="statu.value == 'Significant Other But Not Living Together'">in</b>
+              <b *ngIf="statu.value == 'Divorced'">in </b>
+              <b *ngIf="statu.value == 'Widowed'">in </b>
 
-         <span class="no-children"> I have/do not have children and</span> <span class="pets">no pets/one cat/three dogs, etc. </span>
-          I am <b *ngFor="let statu of statu">{{statu.value}}</b> in a relationship 
-         </div> -->
-          <br>
+              <b *ngIf="statu.value == 'Engaged'">in </b>
+
+
+            </b>a relationship.
+
+          </div>
+          <br *ngIf="kids">
+
+          <div class="sentence-making-fomr-field" *ngIf="kids">
+            <span class="no-children" *ngFor="let kids of kids"> I<b *ngIf="kids.value == 'Yes'"> have </b>children and <b
+              *ngFor="let pets of pets"  class="petsvalue"><b *ngIf="pets.value"> a {{pets.value}}</b></b></span>
+          </div>
+          <br *ngIf="!kids">
+          <div class="sentence-making-fomr-field" *ngIf="!kids">
+            <span class="no-children" *ngFor="let pets of pets" class="text">I have a <b
+                *ngIf="pets.value">{{pets.value}}</b><b *ngIf="!pets.value">no pets</b></span>
+
+          </div>
+
+
+          <!-- <div class="sentence-making-fomr-field" *ngIf="kids">
+            and <span class="no-children" *ngFor="let pets of pets" class="text"><b
+                *ngIf="pets.value">{{pets.value}}</b><b *ngIf="!pets.value">no pets</b></span>
+          </div> -->
+          <br *ngIf="language">
+          <div class="sentence-making-fomr-field" *ngIf="language">
+            In addition to English, I also speak <span class="no-children"
+              *ngFor="let language of language"><b>{{language.value}}</b>.</span>
+          </div>
+          <br *ngIf="day">
           <div class="fields-data" *ngIf="day">
             <div class="field-name" *ngIf="day">I Spend My Days:</div>
             <div class="output-text" *ngFor="let days of day">{{days.value}}</div>
           </div>
-
+          <div class="fields-data" *ngIf="anyting">
+            <div class="field-name" *ngIf="anyting">Anything else:</div>
+            <div class="output-text" *ngFor="let anyting of anyting">{{anyting.value}}</div>
+          </div>
           <div class="fields-data" *ngIf="movie">
             <div class="field-name" *ngIf="movie">Favorate Movies:</div>
             <div class="output-text" *ngFor="let movies of movie">{{movies.value}}</div>
@@ -122,15 +186,13 @@
             <div class="field-name" *ngIf="tv">TV Shows:</div>
             <div class="output-text" *ngFor="let tv of tv">{{tv.value}}</div>
           </div>
-
           <div class="sentence-making-fomr-field" *ngIf="smokes">
             <span *ngIf="smokes">I <b *ngFor="let smokes of smokes">{{smokes.value}}</b> smoke</span>
           </div>
           <div class="sentence-making-fomr-field" *ngIf="alcohol">
-            .<span *ngIf="alcohol"><b *ngFor="let alcohol of  alcohol">{{alcohol.value}}</b> drink alcohol</span>
+            <span *ngIf="alcohol">and<b *ngFor="let alcohol of  alcohol"> {{alcohol.value}}</b> drink alcohol.</span>
           </div>
           <div class="images-show">
-
             <span class="images" *ngFor="let image of image">
               <img src="https://gowebtutorial.com/sites/default/files/{{image.filename}}">
             </span>

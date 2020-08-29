@@ -1,0 +1,32 @@
+.main-container-payment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+}
+.memership-data {
+    display: flex;
+    justify-content: space-between;
+    width: 90vw;
+    margin: 2em 0em;
+    font-size: 1.2em;
+}
+.membership-data-heading{
+font-family: 'Cairo', sans-serif !important;
+font-weight: 700 !important;
+}
+.membership-data-content    
+{
+    font-family: 'Montserrat', sans-serif !important;
+}
+.main-heading-text {
+    font-size: 1.5em;
+}
+.button-success-type {
+    background-color: #4372c4;
+    padding: 0.5em 1em;
+    color: white;
+    border-radius: 11px;
+}

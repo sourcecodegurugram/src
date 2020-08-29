@@ -130,9 +130,6 @@ export class NavigationbarComponent implements OnInit {
           location.reload()
           this.router.navigate(["/find-friends"])
         });
-        
-   
- 
       }
     }
     else {
@@ -186,7 +183,6 @@ export class NavigationbarComponent implements OnInit {
 
   loginCheck() {
     this.itrs = JSON.parse(localStorage.getItem("currentUser"));
-console.log(  this.itrs)
     if (this.itrs == null) {
       this.isLoogedIn = false;
       this.backLogged = false

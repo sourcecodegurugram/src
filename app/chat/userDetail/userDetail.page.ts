@@ -102,6 +102,9 @@ export class userDetailPage implements OnInit {
   consider: any;
   Longcity: any;
   image: any;
+  kids: any;
+  anyting;
+  verifed: any;
   constructor(
     private ConfigService: ConfigService,
     private _Activatedroute: ActivatedRoute,
@@ -126,6 +129,8 @@ export class userDetailPage implements OnInit {
       .get("https://gowebtutorial.com/api/json/user/" + this.uid)
       .subscribe((data) => {
         this.post = data;
+        console.log(this.post.picture.fid)
+        console.log( this.post.field_user_avatar)
         this.name = this.post.name; //
         this.picture = this.post.picture.url; //
         this.long = this.post.field_long_in_city.length;
@@ -158,6 +163,7 @@ export class userDetailPage implements OnInit {
         this.age = Difference_In_Days
         this.gender = this.post.field_gender.und[0].value
         this.lastLogin = this.post.login
+       
         if (this.post.field_consider_myself_.length == undefined)
         {this.consider = this.post.field_consider_myself_.und[0].value}
         this.meet = this.post.field_look_meet.und[0].value
@@ -165,6 +171,20 @@ export class userDetailPage implements OnInit {
         this.Longcity = this.post.field_long_in_city.und}
         if(this.post.field_user_avatar.und.length > 1){
        this.image  = this.post.field_user_avatar.und
+         }
+
+         if(this.post.field_kids.length == undefined)
+         {
+           this.kids = this.post.field_kids.und
+         }
+
+         if(this.post.field_you_say.length == undefined)
+         {
+           this.anyting = this.post.field_you_say.und
+         }
+         if(this.post.field_verfied.length == undefined)
+         {
+           this.verifed = this.post.field_verfied.und
          }
         this.favInfo = [
           {
@@ -209,7 +229,6 @@ export class userDetailPage implements OnInit {
 
   checUserFavorites() {
     if (this.loggedUser.field_favorite_users.und) {
-      console.log(this.loggedUser.field_favorite_users.und)
       this.parsedFavorites = JSON.parse(
         this.loggedUser.field_favorite_users.und[0].value
       );
@@ -222,8 +241,6 @@ export class userDetailPage implements OnInit {
         return 2;
       }
     }
-    
-    
   }
 
 
@@ -300,7 +317,6 @@ export class userDetailPage implements OnInit {
     this.ConfigService.getUser(this.itrs.user.uid).subscribe((data) => {
       this.loggedUser = data;
       this.Block_status = this.checBlockUser();
-      console.log(this.Block_status)
     });
   }
 

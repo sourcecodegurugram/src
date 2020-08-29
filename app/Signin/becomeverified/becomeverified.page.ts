@@ -88,18 +88,18 @@ date() {
     var date1 = new Date(this.oldDate);
     var date2 = new Date(this.newDate);
 
-    var Difference_In_Time = date2.getTime() - date1.getTime();
+    var Difference_In_Time = date1.getTime()  - date2.getTime();
 
     // To calculate the no. of days between two dates 
     var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-
-    if (Difference_In_Days <= 8 || this.verifiedCust  ) {
+console.log(Difference_In_Days)
+    if (Difference_In_Days < 8 || this.verifiedCust  ) {
 
       this.router.navigate(["/chat/searchUser"]);
 
     }
     else {
-      this.router.navigate(["/trial-over"]);
+      this.router.navigate(["/trialover"]);
     }
   }
 

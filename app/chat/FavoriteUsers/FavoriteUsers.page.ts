@@ -21,17 +21,19 @@ export class FavoriteUsersPage implements OnInit {
       .get("https://gowebtutorial.com/api/json/user/" + this.itrs.user.uid)
       .subscribe((users) => {
         this.allfavorate = users;
+        if(this.allfavorate.field_favorite_users.length == undefined){
         this.listFavorate = this.allfavorate.field_favorite_users.und[0].value;
         this.ParseFavorate = JSON.parse(this.listFavorate);
-​
         this.uniqueFavorite = this.removeDuplicatesBy(
           (x) => x[0].name,
           this.ParseFavorate
         );
-​
-        console.log(this.uniqueFavorite);
-        console.log(this.ParseFavorate);
+      }
       });
+      
+
+​
+       
   }
 ​
   removeDuplicatesBy(keyFn, array) {

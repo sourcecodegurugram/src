@@ -78,7 +78,7 @@ export class NotificationchatPage implements OnInit {
         this.getChat();
         this.Sending = false
         this.Send=true
-        console.log(data);
+
      
       });
   }
@@ -103,7 +103,6 @@ export class NotificationchatPage implements OnInit {
           this.messages = getMessages;
           this.message = this.messages.messages;
           this.thread = this.messages.pmtid;
-          console.log(getMessages);
           this.updating=false
         });
     }

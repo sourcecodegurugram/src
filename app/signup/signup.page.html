@@ -46,17 +46,13 @@
 
           <div class="form-group">
                <label for="usr">When is your birthday*?</label><br>
-            <!-- <input type="text" name="input" placeholder=" YYYY-MM-DD" required pattern="(?:19|20)\[0-9\]{2}-(?:(?:0\[1-9\]|1\[0-2\])/(?:0\[1-9\]|1\[0-9\]|2\[0-9\])|(?:(?!02)(?:0\[1-9\]|1\[0-2\])/(?:30))|(?:(?:0\[13578\]|1\[02\])-31))" title="Enter a date in this format YYYY/MM/DD" [(ngModel)]="DOB" (click)="CheckDOB()" class="dateofbirth"/><br> -->
-            <!-- <input type="date" class="form-control" id="usr" name="DOB" [(ngModel)]="DOB" (click)="CheckDOB()"> -->
             <mat-form-field class="example-full-width" appearance="fill">              <input matInput [matDatepicker]="picker"  placeholder="Date of Birth" [(ngModel)]="DOB">
               <mat-datepicker-toggle matSuffix [for]="picker">
                 <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
               </mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field><br>
-           
             <span class="under-text">(Only age is displayed publicly)</span>
-
           </div>
 
           <span class="age-limit dating-body-heading">*Must be over 18 years old to
@@ -82,31 +78,41 @@
             <div class="progress-bar" style="width:30%"></div>
           </div>
         </div>
-
         <div class="forms-field">
-          <form>
-            <div class="form-group">
-              <label for="sel1">I am</label>
-              <select class="form-control" id="sel1" name="Gender" [(ngModel)]="Gender">
-                <option value="Male"> male</option>
-                <option value="Female">female</option>
-                <option value="Gender Diverse">gender diverse</option>
-              </select>
-              <span class="under-text"></span>
-            </div>
 
-          </form>
-
-          <div class="form-group">
-            <label for="contarct">Wanting to be contacted by</label>
-            <select class="form-control" id="contarct" name="contract" [(ngModel)]="contract">
-              <option value="0" selected>men only</option>
-              <option value="1">women only </option>
-              <option value="2">gender diverse only</option>
-              <option value="3" selected="selected">everyone</option>
-            </select>
-            <span class="under-text"></span>
-          </div>
+        <div class="ionic-dropdowns">
+          <label class="label-ionic-dropdown dating-body-font">I am</label>
+          <ion-item class="usually-dropdown">
+            <ion-label></ion-label>
+            <ion-select multiple="false" cancelText="Close" okText="Okay" name="Gender" [(ngModel)]="Gender"
+              class="ion-select-option-setting">
+              <ion-select-option value="Male"> male
+              </ion-select-option>
+              <ion-select-option  value="Female">female
+              </ion-select-option>
+              <ion-select-option value="Gender Diverse">gender diverse</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+       
+         
+     
+        <div class="ionic-dropdowns">
+          <label class="label-ionic-dropdown dating-body-font">Wanting to be contacted by</label>
+          <ion-item class="usually-dropdown">
+            <ion-label></ion-label>
+            <ion-select multiple="false" cancelText="Close" okText="Okay" name="contract" [(ngModel)]="contract"
+              class="ion-select-option-setting">
+              <ion-select-option value="0" >men only
+              </ion-select-option>
+              <ion-select-option  value="1">women only 
+              </ion-select-option>
+              <ion-select-option value="2">gender diverse only</ion-select-option>
+              <ion-select-option value="3" >everyone</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+       
 
 
 
@@ -117,28 +123,41 @@
           </div>
 
 
-          <div class="form-group">
-            <label for="sel1">I consider myself</label>
-            <select class="form-control" id="sel1" name="myself" [(ngModel)]="myself">
-              <option value="Outgoing">Outgoing</option>
-              <option value="On the Quieter Side">On the Quieter Side</option>
-              <option value="A Mix of Both">A Mix of Both</option>
-            </select>
-            <span class="under-text"></span>
+          <div class="ionic-dropdowns">
+            <label class="label-ionic-dropdown dating-body-font">I consider myself</label>
+            <ion-item class="usually-dropdown">
+              <ion-label></ion-label>
+              <ion-select multiple="false" cancelText="Close" okText="Okay" name="myself" [(ngModel)]="myself"
+                class="ion-select-option-setting">
+                <ion-select-option value="Outgoing">Outgoing
+                </ion-select-option>
+                <ion-select-option  value="On the Quieter Side">On the Quieter Side
+                </ion-select-option>
+                <ion-select-option value="A Mix of Both">A Mix of Both</ion-select-option>
+              </ion-select>
+            </ion-item>
           </div>
+
 
           <label for="sel1" class="dating-body-font">And</label><br>
 
 
-          <div class="form-group">
-            <label for="sel1">I want to meet</label>
-            <select class="form-control" id="sel1" name="meet" [(ngModel)]="meet">
-              <option value="1">a few goods friends</option>
-              <option value="2">a lot of accquaintances</option>
-              <option value="3">no preference</option>
-            </select>
-            <span class="under-text"></span>
+          <div class="ionic-dropdowns">
+            <label class="label-ionic-dropdown dating-body-font">I want to meet</label>
+            <ion-item class="usually-dropdown">
+              <ion-label></ion-label>
+              <ion-select multiple="false" cancelText="Close" okText="Okay" name="meet" [(ngModel)]="meet"
+                class="ion-select-option-setting">
+                <ion-select-option value="1">a few goods friends
+                </ion-select-option>
+                <ion-select-option  value="2">a lot of accquaintances
+                </ion-select-option>
+                <ion-select-option value="3">no preference</ion-select-option>
+              </ion-select>
+            </ion-item>
           </div>
+
+     
 
           <div class="continue-button" (click)="selectTab(2, 1)">
             Continue
@@ -217,19 +236,29 @@
           </div>
         </div>
         <div class="forms-field">
-          <div class="form-group">
-            <label for="sel1">I live in</label>
-            <select class="form-control" id="sel1" name="live" [(ngModel)]="live">
-              <option value="us" selected="selected">US</option>
-              <option value="ca">Canada</option>
-              <option value="in">India</option>
-              <option value="gb">UK</option>
-              <option value="au">Australia</option>
-              <option value="nz">New Zealand</option>
-              <option value="sg">Singapore</option>
-            </select>
-            <span class="under-text"></span>
+
+
+          
+          <div class="ionic-dropdowns">
+            <label class="label-ionic-dropdown dating-body-font">I live in</label>
+            <ion-item class="usually-dropdown">
+              <ion-label></ion-label>
+              <ion-select multiple="false" cancelText="Close" okText="Okay" name="live" [(ngModel)]="live"
+                class="ion-select-option-setting">
+                <ion-select-option value="us" >US
+                </ion-select-option>
+                <ion-select-option  value="ca">Canada
+                </ion-select-option>
+                <ion-select-option value="gb">UK</ion-select-option>
+                <ion-select-option value="in">India</ion-select-option>
+                <ion-select-option value="au">Australia</ion-select-option>
+                <ion-select-option value="nz">New Zealand</ion-select-option>
+                <ion-select-option value="sg">Singapore</ion-select-option>
+              </ion-select>
+            </ion-item>
           </div>
+    
+          
           <div class="blue-other-button">
 
             <div class="button-blue-text">Why isn’t my country here?</div>
@@ -600,7 +629,7 @@
           </div> -->
         </div>
         <div class="continue-button"
-          (click)="submitForm(name,fname,lname,DOB,Gender,contract,myself,meet,live,zip,activity,email,confirmemail,password,confirmpassword)">
+          (click)="submitDetails(name,fname,lname,DOB,Gender,contract,myself,meet,live,zip,activity,email,confirmemail,password,confirmpassword)">
           Continue
         </div>
 

@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: PayPalPage
+  },
+  {
+    path: 'success-page',
+    loadChildren: () => import('../../Signin/pay-pal/success-page/success-page.module').then( m => m.SuccessPagePageModule)
   }
 ];
 

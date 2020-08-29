@@ -24,9 +24,12 @@ export class ChatsThreadListingPage implements OnInit {
   width;
   isLoading: boolean = true;
   participants;
-  counterpartParticipants = [];
+  counterpartParticipants;
   time: any;
+  uniqueFavorite;
+  ParseFavorate =[];
 now = new Date();
+  counterpartParticipant: any[];
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
@@ -68,17 +71,33 @@ now = new Date();
                 ].thread_id = this.messages[i].thread_id;
 
                 // populate rest of fields
-                this.counterpartParticipants.push(
+    this.ParseFavorate.push(
                   this.messages[i].participants[this.participants]
                 );
               }
+              
+      
             }
+            
           }
+         
+          this.counterpartParticipants = this.removeDuplicatesBy(
+            (x) => x.uid,
+            this.ParseFavorate
+          );
           this.isLoading=false
         });
     }
   }
-
+  removeDuplicatesBy(keyFn, array) {
+    var mySet = new Set();
+    return array.filter(function (x) {
+      var key = keyFn(x),
+        isNew = !mySet.has(key);
+      if (isNew) mySet.add(key);
+      return isNew;
+    });
+  }
   click() {
     const headers = new HttpHeaders()
       .set("X-CSRF-Token", this.itr.token)

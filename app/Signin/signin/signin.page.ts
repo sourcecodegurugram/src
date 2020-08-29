@@ -13,7 +13,7 @@ import {
   HttpErrorResponse,
 } from "@angular/common/http";
 import { ConfigService } from "../../config.service";
-
+import { DatePipe } from '@angular/common'
 @Component({
   selector: "app-signin",
   templateUrl: "./signin.page.html",
@@ -44,13 +44,19 @@ export class SigninPage implements OnInit {
   userDetail: any;
   uid: any;
   userFullDetails: any;
-
+  verifiedCust: any;
+  oldDate: any;
+  newDate: any;
+  dateone:any;
+  datetwo: any;
+  now: Date = new Date();
   constructor(
     private router: Router,
     private http: HttpClient,
     public alertController: AlertController,
     public AuthService: AuthService,
-    public ConfigService :ConfigService 
+    public ConfigService :ConfigService ,
+    public datepipe: DatePipe
   ) {}
 
   ngOnInit() {
@@ -64,7 +70,21 @@ export class SigninPage implements OnInit {
         this.UserDetails = UserLoggedIn;
         if (this.UserDetails != null) {
           this.isLoading = false;
-          this.checkPercentage()
+          this.ConfigService.getUser(this.uid).subscribe((userData) => {
+            this.userFullDetails = userData;
+            this.verifiedCust = this.userFullDetails.field_verfied.length
+            if (this.userFullDetails.field_trial_period_start_date.length == undefined) {
+              this.oldDate = this.datepipe.transform(this.now, 'MM-dd-yyyy');
+              this.newDate = this.datepipe.transform(this.userFullDetails.field_trial_period_start_date.und[0].value, 'MM-dd-yyyy');
+              this.dateone = new Date(this.userFullDetails.field_trial_period_start_date.und[0].value);
+              this.datetwo = new Date(this.now);
+              this.date()
+            }
+          });
+
+
+
+          //this.checkPercentage()
         }
       });
     }
@@ -310,5 +330,26 @@ export class SigninPage implements OnInit {
 
       }
     });
+  }
+  date() {
+
+    var date1 = new Date(this.oldDate);
+    var date2 = new Date(this.newDate);
+
+    var Difference_In_Time = date1.getTime()  - date2.getTime();
+
+
+    // To calculate the no. of days between two dates 
+    var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+    if (Difference_In_Days < 8 || this.verifiedCust) {
+
+      //this.router.navigate(["/chat/searchUser"]);
+      this.checkPercentage()
+
+    }
+    else {
+      this.router.navigate(["/trialover"]);
+    }
   }
 }

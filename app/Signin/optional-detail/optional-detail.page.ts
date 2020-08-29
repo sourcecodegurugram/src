@@ -71,6 +71,7 @@ export class OptionalDetailPage implements OnInit {
   userDetails;
   fun;
   parsedBlock: any;
+  kids: any;
   constructor(
     private http: HttpClient,
     private _location: Location,
@@ -117,6 +118,7 @@ export class OptionalDetailPage implements OnInit {
     goodFriend,
     cancels,
     status,
+    kids,
     pets,
     spend,
     speak,
@@ -130,8 +132,7 @@ export class OptionalDetailPage implements OnInit {
     anything
   ) {
 
-    console.log(goodFriend)
-    console.log(talkabout)
+    this.isLoading = true
     const headers = new HttpHeaders()
       .set("X-CSRF-Token", this.userDetail.token)
       .set("Content-Type", "application/json")
@@ -166,6 +167,9 @@ export class OptionalDetailPage implements OnInit {
         field_relationship_status: {
           und: status,
         },
+        field_kids:{
+          und:kids
+        },
         field_any_pets: {
           und: pets,
         },
@@ -190,6 +194,8 @@ export class OptionalDetailPage implements OnInit {
         field_you_say: { und: [{ value: anything }] },
       }, requestOptions
       ).subscribe((result) => {
+        console.log(result)
+        this.isLoading = false
         this.router.navigate(["/chat/searchUser"]);
       });
     this.additionalTotalObject = {
@@ -463,7 +469,10 @@ export class OptionalDetailPage implements OnInit {
       if (this.userDetails.field_you_say.length == undefined) {
         this.anything = this.userDetails.field_you_say.und[0].value
       }
-
+    if(this.userDetails.field_kids.length == undefined)
+    {
+      this.kids = this.userDetails.field_kids.und[0].value
+    }
 
     });
   }
@@ -492,22 +501,17 @@ export class OptionalDetailPage implements OnInit {
       index = 0;
     }
 
-    this.responseString = {
-      field_user_avatar: {
-        und: [],
-      },
-    };
+  
  
-    this.userImages = this.userImages.filter((obj) => {
-      console.log(obj)
-      return obj.fid !== fid;
-    });
 
-   this.responseString["field_user_avatar"]["und"] =  this.userImages;
-   //this.responseString["field_user_avatar"]["und"][index] =  this.userImages;
-console.log( this.responseString)
-    this.http.put("https://gowebtutorial.com/api/json/user/" + this.uid, this.responseString, requestOptions).subscribe((result) => {
-      console.log("posted image " + result);
+   this.responseString = this.userImages;
+console.log(this.responseString)
+    this.http.put("https://gowebtutorial.com/api/json/user/" + this.uid,{
+      field_user_avatar: {
+        und: this.responseString
+      },
+    }, requestOptions).subscribe((result) => {
+    console.log("posted image " + result);
       this.isLoading = true;
       this.ConfigService.getUser(this.uid).subscribe((data) => {
         this.userData = data;

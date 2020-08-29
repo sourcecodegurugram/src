@@ -9,10 +9,11 @@
 <ion-content>
 <div class="background-card">
   <div class="main-content-chat">
-    <div class="chat-items">
+    <div class="chat-items" >
       <div routerLink="/notificationchat/{{message.thread_id}}/{{message.picture.filename}}/{{message.name}}"
-        class="chat-grid" *ngFor="let message of counterpartParticipants">
-        <div class="image">
+        class="chat-grid" *ngFor="let message of counterpartParticipants"  ng-repeat="g in message | unique: 'g.uid'">
+
+        <div class="image" >
           <img src="https://gowebtutorial.com/sites/default/files/{{message.picture.filename}}" class=" image-chat">
         </div>
 

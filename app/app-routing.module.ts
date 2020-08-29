@@ -135,7 +135,10 @@ const routes: Routes = [
     path: 'paypal',
     loadChildren: () => import('./Signin/pay-pal/pay-pal.module').then( m => m.PayPalPageModule)
   },
-
+  {
+    path: 'success',
+    loadChildren: () => import('./Signin/pay-pal/success-page/success-page.module').then( m => m.SuccessPagePageModule)
+  },
 
 ];
 

@@ -4,6 +4,7 @@ import {
   HttpClient,
   HttpHeaders,
   HttpHeaderResponse,
+  HttpErrorResponse
 } from "@angular/common/http";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
@@ -12,7 +13,8 @@ import { AlertController } from "@ionic/angular";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { FileChooser } from "@ionic-native/file-chooser/ngx";
 import { FilePath } from "@ionic-native/file-path/ngx";
-
+import { catchError, retry } from "rxjs/operators";
+import { Observable, throwError } from "rxjs";
 @Component({
   selector: 'app-moreinfo',
   templateUrl: './moreinfo.page.html',
@@ -80,6 +82,9 @@ export class MoreinfoPage implements OnInit {
   siginUser: any;
   myself: any;
   zip: any;
+  kids: any;
+  goodFriends;
+  new: any;
   constructor(
     private http: HttpClient,
     private _location: Location,
@@ -108,9 +113,9 @@ export class MoreinfoPage implements OnInit {
       this.contract = this.userDetails.field_want_contarct.und[0].value
       this.meet = this.userDetails.field_look_meet.und[0].value
       this.country = this.userDetails.field_zip_code.und[0].country
-if(this.userDetails.field_consider_myself_.length != 0){
+      if(this.userDetails.field_consider_myself_.length != 0){
       this.myself = this.userDetails.field_consider_myself_.und[0].value
-}
+       }
       this.zip = this.userDetails.field_zip_code.und[0].postal_code
    
       if (this.userDetails.field_do_for_fun.length == undefined) {
@@ -126,7 +131,12 @@ if(this.userDetails.field_consider_myself_.length != 0){
       }
 
       if (this.userDetails.field_good_friend.length == undefined) {
-        this.goodFriend = this.userDetails.field_good_friend.und[0].value
+        this.goodFriend  = this.userDetails.field_good_friend.und[0].value
+       
+
+ 
+
+     
       }
       if (this.userDetails.field_plans_get_cancelled.length == undefined) {
         this.cancels = this.userDetails.field_plans_get_cancelled.und[0].value
@@ -168,7 +178,10 @@ if(this.userDetails.field_consider_myself_.length != 0){
       if (this.userDetails.field_you_say.length == undefined) {
         this.anything = this.userDetails.field_you_say.und[0].value
       }
-
+      if(this.userDetails.field_kids.length == undefined)
+      {
+        this.kids = this.userDetails.field_kids.und[0].value
+      }
 
     });
 
@@ -215,8 +228,8 @@ if(this.userDetails.field_consider_myself_.length != 0){
     music,
     anything
   ) {
-
-    console.log(speak)
+console.log(goodFriend)
+    this.isLoading = true
     const headers = new HttpHeaders()
       .set("X-CSRF-Token", this.siginUser.token)
       .set("Content-Type", "application/json")
@@ -317,7 +330,19 @@ if(this.userDetails.field_consider_myself_.length != 0){
         field_favorite_music: { und: [{ value: music }] },
         field_you_say: { und: [{ value: anything }] },
       }, requestOptions
+      ).pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.status == 401) {
+            this.isLoading = false
+          } else if (error.status == 406) {
+            this.isLoading = false
+            this.EmailAlert()
+          }
+          this.isLoading = false;
+          return throwError(this.Something());
+        })
       ).subscribe((result) => {
+        this.isLoading = false
         this.router.navigate(["/chat/searchUser"])
       });
     this.additionalTotalObject = {
@@ -369,6 +394,18 @@ if(this.userDetails.field_consider_myself_.length != 0){
 
   backClicked() {
     this._location.back();
+  }
+
+  async EmailAlert() {
+    const correct = await this.alertController.create({
+      message: "Please fill valid value",
+      buttons: ["OK"],
+    });
+
+    await correct.present();
+  }
+  async Something() {
+
   }
 
   pagechange() {

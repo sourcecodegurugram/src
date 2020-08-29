@@ -64,13 +64,10 @@ export class ConfigService {
         countryCode = "sg";
         break;
       default:
-      // code block
-    }
 
-    console.log(
-      this.postalUrl + post + "&country=" + countryCode + "&page=" + pageIndex
-    );
+   }
 
+  
     return this.http.get(
       this.postalUrl + post + "&country=" + countryCode + "&page=" + pageIndex
     );

@@ -24,6 +24,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { Diagnostic } from "@ionic-native/diagnostic/ngx";
 import { EmailComposer } from "@ionic-native/email-composer/ngx";
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: "app-welcome",
@@ -96,11 +97,14 @@ export class WelcomePage implements OnInit {
     private http: HttpClient,
     private splashScreen: SplashScreen,
     public Diagnostic: Diagnostic,
-    private emailComposer: EmailComposer
+    private emailComposer: EmailComposer,
+    public loadingController: LoadingController
   ) {}
 
   ngOnInit() {
     this.matchLevel = 0;
+    const timeZoneOffset = new Date().getTimezoneOffset()
+    console.log(timeZoneOffset)
     this.siginUser = JSON.parse(localStorage.getItem("currentUser"));
     this.splashScreen.show();
     this.isLoading = true;
@@ -111,13 +115,17 @@ export class WelcomePage implements OnInit {
         this.isLoading = false;
         this.routes.navigate(["/topHobbies"]);
       }
-      if (this.siginUser.user.field_already_declared.und.length == 1) {
+      else {
         this.notEntered = false;
         this.isLoggedIn = false;
         this.isLoading = false;
-        // this.routes.navigate(["/chat/searchUser"]);
+      this.routes.navigate(["/find-friends"]);
       }
-    } else {
+ 
+
+    } 
+    
+    if (this.siginUser == null){
       this.isLoggedIn = false;
       this.isLoading = false;
     }
@@ -253,21 +261,19 @@ export class WelcomePage implements OnInit {
               this.userLongitude = elements[0].Longitude;
               this.originalUser = false;
             }
-
           this.distanceInKm = this.getDistanceFromLatLonInKm(
             this.userLatitude,
             this.userLongitude,
             elements[i].Latitude,
             elements[i].Longitude
           );
-
           this.distance = (this.distanceInKm * 1) / 1.609344;
           this.tempCurrPage[i].distance = this.distance;
-
           this.currPage.push(this.tempCurrPage[i]);
-  
         }
       }
+
+      if(  this.currPage != null){
       if (this.currPage.length > 0) {
         this.searchresult = true;
         this.searchResponse = this.searchResponse.concat(this.currPage);
@@ -275,20 +281,23 @@ export class WelcomePage implements OnInit {
           (thing, index, self) =>
             index === self.findIndex((t) => t.name === thing.name)
         );
-      }
-
+      
+    }
+  }
+if(  this.currPage != null){
       if (this.currPage.length < 10) {
         this.matchLevel++;
         this.pageIndex = -1;
       }
-
       if (this.searchResponse.length == 0) {
         this.pageIndex++;
         this.getSearchData();
         return;
       }
+    }
       this.pageIndex++;
     });
+
   }
 
   closesearchpop() {
@@ -300,6 +309,16 @@ export class WelcomePage implements OnInit {
     this.noResult = false;
     this.routes.navigate(["/"]);
   }
+  
+  closenosearchpop() {
+    this.pageIndex = 0;
+
+    this.searchresult = false;
+    this.hide = false;
+    this.noResult = false;
+    this.routes.navigate(["/"]);
+  }
+
 
   loggedIncheck() {
     this.siginUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -345,4 +364,16 @@ export class WelcomePage implements OnInit {
   deg2rad(deg) {
     return deg * (Math.PI / 180);
   }
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Please wait...',
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
+  }
+
 }

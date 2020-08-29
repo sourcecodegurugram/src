@@ -203,3 +203,26 @@ span.Lastlogin {
     font-family: 'Montserrat', sans-serif !important;
 
 }
+b
+{
+    text-transform: lowercase;
+}
+
+.status-main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.verifed {
+    margin: 1em;
+}
+.text:not(:last-child):after {
+    content: " , ";
+  }
+  .text:last-child:after {
+    content: ".";
+  }
+.petsvalue:not(:last-child):after {
+    content: " and ";
+  }

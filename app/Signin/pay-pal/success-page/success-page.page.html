@@ -1,0 +1,105 @@
+<ion-header>
+  <app-navigationbar></app-navigationbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="main-container-payment">
+
+    <div class="header-image">
+      <img src="../../../../assets/Images/header-logo.png" class="image-top">
+    </div>
+    <div class="main-heading-text dating-body-heading">
+      Thanks For Your Order
+    </div>
+
+    <div class="order-detail">
+
+      <div class="order-heading dating-body-heading">
+        Your order
+      </div>
+
+      <div class="other-date  dating-body-heading">
+        {{Time | date}}
+      </div>
+      <div class="order-id">
+        OrderId : {{OrderId}} 
+      </div>
+
+      <div class="membership-detail">
+
+        <div class="memership-data">
+          <div class="membership-data-heading">
+            Price:
+
+          </div>
+
+
+          <div class="membership-data-content">
+            ${{Amount}}
+          </div>
+        </div>
+
+
+        <div class="memership-data">
+          <div class="membership-data-heading">
+            Memership Type:
+
+          </div>
+
+
+          <div class="membership-data-content" *ngIf="Amount == 19.99">
+           Yearly
+          </div>
+          <div class="membership-data-content" *ngIf="Amount != 19.99">
+            Monthly
+           </div>
+        </div>
+
+
+        <div class="memership-data">
+          <div class="membership-data-heading">
+            Memership StartDate:
+
+          </div>
+
+
+          <div class="membership-data-content">
+            {{Time | date}}
+          </div>
+        </div>
+
+        <div class="memership-data">
+          <div class="membership-data-heading">
+            Memership EndDate:
+
+          </div>
+
+
+          <div class="membership-data-content">
+           {{Endate | date}}
+          </div>
+        </div>
+
+
+
+      </div>
+
+    </div>
+
+
+
+<div class="button-success">
+
+  <div class="button-success-type dating-body-heading" routerLink="/find-friends">
+  
+    Visit Profile
+
+  </div>
+</div>
+
+  </div>
+
+
+
+</ion-content>

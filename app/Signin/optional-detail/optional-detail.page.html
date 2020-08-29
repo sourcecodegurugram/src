@@ -110,18 +110,24 @@
 
            
 
+        
+          <div class="ionic-dropdowns">
 
-          <div class="form-group dating-body-font">
-            <label for="usr" >How long have you lived here?</label>
-            <select class="form-control selectpicker" id="sel1" name="long" [(ngModel)]="live">
-              <option value="0" style="background-color: azure;">
-                < 2 years</option> <option value="1">2-5 years
-              </option>
-              <option value="2">>5 years</option>
-            </select>
+            <label class="label-ionic-dropdown dating-body-font">How long have you lived here?</label>
+            <ion-item class="usually-dropdown">
+              <ion-label></ion-label>
+              <ion-select multiple="false" cancelText="Close" okText="Okay" name="live" [(ngModel)]="live"
+                class="ion-select-option-setting">
+                <ion-select-option value="0" #1> < 2 years
+                </ion-select-option>
+                <ion-select-option value="1" #1> 2-5 years
+                </ion-select-option>
+                <ion-select-option value="2" #2>>5 years</ion-select-option>
+                
+              </ion-select>
+            </ion-item>
           </div>
-
-
+       
           <div class="ionic-dropdowns">
 
             <label class="label-ionic-dropdown dating-body-font">My friends and I usually talk about</label>
@@ -144,8 +150,8 @@
           </div>
 
 
-          <label class="label-ionic-dropdown mt-4 dating-body-font">A Good Friend Is Someone Who...</label>
-          <ion-item class="usually-dropdown mb-4">
+          <label class="label-ionic-dropdown dating-body-font">A Good Friend Is Someone Who...</label>
+          <ion-item class="usually-dropdown ">
 
             <ion-label></ion-label>
             <ion-select multiple="true" cancelText="Close" okText="Okay" name="goodFriend" [(ngModel)]="goodFriend">
@@ -163,22 +169,26 @@
             </ion-select>
           </ion-item>
         
-
-          <div class="form-group dating-body-font">
-            <label for="usr">When someone cancels plans we made </label>
-
-            
-            <select class="form-control" id="sel1" name="cancels" [(ngModel)]="cancels">
-              <option value="My reaction depends on the reason why.">My reaction depends on the reason why.</option>
-              <option value="I think no big deal">I think no big deal</option>
-              <option value="It really bothers me and I am wary of the friendship.">It really bothers me and I am wary
-                of the friendship.</option>
-              <option
-                value="I’m generally understanding, but I can only be blown off so many times before I will start to question the friendship.">
-                I’m generally understanding, but I can only be blown off so many times before I will start to question
-                the friendship.</option>
-            </select>
+          <div class="ionic-dropdowns">
+            <label class="label-ionic-dropdown dating-body-font">When someone cancels plans we made</label>
+            <ion-item class="usually-dropdown">
+              <ion-label></ion-label>
+              <ion-select  cancelText="Close" okText="Okay" name="cancels" [(ngModel)]="cancels"
+                class="ion-select-option-setting">
+                <ion-select-option value="My reaction depends on the reason why.">My reaction depends on the reason why.
+                </ion-select-option>
+                <ion-select-option value="I think no big deal">I think no big deal
+                </ion-select-option>
+                <ion-select-option value="It really bothers me and I am wary of the friendship.">It really bothers me and I am wary
+                  of the friendship.
+                </ion-select-option>
+                <ion-select-option value="I’m generally understanding, but I can only be blown off so many times before I will start to question the friendship.">
+                  I’m generally understanding,<br> but I can only be blown off so many times before I will start to question
+                  the friendship</ion-select-option>
+              </ion-select>
+            </ion-item>
           </div>
+ 
 
           <div class="continue-button dating-body-heading" (click)="nextStep()">
             Continue
@@ -193,17 +203,22 @@
             <div class="progress-bar" style="width:50%"></div>
           </div>
         </div>
-
         <div class="forms-field">
-          <div class="form-group">
-            <label for="sel1">Are you in a relationship? </label>
-            <select class="form-control" id="sel1" name="status" [(ngModel)]="status">
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
-           
+        <div class="ionic-dropdowns">
+          <label class="label-ionic-dropdown dating-body-font">Are you in a relationship?</label>
+          <ion-item class="usually-dropdown">
+            <ion-label></ion-label>
+            <ion-select  cancelText="Close" okText="Okay" name="status" [(ngModel)]="status"
+              class="ion-select-option-setting">
+              <ion-select-option value="Yes">Yes
+              </ion-select-option>
+              <ion-select-option value="No">No
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
 
-            </select>
-          </div>
+        
 
 
           <div class="blue-button-second-tab dating-body-heading" (click)="Alert()">
@@ -211,15 +226,21 @@
             not for dating or sex?
           </div>
 
-
-          <div class="form-group">
-            <label for="sel1">Do you have kids?</label>
-            <select class="form-control" id="sel1">
-              <option>Yes</option>
-              <option>No</option>
-            </select>
+          <div class="ionic-dropdowns">
+            <label class="label-ionic-dropdown dating-body-font">Do you have kids?</label>
+            <ion-item class="usually-dropdown">
+              <ion-label></ion-label>
+              <ion-select  cancelText="Close" okText="Okay" [(ngModel)]="kids" name="kids"
+                class="ion-select-option-setting">
+                <ion-select-option value="Yes">Yes
+                </ion-select-option>
+                <ion-select-option value="No">No
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
           </div>
-
+  
+     
           <label class="label-ionic-dropdown mt-4 dating-body-font">Do You Have Pets?</label>
           <ion-item class="usually-dropdown mb-4" no-lines>
 
@@ -270,28 +291,42 @@
           </div>
         </div>
         <div class="forms-field">
-          <div class="form-group">
-            <label for="sel1">Do you smoke?</label>
-            <select class="form-control" id="sel1" name="smoke" [(ngModel)]="smoke">
-              <option value="Never">Never</option>
-              <option value="Rarely">Socially</option>
-              <option value="Yes">Yes</option>
-              <!-- <option value="Couple Times a Week">Couple Times a Week</option>
-              <option value=" Every Day"> Every Day</option> -->
 
-            </select>
+
+          <div class="ionic-dropdowns">
+            <label class="label-ionic-dropdown dating-body-font">Do you smoke?</label>
+            <ion-item class="usually-dropdown">
+              <ion-label></ion-label>
+              <ion-select  cancelText="Close" okText="Okay" name="smoke" [(ngModel)]="smoke"
+                class="ion-select-option-setting">
+                <ion-select-option value="Never">Never
+                </ion-select-option>
+                <ion-select-option value="Rarely">Socially
+                </ion-select-option>
+                <ion-select-option value="Yes">Yes
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
           </div>
-
-          <div class="form-group">
-            <label for="sel1">How about drinking alcohol? </label>
-            <select class="form-control" id="sel1" name="alcohol" [(ngModel)]="alcohol">
-
-              <option value="Never">Never</option>
-              <option value="Rarely">Rarely</option>
-              <option value="Weekends Only">Weekends Only</option>
-              <option value="Couple Times a Week">Couple Times a Week</option>
-              <option value=" Every Day"> Every Day</option>
-            </select>
+      
+          <div class="ionic-dropdowns">
+            <label class="label-ionic-dropdown dating-body-font">How about drinking alcohol? </label>
+            <ion-item class="usually-dropdown">
+              <ion-label></ion-label>
+              <ion-select  cancelText="Close" okText="Okay"  name="alcohol" [(ngModel)]="alcohol"
+                class="ion-select-option-setting">
+                <ion-select-option value="Never">Never
+                </ion-select-option>
+                <ion-select-option value="Rarely">Socially
+                </ion-select-option>
+                <ion-select-option value="Weekends Only">Weekends Only
+                </ion-select-option>
+                <ion-select-option value="Couple Times a Week">Couple Times a Week
+                </ion-select-option>
+                <ion-select-option value=" Every Day"> Every Day
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
           </div>
 
 
@@ -367,7 +402,7 @@
             <textarea class="form-control" rows="5" id="comment" name="anything" [(ngModel)]="anything"></textarea>
           </div>
           <div class="continue-button dating-body-heading"
-            (click)="optionDetail(fun,live,talkabout,goodFriend,cancels,status,pets,spend,speak,smoke,alcohol,education,books,movies,shows,music,anything)">
+            (click)="optionDetail(fun,live,talkabout,goodFriend,cancels,status,kids,pets,spend,speak,smoke,alcohol,education,books,movies,shows,music,anything)">
             Complete
           </div>
           <div class="previous-button dating-body-heading" (click)="previousStep()">

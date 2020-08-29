@@ -1,6 +1,6 @@
 import { Component, OnInit, NgZone, ChangeDetectorRef } from "@angular/core";
 import { MatTabChangeEvent } from "@angular/material/tabs";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders,  HttpErrorResponse, } from "@angular/common/http";
 import { AlertController } from "@ionic/angular";
 import { DomSanitizer } from "@angular/platform-browser";
 import {
@@ -16,7 +16,8 @@ import { Base64 } from "@ionic-native/base64/ngx";
 import { Device } from "@ionic-native/device/ngx";
 import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
 import { FilePath } from "@ionic-native/file-path/ngx";
-
+import { catchError, retry } from "rxjs/operators";
+import { Observable, throwError } from "rxjs";
 @Component({
   selector: "app-signup",
   templateUrl: "./signup.page.html",
@@ -218,15 +219,11 @@ export class SignupPage implements OnInit {
         this.displayImage =
           "https://gowebtutorial.com/sites/default/files/" +
           this.uploadData.filename;
-
-        console.log(this.displayImage);
-
         // Show next button
         this.imageContinue = true;
         this.isLoading = false;
         this.changeDetector.detectChanges();
       });
-    console.log(this.uploadData);
   }
 
   //Form
@@ -285,7 +282,6 @@ export class SignupPage implements OnInit {
       .get("https://gowebtutorial.com/api/json/file/" + this.Picurl.fid)
       .subscribe((res) => {
         this.picturesUrl = res;
-        console.log(this.picturesUrl);
 
       });
   }
@@ -307,77 +303,153 @@ export class SignupPage implements OnInit {
     password,
     confirmpassword
   ) {
+
+   this.isLoading = true
     let ts = Math.round(new Date().getTime() / 1000);
-    let submitObject = {
-      name: name,
-      mail: email,
-      conf_mail: confirmemail,
-      timezone: ts,
-      login: ts,
-      access: ts,
+    // let submitObject = {
+    //   name: name,
+    //   mail: email,
+    //   conf_mail: confirmemail,
+    //   timezone: ts,
+    //   login: ts,
+    //   access: ts,
 
-      field_consider_myself_:{
-        und:myself
-      },
-      field_first_name: {
-        und: [
-          {
-            value: fname,
-          },
-        ],
-      },
-      field_last_name: {
-        und: [
-          {
-            value: lname,
-          },
-        ],
-      },
-      field_zip_code: {
-        und: [
-          {
-            postal_code: zip,
-            country: live,
-          },
-        ],
-      },
-      field_birth_date: {
-        und: DOB,
-      },
+    //   field_consider_myself_:{
+    //     und:myself
+    //   },
+    //   field_first_name: {
+    //     und: [
+    //       {
+    //         value: fname,
+    //       },
+    //     ],
+    //   },
+    //   field_last_name: {
+    //     und: [
+    //       {
+    //         value: lname,
+    //       },
+    //     ],
+    //   },
+    //   field_zip_code: {
+    //     und: [
+    //       {
+    //         postal_code: zip,
+    //         country: live,
+    //       },
+    //     ],
+    //   },
+    //   field_birth_date: {
+    //     und: DOB,
+    //   },
 
-      field_gender: {
-        und: Gender,
-      },
+    //   field_gender: {
+    //     und: Gender,
+    //   },
 
-      field_activities_interests: {
-        und: activity,
-      },
-      field_look_meet: {
-        und: meet,
-      },
-      picture_upload: this.picturesUrl,
+    //   field_activities_interests: {
+    //     und: activity,
+    //   },
+    //   field_look_meet: {
+    //     und: meet,
+    //   },
+    //   picture_upload: this.picturesUrl,
 
-      picture: this.picturesUrl,
+    //   picture: this.picturesUrl,
 
-      field_user_avatar: {
-        und: [this.picturesUrl],
-      },
+    //   field_user_avatar: {
+    //     und: [this.picturesUrl],
+    //   },
 
-      field_want_contarct: {
-        und: contract,
-      },
-    };
+    //   field_want_contarct: {
+    //     und: contract,
+    //   },
+    // };
 
-    console.log(submitObject);
-
+var Timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
     this.http
       .post<any>(
-        "https://gowebtutorial.com/api/json/user/register",
-        submitObject
+        "https://gowebtutorial.com/api/json/user/register",{
+        name: name,
+        mail: email,
+        conf_mail: confirmemail,
+        timezone: ts,
+        login: ts,
+        access: ts,
+  
+        field_consider_myself_:{
+          und:myself
+        },
+        field_first_name: {
+          und: [
+            {
+              value: fname,
+            },
+          ],
+        },
+        field_last_name: {
+          und: [
+            {
+              value: lname,
+            },
+          ],
+        },
+        field_zip_code: {
+          und: [
+            {
+              postal_code: zip,
+              country: live,
+            },
+          ],
+        },
+        field_birth_date: {
+          und: [{
+            value: DOB,
+timezone: Timezone,
+timezone_db: Timezone,
+date_type: "datetime"
+          }]
+          
+        },
+  
+        field_gender: {
+          und: Gender,
+        },
+  
+        field_activities_interests: {
+          und: activity,
+        },
+        field_look_meet: {
+          und: meet,
+        },
+        picture_upload: this.picturesUrl,
+  
+        picture: this.picturesUrl,
+  
+        field_user_avatar: {
+          und: [this.picturesUrl],
+        },
+  
+        field_want_contarct: {
+          und: contract,
+        },
+      }
+      ) .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.status == 401) {
+            this.isLoading = false
+          } else if (error.status == 406) {
+            this.isLoading = false
+            this.EmailAlert()
+
+          }
+          this.isLoading = false;
+          return throwError(this.something());
+        })
       )
       .subscribe((data) => {
         this.post = data;
-        console.log(data);
+     
 
         if (this.post.uid) {
           this.isLoading = false;
@@ -385,14 +457,31 @@ export class SignupPage implements OnInit {
 
           this.correctAlert();
         } else {
+          this.isLoading = false
           alert(this.post);
         }
       });
   }
 
+  async something() {
+    // const correct = await this.alertController.create({
+    //   message: "Something bad happened; please try again later.",
+    //   buttons: ["OK"],
+    // });
+    // await correct.present();
+  }
   async correctAlert() {
     const correct = await this.alertController.create({
       message: " Account is created",
+      buttons: ["OK"],
+    });
+
+    await correct.present();
+  }
+
+  async EmailAlert() {
+    const correct = await this.alertController.create({
+      message: " Email already registered",
       buttons: ["OK"],
     });
 
@@ -503,5 +592,11 @@ export class SignupPage implements OnInit {
         });
       });
     });
+  }
+  getTime(DOB)
+  {
+    console.log(Intl.DateTimeFormat().resolvedOptions().timeZone)
+
+    console.log(DOB)
   }
 }
